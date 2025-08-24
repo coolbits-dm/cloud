@@ -1,15 +1,26 @@
 {
-  "name": "coolbits",
+  "name": "cbcloud",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier -w .",
+    "prepare": "husky",
     "db:generate": "prisma generate",
     "db:push": "prisma db push",
     "db:studio": "prisma studio"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,css,md}": [
+      "prettier -w"
+    ]
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
@@ -20,8 +31,8 @@
     "nodemailer": "^6.9.7",
     "openai": "^4.20.1",
     "rate-limiter-flexible": "^7.1.1",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "resend": "^2.1.0",
     "winston": "^3.11.0",
     "zod": "^3.22.4"
@@ -34,7 +45,10 @@
     "autoprefixer": "^10.4.16",
     "eslint": "^8",
     "eslint-config-next": "^15.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.5",
     "postcss": "^8.4.32",
+    "prettier": "^3.6.2",
     "prisma": "^5.7.1",
     "tailwindcss": "^3.3.6",
     "typescript": "^5"
