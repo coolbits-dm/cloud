@@ -1,0 +1,170 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "levels": [
+    "row",
+    "set",
+    "series"
+  ],
+  "rules": [
+    {
+      "code": "VAL:NUMERIC:NEGATIVE_FORBIDDEN",
+      "level": "row",
+      "applies_to": [
+        "*"
+      ],
+      "when": "field in ['CLICKS','IMPRESSIONS','CONVERSIONS','VIEWS','SESSIONS']",
+      "check": "value >= 0",
+      "severity": "error",
+      "message": {
+        "ro": "Valoare negativă nevalidă pentru {{field}}.",
+        "en": "Negative value not valid for {{field}}."
+      }
+    },
+    {
+      "code": "VAL:RATIO_0_1",
+      "level": "row",
+      "applies_to": [
+        "*"
+      ],
+      "when": "field_is_ratio == true",
+      "check": "0 <= value <= 1",
+      "autofix": {
+        "if": "0 < value <= 100",
+        "then": "value = value/100",
+        "note": "percent_to_ratio"
+      },
+      "severity": "error",
+      "message": {
+        "ro": "Rată în afara intervalului 0–1 pentru {{field}}.",
+        "en": "Rate outside 0–1 for {{field}}."
+      }
+    },
+    {
+      "code": "VAL:CURRENCY_NONNEGATIVE",
+      "level": "row",
+      "applies_to": [
+        "*"
+      ],
+      "when": "field_is_currency == true",
+      "check": "value >= 0",
+      "severity": "error",
+      "message": {
+        "ro": "Valoare monetară negativă pentru {{field}}.",
+        "en": "Negative currency value for {{field}}."
+      }
+    },
+    {
+      "code": "VAL:DATE:WITHIN_SELECTED_RANGE",
+      "level": "row",
+      "applies_to": [
+        "*"
+      ],
+      "when": "has_selected_range == true AND field == 'Date'",
+      "check": "selected_start <= value <= selected_end",
+      "severity": "warn",
+      "message": {
+        "ro": "Data {{value}} este în afara intervalului selectat.",
+        "en": "Date {{value}} falls outside the selected range."
+      }
+    },
+    {
+      "code": "VAL:DEDUP:ID_HASH_UNIQUE",
+      "level": "set",
+      "applies_to": [
+        "*"
+      ],
+      "when": "has_id_fields == true",
+      "check": "unique(hash(row[id_fields])) == count(rows)",
+      "severity": "error",
+      "message": {
+        "ro": "Rânduri duplicate detectate după cheia de identificare.",
+        "en": "Duplicate rows detected by identity key."
+      }
+    },
+    {
+      "code": "VAL:METRIC:CPC_EQUALS_COST_PER_CLICK",
+      "level": "set",
+      "applies_to": [
+        "GADS:*",
+        "META:*",
+        "TT:*",
+        "LI:*"
+      ],
+      "when": "has_metrics(['METRIC:COST','METRIC:CLICKS'])",
+      "check": "abs(avg('METRIC:CPC') - (sum('METRIC:COST')/max(1,sum('METRIC:CLICKS')))) <= 0.05 * (sum('METRIC:COST')/max(1,sum('METRIC:CLICKS')))",
+      "severity": "warn",
+      "autofix": {
+        "if": "missing_metric('METRIC:CPC')",
+        "then": "compute('METRIC:CPC', sum('METRIC:COST')/max(1,sum('METRIC:CLICKS')))"
+      },
+      "message": {
+        "ro": "CPC nu corespunde cost/click (±5%).",
+        "en": "CPC does not equal cost/click (±5%)."
+      }
+    },
+    {
+      "code": "VAL:METRIC:ROAS_EQUALS_VALUE_OVER_COST",
+      "level": "set",
+      "applies_to": [
+        "GADS:*",
+        "META:*",
+        "TT:*",
+        "LI:*"
+      ],
+      "when": "has_metrics(['METRIC:CONV_VALUE','METRIC:COST'])",
+      "check": "abs(avg('METRIC:ROAS') - (sum('METRIC:CONV_VALUE')/max(0.01,sum('METRIC:COST')))) <= 0.05 * (sum('METRIC:CONV_VALUE')/max(0.01,sum('METRIC:COST')))",
+      "severity": "warn",
+      "autofix": {
+        "if": "missing_metric('METRIC:ROAS')",
+        "then": "compute('METRIC:ROAS', sum('METRIC:CONV_VALUE')/max(0.01,sum('METRIC:COST')))"
+      },
+      "message": {
+        "ro": "ROAS diferă de valoare/cost (±5%).",
+        "en": "ROAS differs from value/cost (±5%)."
+      }
+    },
+    {
+      "code": "VAL:AUCTION:DOMAIN_VALID",
+      "level": "row",
+      "applies_to": [
+        "GADS:AUCTION_INSIGHTS"
+      ],
+      "when": "field == 'Domain'",
+      "check": "regex(value, r'^[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$')",
+      "severity": "warn",
+      "message": {
+        "ro": "Domeniu nevalid în Auction Insights.",
+        "en": "Invalid domain in Auction Insights."
+      }
+    },
+    {
+      "code": "VAL:HEADERS:MATCH_QUALITY",
+      "level": "set",
+      "applies_to": [
+        "*"
+      ],
+      "when": "has_expected_headers == true",
+      "check": "header_match_score >= 0.7",
+      "severity": "warn",
+      "message": {
+        "ro": "Potrivirea headere-lor este sub prag (0.7) — verifică tipul de raport selectat.",
+        "en": "Header match score below 0.7 — verify selected report type."
+      }
+    },
+    {
+      "code": "VAL:SERIES:NONNEGATIVE_TREND_FOR_ACCUM",
+      "level": "series",
+      "applies_to": [
+        "*"
+      ],
+      "when": "field in ['COST','CONV_VALUE','REVENUE']",
+      "check": "min(diff(series(field))) >= -1e-6",
+      "severity": "info",
+      "message": {
+        "ro": "Seria acumulată are scăderi — poate fi agregare inconsecventă.",
+        "en": "Accumulated series shows drops — may be inconsistent aggregation."
+      }
+    }
+  ]
+}

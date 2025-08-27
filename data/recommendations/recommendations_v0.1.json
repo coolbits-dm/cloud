@@ -1,0 +1,488 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "syntax": "cbExpr v1 for 'detect' and 'preconditions' using metrics/terms in ontology; defaults days=30, tz=Europe/Bucharest",
+  "rules": [
+    {
+      "code": "REC:TRACKING:GA4_MISSING",
+      "area": "TRACKING",
+      "detect": "missing('TOOL:GA4')",
+      "evidence": [
+        "TOOL:GA4"
+      ],
+      "description": {
+        "ro": "GA4 lipsește — nu putem măsura corect performanța.",
+        "en": "GA4 missing — performance cannot be measured properly."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Instalare GA4 + evenimente cheie",
+            "en": "Install GA4 + key events"
+          },
+          "detail": {
+            "ro": "Creează proprietate GA4, adaugă tag (GTM recomandat) și configurează evenimentele purchase/lead/submit_form.",
+            "en": "Create GA4 property, add tag (GTM recommended) and configure purchase/lead/submit_form events."
+          },
+          "effort": "medium",
+          "impact": "high",
+          "timeframe_days": 3,
+          "owner": "analytics",
+          "dependencies": [
+            "TOOL:GTM"
+          ],
+          "metrics_to_watch": [
+            "EVENT:PURCHASE",
+            "EVENT:GENERATE_LEAD",
+            "METRIC:CONVERSIONS"
+          ]
+        }
+      ],
+      "cta": {
+        "label": {
+          "ro": "Checklist GA4",
+          "en": "GA4 checklist"
+        },
+        "action": "ACTION:OPEN_DOC",
+        "params": {
+          "doc": "ga4_setup"
+        }
+      }
+    },
+    {
+      "code": "REC:TRACKING:CONSENT_MISSING",
+      "area": "TRACKING",
+      "detect": "not has('CMP:PRESENT') OR (not has('CONSENT:ADS') AND not has('CONSENT:ANALYTICS'))",
+      "evidence": [
+        "CMP:PRESENT",
+        "CONSENT:ADS",
+        "CONSENT:ANALYTICS"
+      ],
+      "description": {
+        "ro": "Lipsește CMP sau Consent Mode — risc de pierdere semnal/nerespectare GDPR.",
+        "en": "CMP or Consent Mode missing — risk of signal loss/non-compliance."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Implementare CMP + Consent Mode",
+            "en": "Implement CMP + Consent Mode"
+          },
+          "detail": {
+            "ro": "Integrează un CMP compatibil IAB TCF; activează Consent Mode v2 în GTM, maparea event-urilor și server-side tagging (opțional).",
+            "en": "Integrate an IAB TCF-compatible CMP; enable Consent Mode v2 in GTM, map events, and server-side tagging (optional)."
+          },
+          "effort": "medium",
+          "impact": "high",
+          "timeframe_days": 5,
+          "owner": "analytics",
+          "dependencies": [
+            "TOOL:GTM"
+          ],
+          "metrics_to_watch": [
+            "METRIC:CONVERSIONS",
+            "METRIC:CONV_VALUE"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "REC:ADS:LOW_IMPR_SHARE_BUDGET",
+      "area": "ADS",
+      "detect": "avg('METRIC:IMPR_SHARE',30) < 0.5 AND avg('METRIC:SEARCH_LOST_IS_BUDGET',30) > 0.15",
+      "evidence": [
+        "METRIC:IMPR_SHARE",
+        "METRIC:SEARCH_LOST_IS_BUDGET"
+      ],
+      "description": {
+        "ro": "Impression Share scăzut din buget.",
+        "en": "Low Impression Share due to budget."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Creștere buget pe campaniile profitabile",
+            "en": "Increase budget on profitable campaigns"
+          },
+          "detail": {
+            "ro": "Prioritizează campaniile cu CPA/ROAS ok și mărește bugetul 15–30% până când Lost IS (budget) <10%.",
+            "en": "Prioritize campaigns with good CPA/ROAS and raise budget 15–30% until Lost IS (budget) <10%."
+          },
+          "effort": "low",
+          "impact": "high",
+          "timeframe_days": 7,
+          "owner": "marketing",
+          "metrics_to_watch": [
+            "METRIC:SEARCH_LOST_IS_BUDGET",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ]
+        },
+        {
+          "title": {
+            "ro": "Consolidare campanii & pacing",
+            "en": "Campaign consolidation & pacing"
+          },
+          "detail": {
+            "ro": "Reduce fragmentarea (număr prea mare de campanii) și folosește shared budgets dacă potrivit.",
+            "en": "Reduce fragmentation (too many campaigns) and use shared budgets if appropriate."
+          },
+          "effort": "low",
+          "impact": "medium",
+          "timeframe_days": 5,
+          "owner": "marketing"
+        }
+      ]
+    },
+    {
+      "code": "REC:ADS:LOW_IMPR_SHARE_RANK",
+      "area": "ADS",
+      "detect": "avg('METRIC:IMPR_SHARE',30) < 0.5 AND avg('METRIC:SEARCH_LOST_IS_RANK',30) > 0.35",
+      "evidence": [
+        "METRIC:IMPR_SHARE",
+        "METRIC:SEARCH_LOST_IS_RANK"
+      ],
+      "description": {
+        "ro": "Impression Share scăzut din rank (Ad Rank/Quality).",
+        "en": "Low Impression Share due to rank (Ad Rank/Quality)."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Optimizare relevanță & calitate",
+            "en": "Improve relevance & quality"
+          },
+          "detail": {
+            "ro": "Strânge tematic ad groups, îmbunătățește anunțurile (RSA pinning minim), extensii complete, pagini dedicate.",
+            "en": "Tighten ad groups, improve ads (minimal pinning for RSAs), full extensions, dedicated LPs."
+          },
+          "effort": "medium",
+          "impact": "high",
+          "timeframe_days": 14,
+          "owner": "marketing",
+          "metrics_to_watch": [
+            "METRIC:CTR",
+            "METRIC:TOP_IMPR_RATE",
+            "METRIC:ABS_TOP_IMPR_RATE"
+          ]
+        },
+        {
+          "title": {
+            "ro": "Ajustare strategii de licitare",
+            "en": "Adjust bidding strategies"
+          },
+          "detail": {
+            "ro": "Testează tCPA/tROAS sau Maximize Conversions cu targete realiste; crește tROAS gradual.",
+            "en": "Test tCPA/tROAS or Max Conversions with realistic targets; increase tROAS gradually."
+          },
+          "effort": "low",
+          "impact": "medium",
+          "timeframe_days": 10,
+          "owner": "marketing"
+        }
+      ]
+    },
+    {
+      "code": "REC:ADS:AUCTION_INSIGHTS_COMPETITION",
+      "area": "ADS",
+      "detect": "exists_metric('METRIC:AUCTION:OUTRANKING_SHARE',30) AND any(['DIM:COMPETITOR'])",
+      "evidence": [
+        "METRIC:AUCTION:OUTRANKING_SHARE",
+        "DIM:COMPETITOR"
+      ],
+      "description": {
+        "ro": "Competitorii depășesc frecvent anunțurile.",
+        "en": "Competitors frequently outrank your ads."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Segmentare & protecție brand",
+            "en": "Segmentation & brand defense"
+          },
+          "detail": {
+            "ro": "Separă campaniile de brand/non-brand; crește bid/ROAS pe brand și asigură acoperire 100% a brandului.",
+            "en": "Split brand vs non-brand; raise bids/ROAS on brand and ensure 100% brand coverage."
+          },
+          "effort": "low",
+          "impact": "medium",
+          "timeframe_days": 7,
+          "owner": "marketing"
+        },
+        {
+          "title": {
+            "ro": "Testare creativă & hooks",
+            "en": "Creative testing & hooks"
+          },
+          "detail": {
+            "ro": "Testează 2–3 propuneri de valoare noi, sitelinks, callouts; LP mai rapidă pentru termeni competitivi.",
+            "en": "Test 2–3 new value props, sitelinks, callouts; faster LP for competitive terms."
+          },
+          "effort": "medium",
+          "impact": "medium",
+          "timeframe_days": 14,
+          "owner": "marketing"
+        }
+      ]
+    },
+    {
+      "code": "REC:SHOPPING:FEED_ERRORS",
+      "area": "ADS",
+      "detect": "sum('METRIC:FEED_ERRORS',30) > 10",
+      "evidence": [
+        "METRIC:FEED_ERRORS"
+      ],
+      "description": {
+        "ro": "Erori multe în feed-ul Merchant Center.",
+        "en": "Too many Merchant Center feed errors."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Curățare feed & atribute obligatorii",
+            "en": "Feed cleanup & required attributes"
+          },
+          "detail": {
+            "ro": "Rezolvă GTIN/brand/taxonomie, imagini 1200px+, preț/availability aliniate, title + keywords relevante.",
+            "en": "Fix GTIN/brand/taxonomy, 1200px+ images, price/availability parity, descriptive titles & keywords."
+          },
+          "effort": "medium",
+          "impact": "high",
+          "timeframe_days": 10,
+          "owner": "ecommerce"
+        }
+      ]
+    },
+    {
+      "code": "REC:SOCIAL:META_LOW_CTR",
+      "area": "SOCIAL",
+      "detect": "avg('METRIC:META_CTR',30) < 0.008 AND sum('METRIC:META_IMPRESSIONS',30) > 1000",
+      "evidence": [
+        "METRIC:META_CTR",
+        "METRIC:META_IMPRESSIONS"
+      ],
+      "description": {
+        "ro": "CTR Meta scăzut (<0.8%).",
+        "en": "Low Meta CTR (<0.8%)."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Refresh creative (3–5 variante)",
+            "en": "Refresh creatives (3–5 variants)"
+          },
+          "detail": {
+            "ro": "Testează 3 hook-uri, 2 formate (square/vertical), 2 headline-uri; exclude fatigued ads.",
+            "en": "Test 3 hooks, 2 formats (square/vertical), 2 headlines; pause fatigued ads."
+          },
+          "effort": "medium",
+          "impact": "medium",
+          "timeframe_days": 7,
+          "owner": "creative"
+        },
+        {
+          "title": {
+            "ro": "Public țintă mai restrâns inițial",
+            "en": "Narrow initial audience"
+          },
+          "detail": {
+            "ro": "Pornește cu lookalike 1% sau interese strânse; expand gradual dacă CTR crește.",
+            "en": "Start with 1% LAL or tight interests; expand gradually as CTR improves."
+          },
+          "effort": "low",
+          "impact": "medium",
+          "timeframe_days": 5,
+          "owner": "marketing"
+        }
+      ]
+    },
+    {
+      "code": "REC:TIKTOK:LOW_VTR",
+      "area": "SOCIAL",
+      "detect": "avg('METRIC:TT_VTR',30) < 0.15 AND sum('METRIC:TT_IMPRESSIONS',30) > 1000",
+      "evidence": [
+        "METRIC:TT_VTR",
+        "METRIC:TT_IMPRESSIONS"
+      ],
+      "description": {
+        "ro": "TikTok VTR scăzut (<15%).",
+        "en": "Low TikTok VTR (<15%)."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Urmărește pattern-ul UGC nativ",
+            "en": "Lean into native UGC patterns"
+          },
+          "detail": {
+            "ro": "Hook în primele 1–2 secunde, text overlay mare, ritm rapid, CTA clar la final.",
+            "en": "Hook in first 1–2s, large text overlays, fast pacing, clear CTA at end."
+          },
+          "effort": "medium",
+          "impact": "medium",
+          "timeframe_days": 7,
+          "owner": "creative"
+        }
+      ]
+    },
+    {
+      "code": "REC:LINKEDIN:LOW_CTR",
+      "area": "SOCIAL",
+      "detect": "avg('METRIC:LI_CTR',30) < 0.005 AND sum('METRIC:LI_IMPRESSIONS',30) > 1000",
+      "evidence": [
+        "METRIC:LI_CTR",
+        "METRIC:LI_IMPRESSIONS"
+      ],
+      "description": {
+        "ro": "CTR LinkedIn sub 0.5%.",
+        "en": "LinkedIn CTR below 0.5%."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Mesaj specific ICP + formate document/ad carousel",
+            "en": "ICP-specific messaging + document/carousel"
+          },
+          "detail": {
+            "ro": "Headline-uri pe beneficii, bullets concrete, CTA orientat pe problemă; testează Document Ads/Carousel.",
+            "en": "Benefit headlines, concrete bullets, problem-led CTA; test Document Ads/Carousel."
+          },
+          "effort": "medium",
+          "impact": "medium",
+          "timeframe_days": 10,
+          "owner": "marketing"
+        }
+      ]
+    },
+    {
+      "code": "REC:SEO:CWV_POOR",
+      "area": "SEO",
+      "detect": "avg('METRIC:LCP',90) > 2.5 OR avg('METRIC:INP',90) > 0.2 OR avg('METRIC:CLS',90) > 0.1",
+      "evidence": [
+        "METRIC:LCP",
+        "METRIC:INP",
+        "METRIC:CLS"
+      ],
+      "description": {
+        "ro": "Core Web Vitals în afara pragurilor recomandate.",
+        "en": "Core Web Vitals outside recommended thresholds."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Optimizare performanță pagini critice",
+            "en": "Optimize performance on critical pages"
+          },
+          "detail": {
+            "ro": "Imagini next-gen cu lazy‑load, reducere JS nefolosit, caching, preconnect CDN, optimizare fonturi.",
+            "en": "Next‑gen images with lazy‑load, trim unused JS, caching, CDN preconnect, font optimization."
+          },
+          "effort": "medium",
+          "impact": "high",
+          "timeframe_days": 14,
+          "owner": "engineering"
+        }
+      ]
+    },
+    {
+      "code": "REC:EMAIL:LOW_DELIVERY",
+      "area": "EMAIL",
+      "detect": "pct(sum('EMAIL:DELIVERED',90), sum('EMAIL:SENT',90)) < 0.95",
+      "evidence": [
+        "EMAIL:DELIVERED",
+        "EMAIL:SENT"
+      ],
+      "description": {
+        "ro": "Rată de livrare email sub 95%.",
+        "en": "Email delivery rate below 95%."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Curățare listă + autentificare",
+            "en": "List hygiene + authentication"
+          },
+          "detail": {
+            "ro": "Bounce cleanup, double opt‑in, setare SPF/DKIM/DMARC, warm‑up IP dacă necesar.",
+            "en": "Bounce cleanup, double opt‑in, set SPF/DKIM/DMARC, warm up IP if needed."
+          },
+          "effort": "medium",
+          "impact": "high",
+          "timeframe_days": 10,
+          "owner": "crm"
+        }
+      ]
+    },
+    {
+      "code": "REC:ECOMM:FUNNEL_WEAK",
+      "area": "ECOMM",
+      "detect": "avg('METRIC:CART_TO_VIEW_RATE',90) < 0.05 OR avg('METRIC:PURCHASE_TO_DETAIL',90) < 0.01",
+      "evidence": [
+        "METRIC:CART_TO_VIEW_RATE",
+        "METRIC:PURCHASE_TO_DETAIL"
+      ],
+      "description": {
+        "ro": "Rate de funnel e‑comm sub prag.",
+        "en": "E‑comm funnel rates below threshold."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Îmbunătățire PDP/checkout",
+            "en": "Improve PDP/checkout"
+          },
+          "detail": {
+            "ro": "Clarificare preț/beneficii, trust badges, politici retur clare, checkout în pași mai puțini, payment methods.",
+            "en": "Clarify price/benefits, trust badges, clear returns, fewer checkout steps, payment methods."
+          },
+          "effort": "medium",
+          "impact": "high",
+          "timeframe_days": 21,
+          "owner": "ecommerce"
+        },
+        {
+          "title": {
+            "ro": "Remarketing coș + email trigger",
+            "en": "Cart remarketing + email trigger"
+          },
+          "detail": {
+            "ro": "Din GA4/GAds creează segmente abandon și rulează campanii + email reminder 1/24/72h.",
+            "en": "From GA4/GAds create abandon segments and run campaigns + email reminder at 1/24/72h."
+          },
+          "effort": "low",
+          "impact": "medium",
+          "timeframe_days": 7,
+          "owner": "marketing"
+        }
+      ]
+    },
+    {
+      "code": "REC:CRO:NO_AB_TESTING",
+      "area": "CRO",
+      "detect": "missing('CRO:A_B_TESTING')",
+      "evidence": [
+        "CRO:A_B_TESTING"
+      ],
+      "description": {
+        "ro": "Nu există program de testare A/B.",
+        "en": "No A/B testing program."
+      },
+      "recommendations": [
+        {
+          "title": {
+            "ro": "Lansează ciclu de testare bilunar",
+            "en": "Start bi-weekly testing cadence"
+          },
+          "detail": {
+            "ro": "Definește backlog ipoteze, ICE scoring, 1 test/2 săpt., măsurare în GA4/Optimizely/VWO.",
+            "en": "Define hypothesis backlog, ICE scoring, 1 test/2 weeks, measure in GA4/Optimizely/VWO."
+          },
+          "effort": "low",
+          "impact": "medium",
+          "timeframe_days": 14,
+          "owner": "growth"
+        }
+      ]
+    }
+  ]
+}

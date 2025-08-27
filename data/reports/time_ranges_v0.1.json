@@ -1,0 +1,228 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "timezone_default": "Europe/Bucharest",
+  "ranges": [
+    {
+      "code": "RANGE:ALL_TIME",
+      "name": {
+        "en": "All time",
+        "ro": "All time"
+      },
+      "calc": {
+        "type": "all_time"
+      }
+    },
+    {
+      "code": "RANGE:TODAY",
+      "name": {
+        "en": "Today",
+        "ro": "Astăzi"
+      },
+      "calc": {
+        "type": "relative_days",
+        "start": 0,
+        "end": 0
+      }
+    },
+    {
+      "code": "RANGE:YESTERDAY",
+      "name": {
+        "en": "Yesterday",
+        "ro": "Ieri"
+      },
+      "calc": {
+        "type": "relative_days",
+        "start": -1,
+        "end": -1
+      }
+    },
+    {
+      "code": "RANGE:LAST_7D",
+      "name": {
+        "en": "Last 7 days",
+        "ro": "Ultimele 7 zile"
+      },
+      "calc": {
+        "type": "rolling_days",
+        "days": 7
+      }
+    },
+    {
+      "code": "RANGE:LAST_14D",
+      "name": {
+        "en": "Last 14 days",
+        "ro": "Ultimele 14 zile"
+      },
+      "calc": {
+        "type": "rolling_days",
+        "days": 14
+      }
+    },
+    {
+      "code": "RANGE:LAST_30D",
+      "name": {
+        "en": "Last 30 days",
+        "ro": "Ultimele 30 zile"
+      },
+      "calc": {
+        "type": "rolling_days",
+        "days": 30
+      }
+    },
+    {
+      "code": "RANGE:LAST_60D",
+      "name": {
+        "en": "Last 60 days",
+        "ro": "Ultimele 60 zile"
+      },
+      "calc": {
+        "type": "rolling_days",
+        "days": 60
+      }
+    },
+    {
+      "code": "RANGE:LAST_90D",
+      "name": {
+        "en": "Last 90 days",
+        "ro": "Ultimele 90 zile"
+      },
+      "calc": {
+        "type": "rolling_days",
+        "days": 90
+      }
+    },
+    {
+      "code": "RANGE:LAST_120D",
+      "name": {
+        "en": "Last 120 days",
+        "ro": "Ultimele 120 zile"
+      },
+      "calc": {
+        "type": "rolling_days",
+        "days": 120
+      }
+    },
+    {
+      "code": "RANGE:LAST_240D",
+      "name": {
+        "en": "Last 240 days",
+        "ro": "Ultimele 240 zile"
+      },
+      "calc": {
+        "type": "rolling_days",
+        "days": 240
+      }
+    },
+    {
+      "code": "RANGE:LAST_365D",
+      "name": {
+        "en": "Last 365 days",
+        "ro": "Ultimele 365 zile"
+      },
+      "calc": {
+        "type": "rolling_days",
+        "days": 365
+      }
+    },
+    {
+      "code": "RANGE:THIS_WEEK_ISO",
+      "name": {
+        "en": "This week (Mon–Sun)",
+        "ro": "Săptămâna aceasta (Lun–Dum)"
+      },
+      "calc": {
+        "type": "this_week_iso"
+      }
+    },
+    {
+      "code": "RANGE:LAST_WEEK_ISO",
+      "name": {
+        "en": "Last week (Mon–Sun)",
+        "ro": "Săptămâna trecută (Lun–Dum)"
+      },
+      "calc": {
+        "type": "last_week_iso"
+      }
+    },
+    {
+      "code": "RANGE:THIS_MONTH",
+      "name": {
+        "en": "This month",
+        "ro": "Luna aceasta"
+      },
+      "calc": {
+        "type": "this_month"
+      }
+    },
+    {
+      "code": "RANGE:LAST_MONTH",
+      "name": {
+        "en": "Last month",
+        "ro": "Luna trecută"
+      },
+      "calc": {
+        "type": "last_month"
+      }
+    },
+    {
+      "code": "RANGE:THIS_QUARTER",
+      "name": {
+        "en": "This quarter",
+        "ro": "Trimestrul acesta"
+      },
+      "calc": {
+        "type": "this_quarter"
+      }
+    },
+    {
+      "code": "RANGE:LAST_QUARTER",
+      "name": {
+        "en": "Last quarter",
+        "ro": "Trimestrul trecut"
+      },
+      "calc": {
+        "type": "last_quarter"
+      }
+    },
+    {
+      "code": "RANGE:THIS_YEAR",
+      "name": {
+        "en": "This year",
+        "ro": "Anul acesta"
+      },
+      "calc": {
+        "type": "this_year"
+      }
+    },
+    {
+      "code": "RANGE:LAST_YEAR",
+      "name": {
+        "en": "Last year",
+        "ro": "Anul trecut"
+      },
+      "calc": {
+        "type": "last_year"
+      }
+    },
+    {
+      "code": "RANGE:CUSTOM",
+      "name": {
+        "en": "Custom",
+        "ro": "Personalizat"
+      },
+      "calc": {
+        "type": "custom",
+        "params": [
+          "start",
+          "end"
+        ]
+      }
+    }
+  ],
+  "normalization": {
+    "align": "start_of_day",
+    "inclusive_end": true,
+    "notes": "Calculează în TZ-ul utilizatorului; convertește în UTC pentru stocare."
+  }
+}

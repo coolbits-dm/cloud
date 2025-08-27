@@ -1,0 +1,225 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "formatters": {
+    "currency": {
+      "decimals": 2,
+      "symbol": "code"
+    },
+    "ratio_pct": {
+      "decimals": 1,
+      "suffix": "%",
+      "multiplier": 100
+    },
+    "rate": {
+      "decimals": 2
+    },
+    "count": {
+      "decimals": 0
+    }
+  },
+  "specs": [
+    {
+      "code": "VIS:TS_COST_CONV_VALUE",
+      "name": {
+        "ro": "Cost vs Valoare conversii (ts)",
+        "en": "Cost vs Conv. value (ts)"
+      },
+      "kind": "timeseries",
+      "bindings": {
+        "x": "DIM:DATE",
+        "y": [
+          "METRIC:COST",
+          "METRIC:CONV_VALUE"
+        ]
+      },
+      "agg": {
+        "y": "sum",
+        "x": "day"
+      },
+      "filters": [],
+      "breakdowns": [],
+      "recommended_reports": [
+        "GADS:*",
+        "META:*",
+        "TT:*",
+        "LI:*"
+      ],
+      "notes": "Show both lines; dual-axis optional."
+    },
+    {
+      "code": "VIS:TS_CTR_CPC",
+      "name": {
+        "ro": "CTR & CPC (ts)",
+        "en": "CTR & CPC (ts)"
+      },
+      "kind": "timeseries",
+      "bindings": {
+        "x": "DIM:DATE",
+        "y": [
+          "METRIC:CTR",
+          "METRIC:CPC"
+        ]
+      },
+      "agg": {
+        "y": [
+          "avg",
+          "avg"
+        ],
+        "x": "day"
+      },
+      "format_overrides": {
+        "METRIC:CTR": "ratio_pct"
+      },
+      "recommended_reports": [
+        "GADS:*"
+      ]
+    },
+    {
+      "code": "VIS:BAR_TOP_CAMPAIGNS_ROAS",
+      "name": {
+        "ro": "Top campanii după ROAS",
+        "en": "Top campaigns by ROAS"
+      },
+      "kind": "bar",
+      "bindings": {
+        "x": "DIM:CAMPAIGN",
+        "y": "METRIC:ROAS"
+      },
+      "agg": {
+        "y": "avg"
+      },
+      "sort": {
+        "by": "METRIC:ROAS",
+        "order": "desc"
+      },
+      "limit": 15,
+      "recommended_reports": [
+        "GADS:CAMPAIGNS",
+        "META:CAMPAIGNS",
+        "TT:CAMPAIGNS",
+        "LI:CAMPAIGNS"
+      ]
+    },
+    {
+      "code": "VIS:TABLE_AUCTION_INSIGHTS",
+      "name": {
+        "ro": "Auction Insights",
+        "en": "Auction Insights"
+      },
+      "kind": "table",
+      "columns": [
+        {
+          "code": "DIM:COMPETITOR",
+          "label_ro": "Competitor",
+          "label_en": "Competitor"
+        },
+        {
+          "code": "METRIC:AUCTION:OVERLAP_RATE",
+          "fmt": "ratio_pct"
+        },
+        {
+          "code": "METRIC:AUCTION:POSITION_ABOVE_RATE",
+          "fmt": "ratio_pct"
+        },
+        {
+          "code": "METRIC:AUCTION:OUTRANKING_SHARE",
+          "fmt": "ratio_pct"
+        }
+      ],
+      "recommended_reports": [
+        "GADS:AUCTION_INSIGHTS"
+      ]
+    },
+    {
+      "code": "VIS:FUNNEL_ECOMM",
+      "name": {
+        "ro": "Funnel E‑commerce",
+        "en": "E‑commerce Funnel"
+      },
+      "kind": "funnel",
+      "stages": [
+        {
+          "label_ro": "Vizualizări produs",
+          "label_en": "Product views",
+          "metric": "METRIC:PRODUCT_VIEWS"
+        },
+        {
+          "label_ro": "Adăugări în coș",
+          "label_en": "Add to cart",
+          "metric": "METRIC:ADD_TO_CART"
+        },
+        {
+          "label_ro": "Inițieri checkout",
+          "label_en": "Begin checkout",
+          "metric": "METRIC:BEGIN_CHECKOUT"
+        },
+        {
+          "label_ro": "Cumpărări",
+          "label_en": "Purchases",
+          "metric": "EVENT:PURCHASE"
+        }
+      ],
+      "recommended_reports": [
+        "GA4:*",
+        "ECOMM:*"
+      ],
+      "notes": "If GA4 not available, derive from platform/e-comm if possible."
+    },
+    {
+      "code": "VIS:VIDEO_ENGAGEMENT",
+      "name": {
+        "ro": "Engagement video",
+        "en": "Video engagement"
+      },
+      "kind": "columns",
+      "bindings": {
+        "x": "DIM:CAMPAIGN",
+        "y": [
+          "METRIC:META_VTR",
+          "METRIC:TT_VTR",
+          "METRIC:LI_VTR"
+        ]
+      },
+      "agg": {
+        "y": "avg"
+      },
+      "format_overrides": {
+        "METRIC:META_VTR": "ratio_pct",
+        "METRIC:TT_VTR": "ratio_pct",
+        "METRIC:LI_VTR": "ratio_pct"
+      },
+      "recommended_reports": [
+        "META:VIDEO",
+        "TT:VIDEO",
+        "LI:VIDEO"
+      ]
+    },
+    {
+      "code": "VIS:TABLE_READINESS",
+      "name": {
+        "ro": "Readiness check-uri",
+        "en": "Readiness checks"
+      },
+      "kind": "table",
+      "columns": [
+        {
+          "code": "check",
+          "label_ro": "Check",
+          "label_en": "Check"
+        },
+        {
+          "code": "status",
+          "label_ro": "Status",
+          "label_en": "Status"
+        },
+        {
+          "code": "evidence",
+          "label_ro": "Evidență",
+          "label_en": "Evidence"
+        }
+      ],
+      "notes": "Bind to results of audit_rubric evaluation."
+    }
+  ]
+}

@@ -1,0 +1,622 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "normalization": {
+    "text": {
+      "lowercase": true,
+      "strip_diacritics": true,
+      "collapse_whitespace": true,
+      "trim_punctuation": true
+    },
+    "numbers": {
+      "decimal_separators": [
+        ".",
+        ","
+      ],
+      "thousand_separators": [
+        ",",
+        ".",
+        " "
+      ],
+      "percent_suffixes": [
+        "%",
+        " pct",
+        " proc"
+      ],
+      "currency_symbols": [
+        "RON",
+        "lei",
+        "LEI",
+        "EUR",
+        "€",
+        "USD",
+        "$"
+      ],
+      "normalize_percent_to_ratio": true
+    }
+  },
+  "scopes": [
+    {
+      "scope": "COMMON",
+      "columns": [
+        {
+          "synonyms": [
+            "date",
+            "dată",
+            "day",
+            "zi"
+          ],
+          "mapTo": "DIM:DATE",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "campaign",
+            "campanie"
+          ],
+          "mapTo": "DIM:CAMPAIGN",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "ad group",
+            "grup anunțuri",
+            "grup de anunțuri",
+            "ad set"
+          ],
+          "mapTo": "DIM:AD_GROUP",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "ad id",
+            "id anunț",
+            "id anunt",
+            "creative id"
+          ],
+          "mapTo": "DIM:AD_ID",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "keyword",
+            "cuvânt cheie",
+            "cuvant cheie",
+            "term"
+          ],
+          "mapTo": "DIM:KEYWORD",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "match type",
+            "tip potrivire"
+          ],
+          "mapTo": "DIM:MATCH_TYPE",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "device",
+            "dispozitiv"
+          ],
+          "mapTo": "DIM:DEVICE",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "network",
+            "rețea",
+            "retea"
+          ],
+          "mapTo": "DIM:NETWORK",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "placement",
+            "plasament",
+            "site placement"
+          ],
+          "mapTo": "DIM:PLACEMENT",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "age",
+            "vârstă",
+            "varsta"
+          ],
+          "mapTo": "DIM:AGE",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "gender",
+            "gen",
+            "sex"
+          ],
+          "mapTo": "DIM:GENDER",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "country",
+            "țară",
+            "tara"
+          ],
+          "mapTo": "DIM:COUNTRY",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "region",
+            "regiune",
+            "județ",
+            "judet",
+            "province",
+            "state"
+          ],
+          "mapTo": "DIM:REGION",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "city",
+            "oraș",
+            "oras"
+          ],
+          "mapTo": "DIM:CITY",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "clicks",
+            "click-uri",
+            "clickuri",
+            "clicuri"
+          ],
+          "mapTo": "METRIC:CLICKS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "impressions",
+            "afișări",
+            "afisari",
+            "impr"
+          ],
+          "mapTo": "METRIC:IMPRESSIONS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "ctr",
+            "click through rate",
+            "rată de clic",
+            "rata de clic"
+          ],
+          "mapTo": "METRIC:CTR",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "cpc",
+            "avg cpc",
+            "average cpc",
+            "cpc med",
+            "cpc mediu",
+            "cost per click"
+          ],
+          "mapTo": "METRIC:CPC",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "cost",
+            "spend",
+            "amount spent",
+            "cheltuieli",
+            "suma cheltuită",
+            "suma cheltuita"
+          ],
+          "mapTo": "METRIC:COST",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "conversions",
+            "conversii",
+            "conv"
+          ],
+          "mapTo": "METRIC:CONVERSIONS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "conversion value",
+            "valoare conversii",
+            "conv value",
+            "valoare conv"
+          ],
+          "mapTo": "METRIC:CONV_VALUE",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "cpa",
+            "cost / conv.",
+            "cost per conversion",
+            "cost pe conversie"
+          ],
+          "mapTo": "METRIC:CPA",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "roas",
+            "return on ad spend"
+          ],
+          "mapTo": "METRIC:ROAS",
+          "kind": "metric"
+        }
+      ]
+    },
+    {
+      "scope": "GADS",
+      "columns": [
+        {
+          "synonyms": [
+            "impression share",
+            "pondere afișări",
+            "pondere afisari",
+            "is"
+          ],
+          "mapTo": "METRIC:IMPR_SHARE",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "search lost is (budget)",
+            "lost is (budget)",
+            "pierdere pondere (buget)"
+          ],
+          "mapTo": "METRIC:SEARCH_LOST_IS_BUDGET",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "search lost is (rank)",
+            "lost is (rank)",
+            "pierdere pondere (rank)"
+          ],
+          "mapTo": "METRIC:SEARCH_LOST_IS_RANK",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "top impr. rate",
+            "top of page rate",
+            "rata topului paginii",
+            "rata afișări top"
+          ],
+          "mapTo": "METRIC:TOP_IMPR_RATE",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "abs. top impr. rate",
+            "absolute top of page rate",
+            "rata top absolut",
+            "afișări top absolut"
+          ],
+          "mapTo": "METRIC:ABS_TOP_IMPR_RATE",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "domain",
+            "domeniu"
+          ],
+          "mapTo": "DIM:COMPETITOR",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "overlap rate",
+            "rata suprapunere"
+          ],
+          "mapTo": "METRIC:AUCTION:OVERLAP_RATE",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "outranking share",
+            "pondere depășire",
+            "pondere depasire"
+          ],
+          "mapTo": "METRIC:AUCTION:OUTRANKING_SHARE",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "position above rate",
+            "rata poziție deasupra",
+            "rata pozitie deasupra"
+          ],
+          "mapTo": "METRIC:AUCTION:POSITION_ABOVE_RATE",
+          "kind": "metric"
+        }
+      ]
+    },
+    {
+      "scope": "META",
+      "columns": [
+        {
+          "synonyms": [
+            "placement platform",
+            "platformă plasare",
+            "platforma plasare"
+          ],
+          "mapTo": "DIM:META_PLACEMENT_PLATFORM",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "placement position",
+            "poziție plasare",
+            "pozitie plasare"
+          ],
+          "mapTo": "DIM:META_PLACEMENT_POSITION",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "objective",
+            "obiectiv"
+          ],
+          "mapTo": "DIM:META_OBJECTIVE",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "amount spent",
+            "suma cheltuită",
+            "suma cheltuita"
+          ],
+          "mapTo": "METRIC:META_SPEND",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "reach",
+            "acoperire"
+          ],
+          "mapTo": "METRIC:META_REACH",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "frequency",
+            "frecvență",
+            "frecventa"
+          ],
+          "mapTo": "METRIC:META_FREQUENCY",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "landing page views",
+            "vizualizări pagină destinație",
+            "vizualizari pagina destinatie",
+            "lp views"
+          ],
+          "mapTo": "METRIC:META_LANDING_PAGE_VIEWS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "link clicks",
+            "clickuri pe link"
+          ],
+          "mapTo": "METRIC:META_LINK_CLICKS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "thruplays",
+            "vizionări complete",
+            "vizionari complete"
+          ],
+          "mapTo": "METRIC:META_THRUPLAYS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "vtr",
+            "rata vizionare"
+          ],
+          "mapTo": "METRIC:META_VTR",
+          "kind": "metric"
+        }
+      ]
+    },
+    {
+      "scope": "TIKTOK",
+      "columns": [
+        {
+          "synonyms": [
+            "placement",
+            "plasare"
+          ],
+          "mapTo": "DIM:TT_PLACEMENT",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "objective",
+            "obiectiv"
+          ],
+          "mapTo": "DIM:TT_OBJECTIVE",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "2s views",
+            "vizualizări 2s",
+            "vizualizari 2s"
+          ],
+          "mapTo": "METRIC:TT_2S_VIEWS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "6s views",
+            "vizualizări 6s",
+            "vizualizari 6s"
+          ],
+          "mapTo": "METRIC:TT_6S_VIEWS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "100% completions",
+            "finalizări 100%",
+            "finalizari 100%"
+          ],
+          "mapTo": "METRIC:TT_100P_COMPLETIONS",
+          "kind": "metric"
+        }
+      ]
+    },
+    {
+      "scope": "LINKEDIN",
+      "columns": [
+        {
+          "synonyms": [
+            "objective",
+            "obiectiv"
+          ],
+          "mapTo": "DIM:LI_OBJECTIVE",
+          "kind": "dimension"
+        },
+        {
+          "synonyms": [
+            "landing page clicks",
+            "clickuri pagină destinație",
+            "clickuri pagina destinatie"
+          ],
+          "mapTo": "METRIC:LI_LANDING_PAGE_CLICKS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "lead form opens",
+            "deschideri formular lead"
+          ],
+          "mapTo": "METRIC:LI_LEAD_FORM_OPENS",
+          "kind": "metric"
+        }
+      ]
+    },
+    {
+      "scope": "SEO",
+      "columns": [
+        {
+          "synonyms": [
+            "gsc clicks",
+            "clickuri organice"
+          ],
+          "mapTo": "METRIC:GSC_CLICKS",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "gsc ctr",
+            "ctr organic"
+          ],
+          "mapTo": "METRIC:GSC_CTR",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "avg position",
+            "pozitie medie"
+          ],
+          "mapTo": "METRIC:GSC_AVG_POSITION",
+          "kind": "metric"
+        }
+      ]
+    },
+    {
+      "scope": "ECOMM",
+      "columns": [
+        {
+          "synonyms": [
+            "aov",
+            "average order value",
+            "valoare medie comandă",
+            "valoare medie comanda"
+          ],
+          "mapTo": "METRIC:AOV",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "cart to view rate",
+            "rata add to cart"
+          ],
+          "mapTo": "METRIC:CART_TO_VIEW_RATE",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "purchase to detail",
+            "rata cumpărare la vizualizare",
+            "rata cumparare la vizualizare"
+          ],
+          "mapTo": "METRIC:PURCHASE_TO_DETAIL",
+          "kind": "metric"
+        }
+      ]
+    },
+    {
+      "scope": "EMAIL",
+      "columns": [
+        {
+          "synonyms": [
+            "emails sent",
+            "sent",
+            "trimise"
+          ],
+          "mapTo": "EMAIL:SENT",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "delivered",
+            "livrate"
+          ],
+          "mapTo": "EMAIL:DELIVERED",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "click rate",
+            "rata clic"
+          ],
+          "mapTo": "EMAIL:CLICK_RATE",
+          "kind": "metric"
+        },
+        {
+          "synonyms": [
+            "unsubscribe rate",
+            "rata dezabonare"
+          ],
+          "mapTo": "EMAIL:UNSUB_RATE",
+          "kind": "metric"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6108 @@
+{
+  "version": "0.3",
+  "updated": "2025-08-24",
+  "terms": [
+    {
+      "code": "CAT:DIGITAL_MARKETING",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Digital Marketing",
+        "ro": "Marketing Digital"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": null,
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:STRATEGY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Strategy & Business Profile",
+        "ro": "Strategie & Profil Afacere"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:COMPANY_NAME",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Company Name",
+        "ro": "Nume Companie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:BRAND_NAME",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Brand Name",
+        "ro": "Nume Brand"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:WEBSITE",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Website",
+        "ro": "Website"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:INDUSTRY",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Industry",
+        "ro": "Industrie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:COUNTRY",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Country",
+        "ro": "Țară"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:LANGUAGE",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Language",
+        "ro": "Limbă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:EMPLOYEES",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Employees #",
+        "ro": "Număr Angajați"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:LOCATIONS",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Locations #",
+        "ro": "Număr Locații"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:ICP",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Ideal Customer Profile",
+        "ro": "Profil Client Ideal"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUSINESS:PRODUCTS",
+      "kind": "BUSINESS",
+      "name": {
+        "en": "Products/Services",
+        "ro": "Produse/Servicii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:STRATEGY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:GOALS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Goals & Objectives",
+        "ro": "Obiective"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GOAL:AWARENESS",
+      "kind": "GOAL",
+      "name": {
+        "en": "Awareness",
+        "ro": "Vizibilitate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GOALS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GOAL:TRAFFIC",
+      "kind": "GOAL",
+      "name": {
+        "en": "Traffic",
+        "ro": "Trafic"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GOALS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GOAL:LEADS",
+      "kind": "GOAL",
+      "name": {
+        "en": "Leads",
+        "ro": "Lead-uri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GOALS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GOAL:SALES",
+      "kind": "GOAL",
+      "name": {
+        "en": "Sales",
+        "ro": "Vânzări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GOALS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GOAL:RETENTION",
+      "kind": "GOAL",
+      "name": {
+        "en": "Retention/Loyalty",
+        "ro": "Loializare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GOALS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:COMPETITION",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Competition Landscape",
+        "ro": "Peisaj Competitiv"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:COMPETITOR",
+      "kind": "DIM",
+      "name": {
+        "en": "Competitor",
+        "ro": "Competitor"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:COMPETITION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "COMPETITOR:NAME",
+      "kind": "COMPETITOR",
+      "name": {
+        "en": "Competitor Name",
+        "ro": "Nume Competitor"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:COMPETITION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "COMPETITOR:DOMAIN",
+      "kind": "COMPETITOR",
+      "name": {
+        "en": "Competitor Domain",
+        "ro": "Domeniu Competitor"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:COMPETITION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:WEB_DATA",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Web & Data Foundation",
+        "ro": "Web & Date"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:CMS_WORDPRESS",
+      "kind": "TOOL",
+      "name": {
+        "en": "CMS - WordPress",
+        "ro": "CMS - WordPress"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "wordpress",
+        "wp"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:CMS_SHOPIFY",
+      "kind": "TOOL",
+      "name": {
+        "en": "CMS - Shopify",
+        "ro": "CMS - Shopify"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "shopify"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:CMS_WOOCOMMERCE",
+      "kind": "TOOL",
+      "name": {
+        "en": "CMS - WooCommerce",
+        "ro": "CMS - WooCommerce"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "woocommerce",
+        "woo"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:CMS_MAGENTO",
+      "kind": "TOOL",
+      "name": {
+        "en": "CMS - Magento",
+        "ro": "CMS - Magento"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "magento",
+        "adobe commerce"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:GA4",
+      "kind": "TOOL",
+      "name": {
+        "en": "Google Analytics 4",
+        "ro": "Google Analytics 4"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "ga4",
+        "analytics"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:GTM",
+      "kind": "TOOL",
+      "name": {
+        "en": "Google Tag Manager",
+        "ro": "Google Tag Manager"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "gtm",
+        "tag manager"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:GSC",
+      "kind": "TOOL",
+      "name": {
+        "en": "Google Search Console",
+        "ro": "Google Search Console"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "gsc",
+        "search console"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:GBP",
+      "kind": "TOOL",
+      "name": {
+        "en": "Google Business Profile",
+        "ro": "Google Business Profile"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "gbp",
+        "gmb",
+        "google my business"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:LOOKER",
+      "kind": "TOOL",
+      "name": {
+        "en": "Looker Studio",
+        "ro": "Looker Studio"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [
+        "looker",
+        "datastudio",
+        "data studio"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:CHANNELS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Channels",
+        "ro": "Canale"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:OWNED",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Owned Media",
+        "ro": "Proprietare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CHANNELS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:PAID",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Paid Media",
+        "ro": "Plătite"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CHANNELS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:EARNED",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Earned Media",
+        "ro": "Câștigate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CHANNELS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:OWNED_WEBSITE",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Website",
+        "ro": "Website"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:OWNED",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:OWNED_BLOG",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Blog",
+        "ro": "Blog"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:OWNED",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:OWNED_EMAIL",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Email",
+        "ro": "Email"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:OWNED",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:OWNED_APP",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Mobile App",
+        "ro": "Aplicație Mobilă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:OWNED",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:ADS_GOOGLE",
+      "kind": "TOOL",
+      "name": {
+        "en": "Google Ads",
+        "ro": "Google Ads"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:PAID",
+      "aliases": [
+        "google ads",
+        "adwords",
+        "sea",
+        "ppc"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:ADS_META",
+      "kind": "TOOL",
+      "name": {
+        "en": "Meta Ads (Facebook/Instagram)",
+        "ro": "Meta Ads (Facebook/Instagram)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:PAID",
+      "aliases": [
+        "facebook ads",
+        "instagram ads",
+        "meta ads"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:ADS_TIKTOK",
+      "kind": "TOOL",
+      "name": {
+        "en": "TikTok Ads",
+        "ro": "TikTok Ads"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:PAID",
+      "aliases": [
+        "tiktok ads"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:ADS_LINKEDIN",
+      "kind": "TOOL",
+      "name": {
+        "en": "LinkedIn Ads",
+        "ro": "LinkedIn Ads"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:PAID",
+      "aliases": [
+        "linkedin ads"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:ADS_YOUTUBE",
+      "kind": "TOOL",
+      "name": {
+        "en": "YouTube Ads",
+        "ro": "YouTube Ads"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:PAID",
+      "aliases": [
+        "youtube ads",
+        "yt ads"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:ADS_PROGRAMMATIC",
+      "kind": "TOOL",
+      "name": {
+        "en": "Programmatic/Display",
+        "ro": "Programmatic/Display"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:PAID",
+      "aliases": [
+        "dv360",
+        "display"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:SEO",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "SEO (Organic Search)",
+        "ro": "SEO (Căutare Organică)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:EARNED",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:ORGANIC_SOCIAL",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Organic Social",
+        "ro": "Social Organic"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:EARNED",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:REFERRAL",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "Referral",
+        "ro": "Referral"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:EARNED",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CHANNEL:UGC",
+      "kind": "CHANNEL",
+      "name": {
+        "en": "User Generated Content",
+        "ro": "Conținut generat de utilizatori"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CHANNEL:EARNED",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:SEO",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "SEO",
+        "ro": "SEO"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "SEO:TECHNICAL",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Technical SEO",
+        "ro": "SEO Tehnic"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "SEO:ONPAGE",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "On-Page SEO",
+        "ro": "SEO On-Page"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "SEO:OFFPAGE",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Off-Page SEO",
+        "ro": "SEO Off-Page"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:CONTENT_SOCIAL",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Content & Social",
+        "ro": "Conținut & Social"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CONTENT:STRATEGY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Content Strategy",
+        "ro": "Strategie de Conținut"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CONTENT_SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CONTENT:BLOG",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Blog Content",
+        "ro": "Conținut Blog"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CONTENT_SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CONTENT:VIDEO",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Video Content",
+        "ro": "Conținut Video"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CONTENT_SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CONTENT:SHORTS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Short-form Video",
+        "ro": "Video scurt"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CONTENT_SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CONTENT:CREATIVE_ADS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Creative Ads",
+        "ro": "Creatives pentru Ads"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CONTENT_SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "SOCIAL:COMMUNITY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Community Management",
+        "ro": "Management Comunitate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CONTENT_SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:EMAIL_CRM",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Email & CRM",
+        "ro": "Email & CRM"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:EMAIL_MAILCHIMP",
+      "kind": "TOOL",
+      "name": {
+        "en": "Mailchimp",
+        "ro": "Mailchimp"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_CRM",
+      "aliases": [
+        "mailchimp"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:EMAIL_KLAVIYO",
+      "kind": "TOOL",
+      "name": {
+        "en": "Klaviyo",
+        "ro": "Klaviyo"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_CRM",
+      "aliases": [
+        "klaviyo"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:CRM_HUBSPOT",
+      "kind": "TOOL",
+      "name": {
+        "en": "HubSpot",
+        "ro": "HubSpot"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_CRM",
+      "aliases": [
+        "hubspot"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TOOL:CRM_SALESFORCE",
+      "kind": "TOOL",
+      "name": {
+        "en": "Salesforce",
+        "ro": "Salesforce"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_CRM",
+      "aliases": [
+        "salesforce"
+      ],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:CRO_UX",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "CRO & UX",
+        "ro": "CRO & UX"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CRO:STRATEGY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "CRO Strategy",
+        "ro": "Strategie CRO"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CRO_UX",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CRO:A_B_TESTING",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "A/B Testing",
+        "ro": "Testare A/B"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CRO_UX",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CRO:HEURISTICS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Heuristic Review",
+        "ro": "Evaluare euristică"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:CRO_UX",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:MEASUREMENT",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Measurement & Attribution",
+        "ro": "Măsurare & Atribuire"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TRACK:EVENTS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Events & Conversions",
+        "ro": "Evenimente & Conversii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:MEASUREMENT",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TRACK:ATTRIBUTION",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Attribution",
+        "ro": "Atribuire"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:MEASUREMENT",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TRACK:PRIVACY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Privacy/Consent",
+        "ro": "Confidențialitate/Consimțământ"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:MEASUREMENT",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "TRACK:DATA_QUALITY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Data Quality",
+        "ro": "Calitatea Datelor"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:MEASUREMENT",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:BUDGETING",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Budgeting & Pacing",
+        "ro": "Bugetare & Pacing"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUDGET:MONTHLY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Monthly Budget",
+        "ro": "Buget Lunar"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUDGETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUDGET:DAILY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Daily Budget",
+        "ro": "Buget Zilnic"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUDGETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUDGET:PACING",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Pacing",
+        "ro": "Pacing"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUDGETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "BUDGET:SHARED",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Shared Budgets",
+        "ro": "Bugete Partajate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUDGETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:DIMENSIONS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Common Dimensions",
+        "ro": "Dimensiuni Comune"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:DATE",
+      "kind": "DIM",
+      "name": {
+        "en": "Date",
+        "ro": "Dată"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:COUNTRY",
+      "kind": "DIM",
+      "name": {
+        "en": "Country",
+        "ro": "Țară"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:REGION",
+      "kind": "DIM",
+      "name": {
+        "en": "Region",
+        "ro": "Regiune"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:CITY",
+      "kind": "DIM",
+      "name": {
+        "en": "City",
+        "ro": "Oraș"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:DEVICE",
+      "kind": "DIM",
+      "name": {
+        "en": "Device",
+        "ro": "Dispozitiv"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:PLATFORM",
+      "kind": "DIM",
+      "name": {
+        "en": "Platform",
+        "ro": "Platformă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:CAMPAIGN",
+      "kind": "DIM",
+      "name": {
+        "en": "Campaign",
+        "ro": "Campanie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:AD_GROUP",
+      "kind": "DIM",
+      "name": {
+        "en": "Ad Group",
+        "ro": "Grup de Anunțuri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ASSET_GROUP",
+      "kind": "DIM",
+      "name": {
+        "en": "Asset Group",
+        "ro": "Grup de Asset-uri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:KEYWORD",
+      "kind": "DIM",
+      "name": {
+        "en": "Keyword",
+        "ro": "Cuvânt cheie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:SEARCH_TERM",
+      "kind": "DIM",
+      "name": {
+        "en": "Search Term",
+        "ro": "Termen de căutare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:PLACEMENT",
+      "kind": "DIM",
+      "name": {
+        "en": "Placement",
+        "ro": "Placement"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:AUDIENCE",
+      "kind": "DIM",
+      "name": {
+        "en": "Audience",
+        "ro": "Audiență"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:AGE",
+      "kind": "DIM",
+      "name": {
+        "en": "Age",
+        "ro": "Vârstă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:GENDER",
+      "kind": "DIM",
+      "name": {
+        "en": "Gender",
+        "ro": "Gen"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:NETWORK",
+      "kind": "DIM",
+      "name": {
+        "en": "Network",
+        "ro": "Rețea"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:AD_ID",
+      "kind": "DIM",
+      "name": {
+        "en": "Ad ID",
+        "ro": "ID Anunț"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:CREATIVE_ID",
+      "kind": "DIM",
+      "name": {
+        "en": "Creative ID",
+        "ro": "ID Creativ"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:UTM_SOURCE",
+      "kind": "DIM",
+      "name": {
+        "en": "UTM Source",
+        "ro": "UTM Source"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:UTM_MEDIUM",
+      "kind": "DIM",
+      "name": {
+        "en": "UTM Medium",
+        "ro": "UTM Medium"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:UTM_CAMPAIGN",
+      "kind": "DIM",
+      "name": {
+        "en": "UTM Campaign",
+        "ro": "UTM Campanie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:UTM_TERM",
+      "kind": "DIM",
+      "name": {
+        "en": "UTM Term",
+        "ro": "UTM Term"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:UTM_CONTENT",
+      "kind": "DIM",
+      "name": {
+        "en": "UTM Content",
+        "ro": "UTM Conținut"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIMENSIONS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:METRICS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Metrics & KPIs",
+        "ro": "Metrici & KPI"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Clicks",
+        "ro": "Click-uri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:IMPRESSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Impressions",
+        "ro": "Afișări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CTR",
+      "kind": "METRIC",
+      "name": {
+        "en": "CTR",
+        "ro": "CTR"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CPC",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPC",
+        "ro": "CPC"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "currency_per_click",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:COST",
+      "kind": "METRIC",
+      "name": {
+        "en": "Cost",
+        "ro": "Cost"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CONVERSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Conversions",
+        "ro": "Conversii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CONV_VALUE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Conversion Value",
+        "ro": "Valoare Conversii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CPA",
+      "kind": "METRIC",
+      "name": {
+        "en": "Cost per Acquisition (CPA)",
+        "ro": "Cost per Achiziție (CPA)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CVR",
+      "kind": "METRIC",
+      "name": {
+        "en": "Conversion Rate (CVR)",
+        "ro": "Rata de Conversie (CVR)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:ROAS",
+      "kind": "METRIC",
+      "name": {
+        "en": "ROAS",
+        "ro": "ROAS"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:AOV",
+      "kind": "METRIC",
+      "name": {
+        "en": "Average Order Value (AOV)",
+        "ro": "Valoare Medie Coș (AOV)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:SESSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Sessions",
+        "ro": "Sesiuni"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:USERS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Users",
+        "ro": "Utilizatori"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:ENGAGED_SESSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Engaged Sessions",
+        "ro": "Sesiuni Implicate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:ENGAGEMENT_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Engagement Rate",
+        "ro": "Rata de Implicare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:AVG_SESSION_DURATION",
+      "kind": "METRIC",
+      "name": {
+        "en": "Avg. Session Duration",
+        "ro": "Durată medie sesiune"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": "duration",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "FORMULA:CTR",
+      "kind": "FORMULA",
+      "name": {
+        "en": "CTR",
+        "ro": "CTR"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": null,
+      "formula": "CLICKS / IMPRESSIONS",
+      "meta": {}
+    },
+    {
+      "code": "FORMULA:CPC",
+      "kind": "FORMULA",
+      "name": {
+        "en": "CPC",
+        "ro": "CPC"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": null,
+      "formula": "COST / CLICKS",
+      "meta": {}
+    },
+    {
+      "code": "FORMULA:CPA",
+      "kind": "FORMULA",
+      "name": {
+        "en": "CPA",
+        "ro": "CPA"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": null,
+      "formula": "COST / CONVERSIONS",
+      "meta": {}
+    },
+    {
+      "code": "FORMULA:CVR",
+      "kind": "FORMULA",
+      "name": {
+        "en": "CVR",
+        "ro": "CVR"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": null,
+      "formula": "CONVERSIONS / CLICKS",
+      "meta": {}
+    },
+    {
+      "code": "FORMULA:ROAS",
+      "kind": "FORMULA",
+      "name": {
+        "en": "ROAS",
+        "ro": "ROAS"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": null,
+      "formula": "CONV_VALUE / COST",
+      "meta": {}
+    },
+    {
+      "code": "FORMULA:MER",
+      "kind": "FORMULA",
+      "name": {
+        "en": "MER",
+        "ro": "MER"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:METRICS",
+      "aliases": [],
+      "unit": null,
+      "formula": "REVENUE / COST",
+      "meta": {}
+    },
+    {
+      "code": "CAT:ADS_SEARCH",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Paid Search & Shopping",
+        "ro": "Search Plătit & Shopping"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:IMPR_SHARE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Impression Share",
+        "ro": "Impression Share"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TOP_IMPR_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Top Impression Rate",
+        "ro": "Top Impression Rate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:ABS_TOP_IMPR_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Absolute Top Impression Rate",
+        "ro": "Rata afișare în top absolut"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:SEARCH_LOST_IS_RANK",
+      "kind": "METRIC",
+      "name": {
+        "en": "Search Lost IS (rank)",
+        "ro": "Pierdut IS (rank)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:SEARCH_LOST_IS_BUDGET",
+      "kind": "METRIC",
+      "name": {
+        "en": "Search Lost IS (budget)",
+        "ro": "Pierdut IS (buget)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CLICK_SHARE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Click Share",
+        "ro": "Click Share"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:AUCTION:OVERLAP_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Overlap Rate",
+        "ro": "Rată de suprapunere"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {
+        "linked_dimension": "DIM:COMPETITOR"
+      }
+    },
+    {
+      "code": "METRIC:AUCTION:OUTRANKING_SHARE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Outranking Share",
+        "ro": "Pondere de depășire"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {
+        "linked_dimension": "DIM:COMPETITOR"
+      }
+    },
+    {
+      "code": "METRIC:AUCTION:POSITION_ABOVE_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Position Above Rate",
+        "ro": "Rată poziție deasupra"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {
+        "linked_dimension": "DIM:COMPETITOR"
+      }
+    },
+    {
+      "code": "METRIC:AUCTION:TOP_OF_PAGE_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Top of Page Rate",
+        "ro": "Rată topul paginii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {
+        "linked_dimension": "DIM:COMPETITOR"
+      }
+    },
+    {
+      "code": "METRIC:AUCTION:ABS_TOP_OF_PAGE_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Absolute Top of Page Rate",
+        "ro": "Rată top absolut"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {
+        "linked_dimension": "DIM:COMPETITOR"
+      }
+    },
+    {
+      "code": "DIM:ITEM_ID",
+      "kind": "DIM",
+      "name": {
+        "en": "Item ID",
+        "ro": "ID produs"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ITEM_NAME",
+      "kind": "DIM",
+      "name": {
+        "en": "Item Name",
+        "ro": "Nume produs"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ITEM_BRAND",
+      "kind": "DIM",
+      "name": {
+        "en": "Item Brand",
+        "ro": "Brand"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ITEM_CATEGORY1",
+      "kind": "DIM",
+      "name": {
+        "en": "Item Category L1",
+        "ro": "Categorie L1"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ITEM_CATEGORY2",
+      "kind": "DIM",
+      "name": {
+        "en": "Item Category L2",
+        "ro": "Categorie L2"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ITEM_CATEGORY3",
+      "kind": "DIM",
+      "name": {
+        "en": "Item Category L3",
+        "ro": "Categorie L3"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ITEM_CATEGORY4",
+      "kind": "DIM",
+      "name": {
+        "en": "Item Category L4",
+        "ro": "Categorie L4"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ITEM_CATEGORY5",
+      "kind": "DIM",
+      "name": {
+        "en": "Item Category L5",
+        "ro": "Categorie L5"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:ITEM_VARIANT",
+      "kind": "DIM",
+      "name": {
+        "en": "Item Variant",
+        "ro": "Variantă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:MERCHANT_CENTER_ID",
+      "kind": "DIM",
+      "name": {
+        "en": "Merchant Center ID",
+        "ro": "Merchant Center ID"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:ITEMS_SOLD",
+      "kind": "METRIC",
+      "name": {
+        "en": "Items Sold",
+        "ro": "Produse vândute"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:ITEM_REVENUE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Item Revenue",
+        "ro": "Venit produse"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:FEED_ERRORS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Feed Errors",
+        "ro": "Erori feed"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ADS_SEARCH",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:VIDEO",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Video & YouTube",
+        "ro": "Video & YouTube"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Views",
+        "ro": "Vizualizări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:VIEW_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "View Rate",
+        "ro": "Rata de vizualizare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CPV",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPV (Cost per View)",
+        "ro": "CPV (Cost pe vizualizare)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "currency_per_view",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:WATCH_TIME",
+      "kind": "METRIC",
+      "name": {
+        "en": "Watch Time",
+        "ro": "Timp vizionare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "duration",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:AVG_WATCH_TIME",
+      "kind": "METRIC",
+      "name": {
+        "en": "Average Watch Time",
+        "ro": "Timp mediu vizionare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "duration",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:VQ25",
+      "kind": "METRIC",
+      "name": {
+        "en": "VQ25 Quartile",
+        "ro": "VQ25 Quartilă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:VQ50",
+      "kind": "METRIC",
+      "name": {
+        "en": "VQ50 Quartile",
+        "ro": "VQ50 Quartilă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:VQ75",
+      "kind": "METRIC",
+      "name": {
+        "en": "VQ75 Quartile",
+        "ro": "VQ75 Quartilă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:VQ100",
+      "kind": "METRIC",
+      "name": {
+        "en": "VQ100 Quartile",
+        "ro": "VQ100 Quartilă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:VIDEO_LIKES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video Likes",
+        "ro": "Aprecieri video"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:VIDEO_COMMENTS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video Comments",
+        "ro": "Comentarii video"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:SUBS_GAINED",
+      "kind": "METRIC",
+      "name": {
+        "en": "Subscribers Gained",
+        "ro": "Abonați câștigați"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:VIDEO",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:SEO_METRICS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "SEO & GSC Metrics",
+        "ro": "Metrici SEO & GSC"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:GSC_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "GSC Clicks",
+        "ro": "GSC Clicks"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:GSC_IMPRESSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "GSC Impressions",
+        "ro": "GSC Afișări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:GSC_CTR",
+      "kind": "METRIC",
+      "name": {
+        "en": "GSC CTR",
+        "ro": "GSC CTR"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:GSC_AVG_POSITION",
+      "kind": "METRIC",
+      "name": {
+        "en": "GSC Avg. Position",
+        "ro": "GSC Poziție medie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": "number",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LCP",
+      "kind": "METRIC",
+      "name": {
+        "en": "Largest Contentful Paint (LCP)",
+        "ro": "Largest Contentful Paint (LCP)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": "duration",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:INP",
+      "kind": "METRIC",
+      "name": {
+        "en": "Interaction to Next Paint (INP)",
+        "ro": "Interaction to Next Paint (INP)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": "duration",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CLS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Cumulative Layout Shift (CLS)",
+        "ro": "Cumulative Layout Shift (CLS)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:QUERY",
+      "kind": "DIM",
+      "name": {
+        "en": "Query",
+        "ro": "Interogare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:PAGE",
+      "kind": "DIM",
+      "name": {
+        "en": "Page URL",
+        "ro": "URL Pagină"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SEO_METRICS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:EMAIL_METRICS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Email Metrics",
+        "ro": "Metrici Email"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_CRM",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:SENT",
+      "kind": "METRIC",
+      "name": {
+        "en": "Emails Sent",
+        "ro": "Email-uri trimise"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:DELIVERED",
+      "kind": "METRIC",
+      "name": {
+        "en": "Delivered",
+        "ro": "Livrate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:DELIVERY_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Delivery Rate",
+        "ro": "Rată livrare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:OPEN_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Open Rate",
+        "ro": "Rată deschidere"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:CLICK_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Click Rate",
+        "ro": "Rată click"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:CTOR",
+      "kind": "METRIC",
+      "name": {
+        "en": "CTOR",
+        "ro": "CTOR"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:UNSUB_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Unsubscribe Rate",
+        "ro": "Rată dezabonare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:SPAM_COMPLAINT_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Spam Complaint Rate",
+        "ro": "Rată reclamații spam"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:HARD_BOUNCE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Hard Bounces",
+        "ro": "Respingeri hard"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:SOFT_BOUNCE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Soft Bounces",
+        "ro": "Respingeri soft"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EMAIL:REVENUE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Revenue from Email",
+        "ro": "Venit din Email"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EMAIL_METRICS",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:GA4_ECOMM",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "GA4 E‑commerce & Funnel",
+        "ro": "GA4 E‑commerce & Funnel"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:VIEW_ITEM_LIST",
+      "kind": "EVENT",
+      "name": {
+        "en": "view_item_list",
+        "ro": "view_item_list"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:SELECT_ITEM",
+      "kind": "EVENT",
+      "name": {
+        "en": "select_item",
+        "ro": "select_item"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:ADD_TO_WISHLIST",
+      "kind": "EVENT",
+      "name": {
+        "en": "add_to_wishlist",
+        "ro": "add_to_wishlist"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:VIEW_PROMOTION",
+      "kind": "EVENT",
+      "name": {
+        "en": "view_promotion",
+        "ro": "view_promotion"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:SELECT_PROMOTION",
+      "kind": "EVENT",
+      "name": {
+        "en": "select_promotion",
+        "ro": "select_promotion"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CART_TO_VIEW_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Cart-to-View Rate",
+        "ro": "Rata coș din vizualizări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": "ADD_TO_CART / VIEW_ITEM",
+      "meta": {}
+    },
+    {
+      "code": "METRIC:CHECKOUT_TO_CART",
+      "kind": "METRIC",
+      "name": {
+        "en": "Checkout-to-Cart Rate",
+        "ro": "Rata checkout din coș"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": "BEGIN_CHECKOUT / ADD_TO_CART",
+      "meta": {}
+    },
+    {
+      "code": "METRIC:PURCHASE_TO_DETAIL",
+      "kind": "METRIC",
+      "name": {
+        "en": "Purchase-to-Detail Rate",
+        "ro": "Rata cumpărare din detalii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": "PURCHASE / VIEW_ITEM",
+      "meta": {}
+    },
+    {
+      "code": "METRIC:GROSS_REVENUE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Gross Revenue",
+        "ro": "Venit brut"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:REFUND_AMOUNT",
+      "kind": "METRIC",
+      "name": {
+        "en": "Refund Amount",
+        "ro": "Sume returnate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:NET_REVENUE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Net Revenue",
+        "ro": "Venit net"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GA4_ECOMM",
+      "aliases": [],
+      "unit": "currency",
+      "formula": "GROSS_REVENUE - REFUND_AMOUNT",
+      "meta": {}
+    },
+    {
+      "code": "CAT:ATTRIBUTION",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Attribution Models & Windows",
+        "ro": "Modele & ferestre de atribuire"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:MEASUREMENT",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "ATTR:LAST_CLICK",
+      "kind": "ATTR",
+      "name": {
+        "en": "Last Click",
+        "ro": "Last Click"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ATTRIBUTION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "ATTR:FIRST_CLICK",
+      "kind": "ATTR",
+      "name": {
+        "en": "First Click",
+        "ro": "First Click"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ATTRIBUTION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "ATTR:DATA_DRIVEN",
+      "kind": "ATTR",
+      "name": {
+        "en": "Data-Driven",
+        "ro": "Data-Driven"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ATTRIBUTION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "ATTR:TIME_DECAY",
+      "kind": "ATTR",
+      "name": {
+        "en": "Time Decay",
+        "ro": "Time Decay"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ATTRIBUTION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "ATTR:POSITION_BASED",
+      "kind": "ATTR",
+      "name": {
+        "en": "Position Based",
+        "ro": "Position Based"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ATTRIBUTION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "ATTR:LOOKBACK_ADS",
+      "kind": "ATTR",
+      "name": {
+        "en": "Ads Lookback Window",
+        "ro": "Fereastră atribuire Ads"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ATTRIBUTION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "ATTR:LOOKBACK_ANALYTICS",
+      "kind": "ATTR",
+      "name": {
+        "en": "Analytics Lookback Window",
+        "ro": "Fereastră atribuire Analytics"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:ATTRIBUTION",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:PRIVACY",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Consent & Privacy",
+        "ro": "Consimțământ & Confidențialitate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:MEASUREMENT",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CONSENT:ADS",
+      "kind": "RULE",
+      "name": {
+        "en": "Ads Consent",
+        "ro": "Consimțământ Ads"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:PRIVACY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CONSENT:ANALYTICS",
+      "kind": "RULE",
+      "name": {
+        "en": "Analytics Consent",
+        "ro": "Consimțământ Analytics"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:PRIVACY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CONSENT:PERSONALIZATION",
+      "kind": "RULE",
+      "name": {
+        "en": "Personalization Consent",
+        "ro": "Consimțământ Personalizare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:PRIVACY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CMP:PRESENT",
+      "kind": "RULE",
+      "name": {
+        "en": "CMP Present",
+        "ro": "Există CMP"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:PRIVACY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CMP:VENDOR",
+      "kind": "RULE",
+      "name": {
+        "en": "CMP Vendor",
+        "ro": "Vendor CMP"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:PRIVACY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DQ:TAG_COVERAGE",
+      "kind": "RULE",
+      "name": {
+        "en": "Tag Coverage",
+        "ro": "Acoperire taguri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:PRIVACY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DQ:DUPLICATE_EVENTS",
+      "kind": "RULE",
+      "name": {
+        "en": "Duplicate Events",
+        "ro": "Evenimente duplicate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:PRIVACY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DQ:MISSING_PARAMS",
+      "kind": "RULE",
+      "name": {
+        "en": "Missing Parameters",
+        "ro": "Parametri lipsă"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:PRIVACY",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:GBP",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Google Business Profile",
+        "ro": "Google Business Profile"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GBP:VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Profile Views",
+        "ro": "Vizualizări profil"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GBP",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GBP:CUSTOMER_ACTIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Customer Actions",
+        "ro": "Acțiuni clienți"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GBP",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GBP:CALLS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Calls",
+        "ro": "Apeluri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GBP",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GBP:DIRECTION_REQUESTS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Direction Requests",
+        "ro": "Cereri direcții"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GBP",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "GBP:WEBSITE_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Website Clicks",
+        "ro": "Click-uri către website"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:GBP",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:BUSINESS_KPI",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Business KPIs",
+        "ro": "KPI de business"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "KPI:MER",
+      "kind": "KPI",
+      "name": {
+        "en": "Marketing Efficiency Ratio (MER)",
+        "ro": "Marketing Efficiency Ratio (MER)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUSINESS_KPI",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": "REVENUE / COST",
+      "meta": {}
+    },
+    {
+      "code": "KPI:BLENDED_ROAS",
+      "kind": "KPI",
+      "name": {
+        "en": "Blended ROAS",
+        "ro": "ROAS agregat"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUSINESS_KPI",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": "TOTAL_REVENUE / TOTAL_MARKETING_COST",
+      "meta": {}
+    },
+    {
+      "code": "KPI:BLENDED_CAC",
+      "kind": "KPI",
+      "name": {
+        "en": "Blended CAC",
+        "ro": "CAC agregat"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUSINESS_KPI",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": "TOTAL_MARKETING_COST / NEW_CUSTOMERS",
+      "meta": {}
+    },
+    {
+      "code": "KPI:REPEAT_PURCHASE_RATE",
+      "kind": "KPI",
+      "name": {
+        "en": "Repeat Purchase Rate",
+        "ro": "Rata de achiziție repetată"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUSINESS_KPI",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": "REPEAT_ORDERS / CUSTOMERS",
+      "meta": {}
+    },
+    {
+      "code": "KPI:RETENTION_RATE",
+      "kind": "KPI",
+      "name": {
+        "en": "Retention Rate",
+        "ro": "Rata de retenție"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUSINESS_KPI",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "KPI:CHURN_RATE",
+      "kind": "KPI",
+      "name": {
+        "en": "Churn Rate",
+        "ro": "Rata de churn"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUSINESS_KPI",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:EVENTS",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Common Events",
+        "ro": "Evenimente Comune"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:MEASUREMENT",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:PAGE_VIEW",
+      "kind": "EVENT",
+      "name": {
+        "en": "page_view",
+        "ro": "page_view"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EVENTS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:VIEW_ITEM",
+      "kind": "EVENT",
+      "name": {
+        "en": "view_item",
+        "ro": "view_item"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EVENTS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:ADD_TO_CART",
+      "kind": "EVENT",
+      "name": {
+        "en": "add_to_cart",
+        "ro": "add_to_cart"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EVENTS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:BEGIN_CHECKOUT",
+      "kind": "EVENT",
+      "name": {
+        "en": "begin_checkout",
+        "ro": "begin_checkout"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EVENTS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:PURCHASE",
+      "kind": "EVENT",
+      "name": {
+        "en": "purchase",
+        "ro": "purchase"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EVENTS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:GENERATE_LEAD",
+      "kind": "EVENT",
+      "name": {
+        "en": "generate_lead",
+        "ro": "generate_lead"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EVENTS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:SUBMIT_FORM",
+      "kind": "EVENT",
+      "name": {
+        "en": "submit_form",
+        "ro": "submit_form"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EVENTS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "EVENT:CLICK_PHONE",
+      "kind": "EVENT",
+      "name": {
+        "en": "click_to_call",
+        "ro": "click_to_call"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:EVENTS",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "RULE:URL",
+      "kind": "RULE",
+      "name": {
+        "en": "Valid URL",
+        "ro": "URL valid"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {
+        "regex_hint": "https?://"
+      }
+    },
+    {
+      "code": "RULE:EMAIL",
+      "kind": "RULE",
+      "name": {
+        "en": "Valid Email",
+        "ro": "Email valid"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:WEB_DATA",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "RULE:CURRENCY",
+      "kind": "RULE",
+      "name": {
+        "en": "Currency Values",
+        "ro": "Valori monetare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:BUDGETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:SOCIAL",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Social (Paid & Organic)",
+        "ro": "Social (Plătit & Organic)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:DIGITAL_MARKETING",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:SOCIAL_META",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "Meta (Facebook/Instagram)",
+        "ro": "Meta (Facebook/Instagram)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:META_OBJECTIVE",
+      "kind": "DIM",
+      "name": {
+        "en": "Meta Objective",
+        "ro": "Obiectiv Meta"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:META_PLACEMENT_PLATFORM",
+      "kind": "DIM",
+      "name": {
+        "en": "Placement Platform",
+        "ro": "Platformă plasare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:META_PLACEMENT_POSITION",
+      "kind": "DIM",
+      "name": {
+        "en": "Placement Position",
+        "ro": "Poziție plasare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:META_PAGE_ID",
+      "kind": "DIM",
+      "name": {
+        "en": "Page ID",
+        "ro": "Page ID"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:META_PIXEL_ID",
+      "kind": "DIM",
+      "name": {
+        "en": "Pixel ID",
+        "ro": "Pixel ID"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_IMPRESSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Impressions",
+        "ro": "Afișări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_REACH",
+      "kind": "METRIC",
+      "name": {
+        "en": "Reach",
+        "ro": "Reach"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_FREQUENCY",
+      "kind": "METRIC",
+      "name": {
+        "en": "Frequency",
+        "ro": "Frecvență"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_SPEND",
+      "kind": "METRIC",
+      "name": {
+        "en": "Spend",
+        "ro": "Cheltuieli"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_CPM",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPM",
+        "ro": "CPM"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "currency_per_mille",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_CPC",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPC",
+        "ro": "CPC"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "currency_per_click",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_CTR",
+      "kind": "METRIC",
+      "name": {
+        "en": "CTR",
+        "ro": "CTR"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_CPL",
+      "kind": "METRIC",
+      "name": {
+        "en": "Cost per Lead",
+        "ro": "Cost per Lead"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_CPA",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPA",
+        "ro": "CPA"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_ROAS",
+      "kind": "METRIC",
+      "name": {
+        "en": "ROAS",
+        "ro": "ROAS"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Clicks",
+        "ro": "Click-uri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_LINK_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Link Clicks",
+        "ro": "Click-uri pe link"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_UNIQUE_LINK_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Unique Link Clicks",
+        "ro": "Click-uri pe link unice"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_LANDING_PAGE_VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Landing Page Views",
+        "ro": "Vizualizări pagină de destinație"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_ENGAGEMENTS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Engagements",
+        "ro": "Interacțiuni"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_REACTIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Reactions",
+        "ro": "Reacții"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_LIKES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Likes",
+        "ro": "Aprecieri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_LOVES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Loves",
+        "ro": "Iubiri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_WOWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Wows",
+        "ro": "Uimiri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_HAHA",
+      "kind": "METRIC",
+      "name": {
+        "en": "Haha",
+        "ro": "Haha"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_SAD",
+      "kind": "METRIC",
+      "name": {
+        "en": "Sad",
+        "ro": "Trist"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_ANGRY",
+      "kind": "METRIC",
+      "name": {
+        "en": "Angry",
+        "ro": "Furie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_COMMENTS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Comments",
+        "ro": "Comentarii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_SHARES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Shares",
+        "ro": "Distribuiri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_SAVES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Saves",
+        "ro": "Salvări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_PROFILE_VISITS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Profile Visits",
+        "ro": "Vizite profil"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_FOLLOWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Follows",
+        "ro": "Urmăriri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_LEAD_SUBMISSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Lead Form Submissions",
+        "ro": "Formulare lead trimise"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_LEAD_CPL",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPL (Lead Forms)",
+        "ro": "CPL (Lead Forms)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_MSG_CONVOS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Messaging Conversations Started",
+        "ro": "Conversații începute (mesagerie)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_COST_PER_MSG",
+      "kind": "METRIC",
+      "name": {
+        "en": "Cost per Messaging Conversation",
+        "ro": "Cost per conversație mesagerie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_VIDEO_PLAYS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video Plays",
+        "ro": "Redări video"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_3S_VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "3s Views",
+        "ro": "Vizualizări 3s"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_10S_VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "10s Views",
+        "ro": "Vizualizări 10s"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_THRUPLAYS",
+      "kind": "METRIC",
+      "name": {
+        "en": "ThruPlays",
+        "ro": "ThruPlays"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_VIDEOS_WATCHED_95",
+      "kind": "METRIC",
+      "name": {
+        "en": "95% Video Plays",
+        "ro": "Redări 95%"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_AVG_WATCH_TIME",
+      "kind": "METRIC",
+      "name": {
+        "en": "Average Watch Time",
+        "ro": "Timp mediu vizionare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "duration",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_VTR",
+      "kind": "METRIC",
+      "name": {
+        "en": "View-through Rate",
+        "ro": "Rata vizionare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_QUALITY_RANKING",
+      "kind": "METRIC",
+      "name": {
+        "en": "Quality Ranking",
+        "ro": "Clasament calitate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "rank",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_ENG_RATE_RANKING",
+      "kind": "METRIC",
+      "name": {
+        "en": "Engagement Rate Ranking",
+        "ro": "Clasament rată engagement"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "rank",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:META_CONV_RATE_RANKING",
+      "kind": "METRIC",
+      "name": {
+        "en": "Conversion Rate Ranking",
+        "ro": "Clasament rată conversie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_META",
+      "aliases": [],
+      "unit": "rank",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:SOCIAL_TIKTOK",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "TikTok",
+        "ro": "TikTok"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:TT_OBJECTIVE",
+      "kind": "DIM",
+      "name": {
+        "en": "TikTok Objective",
+        "ro": "Obiectiv TikTok"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:TT_PLACEMENT",
+      "kind": "DIM",
+      "name": {
+        "en": "Placement",
+        "ro": "Plasare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:TT_ADVERTISER_ID",
+      "kind": "DIM",
+      "name": {
+        "en": "Advertiser ID",
+        "ro": "Advertiser ID"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_IMPRESSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Impressions",
+        "ro": "Afișări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_REACH",
+      "kind": "METRIC",
+      "name": {
+        "en": "Reach",
+        "ro": "Reach"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_FREQUENCY",
+      "kind": "METRIC",
+      "name": {
+        "en": "Frequency",
+        "ro": "Frecvență"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_SPEND",
+      "kind": "METRIC",
+      "name": {
+        "en": "Spend",
+        "ro": "Cheltuieli"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_CPM",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPM",
+        "ro": "CPM"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "currency_per_mille",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_CPC",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPC",
+        "ro": "CPC"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "currency_per_click",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_CTR",
+      "kind": "METRIC",
+      "name": {
+        "en": "CTR",
+        "ro": "CTR"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_CPL",
+      "kind": "METRIC",
+      "name": {
+        "en": "Cost per Lead",
+        "ro": "Cost per Lead"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_CPA",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPA",
+        "ro": "CPA"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_ROAS",
+      "kind": "METRIC",
+      "name": {
+        "en": "ROAS",
+        "ro": "ROAS"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Clicks",
+        "ro": "Click-uri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_LINK_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Link Clicks",
+        "ro": "Click-uri pe link"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_LANDING_PAGE_VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Landing Page Views",
+        "ro": "Vizualizări pagină destinație"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_ENGAGEMENTS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Engagements",
+        "ro": "Interacțiuni"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_LIKES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Likes",
+        "ro": "Aprecieri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_COMMENTS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Comments",
+        "ro": "Comentarii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_SHARES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Shares",
+        "ro": "Distribuiri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_SAVES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Saves",
+        "ro": "Salvări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_PROFILE_VISITS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Profile Visits",
+        "ro": "Vizite profil"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_FOLLOWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Follows",
+        "ro": "Urmăriri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_VIDEO_PLAYS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video Plays",
+        "ro": "Redări video"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_2S_VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "2s Views",
+        "ro": "Vizualizări 2s"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_6S_VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "6s Views",
+        "ro": "Vizualizări 6s"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_100P_COMPLETIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "100% Completions",
+        "ro": "Vizionări 100%"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_AVG_WATCH_TIME",
+      "kind": "METRIC",
+      "name": {
+        "en": "Average Watch Time",
+        "ro": "Timp mediu vizionare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "duration",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:TT_VTR",
+      "kind": "METRIC",
+      "name": {
+        "en": "View-through Rate",
+        "ro": "Rata vizionare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_TIKTOK",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "CAT:SOCIAL_LINKEDIN",
+      "kind": "CATEGORY",
+      "name": {
+        "en": "LinkedIn",
+        "ro": "LinkedIn"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:LI_OBJECTIVE",
+      "kind": "DIM",
+      "name": {
+        "en": "LinkedIn Objective",
+        "ro": "Obiectiv LinkedIn"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:LI_JOB_FUNCTION",
+      "kind": "DIM",
+      "name": {
+        "en": "Job Function",
+        "ro": "Funcție"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:LI_SENIORITY",
+      "kind": "DIM",
+      "name": {
+        "en": "Seniority",
+        "ro": "Senioritate"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:LI_INDUSTRY",
+      "kind": "DIM",
+      "name": {
+        "en": "Industry",
+        "ro": "Industrie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:LI_COMPANY_SIZE",
+      "kind": "DIM",
+      "name": {
+        "en": "Company Size",
+        "ro": "Mărime companie"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "DIM:LI_LEAD_GEN_FORM_ID",
+      "kind": "DIM",
+      "name": {
+        "en": "Lead Gen Form ID",
+        "ro": "ID Formular Lead"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": null,
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_IMPRESSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Impressions",
+        "ro": "Afișări"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_REACH",
+      "kind": "METRIC",
+      "name": {
+        "en": "Reach",
+        "ro": "Reach"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_FREQUENCY",
+      "kind": "METRIC",
+      "name": {
+        "en": "Frequency",
+        "ro": "Frecvență"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_SPEND",
+      "kind": "METRIC",
+      "name": {
+        "en": "Spend",
+        "ro": "Cheltuieli"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "currency",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_CPM",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPM",
+        "ro": "CPM"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "currency_per_mille",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_CPC",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPC",
+        "ro": "CPC"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "currency_per_click",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_CTR",
+      "kind": "METRIC",
+      "name": {
+        "en": "CTR",
+        "ro": "CTR"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_CPL",
+      "kind": "METRIC",
+      "name": {
+        "en": "Cost per Lead",
+        "ro": "Cost per Lead"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_CPA",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPA",
+        "ro": "CPA"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_ROAS",
+      "kind": "METRIC",
+      "name": {
+        "en": "ROAS",
+        "ro": "ROAS"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Clicks",
+        "ro": "Click-uri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_LINK_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Link Clicks",
+        "ro": "Click-uri pe link"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_LANDING_PAGE_CLICKS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Landing Page Clicks",
+        "ro": "Click-uri pagină destinație"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_ENGAGEMENTS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Engagements",
+        "ro": "Interacțiuni"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_REACTIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Reactions",
+        "ro": "Reacții"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_COMMENTS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Comments",
+        "ro": "Comentarii"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_SHARES",
+      "kind": "METRIC",
+      "name": {
+        "en": "Shares",
+        "ro": "Distribuiri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_FOLLOWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Follows",
+        "ro": "Urmăriri"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_VIDEO_VIEWS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video Views",
+        "ro": "Vizualizări video"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_VIDEO_25",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video 25%",
+        "ro": "Video 25%"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_VIDEO_50",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video 50%",
+        "ro": "Video 50%"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_VIDEO_75",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video 75%",
+        "ro": "Video 75%"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_VIDEO_100",
+      "kind": "METRIC",
+      "name": {
+        "en": "Video 100%",
+        "ro": "Video 100%"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_AVG_WATCH_TIME",
+      "kind": "METRIC",
+      "name": {
+        "en": "Average Watch Time",
+        "ro": "Timp mediu vizionare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "duration",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_VTR",
+      "kind": "METRIC",
+      "name": {
+        "en": "View-through Rate",
+        "ro": "Rata vizionare"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_LEAD_FORM_OPENS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Lead Form Opens",
+        "ro": "Deschideri formular lead"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_LEAD_FORM_OPEN_RATE",
+      "kind": "METRIC",
+      "name": {
+        "en": "Lead Form Open Rate",
+        "ro": "Rată deschidere formular lead"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "ratio",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_LEAD_FORM_SUBMISSIONS",
+      "kind": "METRIC",
+      "name": {
+        "en": "Lead Form Submissions",
+        "ro": "Trimiteri formular lead"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "count",
+      "formula": null,
+      "meta": {}
+    },
+    {
+      "code": "METRIC:LI_CPL_LEAD_FORM",
+      "kind": "METRIC",
+      "name": {
+        "en": "CPL (Lead Gen Forms)",
+        "ro": "CPL (Lead Gen Forms)"
+      },
+      "description": {
+        "en": "",
+        "ro": ""
+      },
+      "parent": "CAT:SOCIAL_LINKEDIN",
+      "aliases": [],
+      "unit": "currency_per_conv",
+      "formula": null,
+      "meta": {}
+    }
+  ]
+}

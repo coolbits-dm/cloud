@@ -1,0 +1,44 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-25",
+  "engine": "handlebars-lite v1",
+  "helpers": {
+    "value": "value(code, days?, fmt?) -> resolves metric/dimension/fact with optional time window and formatter",
+    "table": "table(rows, columns[]) -> renders markdown table",
+    "gradeColor": "gradeColor(grade) -> 'green'|'yellow'|'orange'|'red'",
+    "dateFmt": "dateFmt(date, 'YYYY-MM-DD') -> string"
+  },
+  "templates": [
+    {
+      "code": "TEMPLATE:AUDIT_GLOBAL_MD",
+      "name": {
+        "ro": "Audit — Global (Markdown)",
+        "en": "Audit — Global (Markdown)"
+      },
+      "type": "markdown",
+      "scope": "GLOBAL",
+      "content_ro": "# Audit Marketing — {{ value('BUSINESS:COMPANY_NAME') || 'Companie' }}\n\n**Website:** {{ value('BUSINESS:WEBSITE') || '—' }}  \n**Industrie:** {{ value('BUSINESS:INDUSTRY') || '—' }}  \n**Țări:** {{ value('BUSINESS:COUNTRY') || '—' }}\n\n---\n\n## Rezumat scor\n- Scor total: **{{ audit.overall.score }} / 100** ({{ audit.overall.grade }})\n- Arii: \n{{#each audit.areas}}\n  - **{{ this.name_ro }}** — {{ this.score }} / 100 ({{ this.grade }})\n{{/each}}\n\n> Interval analizat: {{ dateFmt(audit.window.start,'YYYY-MM-DD') }} → {{ dateFmt(audit.window.end,'YYYY-MM-DD') }}\n\n---\n\n## Constatări cheie\n{{#each audit.findings}}\n### {{ this.area_name_ro }} — {{ this.check_name_ro }} ({{ this.status }})\n- Severitate: **{{ this.severity }}**, Pondere: {{ this.weight }}\n- Evidență: {{ this.evidence_joined }}\n- Mesaj: {{ this.message_ro }}\n{{/each}}\n\n---\n\n## KPI-uri de bază (ultimele 30 zile)\n\n| KPI | Valoare |\n|---|---:|\n| CTR (Search) | {{ value('METRIC:CTR', 30, 'ratio_pct') || '—' }} |\n| CPC | {{ value('METRIC:CPC', 30, 'currency') || '—' }} |\n| ROAS | {{ value('METRIC:ROAS', 30, 'rate') || '—' }} |\n| Impression Share | {{ value('METRIC:IMPR_SHARE', 30, 'ratio_pct') || '—' }} |\n| Conversii | {{ value('METRIC:CONVERSIONS', 30, 'count') || '—' }} |\n| Valoare conversii | {{ value('METRIC:CONV_VALUE', 30, 'currency') || '—' }} |\n| Meta CTR | {{ value('METRIC:META_CTR', 30, 'ratio_pct') || '—' }} |\n| TikTok VTR | {{ value('METRIC:TT_VTR', 30, 'ratio_pct') || '—' }} |\n| LinkedIn CTR | {{ value('METRIC:LI_CTR', 30, 'ratio_pct') || '—' }} |\n\n---\n\n## Recomandări prioritizate (ICE)\n{{#each recommendations}}\n### {{ this.title_ro }}\n- Impact: {{ this.ICE.impact }} /10, Încredere: {{ this.ICE.confidence }}/10, Ușurință: {{ this.ICE.ease }} /10 → **Scor ICE: {{ this.ICE.score }}**\n- Descriere: {{ this.detail_ro }}\n- Proprietar: {{ this.owner }}, Timp: ~{{ this.timeframe_days }} zile\n- Metrici de urmărit: {{ this.metrics_to_watch_joined }}\n{{/each}}\n\n---\n\n## Anexe\n- Competiție: {{ value('DIM:COMPETITOR') || '—' }}\n- Rapoarte încărcate: {{ uploads_summary }}\n",
+      "content_en": "# Marketing Audit — {{ value('BUSINESS:COMPANY_NAME') || 'Company' }}\n\n**Website:** {{ value('BUSINESS:WEBSITE') || '—' }}  \n**Industry:** {{ value('BUSINESS:INDUSTRY') || '—' }}  \n**Countries:** {{ value('BUSINESS:COUNTRY') || '—' }}\n\n---\n\n## Score Summary\n- Overall score: **{{ audit.overall.score }} / 100** ({{ audit.overall.grade }})\n- Areas:\n{{#each audit.areas}}\n  - **{{ this.name_en }}** — {{ this.score }} / 100 ({{ this.grade }})\n{{/each}}\n\n> Window: {{ dateFmt(audit.window.start,'YYYY-MM-DD') }} → {{ dateFmt(audit.window.end,'YYYY-MM-DD') }}\n\n---\n\n## Key Findings\n{{#each audit.findings}}\n### {{ this.area_name_en }} — {{ this.check_name_en }} ({{ this.status }})\n- Severity: **{{ this.severity }}**, Weight: {{ this.weight }}\n- Evidence: {{ this.evidence_joined }}\n- Message: {{ this.message_en }}\n{{/each}}\n\n---\n\n## Core KPIs (last 30 days)\n\n| KPI | Value |\n|---|---:|\n| CTR (Search) | {{ value('METRIC:CTR', 30, 'ratio_pct') || '—' }} |\n| CPC | {{ value('METRIC:CPC', 30, 'currency') || '—' }} |\n| ROAS | {{ value('METRIC:ROAS', 30, 'rate') || '—' }} |\n| Impression Share | {{ value('METRIC:IMPR_SHARE', 30, 'ratio_pct') || '—' }} |\n| Conversions | {{ value('METRIC:CONVERSIONS', 30, 'count') || '—' }} |\n| Conversion value | {{ value('METRIC:CONV_VALUE', 30, 'currency') || '—' }} |\n| Meta CTR | {{ value('METRIC:META_CTR', 30, 'ratio_pct') || '—' }} |\n| TikTok VTR | {{ value('METRIC:TT_VTR', 30, 'ratio_pct') || '—' }} |\n| LinkedIn CTR | {{ value('METRIC:LI_CTR', 30, 'ratio_pct') || '—' }} |\n\n---\n\n## Prioritized Recommendations (ICE)\n{{#each recommendations}}\n### {{ this.title_en }}\n- Impact: {{ this.ICE.impact }} /10, Confidence: {{ this.ICE.confidence }}/10, Ease: {{ this.ICE.ease }} /10 → **ICE score: {{ this.ICE.score }}**\n- Detail: {{ this.detail_en }}\n- Owner: {{ this.owner }}, Time: ~{{ this.timeframe_days }} days\n- Metrics to watch: {{ this.metrics_to_watch_joined }}\n{{/each}}\n\n---\n\n## Appendices\n- Competition: {{ value('DIM:COMPETITOR') || '—' }}\n- Uploaded reports: {{ uploads_summary }}\n"
+    },
+    {
+      "code": "TEMPLATE:SUMMARY_MD",
+      "name": {
+        "ro": "Rezumat conversație + map",
+        "en": "Conversation + map summary"
+      },
+      "type": "markdown",
+      "content_ro": "# Rezumat — {{ value('BUSINESS:COMPANY_NAME') || 'Companie' }}\n\n## Profil\n- Website: {{ value('BUSINESS:WEBSITE') || '—' }}\n- Industrie: {{ value('BUSINESS:INDUSTRY') || '—' }}\n- Țări: {{ value('BUSINESS:COUNTRY') || '—' }}\n\n## Obiective\n- Awareness: {{ value('GOAL:AWARENESS') || '—' }}\n- Trafic: {{ value('GOAL:TRAFFIC') || '—' }}\n- Lead‑uri: {{ value('GOAL:LEADS') || '—' }}\n- Vânzări: {{ value('GOAL:SALES') || '—' }}\n\n## Canale & Tool‑uri\n- Ads: {{ value('CHANNEL:PAID') || '—' }}\n- SEO: {{ value('CHANNEL:SEO') || '—' }}\n- Email/CRM: {{ value('CHANNEL:OWNED_EMAIL') || '—' }}\n- Tool‑uri: GA4 {{ value('TOOL:GA4') }}, GTM {{ value('TOOL:GTM') }}, GSC {{ value('TOOL:GSC') }}\n\n## Raportare\n- Rapoarte încărcate: {{ uploads_summary }}\n- Ready CTA: {{ readiness_cta_list }}\n",
+      "content_en": "# Summary — {{ value('BUSINESS:COMPANY_NAME') || 'Company' }}\n\n## Profile\n- Website: {{ value('BUSINESS:WEBSITE') || '—' }}\n- Industry: {{ value('BUSINESS:INDUSTRY') || '—' }}\n- Countries: {{ value('BUSINESS:COUNTRY') || '—' }}\n\n## Goals\n- Awareness: {{ value('GOAL:AWARENESS') || '—' }}\n- Traffic: {{ value('GOAL:TRAFFIC') || '—' }}\n- Leads: {{ value('GOAL:LEADS') || '—' }}\n- Sales: {{ value('GOAL:SALES') || '—' }}\n\n## Channels & Tools\n- Ads: {{ value('CHANNEL:PAID') || '—' }}\n- SEO: {{ value('CHANNEL:SEO') || '—' }}\n- Email/CRM: {{ value('CHANNEL:OWNED_EMAIL') || '—' }}\n- Tools: GA4 {{ value('TOOL:GA4') }}, GTM {{ value('TOOL:GTM') }}, GSC {{ value('TOOL:GSC') }}\n\n## Reporting\n- Uploaded reports: {{ uploads_summary }}\n- Ready CTA: {{ readiness_cta_list }}\n"
+    },
+    {
+      "code": "TEMPLATE:EMAIL_MD",
+      "name": {
+        "ro": "Email scurt cu audit",
+        "en": "Short audit email"
+      },
+      "type": "markdown",
+      "content_ro": "Subiect: Rezumat audit — {{ value('BUSINESS:COMPANY_NAME') }}\n\nSalut {{ contact_name || 'acolo' }},\n\nAm analizat datele ({{ dateFmt(audit.window.start,'DD.MM.YYYY') }}–{{ dateFmt(audit.window.end,'DD.MM.YYYY') }}). Scor total **{{ audit.overall.score }}/100** ({{ audit.overall.grade }}).\n\nTop 3 recomandări:\n{{#each recommendations_top3}}\n- {{ this.title_ro }} — {{ this.detail_ro }}\n{{/each}}\n\nVrei să trecem împreună prin rezultate în 15 minute?\n\nMulțumesc,  \n{{ sender_name }}\n",
+      "content_en": "Subject: Audit summary — {{ value('BUSINESS:COMPANY_NAME') }}\n\nHi {{ contact_name || 'there' }},\n\nWe reviewed your data ({{ dateFmt(audit.window.start,'YYYY-MM-DD') }}–{{ dateFmt(audit.window.end,'YYYY-MM-DD') }}). Overall score **{{ audit.overall.score }}/100** ({{ audit.overall.grade }}).\n\nTop 3 recommendations:\n{{#each recommendations_top3}}\n- {{ this.title_en }} — {{ this.detail_en }}\n{{/each}}\n\nWould you like a 15‑minute walkthrough?\n\nThanks,  \n{{ sender_name }}\n"
+    }
+  ]
+}

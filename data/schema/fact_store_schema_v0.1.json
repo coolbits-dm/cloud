@@ -1,0 +1,178 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-25",
+  "notes": "Generic schema for storing facts (terms, metrics, dimensions) with provenance and normalization. Suitable for JSON store or SQL/SQLite via an ORM.",
+  "collections": {
+    "facts": {
+      "pk": "id",
+      "indexes": [
+        "termCode",
+        "observedAt",
+        "sourceType",
+        "platform",
+        "reportType",
+        "dimsHash"
+      ],
+      "schema": {
+        "id": "uuid",
+        "termCode": "string",
+        "value": "any",
+        "valueType": "enum[string,number,boolean,object,array,ratio,currency,duration]",
+        "unit": "string|null",
+        "sourceType": "enum[chat,upload,api,manual,derived]",
+        "sourceRef": "string|null",
+        "platform": "string|null",
+        "reportType": "string|null",
+        "dims": "object",
+        "dimsHash": "string",
+        "timeGrain": "enum[daily,weekly,monthly,aggregate]|null",
+        "aggregation": "enum[sum,avg,min,max,count,derived]|null",
+        "confidence": "number(0..1)",
+        "observedAt": "datetime",
+        "validFrom": "datetime|null",
+        "validTo": "datetime|null",
+        "locale": "string|null",
+        "normalization": {
+          "originalValue": "any",
+          "originalUnit": "string|null",
+          "notes": "string|null"
+        },
+        "bounds": {
+          "min": "number|null",
+          "max": "number|null"
+        },
+        "createdAt": "datetime",
+        "updatedAt": "datetime",
+        "checksum": "string"
+      }
+    },
+    "uploads": {
+      "pk": "id",
+      "indexes": [
+        "createdAt",
+        "platform",
+        "reportProfile",
+        "headerMatchScore"
+      ],
+      "schema": {
+        "id": "uuid",
+        "userId": "string|null",
+        "platform": "string",
+        "reportProfile": "string",
+        "filename": "string",
+        "mime": "string",
+        "sizeBytes": "int",
+        "hash": "string",
+        "rows": "int",
+        "cols": "int",
+        "headerMatchScore": "number(0..1)",
+        "timeRange": {
+          "start": "date",
+          "end": "date"
+        },
+        "accountTimezone": "string|null",
+        "currency": "string|null",
+        "parseStatus": "enum[pending,ok,warning,error]",
+        "errors": "array[string]",
+        "warnings": "array[string]",
+        "createdAt": "datetime"
+      }
+    },
+    "audits": {
+      "pk": "id",
+      "indexes": [
+        "createdAt",
+        "scope",
+        "overall.grade"
+      ],
+      "schema": {
+        "id": "uuid",
+        "scope": "enum[GLOBAL,ADS,SEO,EMAIL,ECOMM,SOCIAL,TRACKING,CRO]",
+        "window": {
+          "start": "date",
+          "end": "date"
+        },
+        "overall": {
+          "score": "number",
+          "grade": "enum[A,B,C,D]"
+        },
+        "areas": "array[ { code:string, name_ro:string, name_en:string, score:number, grade:string } ]",
+        "findings": "array[ { check_code:string, area_code:string, status:enum[pass,fail], severity:string, weight:number, message_ro:string, message_en:string, evidence:array[string] } ]",
+        "recommendations": "array[ { code:string, title_ro:string, title_en:string, detail_ro:string, detail_en:string, ICE:{impact:number,confidence:number,ease:number,score:number}, owner:string, timeframe_days:number, metrics_to_watch:array[string] } ]",
+        "createdAt": "datetime"
+      }
+    },
+    "readiness": {
+      "pk": "id",
+      "indexes": [
+        "createdAt",
+        "ruleCode",
+        "status"
+      ],
+      "schema": {
+        "id": "uuid",
+        "ruleCode": "string",
+        "status": "enum[ready,missing]",
+        "missingFacts": "array[string]",
+        "cta": "object|null",
+        "createdAt": "datetime"
+      }
+    },
+    "entities": {
+      "pk": "id",
+      "indexes": [
+        "type",
+        "createdAt"
+      ],
+      "schema": {
+        "id": "uuid",
+        "type": "enum[business,user]",
+        "data": "object",
+        "facts": "array[string]",
+        "createdAt": "datetime",
+        "updatedAt": "datetime"
+      }
+    }
+  },
+  "relations": [
+    {
+      "from": "facts.sourceRef",
+      "to": "uploads.id",
+      "type": "many-to-one",
+      "nullable": true
+    },
+    {
+      "from": "audits.id",
+      "to": "facts.id",
+      "type": "one-to-many",
+      "via": "findings.evidence? (logical)"
+    },
+    {
+      "from": "entities.facts[]",
+      "to": "facts.id",
+      "type": "one-to-many"
+    },
+    {
+      "from": "readiness.id",
+      "to": "facts.id",
+      "type": "one-to-many",
+      "via": "missingFacts (logical)"
+    }
+  ],
+  "sql_recommendations": {
+    "dialect": "sqlite",
+    "tables": {
+      "Fact": "(id TEXT PRIMARY KEY, termCode TEXT, value TEXT, valueType TEXT, unit TEXT, sourceType TEXT, sourceRef TEXT, platform TEXT, reportType TEXT, dims TEXT, dimsHash TEXT, timeGrain TEXT, aggregation TEXT, confidence REAL, observedAt TEXT, validFrom TEXT, validTo TEXT, locale TEXT, normalization TEXT, min REAL, max REAL, createdAt TEXT, updatedAt TEXT, checksum TEXT)",
+      "Upload": "(id TEXT PRIMARY KEY, userId TEXT, platform TEXT, reportProfile TEXT, filename TEXT, mime TEXT, sizeBytes INTEGER, hash TEXT, rows INTEGER, cols INTEGER, headerMatchScore REAL, start TEXT, end TEXT, accountTimezone TEXT, currency TEXT, parseStatus TEXT, errors TEXT, warnings TEXT, createdAt TEXT)",
+      "Audit": "(id TEXT PRIMARY KEY, scope TEXT, start TEXT, end TEXT, overallScore REAL, overallGrade TEXT, areas TEXT, findings TEXT, recommendations TEXT, createdAt TEXT)",
+      "Entity": "(id TEXT PRIMARY KEY, type TEXT, data TEXT, facts TEXT, createdAt TEXT, updatedAt TEXT)",
+      "Readiness": "(id TEXT PRIMARY KEY, ruleCode TEXT, status TEXT, missingFacts TEXT, cta TEXT, createdAt TEXT)"
+    },
+    "indexes": [
+      "CREATE INDEX IF NOT EXISTS idx_fact_term ON Fact(termCode)",
+      "CREATE INDEX IF NOT EXISTS idx_fact_obs ON Fact(observedAt)",
+      "CREATE INDEX IF NOT EXISTS idx_fact_source ON Fact(sourceType, platform, reportType)",
+      "CREATE INDEX IF NOT EXISTS idx_fact_dims ON Fact(dimsHash)"
+    ]
+  }
+}

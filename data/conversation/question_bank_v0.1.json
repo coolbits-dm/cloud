@@ -1,0 +1,527 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "locale_default": "ro",
+  "placeholders": {
+    "company": "{{BUSINESS:COMPANY_NAME}}",
+    "website": "{{BUSINESS:WEBSITE}}",
+    "industry": "{{BUSINESS:INDUSTRY}}"
+  },
+  "settings": {
+    "max_consecutive_prompts": 2,
+    "reprompt_cooldown_messages": 3,
+    "tones": [
+      "friendly",
+      "consultative",
+      "concise"
+    ],
+    "suggestion_style": "chips",
+    "quick_reply_limit": 5
+  },
+  "priority_order": [
+    "QSET:WEBSITE_OR_COMPANY",
+    "QSET:GOALS",
+    "QSET:CHANNELS_TOOLS",
+    "QSET:BUDGET",
+    "QSET:COMPETITORS",
+    "QSET:TRACKING_CONSENT",
+    "QSET:UPLOAD_INVITES"
+  ],
+  "redirects": [
+    {
+      "code": "REDIRECT:OFFTOPIC_GENERAL",
+      "patterns_ro": [
+        "vremea",
+        "meteo",
+        "fotbal",
+        "politic",
+        "știri",
+        "stiri",
+        "glum"
+      ],
+      "patterns_en": [
+        "weather",
+        "football",
+        "soccer",
+        "politic",
+        "news",
+        "jok"
+      ],
+      "response": {
+        "ro": "Mă ocup cu marketingul digital pentru {{company}}. Ca să-ți pot fi util, îmi lași te rog website-ul sau numele brandului?",
+        "en": "I’m here for digital marketing. Could you share your website or brand name so I can help properly?"
+      },
+      "next": "QSET:WEBSITE_OR_COMPANY"
+    },
+    {
+      "code": "REDIRECT:TECH_SUPPORT",
+      "patterns_ro": [
+        "instal(ez|are)",
+        "nu merge site",
+        "eroare server",
+        "cod",
+        "programare"
+      ],
+      "patterns_en": [
+        "install",
+        "doesn't work",
+        "server error",
+        "code",
+        "programming"
+      ],
+      "response": {
+        "ro": "Nu sunt suport tehnic, dar pot privi impactul în marketing. Ce obiectiv ai acum (vizibilitate, lead‑uri, vânzări)?",
+        "en": "I’m not technical support, but I can look at marketing impact. What’s your goal now (awareness, leads, sales)?"
+      },
+      "next": "QSET:GOALS"
+    }
+  ],
+  "question_sets": [
+    {
+      "code": "QSET:WEBSITE_OR_COMPANY",
+      "purpose": "Identify the user's company and website early.",
+      "when": {
+        "missing_any": [
+          "BUSINESS:WEBSITE",
+          "BUSINESS:COMPANY_NAME"
+        ]
+      },
+      "questions": [
+        {
+          "term": "BUSINESS:WEBSITE",
+          "type": "url",
+          "validate": "RULE:URL",
+          "ask": {
+            "ro": [
+              "Îmi lași website-ul tău? (ex: https://exemplu.ro)",
+              "Care este site-ul companiei?"
+            ],
+            "en": [
+              "What’s your website? (e.g., https://example.com)",
+              "Could you share your company site?"
+            ]
+          },
+          "reprompts": {
+            "ro": [
+              "Orice link public ajută — domeniu, pagină de Facebook, Google Business profile?"
+            ],
+            "en": [
+              "Any public link helps — domain, Facebook page, or Google Business profile?"
+            ]
+          },
+          "quick_replies": [
+            "https://",
+            "N-avem încă",
+            "Lucrăm la site"
+          ]
+        },
+        {
+          "term": "BUSINESS:COMPANY_NAME",
+          "type": "string",
+          "ask": {
+            "ro": [
+              "Cum se numește compania/brandul?",
+              "Sub ce nume vă găsesc online?"
+            ],
+            "en": [
+              "What’s your company/brand name?",
+              "Under what name can I find you online?"
+            ]
+          },
+          "quick_replies": [
+            "SRL",
+            "PFA",
+            "Brand nou"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "QSET:GOALS",
+      "purpose": "Clarify marketing goals to steer advice & audits.",
+      "when": {
+        "missing_all_of": [
+          "GOAL:AWARENESS",
+          "GOAL:TRAFFIC",
+          "GOAL:LEADS",
+          "GOAL:SALES",
+          "GOAL:RETENTION"
+        ]
+      },
+      "questions": [
+        {
+          "term": "GOAL:LEADS",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "E prioritar să aduceți lead‑uri calificate? (da/nu)"
+            ],
+            "en": [
+              "Is qualified lead generation a priority? (yes/no)"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        },
+        {
+          "term": "GOAL:SALES",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Țintiți vânzări directe online? (da/nu)"
+            ],
+            "en": [
+              "Are direct online sales a target? (yes/no)"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        },
+        {
+          "term": "GOAL:AWARENESS",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Vreți mai multă vizibilitate de brand? (da/nu)"
+            ],
+            "en": [
+              "Is brand awareness a goal? (yes/no)"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "QSET:CHANNELS_TOOLS",
+      "purpose": "Detect active channels & tools.",
+      "when": {
+        "missing_any": [
+          "CHANNEL:PAID",
+          "CHANNEL:SEO",
+          "CHANNEL:OWNED_EMAIL"
+        ]
+      },
+      "questions": [
+        {
+          "term": "CHANNEL:PAID",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Rulați campanii plătite (Google/Meta/TikTok/LinkedIn)?"
+            ],
+            "en": [
+              "Are you running paid campaigns (Google/Meta/TikTok/LinkedIn)?"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu",
+            "Curând"
+          ]
+        },
+        {
+          "term": "TOOL:ADS_GOOGLE",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Folosiți Google Ads?"
+            ],
+            "en": [
+              "Do you use Google Ads?"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        },
+        {
+          "term": "TOOL:ADS_META",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Folosiți Meta Ads (Facebook/Instagram)?"
+            ],
+            "en": [
+              "Do you use Meta Ads (Facebook/Instagram)?"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        },
+        {
+          "term": "TOOL:ADS_TIKTOK",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Folosiți TikTok Ads?"
+            ],
+            "en": [
+              "Do you use TikTok Ads?"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        },
+        {
+          "term": "TOOL:ADS_LINKEDIN",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Folosiți LinkedIn Ads?"
+            ],
+            "en": [
+              "Do you use LinkedIn Ads?"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        },
+        {
+          "term": "CHANNEL:SEO",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Lucrați activ la SEO?"
+            ],
+            "en": [
+              "Are you actively doing SEO?"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        },
+        {
+          "term": "CHANNEL:OWNED_EMAIL",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Trimiteți campanii de email/CRM?"
+            ],
+            "en": [
+              "Do you send email/CRM campaigns?"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "QSET:BUDGET",
+      "purpose": "Capture budget numbers to qualify audits & pacing.",
+      "when": {
+        "missing_all_of": [
+          "BUDGET:MONTHLY",
+          "BUDGET:DAILY"
+        ]
+      },
+      "questions": [
+        {
+          "term": "BUDGET:MONTHLY",
+          "type": "currency",
+          "validate": "RULE:CURRENCY",
+          "ask": {
+            "ro": [
+              "Care este bugetul lunar aproximativ pentru ads? (ex: 3000 RON)"
+            ],
+            "en": [
+              "What’s your approximate monthly ads budget? (e.g., 3000 RON)"
+            ]
+          },
+          "hints": {
+            "ro": "Accept: RON/EUR/USD. Exemplu: 2500 EUR",
+            "en": "Accepts RON/EUR/USD. Example: 2500 EUR"
+          },
+          "quick_replies": [
+            "1000 RON",
+            "3000 RON",
+            "5000 RON",
+            "10,000 RON"
+          ]
+        },
+        {
+          "term": "BUDGET:DAILY",
+          "type": "currency",
+          "validate": "RULE:CURRENCY",
+          "ask": {
+            "ro": [
+              "Folosiți și bugete zilnice la nivel de campanie? Dacă da, în ce plajă?"
+            ],
+            "en": [
+              "Do you also use daily budgets per campaign? If yes, roughly how much?"
+            ]
+          },
+          "quick_replies": [
+            "50 RON/zi",
+            "100 RON/zi",
+            "200 RON/zi"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "QSET:COMPETITORS",
+      "purpose": "Collect notable competitors for Auction Insights & benchmarking.",
+      "when": {
+        "missing_any": [
+          "DIM:COMPETITOR"
+        ]
+      },
+      "questions": [
+        {
+          "term": "DIM:COMPETITOR",
+          "type": "array[string]",
+          "ask": {
+            "ro": [
+              "Îmi dai câțiva competitori notabili? (domeniu sau nume)"
+            ],
+            "en": [
+              "Could you name a few notable competitors? (domain or name)"
+            ]
+          },
+          "hints": {
+            "ro": "Ex: emag.ro, competitor-brand.ro",
+            "en": "e.g., example.com, competitor-brand.com"
+          },
+          "quick_replies": [
+            "competitor1.ro",
+            "competitor2.ro",
+            "Nu știu"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "QSET:TRACKING_CONSENT",
+      "purpose": "Understand tracking setup & consent constraints.",
+      "when": {
+        "any_of": [
+          "TOOL:GA4",
+          "TOOL:GTM",
+          "TOOL:GSC"
+        ]
+      },
+      "questions": [
+        {
+          "term": "CONSENT:ADS",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Aveți implementat Consent Mode pentru Ads? (da/nu)"
+            ],
+            "en": [
+              "Do you have Consent Mode for Ads implemented? (yes/no)"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu",
+            "Nu știm"
+          ]
+        },
+        {
+          "term": "CONSENT:ANALYTICS",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Colectați Analytics doar cu consimțământ? (da/nu)"
+            ],
+            "en": [
+              "Is Analytics collected only with consent? (yes/no)"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu",
+            "Parțial"
+          ]
+        },
+        {
+          "term": "CMP:PRESENT",
+          "type": "boolean",
+          "ask": {
+            "ro": [
+              "Aveți un banner CMP activ pe site?"
+            ],
+            "en": [
+              "Do you have an active CMP banner on the site?"
+            ]
+          },
+          "quick_replies": [
+            "Da",
+            "Nu"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "QSET:UPLOAD_INVITES",
+      "purpose": "Invite to upload reports for richer analysis.",
+      "when": {
+        "any_of": [
+          "TOOL:ADS_GOOGLE",
+          "TOOL:ADS_META",
+          "TOOL:ADS_TIKTOK",
+          "TOOL:ADS_LINKEDIN",
+          "CHANNEL:SEO",
+          "CHANNEL:OWNED_EMAIL"
+        ]
+      },
+      "questions": [
+        {
+          "term": "UPLOAD:REPORT",
+          "type": "action",
+          "ask": {
+            "ro": [
+              "Vrei să încarci un raport de performanță (CSV/XLSX) ca să pot detalia?"
+            ],
+            "en": [
+              "Would you like to upload a performance report (CSV/XLSX) so I can go deeper?"
+            ]
+          },
+          "cta": [
+            {
+              "label": {
+                "ro": "Google Ads",
+                "en": "Google Ads"
+              },
+              "action": "ACTION:UPLOAD",
+              "params": {
+                "platform": "PLAT:GADS"
+              }
+            },
+            {
+              "label": {
+                "ro": "Meta/TikTok/LinkedIn",
+                "en": "Meta/TikTok/LinkedIn"
+              },
+              "action": "ACTION:UPLOAD",
+              "params": {
+                "platform": "PLAT:SOCIAL"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

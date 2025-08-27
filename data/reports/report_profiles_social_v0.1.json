@@ -1,0 +1,1214 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "platforms": [
+    {
+      "platform": "META_(FACEBOOK/INSTAGRAM)",
+      "code": "PLAT:META",
+      "name": {
+        "en": "Meta (Facebook/Instagram)",
+        "ro": "Meta (Facebook/Instagram)"
+      },
+      "report_types": [
+        {
+          "code": "META:CAMPAIGNS",
+          "name": {
+            "en": "Campaigns",
+            "ro": "Campanii"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:META_OBJECTIVE",
+            "DIM:META_PLACEMENT_PLATFORM"
+          ],
+          "metrics": [
+            "METRIC:META_IMPRESSIONS",
+            "METRIC:META_REACH",
+            "METRIC:META_FREQUENCY",
+            "METRIC:META_SPEND",
+            "METRIC:META_CPM",
+            "METRIC:META_CTR",
+            "METRIC:META_CPC",
+            "METRIC:META_CLICKS",
+            "METRIC:META_LINK_CLICKS",
+            "METRIC:META_LANDING_PAGE_VIEWS",
+            "METRIC:CONVERSIONS",
+            "METRIC:META_CPA",
+            "METRIC:META_ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Objective",
+              "Placement platform",
+              "Impressions",
+              "Reach",
+              "Frequency",
+              "Amount spent",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Link clicks",
+              "Landing page views",
+              "Conversions",
+              "Cost per action",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Obiectiv",
+              "Platformă plasare",
+              "Afișări",
+              "Reach",
+              "Frecvență",
+              "Suma cheltuită",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Click-uri pe link",
+              "Vizualizări pagină destinație",
+              "Conversii",
+              "Cost per acțiune",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Date"
+          ]
+        },
+        {
+          "code": "META:AD_SETS",
+          "name": {
+            "en": "Ad sets",
+            "ro": "Ad sets"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:META_PLACEMENT_PLATFORM",
+            "DIM:META_PLACEMENT_POSITION"
+          ],
+          "metrics": [
+            "METRIC:META_IMPRESSIONS",
+            "METRIC:META_REACH",
+            "METRIC:META_FREQUENCY",
+            "METRIC:META_SPEND",
+            "METRIC:META_CPM",
+            "METRIC:META_CTR",
+            "METRIC:META_CPC",
+            "METRIC:META_CLICKS",
+            "METRIC:META_LINK_CLICKS",
+            "METRIC:META_LANDING_PAGE_VIEWS",
+            "METRIC:CONVERSIONS",
+            "METRIC:META_CPA",
+            "METRIC:META_ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad set",
+              "Placement platform",
+              "Placement position",
+              "Impressions",
+              "Reach",
+              "Frequency",
+              "Amount spent",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Link clicks",
+              "Landing page views",
+              "Conversions",
+              "CPA",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Ad set",
+              "Platformă plasare",
+              "Poziție plasare",
+              "Afișări",
+              "Reach",
+              "Frecvență",
+              "Suma cheltuită",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Click-uri pe link",
+              "Vizualizări pagină destinație",
+              "Conversii",
+              "CPA",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdSetId",
+            "Date"
+          ]
+        },
+        {
+          "code": "META:ADS",
+          "name": {
+            "en": "Ads",
+            "ro": "Anunțuri"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:AD_ID",
+            "DIM:META_PLACEMENT_PLATFORM",
+            "DIM:META_PLACEMENT_POSITION"
+          ],
+          "metrics": [
+            "METRIC:META_IMPRESSIONS",
+            "METRIC:META_REACH",
+            "METRIC:META_SPEND",
+            "METRIC:META_CPM",
+            "METRIC:META_CTR",
+            "METRIC:META_CPC",
+            "METRIC:META_CLICKS",
+            "METRIC:META_LINK_CLICKS",
+            "METRIC:META_LANDING_PAGE_VIEWS",
+            "METRIC:CONVERSIONS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad set",
+              "Ad ID",
+              "Placement platform",
+              "Placement position",
+              "Impressions",
+              "Reach",
+              "Amount spent",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Link clicks",
+              "Landing page views",
+              "Conversions"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Ad set",
+              "ID anunț",
+              "Platformă plasare",
+              "Poziție plasare",
+              "Afișări",
+              "Reach",
+              "Suma cheltuită",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Click-uri pe link",
+              "Vizualizări pagină destinație",
+              "Conversii"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdSetId",
+            "AdId",
+            "Date"
+          ]
+        },
+        {
+          "code": "META:PLACEMENTS",
+          "name": {
+            "en": "Placements",
+            "ro": "Plasamente"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:META_PLACEMENT_PLATFORM",
+            "DIM:META_PLACEMENT_POSITION",
+            "DIM:DEVICE"
+          ],
+          "metrics": [
+            "METRIC:META_IMPRESSIONS",
+            "METRIC:META_REACH",
+            "METRIC:META_SPEND",
+            "METRIC:META_CPM",
+            "METRIC:META_CTR",
+            "METRIC:META_CLICKS",
+            "METRIC:META_LINK_CLICKS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Placement platform",
+              "Placement position",
+              "Device",
+              "Impressions",
+              "Reach",
+              "Amount spent",
+              "CPM",
+              "CTR",
+              "Clicks",
+              "Link clicks"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Platformă plasare",
+              "Poziție plasare",
+              "Dispozitiv",
+              "Afișări",
+              "Reach",
+              "Suma cheltuită",
+              "CPM",
+              "CTR",
+              "Click-uri",
+              "Click-uri pe link"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Date",
+            "Placement"
+          ]
+        },
+        {
+          "code": "META:DEMOGRAPHICS",
+          "name": {
+            "en": "Demographics",
+            "ro": "Demografice"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:AGE",
+            "DIM:GENDER"
+          ],
+          "metrics": [
+            "METRIC:META_IMPRESSIONS",
+            "METRIC:META_REACH",
+            "METRIC:META_CLICKS",
+            "METRIC:META_CTR",
+            "METRIC:META_CPM",
+            "METRIC:META_CPC",
+            "METRIC:CONVERSIONS",
+            "METRIC:META_CPA"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Age",
+              "Gender",
+              "Impressions",
+              "Reach",
+              "Clicks",
+              "CTR",
+              "CPM",
+              "CPC",
+              "Conversions",
+              "CPA"
+            ],
+            [
+              "Dată",
+              "Vârstă",
+              "Gen",
+              "Afișări",
+              "Reach",
+              "Click-uri",
+              "CTR",
+              "CPM",
+              "CPC",
+              "Conversii",
+              "CPA"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "Date",
+            "Age",
+            "Gender"
+          ]
+        },
+        {
+          "code": "META:VIDEO",
+          "name": {
+            "en": "Video performance",
+            "ro": "Performanță video"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:AD_ID"
+          ],
+          "metrics": [
+            "METRIC:META_VIDEO_PLAYS",
+            "METRIC:META_3S_VIEWS",
+            "METRIC:META_10S_VIEWS",
+            "METRIC:META_THRUPLAYS",
+            "METRIC:META_VIDEOS_WATCHED_95",
+            "METRIC:META_AVG_WATCH_TIME",
+            "METRIC:META_VTR"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad set",
+              "Ad ID",
+              "Video plays",
+              "3-second views",
+              "10-second views",
+              "ThruPlays",
+              "95% plays",
+              "Avg. watch time",
+              "VTR"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Ad set",
+              "ID anunț",
+              "Redări video",
+              "Vizualizări 3s",
+              "Vizualizări 10s",
+              "ThruPlays",
+              "Redări 95%",
+              "Timp mediu vizionare",
+              "VTR"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdSetId",
+            "AdId",
+            "Date"
+          ]
+        },
+        {
+          "code": "META:LEAD_FORMS",
+          "name": {
+            "en": "Lead Forms",
+            "ro": "Formulare Lead"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP"
+          ],
+          "metrics": [
+            "METRIC:META_LEAD_SUBMISSIONS",
+            "METRIC:META_LEAD_CPL",
+            "METRIC:META_MSG_CONVOS",
+            "METRIC:META_COST_PER_MSG"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad set",
+              "Lead form submissions",
+              "CPL (Lead form)",
+              "Messaging conversations started",
+              "Cost per messaging conversation"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Ad set",
+              "Trimiteri formular lead",
+              "CPL (formular lead)",
+              "Conversații mesagerie începute",
+              "Cost pe conversație mesagerie"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdSetId",
+            "Date"
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "TIKTOK",
+      "code": "PLAT:TIKTOK",
+      "name": {
+        "en": "TikTok",
+        "ro": "TikTok"
+      },
+      "report_types": [
+        {
+          "code": "TT:CAMPAIGNS",
+          "name": {
+            "en": "Campaigns",
+            "ro": "Campanii"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:TT_OBJECTIVE",
+            "DIM:TT_PLACEMENT"
+          ],
+          "metrics": [
+            "METRIC:TT_IMPRESSIONS",
+            "METRIC:TT_REACH",
+            "METRIC:TT_FREQUENCY",
+            "METRIC:TT_SPEND",
+            "METRIC:TT_CPM",
+            "METRIC:TT_CTR",
+            "METRIC:TT_CPC",
+            "METRIC:TT_CLICKS",
+            "METRIC:TT_LINK_CLICKS",
+            "METRIC:CONVERSIONS",
+            "METRIC:TT_CPA",
+            "METRIC:TT_ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Objective",
+              "Placement",
+              "Impressions",
+              "Reach",
+              "Frequency",
+              "Spend",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Link clicks",
+              "Conversions",
+              "CPA",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Obiectiv",
+              "Plasare",
+              "Afișări",
+              "Reach",
+              "Frecvență",
+              "Cheltuieli",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Click-uri pe link",
+              "Conversii",
+              "CPA",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Date"
+          ]
+        },
+        {
+          "code": "TT:AD_GROUPS",
+          "name": {
+            "en": "Ad groups",
+            "ro": "Grupuri de anunțuri"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:TT_PLACEMENT"
+          ],
+          "metrics": [
+            "METRIC:TT_IMPRESSIONS",
+            "METRIC:TT_REACH",
+            "METRIC:TT_FREQUENCY",
+            "METRIC:TT_SPEND",
+            "METRIC:TT_CPM",
+            "METRIC:TT_CTR",
+            "METRIC:TT_CPC",
+            "METRIC:TT_CLICKS",
+            "METRIC:TT_LINK_CLICKS",
+            "METRIC:CONVERSIONS",
+            "METRIC:TT_CPA",
+            "METRIC:TT_ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad group",
+              "Placement",
+              "Impressions",
+              "Reach",
+              "Frequency",
+              "Spend",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Link clicks",
+              "Conversions",
+              "CPA",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Grup de anunțuri",
+              "Plasare",
+              "Afișări",
+              "Reach",
+              "Frecvență",
+              "Cheltuieli",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Click-uri pe link",
+              "Conversii",
+              "CPA",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdGroupId",
+            "Date"
+          ]
+        },
+        {
+          "code": "TT:ADS",
+          "name": {
+            "en": "Ads",
+            "ro": "Anunțuri"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:AD_ID",
+            "DIM:TT_PLACEMENT"
+          ],
+          "metrics": [
+            "METRIC:TT_IMPRESSIONS",
+            "METRIC:TT_REACH",
+            "METRIC:TT_SPEND",
+            "METRIC:TT_CPM",
+            "METRIC:TT_CTR",
+            "METRIC:TT_CPC",
+            "METRIC:TT_CLICKS",
+            "METRIC:TT_LINK_CLICKS",
+            "METRIC:CONVERSIONS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad group",
+              "Ad ID",
+              "Placement",
+              "Impressions",
+              "Reach",
+              "Spend",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Link clicks",
+              "Conversions"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Grup de anunțuri",
+              "ID anunț",
+              "Plasare",
+              "Afișări",
+              "Reach",
+              "Cheltuieli",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Click-uri pe link",
+              "Conversii"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdGroupId",
+            "AdId",
+            "Date"
+          ]
+        },
+        {
+          "code": "TT:VIDEO",
+          "name": {
+            "en": "Video performance",
+            "ro": "Performanță video"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:AD_ID"
+          ],
+          "metrics": [
+            "METRIC:TT_VIDEO_PLAYS",
+            "METRIC:TT_2S_VIEWS",
+            "METRIC:TT_6S_VIEWS",
+            "METRIC:TT_100P_COMPLETIONS",
+            "METRIC:TT_AVG_WATCH_TIME",
+            "METRIC:TT_VTR"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad group",
+              "Ad ID",
+              "Video plays",
+              "2s views",
+              "6s views",
+              "100% completions",
+              "Avg. watch time",
+              "VTR"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Grup de anunțuri",
+              "ID anunț",
+              "Redări video",
+              "Vizualizări 2s",
+              "Vizualizări 6s",
+              "Finalizări 100%",
+              "Timp mediu vizionare",
+              "VTR"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdGroupId",
+            "AdId",
+            "Date"
+          ]
+        },
+        {
+          "code": "TT:DEMOGRAPHICS",
+          "name": {
+            "en": "Demographics",
+            "ro": "Demografice"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:AGE",
+            "DIM:GENDER"
+          ],
+          "metrics": [
+            "METRIC:TT_IMPRESSIONS",
+            "METRIC:TT_CLICKS",
+            "METRIC:TT_CTR",
+            "METRIC:TT_CPM",
+            "METRIC:TT_CPC",
+            "METRIC:CONVERSIONS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Age",
+              "Gender",
+              "Impressions",
+              "Clicks",
+              "CTR",
+              "CPM",
+              "CPC",
+              "Conversions"
+            ],
+            [
+              "Dată",
+              "Vârstă",
+              "Gen",
+              "Afișări",
+              "Click-uri",
+              "CTR",
+              "CPM",
+              "CPC",
+              "Conversii"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "Date",
+            "Age",
+            "Gender"
+          ]
+        }
+      ]
+    },
+    {
+      "platform": "LINKEDIN",
+      "code": "PLAT:LINKEDIN",
+      "name": {
+        "en": "LinkedIn",
+        "ro": "LinkedIn"
+      },
+      "report_types": [
+        {
+          "code": "LI:CAMPAIGNS",
+          "name": {
+            "en": "Campaigns",
+            "ro": "Campanii"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:LI_OBJECTIVE"
+          ],
+          "metrics": [
+            "METRIC:LI_IMPRESSIONS",
+            "METRIC:LI_REACH",
+            "METRIC:LI_FREQUENCY",
+            "METRIC:LI_SPEND",
+            "METRIC:LI_CPM",
+            "METRIC:LI_CTR",
+            "METRIC:LI_CPC",
+            "METRIC:LI_CLICKS",
+            "METRIC:LI_LINK_CLICKS",
+            "METRIC:CONVERSIONS",
+            "METRIC:LI_CPA",
+            "METRIC:LI_ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Objective",
+              "Impressions",
+              "Reach",
+              "Frequency",
+              "Spend",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Link clicks",
+              "Conversions",
+              "CPA",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Obiectiv",
+              "Afișări",
+              "Reach",
+              "Frecvență",
+              "Cheltuieli",
+              "CPM",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Click-uri pe link",
+              "Conversii",
+              "CPA",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Date"
+          ]
+        },
+        {
+          "code": "LI:CAMPAIGN_GROUPS",
+          "name": {
+            "en": "Campaign groups",
+            "ro": "Grupe de campanii"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN"
+          ],
+          "metrics": [
+            "METRIC:LI_IMPRESSIONS",
+            "METRIC:LI_SPEND",
+            "METRIC:LI_CTR",
+            "METRIC:LI_CPC",
+            "METRIC:LI_CLICKS",
+            "METRIC:CONVERSIONS",
+            "METRIC:LI_CPA"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign group",
+              "Impressions",
+              "Spend",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Conversions",
+              "CPA"
+            ],
+            [
+              "Dată",
+              "Grup campanii",
+              "Afișări",
+              "Cheltuieli",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Conversii",
+              "CPA"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignGroupId",
+            "Date"
+          ]
+        },
+        {
+          "code": "LI:ADS",
+          "name": {
+            "en": "Ads",
+            "ro": "Anunțuri"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_ID"
+          ],
+          "metrics": [
+            "METRIC:LI_IMPRESSIONS",
+            "METRIC:LI_SPEND",
+            "METRIC:LI_CTR",
+            "METRIC:LI_CPC",
+            "METRIC:LI_CLICKS",
+            "METRIC:LI_LANDING_PAGE_CLICKS",
+            "METRIC:CONVERSIONS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad ID",
+              "Impressions",
+              "Spend",
+              "CTR",
+              "CPC",
+              "Clicks",
+              "Landing page clicks",
+              "Conversions"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "ID anunț",
+              "Afișări",
+              "Cheltuieli",
+              "CTR",
+              "CPC",
+              "Click-uri",
+              "Click-uri pagină destinație",
+              "Conversii"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdId",
+            "Date"
+          ]
+        },
+        {
+          "code": "LI:VIDEO",
+          "name": {
+            "en": "Video performance",
+            "ro": "Performanță video"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_ID"
+          ],
+          "metrics": [
+            "METRIC:LI_VIDEO_VIEWS",
+            "METRIC:LI_VIDEO_25",
+            "METRIC:LI_VIDEO_50",
+            "METRIC:LI_VIDEO_75",
+            "METRIC:LI_VIDEO_100",
+            "METRIC:LI_AVG_WATCH_TIME",
+            "METRIC:LI_VTR"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad ID",
+              "Video views",
+              "25% views",
+              "50% views",
+              "75% views",
+              "100% views",
+              "Avg. watch time",
+              "VTR"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "ID anunț",
+              "Vizualizări video",
+              "Vizualizări 25%",
+              "Vizualizări 50%",
+              "Vizualizări 75%",
+              "Vizualizări 100%",
+              "Timp mediu vizionare",
+              "VTR"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdId",
+            "Date"
+          ]
+        },
+        {
+          "code": "LI:DEMOGRAPHICS",
+          "name": {
+            "en": "Demographics",
+            "ro": "Demografice"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:LI_JOB_FUNCTION",
+            "DIM:LI_SENIORITY",
+            "DIM:LI_INDUSTRY",
+            "DIM:LI_COMPANY_SIZE"
+          ],
+          "metrics": [
+            "METRIC:LI_IMPRESSIONS",
+            "METRIC:LI_CLICKS",
+            "METRIC:LI_CTR",
+            "METRIC:LI_CPC",
+            "METRIC:CONVERSIONS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Job function",
+              "Seniority",
+              "Industry",
+              "Company size",
+              "Impressions",
+              "Clicks",
+              "CTR",
+              "CPC",
+              "Conversions"
+            ],
+            [
+              "Dată",
+              "Funcție",
+              "Senioritate",
+              "Industrie",
+              "Mărime companie",
+              "Afișări",
+              "Click-uri",
+              "CTR",
+              "CPC",
+              "Conversii"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "Date",
+            "Job function",
+            "Seniority",
+            "Industry",
+            "Company size"
+          ]
+        },
+        {
+          "code": "LI:LEAD_GEN_FORMS",
+          "name": {
+            "en": "Lead Gen Forms",
+            "ro": "Formulare Lead Gen"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:LI_LEAD_GEN_FORM_ID"
+          ],
+          "metrics": [
+            "METRIC:LI_LEAD_FORM_OPENS",
+            "METRIC:LI_LEAD_FORM_OPEN_RATE",
+            "METRIC:LI_LEAD_FORM_SUBMISSIONS",
+            "METRIC:LI_CPL_LEAD_FORM"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Lead form ID",
+              "Lead form opens",
+              "Lead form open rate",
+              "Lead form submissions",
+              "CPL (Lead Gen)"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "ID formular lead",
+              "Deschideri formular lead",
+              "Rată deschidere formular",
+              "Trimiteri formular lead",
+              "CPL (Lead Gen)"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "LeadFormId",
+            "Date"
+          ]
+        }
+      ]
+    }
+  ]
+}

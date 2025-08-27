@@ -1,0 +1,598 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "scoring_models": {
+    "ICE": {
+      "fields": [
+        "impact",
+        "confidence",
+        "ease"
+      ],
+      "scale_hint": "1..10 (higher is better)",
+      "formula": "impact * confidence * ease"
+    },
+    "RICE": {
+      "fields": [
+        "reach",
+        "impact",
+        "confidence",
+        "effort"
+      ],
+      "scale_hint": "reach in users/period; impact 0.25/0.5/1/2/3; confidence 0..1; effort in person-weeks (lower better)",
+      "formula": "(reach * impact * confidence) / max(0.25, effort)"
+    }
+  },
+  "defaults": {
+    "window_days": 14,
+    "owner": "growth",
+    "measurement": {
+      "stats": "directional",
+      "min_runtime_days": 7,
+      "segmentation": [
+        "device",
+        "geo",
+        "new_vs_returning"
+      ]
+    },
+    "cbExpr_defaults": {
+      "days": 30,
+      "tz": "Europe/Bucharest"
+    }
+  },
+  "playbooks": [
+    {
+      "code": "PB:ADS:BRAND_DEFENSE_SPLIT",
+      "area": "ADS",
+      "title": {
+        "ro": "Separă brand vs non‑brand + protecție brand",
+        "en": "Split brand vs non‑brand + brand defense"
+      },
+      "preconditions": "exists_metric('METRIC:CLICKS',30) AND avg('METRIC:IMPR_SHARE',30) < 0.9",
+      "hypothesis": {
+        "ro": "Separarea va crește controlul pe brand și ROAS per segment.",
+        "en": "Splitting will improve control on brand and ROAS per segment."
+      },
+      "steps": [
+        {
+          "ro": "Creează campanii separate: Brand, Non‑brand, Competitor, PMax (dacă e cazul).",
+          "en": "Create separate campaigns: Brand, Non-brand, Competitor, PMax as applicable."
+        },
+        {
+          "ro": "Aplică negative lists în Non‑brand pentru termeni brand.",
+          "en": "Apply negative lists in Non-brand for brand terms."
+        },
+        {
+          "ro": "Crește tROAS (sau bid) pe Brand pentru acoperire ~100%.",
+          "en": "Raise tROAS (or bids) on Brand to target ~100% coverage."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:ROAS",
+          "METRIC:CPA",
+          "METRIC:IMPR_SHARE"
+        ],
+        "secondary_metrics": [
+          "METRIC:SEARCH_LOST_IS_BUDGET",
+          "METRIC:SEARCH_LOST_IS_RANK"
+        ],
+        "window_days": 14
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 8,
+          "confidence": 7.0,
+          "ease": 7
+        },
+        "RICE": {
+          "reach": 1000,
+          "impact": 1,
+          "confidence": 0.7,
+          "effort": 1.5
+        }
+      },
+      "guardrails": [
+        "Do not lower Brand coverage below 95%."
+      ]
+    },
+    {
+      "code": "PB:ADS:CREATIVE_TEST_RSA",
+      "area": "ADS",
+      "title": {
+        "ro": "Test creativ RSA (pinning minim)",
+        "en": "RSA creative test (minimal pinning)"
+      },
+      "preconditions": "avg('METRIC:CTR',30) < 0.03 OR avg('METRIC:SEARCH_LOST_IS_RANK',30) > 0.35",
+      "hypothesis": {
+        "ro": "Anunțurile cu pinning minim cresc CTR și Ad Rank.",
+        "en": "Minimally pinned RSAs increase CTR and Ad Rank."
+      },
+      "steps": [
+        {
+          "ro": "3 RSA per ad group cu 8–10 headlines + 4 descrieri; maxim 1 pin.",
+          "en": "3 RSAs/ad group with 8–10 headlines + 4 descriptions; max 1 pin."
+        },
+        {
+          "ro": "Include hook-uri bazate pe USP/beneficii + sitelinks/callouts.",
+          "en": "Use USP/benefit hooks + sitelinks/callouts."
+        },
+        {
+          "ro": "Lasă 7–14 zile de învățare.",
+          "en": "Allow 7–14 days for learning."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:CTR",
+          "METRIC:TOP_IMPR_RATE",
+          "METRIC:ABS_TOP_IMPR_RATE"
+        ],
+        "secondary_metrics": [
+          "METRIC:CPA"
+        ],
+        "window_days": 14
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 6,
+          "confidence": 6.0,
+          "ease": 8
+        },
+        "RICE": {
+          "reach": 800,
+          "impact": 0.5,
+          "confidence": 0.6,
+          "effort": 1
+        }
+      }
+    },
+    {
+      "code": "PB:ADS:BIDDING_TROAS",
+      "area": "ADS",
+      "title": {
+        "ro": "Migrare licitare la tROAS",
+        "en": "Migrate bidding to tROAS"
+      },
+      "preconditions": "sum('METRIC:CONVERSIONS',30) >= 30 AND exists_metric('METRIC:CONV_VALUE',30)",
+      "hypothesis": {
+        "ro": "tROAS stabilizează costul și optimizează valoarea.",
+        "en": "tROAS stabilizes cost while optimizing conversion value."
+      },
+      "steps": [
+        {
+          "ro": "Migrează gradual campaniile cu volum suficient.",
+          "en": "Gradually migrate high-volume campaigns."
+        },
+        {
+          "ro": "Setează target inițial cu -10% față de media ultimelor 14 zile.",
+          "en": "Set initial target ~10% below last 14-day average."
+        },
+        {
+          "ro": "Ajustează +5% săptămânal dacă volumul rămâne stabil.",
+          "en": "Adjust +5% weekly if volume is stable."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:ROAS",
+          "METRIC:CONV_VALUE",
+          "METRIC:COST"
+        ],
+        "secondary_metrics": [
+          "METRIC:CONVERSIONS"
+        ],
+        "window_days": 21
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 7,
+          "confidence": 6.5,
+          "ease": 5
+        },
+        "RICE": {
+          "reach": 1200,
+          "impact": 1,
+          "confidence": 0.65,
+          "effort": 2
+        }
+      }
+    },
+    {
+      "code": "PB:META:CREATIVE_REFRESH_5X",
+      "area": "SOCIAL",
+      "title": {
+        "ro": "Meta: refresh creativ 5x",
+        "en": "Meta: 5x creative refresh"
+      },
+      "preconditions": "avg('METRIC:META_CTR',30) < 0.008 AND sum('METRIC:META_IMPRESSIONS',30) > 5000",
+      "hypothesis": {
+        "ro": "Diversificarea creativelor crește CTR și scade CPA.",
+        "en": "Creative diversity increases CTR and lowers CPA."
+      },
+      "steps": [
+        {
+          "ro": "Generează 5 variante (hook, format square/vertical, CTA).",
+          "en": "Produce 5 variants (hook, square/vertical, CTA)."
+        },
+        {
+          "ro": "Rulează A/B cu bugete egale 7–10 zile.",
+          "en": "Run A/B with equal budgets for 7–10 days."
+        },
+        {
+          "ro": "Păstrează top 2; înlocuiește restul.",
+          "en": "Keep top 2; replace the rest."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:META_CTR",
+          "METRIC:META_CPA"
+        ],
+        "secondary_metrics": [
+          "METRIC:META_ROAS"
+        ],
+        "window_days": 10
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 7,
+          "confidence": 6.0,
+          "ease": 7
+        },
+        "RICE": {
+          "reach": 5000,
+          "impact": 0.5,
+          "confidence": 0.6,
+          "effort": 1
+        }
+      }
+    },
+    {
+      "code": "PB:META:LP_SPEED_TEST",
+      "area": "SOCIAL",
+      "title": {
+        "ro": "Meta: test viteză LP (redirect vs instant)",
+        "en": "Meta: LP speed test (redirect vs instant)"
+      },
+      "preconditions": "sum('METRIC:META_LINK_CLICKS',14) >= 500",
+      "hypothesis": {
+        "ro": "LP mai rapidă crește LP views și conversii.",
+        "en": "Faster LP increases LP views and conversions."
+      },
+      "steps": [
+        {
+          "ro": "Creează variantă LP optimizată (cache, imagini, scripturi).",
+          "en": "Build optimized LP variant (cache, images, scripts)."
+        },
+        {
+          "ro": "Split 50/50 traficul din ad set.",
+          "en": "Split traffic 50/50 at ad set level."
+        },
+        {
+          "ro": "Monitorizează LP views, CPC, CPA.",
+          "en": "Track LP views, CPC, CPA."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:META_LANDING_PAGE_VIEWS",
+          "METRIC:META_CPC",
+          "METRIC:META_CPA"
+        ],
+        "secondary_metrics": [],
+        "window_days": 14
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 6,
+          "confidence": 5.5,
+          "ease": 6
+        },
+        "RICE": {
+          "reach": 2000,
+          "impact": 0.5,
+          "confidence": 0.55,
+          "effort": 1.5
+        }
+      }
+    },
+    {
+      "code": "PB:TIKTOK:HOOK_FIRST_2S",
+      "area": "SOCIAL",
+      "title": {
+        "ro": "TikTok: hook în primele 2s",
+        "en": "TikTok: 2s hook"
+      },
+      "preconditions": "avg('METRIC:TT_VTR',30) < 0.15 AND sum('METRIC:TT_IMPRESSIONS',14) > 3000",
+      "hypothesis": {
+        "ro": "Hook-ul timpuriu crește VTR și finalizările 100%.",
+        "en": "Early hook increases VTR and 100% completions."
+      },
+      "steps": [
+        {
+          "ro": "Rescrie intro‑ul pentru a crista problema în 2s.",
+          "en": "Rewrite intro to crystalize problem in 2s."
+        },
+        {
+          "ro": "Adaugă text overlay mare + ritm rapid.",
+          "en": "Add large text overlays + fast pacing."
+        },
+        {
+          "ro": "Testează 3 variante în paralel.",
+          "en": "Test 3 variants in parallel."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:TT_VTR",
+          "METRIC:TT_100P_COMPLETIONS"
+        ],
+        "secondary_metrics": [
+          "METRIC:TT_CPC"
+        ],
+        "window_days": 10
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 6,
+          "confidence": 5.5,
+          "ease": 7
+        },
+        "RICE": {
+          "reach": 3000,
+          "impact": 0.5,
+          "confidence": 0.55,
+          "effort": 1
+        }
+      }
+    },
+    {
+      "code": "PB:LINKEDIN:DOC_ADS_B2B",
+      "area": "SOCIAL",
+      "title": {
+        "ro": "LinkedIn: Document Ads pentru lead‑uri B2B",
+        "en": "LinkedIn: Document Ads for B2B leads"
+      },
+      "preconditions": "avg('METRIC:LI_CTR',30) < 0.006 AND sum('METRIC:LI_IMPRESSIONS',30) > 3000",
+      "hypothesis": {
+        "ro": "Document Ads cresc CTR și lead‑urile la audiențe reci.",
+        "en": "Document Ads increase CTR & leads on cold audiences."
+      },
+      "steps": [
+        {
+          "ro": "Creează document PDF cu 6–10 pagini, valoare practică.",
+          "en": "Create 6–10 page PDF with practical value."
+        },
+        {
+          "ro": "CTA: descarcă → lead form pre‑populat.",
+          "en": "CTA: download → prefilled lead form."
+        },
+        {
+          "ro": "Segmentează după job function + seniority.",
+          "en": "Segment by job function + seniority."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:LI_CTR",
+          "METRIC:LI_LEAD_FORM_SUBMISSIONS",
+          "METRIC:LI_CPL_LEAD_FORM"
+        ],
+        "secondary_metrics": [],
+        "window_days": 14
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 7,
+          "confidence": 5.5,
+          "ease": 6
+        },
+        "RICE": {
+          "reach": 1500,
+          "impact": 1,
+          "confidence": 0.55,
+          "effort": 2
+        }
+      }
+    },
+    {
+      "code": "PB:SEO:TITLE_META_TEST",
+      "area": "SEO",
+      "title": {
+        "ro": "SEO: test titluri/meta pentru CTR",
+        "en": "SEO: title/meta test for CTR"
+      },
+      "preconditions": "exists_metric('METRIC:GSC_CLICKS',90) AND avg('METRIC:GSC_CTR',90) < 0.02",
+      "hypothesis": {
+        "ro": "Titlurile cu USP + numere cresc CTR organic.",
+        "en": "USP + numeric titles increase organic CTR."
+      },
+      "steps": [
+        {
+          "ro": "Selectează 10 URL‑uri cu impresii mari & CTR mic.",
+          "en": "Select 10 URLs: high impressions & low CTR."
+        },
+        {
+          "ro": "Rescrie title/description cu hooks & beneficii.",
+          "en": "Rewrite title/description with hooks & benefits."
+        },
+        {
+          "ro": "Comparație 28 zile înainte vs după.",
+          "en": "Compare 28d pre vs post."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:GSC_CTR"
+        ],
+        "secondary_metrics": [
+          "METRIC:GSC_CLICKS",
+          "METRIC:GSC_AVG_POSITION"
+        ],
+        "window_days": 28
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 6,
+          "confidence": 6.0,
+          "ease": 8
+        },
+        "RICE": {
+          "reach": 10000,
+          "impact": 0.5,
+          "confidence": 0.6,
+          "effort": 0.5
+        }
+      }
+    },
+    {
+      "code": "PB:EMAIL:AUTOMATION_WELCOME",
+      "area": "EMAIL",
+      "title": {
+        "ro": "Email: flow de bun‑venit + lead magnet",
+        "en": "Email: welcome flow + lead magnet"
+      },
+      "preconditions": "has('CHANNEL:OWNED_EMAIL')",
+      "hypothesis": {
+        "ro": "Flow‑ul de bun‑venit crește conversiile și retenția.",
+        "en": "Welcome flow improves conversions & retention."
+      },
+      "steps": [
+        {
+          "ro": "Lead magnet + dublu opt‑in configurat.",
+          "en": "Lead magnet + double opt‑in configured."
+        },
+        {
+          "ro": "3–5 emailuri: bun‑venit, valoare, social proof, ofertă.",
+          "en": "3–5 emails: welcome, value, social proof, offer."
+        },
+        {
+          "ro": "UTM & măsurare în GA4.",
+          "en": "UTM & measurement in GA4."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "EMAIL:CLICK_RATE",
+          "METRIC:CONVERSIONS"
+        ],
+        "secondary_metrics": [
+          "EMAIL:UNSUB_RATE"
+        ],
+        "window_days": 21
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 5,
+          "confidence": 6.0,
+          "ease": 7
+        },
+        "RICE": {
+          "reach": 2000,
+          "impact": 0.5,
+          "confidence": 0.6,
+          "effort": 1
+        }
+      }
+    },
+    {
+      "code": "PB:ECOMM:CHECKOUT_FRICTION",
+      "area": "ECOMM",
+      "title": {
+        "ro": "E‑comm: reduce fricțiunea în checkout",
+        "en": "E‑comm: reduce friction in checkout"
+      },
+      "preconditions": "avg('METRIC:PURCHASE_TO_DETAIL',90) < 0.02",
+      "hypothesis": {
+        "ro": "Pași reduși și metode de plată cresc conversiile.",
+        "en": "Fewer steps and payment methods increase conversions."
+      },
+      "steps": [
+        {
+          "ro": "Reduce pași la 2–3; afișează progrese.",
+          "en": "Reduce steps to 2–3; show progress."
+        },
+        {
+          "ro": "Activează plăți rapide (Apple/Google Pay).",
+          "en": "Enable fast payments (Apple/Google Pay)."
+        },
+        {
+          "ro": "Politici de retur & costuri vizibile.",
+          "en": "Visible return policies & costs."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:PURCHASE_TO_DETAIL",
+          "METRIC:GROSS_REVENUE"
+        ],
+        "secondary_metrics": [
+          "METRIC:CART_TO_VIEW_RATE"
+        ],
+        "window_days": 21
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 7,
+          "confidence": 6.0,
+          "ease": 5
+        },
+        "RICE": {
+          "reach": 5000,
+          "impact": 1,
+          "confidence": 0.6,
+          "effort": 2
+        }
+      }
+    },
+    {
+      "code": "PB:CRO:HEURISTICS_ABOVE_THE_FOLD",
+      "area": "CRO",
+      "title": {
+        "ro": "CRO: claritate above‑the‑fold",
+        "en": "CRO: above‑the‑fold clarity"
+      },
+      "preconditions": "avg('METRIC:ENGAGEMENT_RATE',90) < 0.5 OR avg('METRIC:AVG_SESSION_DURATION',90) < (30/60)",
+      "hypothesis": {
+        "ro": "Claritatea propoziției de valoare crește engagementul.",
+        "en": "Clear value proposition increases engagement."
+      },
+      "steps": [
+        {
+          "ro": "Headline clar + subheadline beneficii + CTA primar.",
+          "en": "Clear headline + benefit subheadline + primary CTA."
+        },
+        {
+          "ro": "Elimină elemente zgomotoase; contrast bun.",
+          "en": "Remove noisy elements; ensure good contrast."
+        },
+        {
+          "ro": "Probează cu heatmaps/surveys.",
+          "en": "Validate with heatmaps/surveys."
+        }
+      ],
+      "measurement_plan": {
+        "primary_metrics": [
+          "METRIC:ENGAGEMENT_RATE"
+        ],
+        "secondary_metrics": [
+          "METRIC:AVG_SESSION_DURATION"
+        ],
+        "window_days": 14
+      },
+      "scoring": {
+        "ICE": {
+          "impact": 5,
+          "confidence": 5.5,
+          "ease": 8
+        },
+        "RICE": {
+          "reach": 8000,
+          "impact": 0.5,
+          "confidence": 0.55,
+          "effort": 0.5
+        }
+      }
+    }
+  ]
+}

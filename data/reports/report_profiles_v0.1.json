@@ -1,0 +1,733 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "platforms": [
+    {
+      "platform": "GOOGLE_ADS",
+      "code": "PLAT:GADS",
+      "report_types": [
+        {
+          "code": "GADS:CAMPAIGNS",
+          "name": {
+            "en": "Campaigns",
+            "ro": "Campanii"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:NETWORK",
+            "DIM:COUNTRY",
+            "DIM:DEVICE",
+            "DIM:PLATFORM"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:CTR",
+            "METRIC:CPC",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CONV_VALUE",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Network",
+              "Country",
+              "Device",
+              "Clicks",
+              "Impressions",
+              "CTR",
+              "Avg. CPC",
+              "Cost",
+              "Conversions",
+              "Conversion value",
+              "Cost / conv.",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Rețea",
+              "Țară",
+              "Dispozitiv",
+              "Click-uri",
+              "Afișări",
+              "CTR",
+              "CPC med.",
+              "Cost",
+              "Conversii",
+              "Valoare conversii",
+              "Cost / conversie",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Date"
+          ],
+          "notes": "Acceptă exporturi standard Google Ads UI."
+        },
+        {
+          "code": "GADS:AD_GROUPS",
+          "name": {
+            "en": "Ad groups",
+            "ro": "Grupuri de anunțuri"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:DEVICE",
+            "DIM:NETWORK"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:CTR",
+            "METRIC:CPC",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad group",
+              "Clicks",
+              "Impressions",
+              "CTR",
+              "Avg. CPC",
+              "Cost",
+              "Conversions",
+              "Cost / conv.",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Grup de anunțuri",
+              "Click-uri",
+              "Afișări",
+              "CTR",
+              "CPC med.",
+              "Cost",
+              "Conversii",
+              "Cost / conversie",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdGroupId",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:ADS",
+          "name": {
+            "en": "Ads",
+            "ro": "Anunțuri"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:AD_ID",
+            "DIM:DEVICE",
+            "DIM:PLACEMENT",
+            "DIM:NETWORK"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:CTR",
+            "METRIC:CPC",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad group",
+              "Ad ID",
+              "Clicks",
+              "Impressions",
+              "CTR",
+              "Avg. CPC",
+              "Cost",
+              "Conversions",
+              "Cost / conv.",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdGroupId",
+            "AdId",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:KEYWORDS",
+          "name": {
+            "en": "Keywords",
+            "ro": "Cuvinte cheie"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:KEYWORD",
+            "DIM:MATCH_TYPE",
+            "DIM:DEVICE"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:CTR",
+            "METRIC:CPC",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad group",
+              "Keyword",
+              "Match type",
+              "Clicks",
+              "Impressions",
+              "CTR",
+              "Avg. CPC",
+              "Cost",
+              "Conversions",
+              "Cost / conv.",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Grup de anunțuri",
+              "Cuvânt cheie",
+              "Tip potrivire",
+              "Click-uri",
+              "Afișări",
+              "CTR",
+              "CPC med.",
+              "Cost",
+              "Conversii",
+              "Cost / conversie",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdGroupId",
+            "KeywordId",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:SEARCH_TERMS",
+          "name": {
+            "en": "Search terms",
+            "ro": "Termeni de căutare"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:SEARCH_TERM",
+            "DIM:KEYWORD",
+            "DIM:DEVICE"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:CTR",
+            "METRIC:CPC",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Ad group",
+              "Search term",
+              "Keyword",
+              "Match type",
+              "Clicks",
+              "Impressions",
+              "CTR",
+              "Avg. CPC",
+              "Cost",
+              "Conversions",
+              "Cost / conv.",
+              "ROAS"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Grup de anunțuri",
+              "Termen de căutare",
+              "Cuvânt cheie",
+              "Tip potrivire",
+              "Click-uri",
+              "Afișări",
+              "CTR",
+              "CPC med.",
+              "Cost",
+              "Conversii",
+              "Cost / conversie",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AdGroupId",
+            "SearchTerm",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:PLACEMENTS",
+          "name": {
+            "en": "Placements",
+            "ro": "Plasamente"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:PLACEMENT",
+            "DIM:DEVICE",
+            "DIM:NETWORK"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:CTR",
+            "METRIC:CPC",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Placement",
+              "Clicks",
+              "Impressions",
+              "CTR",
+              "Avg. CPC",
+              "Cost",
+              "Conversions",
+              "Cost / conv.",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Placement",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:AUCTION_INSIGHTS",
+          "name": {
+            "en": "Auction insights",
+            "ro": "Statistici licitație"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:COMPETITOR"
+          ],
+          "metrics": [
+            "METRIC:AUCTION:OVERLAP_RATE",
+            "METRIC:AUCTION:OUTRANKING_SHARE",
+            "METRIC:AUCTION:POSITION_ABOVE_RATE",
+            "METRIC:AUCTION:TOP_OF_PAGE_RATE",
+            "METRIC:AUCTION:ABS_TOP_OF_PAGE_RATE"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Domain",
+              "Overlap rate",
+              "Outranking share",
+              "Position above rate",
+              "Top of page rate",
+              "Absolute top of page rate"
+            ],
+            [
+              "Dată",
+              "Campanie",
+              "Domeniu",
+              "Rată de suprapunere",
+              "Pondere de depășire",
+              "Rată poziție deasupra",
+              "Rată topul paginii",
+              "Rată top absolut"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Domain",
+            "Date"
+          ],
+          "notes": "Leagă Domain -> DIM:COMPETITOR"
+        },
+        {
+          "code": "GADS:AUDIENCES",
+          "name": {
+            "en": "Audiences",
+            "ro": "Audiențe"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AUDIENCE",
+            "DIM:DEVICE"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:CTR",
+            "METRIC:CPC",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Audience",
+              "Clicks",
+              "Impressions",
+              "CTR",
+              "Avg. CPC",
+              "Cost",
+              "Conversions",
+              "Cost / conv.",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Audience",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:LOCATIONS",
+          "name": {
+            "en": "Locations",
+            "ro": "Locații"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:COUNTRY",
+            "DIM:REGION",
+            "DIM:CITY",
+            "DIM:LOCATION_OF_PRESENCE"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CPA"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Country/Territory",
+              "Region",
+              "City",
+              "Clicks",
+              "Impressions",
+              "Cost",
+              "Conversions",
+              "Cost / conv."
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "Geo",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:DEMOGRAPHICS",
+          "name": {
+            "en": "Demographics",
+            "ro": "Demografice"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:AGE",
+            "DIM:GENDER"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CPA",
+            "METRIC:CTR",
+            "METRIC:CPC"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Age",
+              "Gender",
+              "Clicks",
+              "Impressions",
+              "CTR",
+              "Avg. CPC",
+              "Cost",
+              "Conversions",
+              "Cost / conv."
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "Age",
+            "Gender",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:PMAX_ASSET_GROUPS",
+          "name": {
+            "en": "PMax - Asset groups",
+            "ro": "PMax - Grupuri asset"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:ASSET_GROUP"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CONV_VALUE",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Asset group",
+              "Clicks",
+              "Impressions",
+              "Cost",
+              "Conversions",
+              "Conversion value",
+              "Cost / conv.",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "AssetGroup",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:PMAX_LISTING_GROUPS",
+          "name": {
+            "en": "PMax - Listing groups",
+            "ro": "PMax - Grupuri listing"
+          },
+          "granularity": "daily_or_aggregate",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:ITEM_ID",
+            "DIM:ITEM_NAME",
+            "DIM:ITEM_CATEGORY1",
+            "DIM:ITEM_BRAND"
+          ],
+          "metrics": [
+            "METRIC:CLICKS",
+            "METRIC:IMPRESSIONS",
+            "METRIC:COST",
+            "METRIC:CONVERSIONS",
+            "METRIC:CONV_VALUE",
+            "METRIC:CPA",
+            "METRIC:ROAS"
+          ],
+          "expected_headers": [
+            [
+              "Date",
+              "Campaign",
+              "Item ID",
+              "Item name",
+              "Item category (L1)",
+              "Brand",
+              "Clicks",
+              "Impressions",
+              "Cost",
+              "Conversions",
+              "Conversion value",
+              "Cost / conv.",
+              "ROAS"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "CampaignId",
+            "ItemId",
+            "Date"
+          ]
+        },
+        {
+          "code": "GADS:CHANGE_HISTORY",
+          "name": {
+            "en": "Change history",
+            "ro": "Istoric modificări"
+          },
+          "granularity": "event",
+          "key_dimensions": [
+            "DIM:DATE",
+            "DIM:CAMPAIGN",
+            "DIM:AD_GROUP",
+            "DIM:AD_ID",
+            "DIM:KEYWORD"
+          ],
+          "metrics": [],
+          "expected_headers": [
+            [
+              "Date",
+              "Changed by",
+              "Change type",
+              "Campaign",
+              "Ad group",
+              "Ad",
+              "Keyword",
+              "Old value",
+              "New value"
+            ]
+          ],
+          "file_formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "id_fields": [
+            "AccountId",
+            "ChangeId"
+          ]
+        }
+      ]
+    }
+  ]
+}

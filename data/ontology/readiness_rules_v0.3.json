@@ -1,0 +1,99 @@
+{
+  "version": "0.3",
+  "updated": "2025-08-24",
+  "rules": [
+    {
+      "code": "READINESS:MIN_AUDIT_GLOBAL",
+      "required_any": [
+        "BUSINESS:COMPANY_NAME",
+        "BUSINESS:WEBSITE"
+      ],
+      "required": [
+        "GOAL:LEADS"
+      ],
+      "recommended_any": [
+        "CHANNEL:PAID",
+        "CHANNEL:SEO",
+        "CHANNEL:OWNED_EMAIL"
+      ],
+      "optional": [
+        "BUDGET:MONTHLY"
+      ],
+      "hint": "Company or website + goal (leads). Recommend at least one active channel; budget helps."
+    },
+    {
+      "code": "READINESS:ADS_AUDIT",
+      "trigger_any": [
+        "TOOL:ADS_GOOGLE",
+        "TOOL:ADS_META",
+        "TOOL:ADS_TIKTOK",
+        "TOOL:ADS_LINKEDIN",
+        "TOOL:ADS_YOUTUBE"
+      ],
+      "required_any": [
+        "BUDGET:MONTHLY",
+        "BUDGET:DAILY"
+      ],
+      "recommended": [
+        "METRIC:CPC",
+        "METRIC:CTR",
+        "METRIC:CPA",
+        "METRIC:ROAS"
+      ],
+      "ask": [
+        {
+          "term": "DIM:COMPETITOR",
+          "question_ro": "Îmi dai câțiva competitori notabili?",
+          "question_en": "Could you name a few notable competitors?"
+        }
+      ],
+      "hint": "If Ads are relevant, ask for competitors so Auction Insights can be analyzed."
+    },
+    {
+      "code": "READINESS:SEO_AUDIT",
+      "trigger_any": [
+        "CHANNEL:SEO",
+        "TOOL:GSC"
+      ],
+      "recommended": [
+        "METRIC:GSC_CLICKS",
+        "METRIC:GSC_IMPRESSIONS",
+        "METRIC:GSC_CTR",
+        "METRIC:GSC_AVG_POSITION"
+      ],
+      "hint": "For SEO audits, GSC metrics and Core Web Vitals are preferred."
+    },
+    {
+      "code": "READINESS:EMAIL_AUDIT",
+      "trigger_any": [
+        "CHANNEL:OWNED_EMAIL",
+        "TOOL:EMAIL_MAILCHIMP",
+        "TOOL:EMAIL_KLAVIYO"
+      ],
+      "recommended": [
+        "EMAIL:SENT",
+        "EMAIL:OPEN_RATE",
+        "EMAIL:CLICK_RATE",
+        "EMAIL:UNSUB_RATE"
+      ],
+      "hint": "Basic email metrics help produce a meaningful email audit."
+    },
+    {
+      "code": "READINESS:ECOMM_AUDIT",
+      "trigger_any": [
+        "CAT:GA4_ECOMM",
+        "TOOL:CMS_SHOPIFY",
+        "TOOL:CMS_WOOCOMMERCE",
+        "TOOL:CMS_MAGENTO"
+      ],
+      "recommended": [
+        "METRIC:AOV",
+        "METRIC:GROSS_REVENUE",
+        "METRIC:NET_REVENUE",
+        "METRIC:CART_TO_VIEW_RATE",
+        "METRIC:PURCHASE_TO_DETAIL"
+      ],
+      "hint": "For e-commerce, AOV, revenue and funnel rates are useful."
+    }
+  ]
+}

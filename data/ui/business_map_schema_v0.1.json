@@ -1,0 +1,568 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "defaults": {
+    "confidence_badges": {
+      "high": 0.8,
+      "medium": 0.6,
+      "low": 0.4
+    },
+    "number_formats": {
+      "currency": {
+        "decimals": 2,
+        "symbol_position": "suffix_space_code"
+      },
+      "ratio_pct": {
+        "decimals": 1,
+        "multiplier": 100,
+        "suffix": "%"
+      },
+      "rate": {
+        "decimals": 4
+      },
+      "count": {
+        "decimals": 0
+      }
+    }
+  },
+  "node_types": [
+    {
+      "type": "entity",
+      "icon": "building-2",
+      "style": "pill",
+      "group": "profile"
+    },
+    {
+      "type": "website",
+      "icon": "globe",
+      "style": "pill",
+      "group": "profile"
+    },
+    {
+      "type": "goal",
+      "icon": "target",
+      "style": "tag",
+      "group": "goals"
+    },
+    {
+      "type": "channel",
+      "icon": "share-2",
+      "style": "chip",
+      "group": "channels"
+    },
+    {
+      "type": "tool",
+      "icon": "wrench",
+      "style": "chip",
+      "group": "tools"
+    },
+    {
+      "type": "event",
+      "icon": "flag",
+      "style": "tag",
+      "group": "tracking"
+    },
+    {
+      "type": "consent",
+      "icon": "shield-check",
+      "style": "tag",
+      "group": "tracking"
+    },
+    {
+      "type": "metric",
+      "icon": "activity",
+      "style": "metric",
+      "group": "metrics"
+    },
+    {
+      "type": "dimension",
+      "icon": "table",
+      "style": "tag",
+      "group": "metrics"
+    },
+    {
+      "type": "competitor",
+      "icon": "swords",
+      "style": "chip",
+      "group": "competition"
+    },
+    {
+      "type": "report",
+      "icon": "file-spreadsheet",
+      "style": "file",
+      "group": "data"
+    },
+    {
+      "type": "health",
+      "icon": "heart-pulse",
+      "style": "badge",
+      "group": "health"
+    }
+  ],
+  "edges": [
+    {
+      "type": "uses",
+      "icon": "plug"
+    },
+    {
+      "type": "measures",
+      "icon": "gauge"
+    },
+    {
+      "type": "belongs_to",
+      "icon": "chevron-right"
+    },
+    {
+      "type": "targets",
+      "icon": "bullseye"
+    },
+    {
+      "type": "competes_with",
+      "icon": "swords"
+    },
+    {
+      "type": "evidence_for",
+      "icon": "paperclip"
+    }
+  ],
+  "layout": {
+    "engine": "dagre-radial",
+    "root": "node:business",
+    "groups_order": [
+      "profile",
+      "goals",
+      "channels",
+      "tools",
+      "tracking",
+      "metrics",
+      "competition",
+      "data",
+      "health"
+    ],
+    "group_styles": {
+      "profile": {
+        "accent": "blue"
+      },
+      "goals": {
+        "accent": "purple"
+      },
+      "channels": {
+        "accent": "pink"
+      },
+      "tools": {
+        "accent": "amber"
+      },
+      "tracking": {
+        "accent": "teal"
+      },
+      "metrics": {
+        "accent": "indigo"
+      },
+      "competition": {
+        "accent": "red"
+      },
+      "data": {
+        "accent": "slate"
+      },
+      "health": {
+        "accent": "green"
+      }
+    }
+  },
+  "mapping": {
+    "root_node": {
+      "id": "node:business",
+      "type": "entity",
+      "label_template_ro": "{{BUSINESS:COMPANY_NAME||'Companie'}}",
+      "label_template_en": "{{BUSINESS:COMPANY_NAME||'Company'}}",
+      "sub": [
+        {
+          "code": "BUSINESS:WEBSITE",
+          "type": "website",
+          "label_ro": "Website",
+          "label_en": "Website",
+          "value_format": "string"
+        },
+        {
+          "code": "BUSINESS:INDUSTRY",
+          "type": "entity",
+          "label_ro": "Industrie",
+          "label_en": "Industry",
+          "value_format": "string"
+        },
+        {
+          "code": "BUSINESS:COUNTRY",
+          "type": "entity",
+          "label_ro": "Țară",
+          "label_en": "Country",
+          "value_format": "string"
+        }
+      ]
+    },
+    "goals": [
+      {
+        "code": "GOAL:AWARENESS",
+        "type": "goal",
+        "label_ro": "Awareness",
+        "label_en": "Awareness"
+      },
+      {
+        "code": "GOAL:TRAFFIC",
+        "type": "goal",
+        "label_ro": "Trafic",
+        "label_en": "Traffic"
+      },
+      {
+        "code": "GOAL:LEADS",
+        "type": "goal",
+        "label_ro": "Lead‑uri",
+        "label_en": "Leads"
+      },
+      {
+        "code": "GOAL:SALES",
+        "type": "goal",
+        "label_ro": "Vânzări",
+        "label_en": "Sales"
+      },
+      {
+        "code": "GOAL:RETENTION",
+        "type": "goal",
+        "label_ro": "Retenție",
+        "label_en": "Retention"
+      }
+    ],
+    "channels": [
+      {
+        "code": "CHANNEL:PAID",
+        "type": "channel",
+        "label_ro": "Ads",
+        "label_en": "Ads"
+      },
+      {
+        "code": "CHANNEL:SEO",
+        "type": "channel",
+        "label_ro": "SEO",
+        "label_en": "SEO"
+      },
+      {
+        "code": "CHANNEL:OWNED_EMAIL",
+        "type": "channel",
+        "label_ro": "Email/CRM",
+        "label_en": "Email/CRM"
+      },
+      {
+        "code": "CHANNEL:SOCIAL_ORG",
+        "type": "channel",
+        "label_ro": "Social Organic",
+        "label_en": "Organic Social"
+      }
+    ],
+    "tools": [
+      {
+        "code": "TOOL:ADS_GOOGLE",
+        "type": "tool",
+        "label_ro": "Google Ads",
+        "label_en": "Google Ads"
+      },
+      {
+        "code": "TOOL:ADS_META",
+        "type": "tool",
+        "label_ro": "Meta Ads",
+        "label_en": "Meta Ads"
+      },
+      {
+        "code": "TOOL:ADS_TIKTOK",
+        "type": "tool",
+        "label_ro": "TikTok Ads",
+        "label_en": "TikTok Ads"
+      },
+      {
+        "code": "TOOL:ADS_LINKEDIN",
+        "type": "tool",
+        "label_ro": "LinkedIn Ads",
+        "label_en": "LinkedIn Ads"
+      },
+      {
+        "code": "TOOL:GA4",
+        "type": "tool",
+        "label_ro": "GA4",
+        "label_en": "GA4"
+      },
+      {
+        "code": "TOOL:GTM",
+        "type": "tool",
+        "label_ro": "GTM",
+        "label_en": "GTM"
+      },
+      {
+        "code": "TOOL:GSC",
+        "type": "tool",
+        "label_ro": "GSC",
+        "label_en": "GSC"
+      },
+      {
+        "code": "TOOL:GBP",
+        "type": "tool",
+        "label_ro": "GBP",
+        "label_en": "GBP"
+      }
+    ],
+    "tracking": [
+      {
+        "code": "CMP:PRESENT",
+        "type": "consent",
+        "label_ro": "CMP",
+        "label_en": "CMP"
+      },
+      {
+        "code": "CONSENT:ADS",
+        "type": "consent",
+        "label_ro": "Consent Ads",
+        "label_en": "Consent Ads"
+      },
+      {
+        "code": "CONSENT:ANALYTICS",
+        "type": "consent",
+        "label_ro": "Consent Analytics",
+        "label_en": "Consent Analytics"
+      },
+      {
+        "code": "EVENT:PURCHASE",
+        "type": "event",
+        "label_ro": "Purchase",
+        "label_en": "Purchase"
+      },
+      {
+        "code": "EVENT:GENERATE_LEAD",
+        "type": "event",
+        "label_ro": "Lead",
+        "label_en": "Lead"
+      },
+      {
+        "code": "EVENT:SUBMIT_FORM",
+        "type": "event",
+        "label_ro": "Form submit",
+        "label_en": "Form submit"
+      }
+    ],
+    "competition": [
+      {
+        "code": "DIM:COMPETITOR",
+        "type": "competitor",
+        "label_ro": "Competitor",
+        "label_en": "Competitor"
+      }
+    ],
+    "metrics": [
+      {
+        "code": "METRIC:IMPR_SHARE",
+        "type": "metric",
+        "label_ro": "Impr. Share",
+        "label_en": "Impr. Share",
+        "fmt": "ratio_pct"
+      },
+      {
+        "code": "METRIC:CTR",
+        "type": "metric",
+        "label_ro": "CTR",
+        "label_en": "CTR",
+        "fmt": "ratio_pct"
+      },
+      {
+        "code": "METRIC:CPC",
+        "type": "metric",
+        "label_ro": "CPC",
+        "label_en": "CPC",
+        "fmt": "currency"
+      },
+      {
+        "code": "METRIC:ROAS",
+        "type": "metric",
+        "label_ro": "ROAS",
+        "label_en": "ROAS",
+        "fmt": "rate"
+      },
+      {
+        "code": "METRIC:CONVERSIONS",
+        "type": "metric",
+        "label_ro": "Conversii",
+        "label_en": "Conversions",
+        "fmt": "count"
+      },
+      {
+        "code": "METRIC:CONV_VALUE",
+        "type": "metric",
+        "label_ro": "Valoare conv.",
+        "label_en": "Conv. value",
+        "fmt": "currency"
+      },
+      {
+        "code": "METRIC:META_CTR",
+        "type": "metric",
+        "label_ro": "Meta CTR",
+        "label_en": "Meta CTR",
+        "fmt": "ratio_pct"
+      },
+      {
+        "code": "METRIC:TT_VTR",
+        "type": "metric",
+        "label_ro": "TikTok VTR",
+        "label_en": "TikTok VTR",
+        "fmt": "ratio_pct"
+      },
+      {
+        "code": "METRIC:LI_CTR",
+        "type": "metric",
+        "label_ro": "LinkedIn CTR",
+        "label_en": "LinkedIn CTR",
+        "fmt": "ratio_pct"
+      }
+    ],
+    "data": [
+      {
+        "code": "GADS:*",
+        "type": "report",
+        "label_ro": "Raport Google Ads",
+        "label_en": "Google Ads report"
+      },
+      {
+        "code": "META:*",
+        "type": "report",
+        "label_ro": "Raport Meta",
+        "label_en": "Meta report"
+      },
+      {
+        "code": "TT:*",
+        "type": "report",
+        "label_ro": "Raport TikTok",
+        "label_en": "TikTok report"
+      },
+      {
+        "code": "LI:*",
+        "type": "report",
+        "label_ro": "Raport LinkedIn",
+        "label_en": "LinkedIn report"
+      }
+    ]
+  },
+  "edge_rules": [
+    {
+      "from": "tool",
+      "to": "channel",
+      "edge": "uses"
+    },
+    {
+      "from": "event",
+      "to": "tool",
+      "edge": "measures"
+    },
+    {
+      "from": "metric",
+      "to": "report",
+      "edge": "measures"
+    },
+    {
+      "from": "competitor",
+      "to": "entity",
+      "edge": "competes_with"
+    },
+    {
+      "from": "goal",
+      "to": "channel",
+      "edge": "targets"
+    }
+  ],
+  "update_rules": [
+    {
+      "on_fact": "BUSINESS:*",
+      "action": "create_or_update_node",
+      "group": "profile"
+    },
+    {
+      "on_fact": "GOAL:*",
+      "action": "create_or_update_node",
+      "group": "goals"
+    },
+    {
+      "on_fact": "CHANNEL:*",
+      "action": "create_or_update_node",
+      "group": "channels"
+    },
+    {
+      "on_fact": "TOOL:*",
+      "action": "create_or_update_node",
+      "group": "tools"
+    },
+    {
+      "on_fact": "CONSENT:*",
+      "action": "create_or_update_node",
+      "group": "tracking"
+    },
+    {
+      "on_fact": "EVENT:*",
+      "action": "create_or_update_node",
+      "group": "tracking"
+    },
+    {
+      "on_fact": "DIM:COMPETITOR",
+      "action": "create_or_update_node",
+      "group": "competition"
+    },
+    {
+      "on_fact": "METRIC:*",
+      "action": "create_or_update_node",
+      "group": "metrics"
+    },
+    {
+      "on_upload": "*",
+      "map_to": "report",
+      "group": "data"
+    }
+  ],
+  "cta_rules": [
+    {
+      "code": "CTA:GENERATE_AUDIT",
+      "label": {
+        "ro": "Generează audit",
+        "en": "Generate audit"
+      },
+      "when_any_rules": [
+        "READINESS:MIN_AUDIT_GLOBAL",
+        "READINESS:ADS_AUDIT",
+        "READINESS:SEO_AUDIT",
+        "READINESS:EMAIL_AUDIT",
+        "READINESS:ECOMM_AUDIT"
+      ]
+    }
+  ],
+  "health_badges": [
+    {
+      "check_code": "TRACK:GA4_PRESENT",
+      "levels": {
+        "pass": "good",
+        "fail": "critical"
+      }
+    },
+    {
+      "check_code": "ADS:IMPR_SHARE_OK",
+      "levels": {
+        "pass": "good",
+        "fail": "warn"
+      }
+    },
+    {
+      "check_code": "SOC:META_CTR_OK",
+      "levels": {
+        "pass": "good",
+        "fail": "warn"
+      }
+    },
+    {
+      "check_code": "SEO:CORE_WEB_VITALS_OK",
+      "levels": {
+        "pass": "good",
+        "fail": "warn"
+      }
+    }
+  ]
+}

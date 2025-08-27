@@ -1,0 +1,283 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "notes": "Matrix describing what each platform supports for ingestion (file/API), limits, normalization and computed metrics. References report profile codes defined elsewhere.",
+  "common": {
+    "computed_metrics": [
+      {
+        "code": "METRIC:CTR",
+        "formula": "CLICKS / max(1, IMPRESSIONS)",
+        "deps": [
+          "METRIC:CLICKS",
+          "METRIC:IMPRESSIONS"
+        ],
+        "type": "ratio"
+      },
+      {
+        "code": "METRIC:CPC",
+        "formula": "COST / max(1, CLICKS)",
+        "deps": [
+          "METRIC:COST",
+          "METRIC:CLICKS"
+        ],
+        "type": "currency"
+      },
+      {
+        "code": "METRIC:CPM",
+        "formula": "(COST / max(1, IMPRESSIONS)) * 1000",
+        "deps": [
+          "METRIC:COST",
+          "METRIC:IMPRESSIONS"
+        ],
+        "type": "currency"
+      },
+      {
+        "code": "METRIC:CPA",
+        "formula": "COST / max(0.01, CONVERSIONS)",
+        "deps": [
+          "METRIC:COST",
+          "METRIC:CONVERSIONS"
+        ],
+        "type": "currency"
+      },
+      {
+        "code": "METRIC:ROAS",
+        "formula": "CONV_VALUE / max(0.01, COST)",
+        "deps": [
+          "METRIC:CONV_VALUE",
+          "METRIC:COST"
+        ],
+        "type": "ratio"
+      }
+    ],
+    "normalization": {
+      "timezone_default": "Europe/Bucharest",
+      "currency_default": "RON",
+      "currency_strategy": "store_minor_unit:false; store as float with currency code; conversions at presentation time only",
+      "decimals": {
+        "ratio": 4,
+        "currency": 2,
+        "count": 0
+      }
+    },
+    "file_support": {
+      "encodings": [
+        "utf-8",
+        "utf-16-le",
+        "windows-1250",
+        "iso-8859-2"
+      ],
+      "delimiters": [
+        "comma",
+        "tab",
+        "semicolon"
+      ],
+      "decimal_separators": [
+        ".",
+        ","
+      ],
+      "header_tolerance_score_min": 0.7,
+      "column_map_scope": "see /data/mapping/column_header_dict_v0.1.json"
+    }
+  },
+  "platforms": [
+    {
+      "code": "PLAT:GADS",
+      "name": "Google Ads",
+      "categories": [
+        "Paid Search",
+        "Shopping",
+        "PMax"
+      ],
+      "auth": {
+        "api": "OAuth2",
+        "ui_export": "logged_in_ui"
+      },
+      "input_modes": [
+        {
+          "mode": "file_export",
+          "formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "report_profiles": [
+            "GADS:CAMPAIGNS",
+            "GADS:AD_GROUPS",
+            "GADS:ADS",
+            "GADS:KEYWORDS",
+            "GADS:SEARCH_TERMS",
+            "GADS:PLACEMENTS",
+            "GADS:AUCTION_INSIGHTS",
+            "GADS:AUDIENCES",
+            "GADS:LOCATIONS",
+            "GADS:DEMOGRAPHICS",
+            "GADS:PMAX_ASSET_GROUPS",
+            "GADS:PMAX_LISTING_GROUPS",
+            "GADS:CHANGE_HISTORY"
+          ],
+          "limits": {
+            "row_limit_recommended": 2000000,
+            "file_size_mb_recommended_max": 200
+          },
+          "timezone_handling": "account_timezone_preferred; fallback user_tz"
+        },
+        {
+          "mode": "api",
+          "available": false,
+          "notes": "Planned later; start with file ingestion."
+        }
+      ],
+      "limits": {
+        "date_granularity": [
+          "daily",
+          "aggregate"
+        ],
+        "max_date_range_days_recommended": 1095
+      },
+      "scopes_for_headers": "GADS"
+    },
+    {
+      "code": "PLAT:META",
+      "name": "Meta (Facebook/Instagram)",
+      "categories": [
+        "Paid Social"
+      ],
+      "auth": {
+        "api": "OAuth2 (Graph API)",
+        "ui_export": "Ads Manager export"
+      },
+      "input_modes": [
+        {
+          "mode": "file_export",
+          "formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "report_profiles": [
+            "META:CAMPAIGNS",
+            "META:AD_SETS",
+            "META:ADS",
+            "META:PLACEMENTS",
+            "META:DEMOGRAPHICS",
+            "META:VIDEO",
+            "META:LEAD_FORMS"
+          ],
+          "limits": {
+            "row_limit_recommended": 1000000,
+            "file_size_mb_recommended_max": 200
+          },
+          "timezone_handling": "account_timezone_preferred; fallback user_tz"
+        },
+        {
+          "mode": "api",
+          "available": false,
+          "notes": "Planned; start with file ingestion."
+        }
+      ],
+      "limits": {
+        "date_granularity": [
+          "daily",
+          "aggregate"
+        ],
+        "max_date_range_days_recommended": 730
+      },
+      "scopes_for_headers": "META"
+    },
+    {
+      "code": "PLAT:TIKTOK",
+      "name": "TikTok Ads",
+      "categories": [
+        "Paid Social"
+      ],
+      "auth": {
+        "api": "OAuth2",
+        "ui_export": "Ads Manager export"
+      },
+      "input_modes": [
+        {
+          "mode": "file_export",
+          "formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "report_profiles": [
+            "TT:CAMPAIGNS",
+            "TT:AD_GROUPS",
+            "TT:ADS",
+            "TT:VIDEO",
+            "TT:DEMOGRAPHICS"
+          ],
+          "limits": {
+            "row_limit_recommended": 1000000,
+            "file_size_mb_recommended_max": 200
+          },
+          "timezone_handling": "account_timezone_preferred; fallback user_tz"
+        },
+        {
+          "mode": "api",
+          "available": false,
+          "notes": "Planned; start with file ingestion."
+        }
+      ],
+      "limits": {
+        "date_granularity": [
+          "daily",
+          "aggregate"
+        ],
+        "max_date_range_days_recommended": 730
+      },
+      "scopes_for_headers": "TIKTOK"
+    },
+    {
+      "code": "PLAT:LINKEDIN",
+      "name": "LinkedIn Ads",
+      "categories": [
+        "Paid Social",
+        "B2B"
+      ],
+      "auth": {
+        "api": "OAuth2",
+        "ui_export": "Campaign Manager export"
+      },
+      "input_modes": [
+        {
+          "mode": "file_export",
+          "formats": [
+            "csv",
+            "tsv",
+            "xlsx"
+          ],
+          "report_profiles": [
+            "LI:CAMPAIGNS",
+            "LI:CAMPAIGN_GROUPS",
+            "LI:ADS",
+            "LI:VIDEO",
+            "LI:DEMOGRAPHICS",
+            "LI:LEAD_GEN_FORMS"
+          ],
+          "limits": {
+            "row_limit_recommended": 500000,
+            "file_size_mb_recommended_max": 200
+          },
+          "timezone_handling": "account_timezone_preferred; fallback user_tz"
+        },
+        {
+          "mode": "api",
+          "available": false,
+          "notes": "Planned; start with file ingestion."
+        }
+      ],
+      "limits": {
+        "date_granularity": [
+          "daily",
+          "aggregate"
+        ],
+        "max_date_range_days_recommended": 730
+      },
+      "scopes_for_headers": "LINKEDIN"
+    }
+  ]
+}

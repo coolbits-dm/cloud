@@ -1,0 +1,804 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "eval_syntax": {
+    "language": "cbExpr v1",
+    "functions": [
+      "has('TERM_CODE') -> boolean",
+      "missing('TERM_CODE') -> boolean",
+      "any(['TERM1','TERM2',...]) -> boolean (present in facts)",
+      "avg('METRIC_CODE', days, filter?) -> number (ratio in 0..1 when applicable)",
+      "sum('METRIC_CODE', days, filter?) -> number",
+      "pct(part, whole) -> number",
+      "exists_metric('METRIC_CODE', days) -> boolean",
+      "trend('METRIC_CODE', days) -> number  # slope per day",
+      "count_rows('REPORT_TYPE', days, filter?) -> integer"
+    ],
+    "defaults": {
+      "days": 30,
+      "timezone": "Europe/Bucharest",
+      "currency": "RON"
+    }
+  },
+  "scoring": {
+    "overall_weights": {
+      "AREA:ADS": 0.3,
+      "AREA:SOCIAL": 0.2,
+      "AREA:SEO": 0.2,
+      "AREA:EMAIL": 0.1,
+      "AREA:TRACKING": 0.1,
+      "AREA:ECOMM": 0.05,
+      "AREA:CRO": 0.05
+    },
+    "grade_bands": [
+      {
+        "grade": "A",
+        "min": 80
+      },
+      {
+        "grade": "B",
+        "min": 65
+      },
+      {
+        "grade": "C",
+        "min": 50
+      },
+      {
+        "grade": "D",
+        "min": 0
+      }
+    ]
+  },
+  "areas": [
+    {
+      "code": "AREA:TRACKING",
+      "name": {
+        "en": "Tracking & Consent",
+        "ro": "Tracking & Consimțământ"
+      },
+      "weight": 0.1,
+      "checks": [
+        {
+          "code": "TRACK:GA4_PRESENT",
+          "severity": "critical",
+          "weight": 8,
+          "evidence": [
+            "TOOL:GA4"
+          ],
+          "eval": "has('TOOL:GA4')",
+          "messages": {
+            "pass": {
+              "ro": "GA4 este prezent.",
+              "en": "GA4 is present."
+            },
+            "fail": {
+              "ro": "GA4 lipsește — recomand instalare și migrare evenimente.",
+              "en": "GA4 missing — install and migrate events."
+            }
+          }
+        },
+        {
+          "code": "TRACK:GTM_PRESENT",
+          "severity": "major",
+          "weight": 4,
+          "evidence": [
+            "TOOL:GTM"
+          ],
+          "eval": "has('TOOL:GTM')",
+          "messages": {
+            "pass": {
+              "ro": "GTM este prezent.",
+              "en": "GTM is present."
+            },
+            "fail": {
+              "ro": "GTM lipsește — util pentru management tag-uri.",
+              "en": "GTM missing — useful for tag management."
+            }
+          }
+        },
+        {
+          "code": "TRACK:CORE_EVENTS",
+          "severity": "critical",
+          "weight": 10,
+          "evidence": [
+            "EVENT:PURCHASE",
+            "EVENT:GENERATE_LEAD",
+            "EVENT:SUBMIT_FORM"
+          ],
+          "eval": "any(['EVENT:PURCHASE','EVENT:GENERATE_LEAD','EVENT:SUBMIT_FORM'])",
+          "messages": {
+            "pass": {
+              "ro": "Evenimentele cheie există.",
+              "en": "Key events are present."
+            },
+            "fail": {
+              "ro": "Evenimente cheie lipsă — configurează purchase/lead/submit_form.",
+              "en": "Key events missing — configure purchase/lead/submit_form."
+            }
+          }
+        },
+        {
+          "code": "TRACK:CONSENT_MODE",
+          "severity": "major",
+          "weight": 5,
+          "evidence": [
+            "CMP:PRESENT",
+            "CONSENT:ADS",
+            "CONSENT:ANALYTICS"
+          ],
+          "eval": "has('CMP:PRESENT') AND (has('CONSENT:ADS') OR has('CONSENT:ANALYTICS'))",
+          "messages": {
+            "pass": {
+              "ro": "CMP/Consent Mode funcțional.",
+              "en": "CMP/Consent Mode in place."
+            },
+            "fail": {
+              "ro": "Lipsește CMP sau Consent Mode — recomandați implementare.",
+              "en": "CMP or Consent Mode missing — recommend implementation."
+            }
+          }
+        },
+        {
+          "code": "TRACK:DATA_QUALITY",
+          "severity": "major",
+          "weight": 6,
+          "evidence": [
+            "DQ:TAG_COVERAGE",
+            "DQ:DUPLICATE_EVENTS",
+            "DQ:MISSING_PARAMS"
+          ],
+          "eval": "not has('DQ:DUPLICATE_EVENTS') AND not has('DQ:MISSING_PARAMS')",
+          "messages": {
+            "pass": {
+              "ro": "Calitatea datelor ok (fără duplicate/parametri lipsă).",
+              "en": "Data quality OK (no duplicates/missing params)."
+            },
+            "fail": {
+              "ro": "Probleme de calitate a datelor (duplicate/parametri lipsă).",
+              "en": "Data quality issues (duplicates/missing params)."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "AREA:ADS",
+      "name": {
+        "en": "Paid Search & Shopping",
+        "ro": "Search Plătit & Shopping"
+      },
+      "weight": 0.3,
+      "checks": [
+        {
+          "code": "ADS:CONVERSIONS_PRESENT",
+          "severity": "critical",
+          "weight": 10,
+          "evidence": [
+            "METRIC:CONVERSIONS"
+          ],
+          "eval": "sum('METRIC:CONVERSIONS',30) > 0",
+          "messages": {
+            "pass": {
+              "ro": "Conversiile sunt urmărite.",
+              "en": "Conversions are tracked."
+            },
+            "fail": {
+              "ro": "Nu se înregistrează conversii în ultimele 30 de zile.",
+              "en": "No conversions recorded in the last 30 days."
+            }
+          }
+        },
+        {
+          "code": "ADS:IMPR_SHARE_OK",
+          "severity": "major",
+          "weight": 6,
+          "evidence": [
+            "METRIC:IMPR_SHARE"
+          ],
+          "thresholds": {
+            "min": 0.5
+          },
+          "eval": "avg('METRIC:IMPR_SHARE',30) >= 0.50",
+          "messages": {
+            "pass": {
+              "ro": "Impression Share adecvat.",
+              "en": "Impression Share is adequate."
+            },
+            "fail": {
+              "ro": "Impression Share scăzut (<50%).",
+              "en": "Low Impression Share (<50%)."
+            }
+          }
+        },
+        {
+          "code": "ADS:LOST_IS_BUDGET_LOW",
+          "severity": "major",
+          "weight": 5,
+          "evidence": [
+            "METRIC:SEARCH_LOST_IS_BUDGET"
+          ],
+          "thresholds": {
+            "max": 0.15
+          },
+          "eval": "avg('METRIC:SEARCH_LOST_IS_BUDGET',30) <= 0.15",
+          "messages": {
+            "pass": {
+              "ro": "Pierderea din buget e controlată.",
+              "en": "Budget lost IS is controlled."
+            },
+            "fail": {
+              "ro": "Pierderea din buget e mare (>15%).",
+              "en": "Budget lost IS is high (>15%)."
+            }
+          }
+        },
+        {
+          "code": "ADS:LOST_IS_RANK_LOW",
+          "severity": "major",
+          "weight": 5,
+          "evidence": [
+            "METRIC:SEARCH_LOST_IS_RANK"
+          ],
+          "thresholds": {
+            "max": 0.35
+          },
+          "eval": "avg('METRIC:SEARCH_LOST_IS_RANK',30) <= 0.35",
+          "messages": {
+            "pass": {
+              "ro": "Pierderea din rank e acceptabilă.",
+              "en": "Lost IS (rank) acceptable."
+            },
+            "fail": {
+              "ro": "Pierderea din rank e ridicată (>35%).",
+              "en": "Lost IS (rank) is high (>35%)."
+            }
+          }
+        },
+        {
+          "code": "ADS:CTR_OK",
+          "severity": "moderate",
+          "weight": 4,
+          "evidence": [
+            "METRIC:CTR"
+          ],
+          "thresholds": {
+            "min": 0.02
+          },
+          "eval": "avg('METRIC:CTR',30, {'DIM:NETWORK':'Search'}) >= 0.02 OR avg('METRIC:CTR',30) >= 0.02",
+          "messages": {
+            "pass": {
+              "ro": "CTR peste 2%.",
+              "en": "CTR above 2%."
+            },
+            "fail": {
+              "ro": "CTR sub 2%.",
+              "en": "CTR below 2%."
+            }
+          }
+        },
+        {
+          "code": "ADS:CPC_REASONABLE",
+          "severity": "moderate",
+          "weight": 3,
+          "evidence": [
+            "METRIC:CPC"
+          ],
+          "eval": "exists_metric('METRIC:CPC',30)",
+          "messages": {
+            "pass": {
+              "ro": "CPC disponibil pentru analiză.",
+              "en": "CPC available for analysis."
+            },
+            "fail": {
+              "ro": "Nu avem CPC calculabil.",
+              "en": "CPC not available."
+            }
+          }
+        },
+        {
+          "code": "ADS:SHOPPING_FEED_HEALTH",
+          "severity": "major",
+          "weight": 6,
+          "evidence": [
+            "METRIC:FEED_ERRORS"
+          ],
+          "thresholds": {
+            "max": 10
+          },
+          "eval": "sum('METRIC:FEED_ERRORS',30) <= 10 OR not exists_metric('METRIC:FEED_ERRORS',30)",
+          "messages": {
+            "pass": {
+              "ro": "Feed erori sub control.",
+              "en": "Feed errors under control."
+            },
+            "fail": {
+              "ro": "Multe erori în feed (>10).",
+              "en": "High number of feed errors (>10)."
+            }
+          }
+        },
+        {
+          "code": "ADS:AUCTION_INSIGHTS_PRESENT",
+          "severity": "minor",
+          "weight": 2,
+          "evidence": [
+            "METRIC:AUCTION:OVERLAP_RATE",
+            "DIM:COMPETITOR"
+          ],
+          "eval": "exists_metric('METRIC:AUCTION:OVERLAP_RATE',30) AND any(['DIM:COMPETITOR'])",
+          "messages": {
+            "pass": {
+              "ro": "Auction Insights prezente + competitori declarați.",
+              "en": "Auction Insights present + competitors declared."
+            },
+            "fail": {
+              "ro": "Lipsesc Auction Insights sau lista de competitori.",
+              "en": "Missing Auction Insights or competitor list."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "AREA:SOCIAL",
+      "name": {
+        "en": "Paid Social (Meta/TikTok/LinkedIn)",
+        "ro": "Social plătit (Meta/TikTok/LinkedIn)"
+      },
+      "weight": 0.2,
+      "checks": [
+        {
+          "code": "SOC:META_DELIVERY_BASICS",
+          "severity": "major",
+          "weight": 5,
+          "evidence": [
+            "METRIC:META_IMPRESSIONS",
+            "METRIC:META_REACH",
+            "METRIC:META_SPEND"
+          ],
+          "eval": "sum('METRIC:META_IMPRESSIONS',30)>0 OR sum('METRIC:META_REACH',30)>0",
+          "messages": {
+            "pass": {
+              "ro": "Meta: livrare ok.",
+              "en": "Meta: delivery OK."
+            },
+            "fail": {
+              "ro": "Meta: fără livrare în 30 de zile.",
+              "en": "Meta: no delivery in 30 days."
+            }
+          }
+        },
+        {
+          "code": "SOC:META_CTR_OK",
+          "severity": "moderate",
+          "weight": 4,
+          "thresholds": {
+            "min": 0.008
+          },
+          "evidence": [
+            "METRIC:META_CTR"
+          ],
+          "eval": "avg('METRIC:META_CTR',30) >= 0.008",
+          "messages": {
+            "pass": {
+              "ro": "Meta CTR ≥0.8%.",
+              "en": "Meta CTR ≥0.8%."
+            },
+            "fail": {
+              "ro": "Meta CTR sub 0.8%.",
+              "en": "Meta CTR below 0.8%."
+            }
+          }
+        },
+        {
+          "code": "SOC:META_LP_VIEWS_PRESENT",
+          "severity": "minor",
+          "weight": 2,
+          "evidence": [
+            "METRIC:META_LANDING_PAGE_VIEWS"
+          ],
+          "eval": "sum('METRIC:META_LANDING_PAGE_VIEWS',30)>0 OR sum('METRIC:META_LINK_CLICKS',30)>0",
+          "messages": {
+            "pass": {
+              "ro": "LP views/link clicks prezente.",
+              "en": "LP views/link clicks present."
+            },
+            "fail": {
+              "ro": "Nu avem LP views/link clicks.",
+              "en": "No LP views/link clicks."
+            }
+          }
+        },
+        {
+          "code": "SOC:META_VIDEO_ENGAGEMENT",
+          "severity": "minor",
+          "weight": 2,
+          "thresholds": {
+            "min_vtr": 0.15
+          },
+          "evidence": [
+            "METRIC:META_VTR",
+            "METRIC:META_THRUPLAYS"
+          ],
+          "eval": "avg('METRIC:META_VTR',30) >= 0.15 OR sum('METRIC:META_THRUPLAYS',30) > 0",
+          "messages": {
+            "pass": {
+              "ro": "Video engagement bun (VTR/ThruPlays).",
+              "en": "Solid video engagement (VTR/ThruPlays)."
+            },
+            "fail": {
+              "ro": "Video engagement scăzut.",
+              "en": "Low video engagement."
+            }
+          }
+        },
+        {
+          "code": "SOC:TT_VTR_OK",
+          "severity": "moderate",
+          "weight": 3,
+          "thresholds": {
+            "min": 0.15
+          },
+          "evidence": [
+            "METRIC:TT_VTR"
+          ],
+          "eval": "avg('METRIC:TT_VTR',30) >= 0.15 OR not exists_metric('METRIC:TT_VTR',30)",
+          "messages": {
+            "pass": {
+              "ro": "TikTok VTR ≥15% (sau nu e folosit).",
+              "en": "TikTok VTR ≥15% (or not used)."
+            },
+            "fail": {
+              "ro": "TikTok VTR sub 15%.",
+              "en": "TikTok VTR below 15%."
+            }
+          }
+        },
+        {
+          "code": "SOC:LI_CTR_OK",
+          "severity": "moderate",
+          "weight": 3,
+          "thresholds": {
+            "min": 0.005
+          },
+          "evidence": [
+            "METRIC:LI_CTR"
+          ],
+          "eval": "avg('METRIC:LI_CTR',30) >= 0.005 OR not exists_metric('METRIC:LI_CTR',30)",
+          "messages": {
+            "pass": {
+              "ro": "LinkedIn CTR ≥0.5% (sau nu e folosit).",
+              "en": "LinkedIn CTR ≥0.5% (or not used)."
+            },
+            "fail": {
+              "ro": "LinkedIn CTR sub 0.5%.",
+              "en": "LinkedIn CTR below 0.5%."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "AREA:SEO",
+      "name": {
+        "en": "SEO",
+        "ro": "SEO"
+      },
+      "weight": 0.2,
+      "checks": [
+        {
+          "code": "SEO:GSC_PRESENT",
+          "severity": "major",
+          "weight": 6,
+          "evidence": [
+            "TOOL:GSC",
+            "METRIC:GSC_CLICKS"
+          ],
+          "eval": "has('TOOL:GSC') AND exists_metric('METRIC:GSC_CLICKS',90)",
+          "messages": {
+            "pass": {
+              "ro": "GSC activ cu date.",
+              "en": "GSC active with data."
+            },
+            "fail": {
+              "ro": "GSC lipsește sau nu are date.",
+              "en": "GSC missing or no data."
+            }
+          }
+        },
+        {
+          "code": "SEO:CORE_WEB_VITALS_OK",
+          "severity": "major",
+          "weight": 6,
+          "thresholds": {
+            "LCP_ms": 2500,
+            "INP_ms": 200,
+            "CLS": 0.1
+          },
+          "evidence": [
+            "METRIC:LCP",
+            "METRIC:INP",
+            "METRIC:CLS"
+          ],
+          "eval": "avg('METRIC:LCP',90) <= 2.5 AND avg('METRIC:INP',90) <= 0.2 AND avg('METRIC:CLS',90) <= 0.1",
+          "messages": {
+            "pass": {
+              "ro": "CWV în limite bune.",
+              "en": "Core Web Vitals in good range."
+            },
+            "fail": {
+              "ro": "CWV necesită îmbunătățire.",
+              "en": "Core Web Vitals need improvement."
+            }
+          }
+        },
+        {
+          "code": "SEO:CTR_OK",
+          "severity": "moderate",
+          "weight": 4,
+          "thresholds": {
+            "min": 0.01
+          },
+          "evidence": [
+            "METRIC:GSC_CTR"
+          ],
+          "eval": "avg('METRIC:GSC_CTR',90) >= 0.01",
+          "messages": {
+            "pass": {
+              "ro": "CTR organic ≥1%.",
+              "en": "Organic CTR ≥1%."
+            },
+            "fail": {
+              "ro": "CTR organic sub 1%.",
+              "en": "Organic CTR below 1%."
+            }
+          }
+        },
+        {
+          "code": "SEO:AVG_POSITION_REASONABLE",
+          "severity": "minor",
+          "weight": 2,
+          "evidence": [
+            "METRIC:GSC_AVG_POSITION"
+          ],
+          "eval": "exists_metric('METRIC:GSC_AVG_POSITION',90)",
+          "messages": {
+            "pass": {
+              "ro": "Poziție medie disponibilă pentru analiză.",
+              "en": "Avg. position available."
+            },
+            "fail": {
+              "ro": "Poziție medie indisponibilă.",
+              "en": "Avg. position unavailable."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "AREA:EMAIL",
+      "name": {
+        "en": "Email & CRM",
+        "ro": "Email & CRM"
+      },
+      "weight": 0.1,
+      "checks": [
+        {
+          "code": "EMAIL:DELIVERY_OK",
+          "severity": "major",
+          "weight": 4,
+          "thresholds": {
+            "min_rate": 0.95
+          },
+          "evidence": [
+            "EMAIL:DELIVERED",
+            "EMAIL:SENT"
+          ],
+          "eval": "pct(sum('EMAIL:DELIVERED',90), sum('EMAIL:SENT',90)) >= 0.95",
+          "messages": {
+            "pass": {
+              "ro": "Rată de livrare ≥95%.",
+              "en": "Delivery rate ≥95%."
+            },
+            "fail": {
+              "ro": "Rată de livrare sub 95%.",
+              "en": "Delivery rate below 95%."
+            }
+          }
+        },
+        {
+          "code": "EMAIL:CLICK_RATE_OK",
+          "severity": "moderate",
+          "weight": 3,
+          "thresholds": {
+            "min": 0.02
+          },
+          "evidence": [
+            "EMAIL:CLICK_RATE"
+          ],
+          "eval": "avg('EMAIL:CLICK_RATE',90) >= 0.02 OR pct(sum('METRIC:LINK_CLICKS',90), sum('EMAIL:DELIVERED',90)) >= 0.02",
+          "messages": {
+            "pass": {
+              "ro": "Click rate ≥2%.",
+              "en": "Click rate ≥2%."
+            },
+            "fail": {
+              "ro": "Click rate sub 2%.",
+              "en": "Click rate below 2%."
+            }
+          }
+        },
+        {
+          "code": "EMAIL:UNSUB_OK",
+          "severity": "moderate",
+          "weight": 3,
+          "thresholds": {
+            "max": 0.003
+          },
+          "evidence": [
+            "EMAIL:UNSUB_RATE"
+          ],
+          "eval": "avg('EMAIL:UNSUB_RATE',90) <= 0.003",
+          "messages": {
+            "pass": {
+              "ro": "Unsub rate ≤0.3%.",
+              "en": "Unsub rate ≤0.3%."
+            },
+            "fail": {
+              "ro": "Unsub rate peste 0.3%.",
+              "en": "Unsub rate above 0.3%."
+            }
+          }
+        },
+        {
+          "code": "EMAIL:SPAM_COMPLAINT_OK",
+          "severity": "major",
+          "weight": 4,
+          "thresholds": {
+            "max": 0.001
+          },
+          "evidence": [
+            "EMAIL:SPAM_COMPLAINT_RATE"
+          ],
+          "eval": "avg('EMAIL:SPAM_COMPLAINT_RATE',90) <= 0.001",
+          "messages": {
+            "pass": {
+              "ro": "Spam complaints ≤0.1%.",
+              "en": "Spam complaints ≤0.1%."
+            },
+            "fail": {
+              "ro": "Spam complaints peste 0.1%.",
+              "en": "Spam complaints above 0.1%."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "AREA:ECOMM",
+      "name": {
+        "en": "E‑commerce",
+        "ro": "E‑commerce"
+      },
+      "weight": 0.05,
+      "checks": [
+        {
+          "code": "ECOMM:AOV_PRESENT",
+          "severity": "minor",
+          "weight": 2,
+          "evidence": [
+            "METRIC:AOV"
+          ],
+          "eval": "exists_metric('METRIC:AOV',90)",
+          "messages": {
+            "pass": {
+              "ro": "AOV disponibil.",
+              "en": "AOV available."
+            },
+            "fail": {
+              "ro": "AOV lipsește.",
+              "en": "AOV missing."
+            }
+          }
+        },
+        {
+          "code": "ECOMM:FUNNEL_RATES_OK",
+          "severity": "major",
+          "weight": 6,
+          "thresholds": {
+            "cart_to_view_min": 0.05,
+            "purchase_to_detail_min": 0.01
+          },
+          "evidence": [
+            "METRIC:CART_TO_VIEW_RATE",
+            "METRIC:PURCHASE_TO_DETAIL"
+          ],
+          "eval": "avg('METRIC:CART_TO_VIEW_RATE',90) >= 0.05 AND avg('METRIC:PURCHASE_TO_DETAIL',90) >= 0.01",
+          "messages": {
+            "pass": {
+              "ro": "Ratele de funnel sunt în parametri.",
+              "en": "Funnel rates within range."
+            },
+            "fail": {
+              "ro": "Rate de funnel sub praguri.",
+              "en": "Funnel rates below thresholds."
+            }
+          }
+        },
+        {
+          "code": "ECOMM:REVENUE_TRACKED",
+          "severity": "major",
+          "weight": 6,
+          "evidence": [
+            "METRIC:GROSS_REVENUE",
+            "METRIC:NET_REVENUE"
+          ],
+          "eval": "exists_metric('METRIC:GROSS_REVENUE',90) OR exists_metric('METRIC:NET_REVENUE',90)",
+          "messages": {
+            "pass": {
+              "ro": "Venituri GA4 urmărite.",
+              "en": "GA4 revenue tracked."
+            },
+            "fail": {
+              "ro": "Venituri neînregistrate în GA4.",
+              "en": "Revenue not tracked in GA4."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "code": "AREA:CRO",
+      "name": {
+        "en": "CRO & UX",
+        "ro": "CRO & UX"
+      },
+      "weight": 0.05,
+      "checks": [
+        {
+          "code": "CRO:AB_TESTING_PRESENT",
+          "severity": "minor",
+          "weight": 2,
+          "evidence": [
+            "CRO:A_B_TESTING"
+          ],
+          "eval": "has('CRO:A_B_TESTING')",
+          "messages": {
+            "pass": {
+              "ro": "Există testare A/B.",
+              "en": "A/B testing present."
+            },
+            "fail": {
+              "ro": "Nu există testare A/B.",
+              "en": "No A/B testing."
+            }
+          }
+        },
+        {
+          "code": "CRO:ENGAGEMENT_OK",
+          "severity": "moderate",
+          "weight": 3,
+          "thresholds": {
+            "min_rate": 0.5,
+            "min_duration_sec": 30
+          },
+          "evidence": [
+            "METRIC:ENGAGEMENT_RATE",
+            "METRIC:AVG_SESSION_DURATION"
+          ],
+          "eval": "avg('METRIC:ENGAGEMENT_RATE',90) >= 0.5 OR avg('METRIC:AVG_SESSION_DURATION',90) >= (30/60)",
+          "messages": {
+            "pass": {
+              "ro": "Engagement acceptabil.",
+              "en": "Engagement acceptable."
+            },
+            "fail": {
+              "ro": "Engagement scăzut — optimizări UX recomandate.",
+              "en": "Low engagement — UX optimizations recommended."
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

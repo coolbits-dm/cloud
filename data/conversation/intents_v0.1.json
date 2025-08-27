@@ -1,0 +1,658 @@
+{
+  "version": "0.1",
+  "updated": "2025-08-24",
+  "flow": {
+    "start": "INTENT:WELCOME",
+    "default_language": "ro",
+    "confidence_thresholds": {
+      "fact_min": 0.6,
+      "auto_advance": 0.8
+    },
+    "expr_syntax": "when.conditions accept {missing, has, any, all} with arrays of ontology codes; 'else' is fallback"
+  },
+  "intents": [
+    {
+      "code": "INTENT:WELCOME",
+      "name": {
+        "en": "Welcome",
+        "ro": "Bun venit"
+      },
+      "description": {
+        "en": "Greets the user and asks for a company name or website.",
+        "ro": "Salută utilizatorul și cere numele companiei sau website-ul."
+      },
+      "triggers": {
+        "patterns_ro": [
+          "salut",
+          "bună",
+          "buna",
+          "hey",
+          "pornim",
+          "start",
+          "ajutor"
+        ],
+        "patterns_en": [
+          "hi",
+          "hello",
+          "hey",
+          "start",
+          "help"
+        ]
+      },
+      "collect": [
+        {
+          "term": "BUSINESS:COMPANY_NAME",
+          "ask": {
+            "ro": "Cum se numește compania/brandul tău?",
+            "en": "What's your company or brand name?"
+          },
+          "required": false,
+          "type": "string"
+        },
+        {
+          "term": "BUSINESS:WEBSITE",
+          "ask": {
+            "ro": "Îmi lași și website-ul? (ex: https://exemplu.ro)",
+            "en": "Could you share your website? (e.g., https://example.com)"
+          },
+          "required": true,
+          "type": "url",
+          "validate": "RULE:URL"
+        }
+      ],
+      "on_complete": [
+        {
+          "when": {
+            "missing": [
+              "BUSINESS:WEBSITE"
+            ]
+          },
+          "goto": "INTENT:WELCOME"
+        },
+        {
+          "when": {
+            "any": [
+              "BUSINESS:COMPANY_NAME",
+              "BUSINESS:WEBSITE"
+            ]
+          },
+          "goto": "INTENT:BUSINESS_PROFILE"
+        },
+        {
+          "when": "else",
+          "goto": "INTENT:BUSINESS_PROFILE"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:BUSINESS_PROFILE",
+      "name": {
+        "en": "Business Profile",
+        "ro": "Profil Afacere"
+      },
+      "description": {
+        "en": "Collects core profile details.",
+        "ro": "Colectează detalii de bază despre afacere."
+      },
+      "triggers": {
+        "from": [
+          "INTENT:WELCOME"
+        ]
+      },
+      "collect": [
+        {
+          "term": "BUSINESS:INDUSTRY",
+          "ask": {
+            "ro": "În ce industrie activați?",
+            "en": "Which industry are you in?"
+          },
+          "required": true,
+          "type": "string"
+        },
+        {
+          "term": "BUSINESS:COUNTRY",
+          "ask": {
+            "ro": "Operați în ce țări? (ex: RO, EU)",
+            "en": "Which countries do you operate in?"
+          },
+          "required": false,
+          "type": "string"
+        },
+        {
+          "term": "BUSINESS:LANGUAGE",
+          "ask": {
+            "ro": "Ce limbă folosiți în comunicare?",
+            "en": "Primary communication language?"
+          },
+          "required": false,
+          "type": "string"
+        },
+        {
+          "term": "BUSINESS:EMPLOYEES",
+          "ask": {
+            "ro": "Cam câți angajați aveți?",
+            "en": "Roughly how many employees?"
+          },
+          "required": false,
+          "type": "number"
+        },
+        {
+          "term": "BUSINESS:ICP",
+          "ask": {
+            "ro": "Cine e clientul ideal?",
+            "en": "Who's your ideal customer?"
+          },
+          "required": false,
+          "type": "string"
+        },
+        {
+          "term": "BUSINESS:PRODUCTS",
+          "ask": {
+            "ro": "Ce produse/servicii vindeți?",
+            "en": "What products/services do you sell?"
+          },
+          "required": false,
+          "type": "string"
+        }
+      ],
+      "on_complete": [
+        {
+          "when": {
+            "missing": [
+              "GOAL:LEADS",
+              "GOAL:SALES",
+              "GOAL:AWARENESS",
+              "GOAL:TRAFFIC",
+              "GOAL:RETENTION"
+            ]
+          },
+          "goto": "INTENT:GOALS"
+        },
+        {
+          "when": "else",
+          "goto": "INTENT:CHANNELS_TOOLS"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:GOALS",
+      "name": {
+        "en": "Goals",
+        "ro": "Obiective"
+      },
+      "description": {
+        "en": "Clarifies marketing objectives and priorities.",
+        "ro": "Clarifică obiectivele de marketing și prioritățile."
+      },
+      "triggers": {
+        "from": [
+          "INTENT:BUSINESS_PROFILE"
+        ]
+      },
+      "collect": [
+        {
+          "term": "GOAL:AWARENESS",
+          "ask": {
+            "ro": "E un obiectiv creșterea vizibilității brandului? (da/nu)",
+            "en": "Is brand awareness a goal? (yes/no)"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "GOAL:TRAFFIC",
+          "ask": {
+            "ro": "Vreți mai mult trafic pe site? (da/nu)",
+            "en": "Do you need more website traffic? (yes/no)"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "GOAL:LEADS",
+          "ask": {
+            "ro": "Colectarea de lead-uri e prioritară? (da/nu)",
+            "en": "Is lead generation a priority? (yes/no)"
+          },
+          "required": true,
+          "type": "boolean"
+        },
+        {
+          "term": "GOAL:SALES",
+          "ask": {
+            "ro": "Țintiți vânzări directe online? (da/nu)",
+            "en": "Are direct online sales a target? (yes/no)"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "GOAL:RETENTION",
+          "ask": {
+            "ro": "Vă preocupă retenția/loializarea? (da/nu)",
+            "en": "Is retention/loyalty a focus? (yes/no)"
+          },
+          "required": false,
+          "type": "boolean"
+        }
+      ],
+      "on_complete": [
+        {
+          "when": {
+            "all": [
+              "GOAL:LEADS"
+            ]
+          },
+          "goto": "INTENT:CHANNELS_TOOLS"
+        },
+        {
+          "when": "else",
+          "goto": "INTENT:CHANNELS_TOOLS"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:CHANNELS_TOOLS",
+      "name": {
+        "en": "Channels & Tools",
+        "ro": "Canale & Tool-uri"
+      },
+      "description": {
+        "en": "Identifies channels in use and key tools.",
+        "ro": "Identifică canalele folosite și tool-urile cheie."
+      },
+      "collect": [
+        {
+          "term": "CHANNEL:PAID",
+          "ask": {
+            "ro": "Rulați campanii plătite (Google/Meta/TikTok/LinkedIn)?",
+            "en": "Are you running paid campaigns (Google/Meta/TikTok/LinkedIn)?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "TOOL:ADS_GOOGLE",
+          "ask": {
+            "ro": "Folosiți Google Ads?",
+            "en": "Do you use Google Ads?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "TOOL:ADS_META",
+          "ask": {
+            "ro": "Folosiți Meta Ads (Facebook/Instagram)?",
+            "en": "Do you use Meta Ads (Facebook/Instagram)?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "TOOL:ADS_TIKTOK",
+          "ask": {
+            "ro": "Folosiți TikTok Ads?",
+            "en": "Do you use TikTok Ads?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "TOOL:ADS_LINKEDIN",
+          "ask": {
+            "ro": "Folosiți LinkedIn Ads?",
+            "en": "Do you use LinkedIn Ads?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "TOOL:GA4",
+          "ask": {
+            "ro": "Aveți Google Analytics 4 configurat?",
+            "en": "Do you have Google Analytics 4 set up?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "TOOL:GTM",
+          "ask": {
+            "ro": "Folosiți Google Tag Manager?",
+            "en": "Do you use Google Tag Manager?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "TOOL:GSC",
+          "ask": {
+            "ro": "Aveți acces la Google Search Console?",
+            "en": "Do you have Google Search Console access?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "TOOL:GBP",
+          "ask": {
+            "ro": "Aveți Google Business Profile (GMB)?",
+            "en": "Do you have Google Business Profile (GMB)?"
+          },
+          "required": false,
+          "type": "boolean"
+        },
+        {
+          "term": "CHANNEL:OWNED_EMAIL",
+          "ask": {
+            "ro": "Folosiți email marketing/CRM?",
+            "en": "Do you run email marketing/CRM?"
+          },
+          "required": false,
+          "type": "boolean"
+        }
+      ],
+      "on_complete": [
+        {
+          "when": {
+            "missing": [
+              "BUDGET:MONTHLY",
+              "BUDGET:DAILY"
+            ]
+          },
+          "goto": "INTENT:BUDGET"
+        },
+        {
+          "when": {
+            "any": [
+              "TOOL:ADS_GOOGLE",
+              "TOOL:ADS_META",
+              "TOOL:ADS_TIKTOK",
+              "TOOL:ADS_LINKEDIN"
+            ]
+          },
+          "goto": "INTENT:COMPETITORS"
+        },
+        {
+          "when": "else",
+          "goto": "INTENT:READINESS_CHECK"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:BUDGET",
+      "name": {
+        "en": "Budget",
+        "ro": "Buget"
+      },
+      "description": {
+        "en": "Collects budget info.",
+        "ro": "Colectează informații de buget."
+      },
+      "collect": [
+        {
+          "term": "BUDGET:MONTHLY",
+          "ask": {
+            "ro": "Care este bugetul lunar aproximativ pentru marketing plătit? (ex: 3000 RON)",
+            "en": "What's your approximate monthly paid marketing budget? (e.g., 3000 RON)"
+          },
+          "required": false,
+          "type": "currency",
+          "validate": "RULE:CURRENCY"
+        },
+        {
+          "term": "BUDGET:DAILY",
+          "ask": {
+            "ro": "Aveți și un buget zilnic pe campanii?",
+            "en": "Do you also use daily budgets per campaign?"
+          },
+          "required": false,
+          "type": "currency",
+          "validate": "RULE:CURRENCY"
+        }
+      ],
+      "on_complete": [
+        {
+          "when": {
+            "any": [
+              "TOOL:ADS_GOOGLE",
+              "TOOL:ADS_META",
+              "TOOL:ADS_TIKTOK",
+              "TOOL:ADS_LINKEDIN"
+            ]
+          },
+          "goto": "INTENT:COMPETITORS"
+        },
+        {
+          "when": "else",
+          "goto": "INTENT:READINESS_CHECK"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:COMPETITORS",
+      "name": {
+        "en": "Competitors",
+        "ro": "Competitori"
+      },
+      "description": {
+        "en": "Collects notable competitors for Auction Insights and benchmarking.",
+        "ro": "Colectează competitori notabili pentru Auction Insights și benchmark."
+      },
+      "collect": [
+        {
+          "term": "DIM:COMPETITOR",
+          "ask": {
+            "ro": "Îmi dai câțiva competitori notabili? (ex: domeniu sau nume)",
+            "en": "Could you name a few notable competitors? (domain or name)"
+          },
+          "required": false,
+          "type": "array[string]"
+        }
+      ],
+      "on_complete": [
+        {
+          "when": "else",
+          "goto": "INTENT:UPLOAD_REPORTS"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:UPLOAD_REPORTS",
+      "name": {
+        "en": "Upload Reports",
+        "ro": "Upload Rapoarte"
+      },
+      "description": {
+        "en": "Offers the user to upload performance exports for richer analysis.",
+        "ro": "Oferă posibilitatea de upload de rapoarte pentru analiză mai bogată."
+      },
+      "cta": [
+        {
+          "label": {
+            "ro": "Încarcă raport Google Ads",
+            "en": "Upload Google Ads report"
+          },
+          "action": "ACTION:UPLOAD",
+          "params": {
+            "platform": "PLAT:GADS"
+          }
+        },
+        {
+          "label": {
+            "ro": "Încarcă raport Meta/TikTok/LinkedIn",
+            "en": "Upload Meta/TikTok/LinkedIn report"
+          },
+          "action": "ACTION:UPLOAD",
+          "params": {
+            "platform": "PLAT:SOCIAL"
+          }
+        }
+      ],
+      "on_complete": [
+        {
+          "when": {
+            "any": [
+              "TOOL:ADS_GOOGLE",
+              "TOOL:ADS_META",
+              "TOOL:ADS_TIKTOK",
+              "TOOL:ADS_LINKEDIN",
+              "CHANNEL:SEO",
+              "CHANNEL:OWNED_EMAIL"
+            ]
+          },
+          "goto": "INTENT:READINESS_CHECK"
+        },
+        {
+          "when": "else",
+          "goto": "INTENT:READINESS_CHECK"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:READINESS_CHECK",
+      "name": {
+        "en": "Readiness Check",
+        "ro": "Verificare Readiness"
+      },
+      "description": {
+        "en": "Evaluates readiness rules and surfaces the appropriate CTA(s).",
+        "ro": "Evaluează regulile de readiness și afișează CTA-urile potrivite."
+      },
+      "evaluate_rules": [
+        {
+          "rule_code": "READINESS:MIN_AUDIT_GLOBAL",
+          "cta": {
+            "label": {
+              "ro": "Generează audit",
+              "en": "Generate audit"
+            },
+            "action": "ACTION:GENERATE_AUDIT",
+            "params": {
+              "scope": "GLOBAL"
+            }
+          }
+        },
+        {
+          "rule_code": "READINESS:ADS_AUDIT",
+          "cta": {
+            "label": {
+              "ro": "Audit Ads",
+              "en": "Audit Ads"
+            },
+            "action": "ACTION:GENERATE_AUDIT",
+            "params": {
+              "scope": "ADS"
+            }
+          }
+        },
+        {
+          "rule_code": "READINESS:SEO_AUDIT",
+          "cta": {
+            "label": {
+              "ro": "Audit SEO",
+              "en": "Audit SEO"
+            },
+            "action": "ACTION:GENERATE_AUDIT",
+            "params": {
+              "scope": "SEO"
+            }
+          }
+        },
+        {
+          "rule_code": "READINESS:EMAIL_AUDIT",
+          "cta": {
+            "label": {
+              "ro": "Audit Email",
+              "en": "Audit Email"
+            },
+            "action": "ACTION:GENERATE_AUDIT",
+            "params": {
+              "scope": "EMAIL"
+            }
+          }
+        },
+        {
+          "rule_code": "READINESS:ECOMM_AUDIT",
+          "cta": {
+            "label": {
+              "ro": "Audit E‑commerce",
+              "en": "Audit E‑commerce"
+            },
+            "action": "ACTION:GENERATE_AUDIT",
+            "params": {
+              "scope": "ECOMM"
+            }
+          }
+        }
+      ],
+      "on_complete": [
+        {
+          "when": "else",
+          "goto": "INTENT:AUDIT_SCOPE"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:AUDIT_SCOPE",
+      "name": {
+        "en": "Audit Scope Selection",
+        "ro": "Alegere Scop Audit"
+      },
+      "description": {
+        "en": "Lets the user choose audit scope when multiple are available.",
+        "ro": "Permite alegerea ariei de audit când sunt disponibile mai multe."
+      },
+      "collect": [
+        {
+          "term": "AUDIT:SCOPE",
+          "ask": {
+            "ro": "Ce audit vrei să generăm acum? (Global/Ads/SEO/Email/E‑comm)",
+            "en": "Which audit do you want to generate now? (Global/Ads/SEO/Email/E‑comm)"
+          },
+          "required": true,
+          "type": "enum",
+          "options": [
+            "GLOBAL",
+            "ADS",
+            "SEO",
+            "EMAIL",
+            "ECOMM"
+          ]
+        }
+      ],
+      "on_complete": [
+        {
+          "when": "else",
+          "goto": "INTENT:THANKS"
+        }
+      ]
+    },
+    {
+      "code": "INTENT:THANKS",
+      "name": {
+        "en": "Wrap‑up",
+        "ro": "Încheiere"
+      },
+      "description": {
+        "en": "Thanks the user and signals next steps.",
+        "ro": "Mulțumește utilizatorului și indică pașii următori."
+      },
+      "messages": {
+        "ro": [
+          "Mulțumesc! Pregătesc auditul și ți-l arăt în dashboard."
+        ],
+        "en": [
+          "Thanks! I’ll prepare the audit and show it in your dashboard."
+        ]
+      },
+      "on_complete": [
+        {
+          "when": "else",
+          "goto": "INTENT:WELCOME"
+        }
+      ]
+    }
+  ]
+}
