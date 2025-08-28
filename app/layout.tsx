@@ -28,6 +28,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="h-full">
+      <head>
+        {/* Favicon (use cb.png from /public) */}
+        <link rel="icon" href="/cb.png" />
+        <link rel="apple-touch-icon" href="/cb.png" />
+        <meta name="theme-color" content="#0F60F6" />
+      </head>
       <body className={`${inter.className} h-full bg-gray-50`}>
         {/* Header FIX */}
         <header className="fixed inset-x-0 top-0 z-40 h-[var(--header-h)] bg-white border-b">

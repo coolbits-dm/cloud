@@ -1,73 +1,48 @@
+// components/ui/BrandIcon.tsx
 'use client'
+
 import React from 'react'
-import {
-  siGoogleads,
-  siMeta,
-  siTiktok,
-  siLinkedin,
-  siX,
-  siGoogleanalytics,
-  siGoogletagmanager,
-  siGooglesearchconsole,
-  siZapier,
-  siSemrush,
-  siGoogle,
-  siGmail,
-} from 'simple-icons/icons'
-import { BrainCircuit, Users, Mail, Globe2 } from 'lucide-react'
+import { useState } from 'react'
+import { brandFile, brandLabel } from '@/lib/brand/brand'
+import type { BrandId } from '@/lib/brand/brand'
 
-type Props = { name: string; className?: string }
+export default function BrandIcon({
+  id,
+  size = 16,
+  title,
+  className = '',
+}: {
+  id: BrandId
+  size?: number
+  title?: string
+  className?: string
+}) {
+  const [broken, setBroken] = useState(false)
+  const src = brandFile(id)
+  const alt = title || brandLabel(id)
 
-/**
- * Renders brand SVGs (Simple Icons) with currentColor fill.
- * Falls back to Lucide for non-brand concepts.
- * Swap to your own /public/brands/cb-*.svg later (keep same API).
- */
-export default function BrandIcon({ name, className }: Props) {
-  // keep keys lowercase
-  const map: Record<string, { title: string; path: string } | null> = {
-    // Channels
-    google_ads: siGoogleads,
-    meta_ads: siMeta,
-    tiktok_ads: siTiktok,
-    linkedin_ads: siLinkedin,
-    x_ads: siX,
-    seo: siGoogle,     // generic G for organic; adjust anytime
-    email: siGmail,    // brand-y email mark; can swap to Lucide
-
-    // Tools
-    ga4: siGoogleanalytics,
-    gtm: siGoogletagmanager,
-    gsc: siGooglesearchconsole,
-    zapier: siZapier,
-    semrush: siSemrush,
-
-    // Concepts (null → Lucide below)
-    referral: null,
-    ai_optimization: null,
-  }
-
-  const icon = map[name]
-  if (icon) {
+  if (broken) {
+    // graceful fallback — first letter badge
     return (
-      <svg
-        role="img"
-        aria-label={icon.title}
-        viewBox="0 0 24 24"
-        className={className}
-        fill="currentColor"
+      <div
+        className={`inline-flex items-center justify-center rounded-md border text-[10px] ${className}`}
+        style={{ width: size, height: size }}
+        aria-label={alt}
+        title={alt}
       >
-        <path d={icon.path} />
-      </svg>
+        {alt?.[0] ?? '•'}
+      </div>
     )
   }
 
-  // Lucide fallbacks for concepts
-  const Fallback =
-    name === 'ai_optimization' ? BrainCircuit :
-    name === 'referral' ? Users :
-    name === 'email' ? Mail :
-    Globe2
-
-  return <Fallback className={className} />
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={size}
+      height={size}
+      className={`inline-block object-contain ${className}`}
+      onError={() => setBroken(true)}
+    />
+  )
 }

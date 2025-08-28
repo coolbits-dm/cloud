@@ -1,20 +1,25 @@
-// Brand accent colors used to tint icons (via currentColor).
-// Keep it subtle: we still use your blue/gray surfaces for buttons.
-export const BRAND_COLORS: Record<string, string> = {
-  google_ads: '#3C79E6',
-  meta_ads: '#0866FF',
-  tiktok_ads: '#000000',
-  linkedin_ads: '#0A66C2',
-  x_ads: '#000000',
-  seo: '#34A853',
-  email: '#EA4335',
+export type BrandPalette = {
+  bg: string   // fundal chip
+  fg: string   // text/fallback
+  border: string
+}
 
-  ga4: '#F9AB00',
-  gtm: '#1A73E8',
-  gsc: '#1A73E8',
-  zapier: '#FF4A00',
-  semrush: '#FF642D',
+export const BRAND_COLORS: Record<string, BrandPalette> = {
+  'google-ads': { bg: '#E8F0FE', fg: '#1A73E8', border: '#D2E3FC' },
+  meta:         { bg: '#EEF2FF', fg: '#2563EB', border: '#E0E7FF' },
+  tiktok:       { bg: '#ECFEFF', fg: '#0891B2', border: '#CFFAFE' },
+  linkedin:     { bg: '#E0F2FE', fg: '#0284C7', border: '#BAE6FD' },
+  x:            { bg: '#F4F4F5', fg: '#18181B', border: '#E4E4E7' },
+  seo:          { bg: '#F0FDF4', fg: '#16A34A', border: '#DCFCE7' },
+  email:        { bg: '#FEFCE8', fg: '#CA8A04', border: '#FEF9C3' },
+  referral:     { bg: '#FFF1F2', fg: '#E11D48', border: '#FFE4E6' },
+  'ai-optimization': { bg: '#F5F3FF', fg: '#7C3AED', border: '#EDE9FE' },
 
-  referral: '#6B7280',
-  ai_optimization: '#0EA5E9',
+  // fallback generic
+  default:      { bg: '#F3F4F6', fg: '#374151', border: '#E5E7EB' },
+}
+
+export function getBrandColors(brand?: string): BrandPalette {
+  if (!brand) return BRAND_COLORS.default
+  return BRAND_COLORS[brand] ?? BRAND_COLORS.default
 }

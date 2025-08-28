@@ -264,3 +264,32 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+
+/* --- View Transitions (progressive enhancement) --- */
+:root { view-transition-name: root; }
+
+/* Root cross-fade speed */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: ease;
+}
+
+/* Named regions (applied via classes below) */
+.cb-vt-chat   { view-transition-name: chat-panel; }
+.cb-vt-bmap   { view-transition-name: business-map; }
+.cb-vt-modal  { view-transition-name: ecosystem-modal; }
+
+/* Optional: slightly longer for panels */
+::view-transition-old(chat-panel),
+::view-transition-new(chat-panel),
+::view-transition-old(business-map),
+::view-transition-new(business-map) {
+  animation-duration: 260ms;
+}
+
+/* Modals feel snappier */
+::view-transition-old(ecosystem-modal),
+::view-transition-new(ecosystem-modal) {
+  animation-duration: 180ms;
+}

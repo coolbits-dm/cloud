@@ -19,7 +19,7 @@ export default function ChannelEcosystemModal() {
 
   function handleClose() {
     if (channel) {
-      const summary = getAndClearEcosystemSummary(channel)
+      const summary = getAndClearEcosystemSummary(channel as any)
       if (summary) {
         window.dispatchEvent(new CustomEvent('cb:ecosystem-summary', {
           detail: { channel, summary }
@@ -63,7 +63,7 @@ function labelForChannel(ch: ChannelKey | null): string {
     case 'seo': return 'Organic (SEO)'
     case 'email': return 'Email'
     case 'referral': return 'Referral'
-    case 'ai_optimization': return 'AI Optimization'
+    case 'ai_ops': return 'AI Ops'             // 🔁 renamed
     case 'ga4': return 'Google Analytics 4'
     case 'gtm': return 'Google Tag Manager'
     case 'gsc': return 'Google Search Console'

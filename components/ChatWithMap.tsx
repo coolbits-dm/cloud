@@ -5,7 +5,7 @@ import ChatWindow from '@/components/ChatWindow'
 
 export default function ChatWithMap() {
   return (
-    <div className="grid h-full gap-6 grid-cols-1 md:grid-cols-[minmax(560px,1fr)_400px]">
+    <div className="grid h-full grid-cols-1 md:grid-cols-[minmax(520px,1fr)_minmax(380px,440px)] gap-6">
       {/* Chat (left) */}
       <div className="h-full overflow-hidden">
         <ChatWindow className="h-full" />

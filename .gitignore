@@ -1,7 +1,25 @@
+# deps & build
+node_modules/
+.next/
+dist/
+out/
+coverage/
+logs/
+*.log
 
+# env
 .env
+.env.local
+.env.*.local
 .env.*
 !.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# helpers
+project-*.txt
 .project_tree.txt
-node_modules
-.next

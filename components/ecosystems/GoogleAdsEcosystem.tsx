@@ -12,39 +12,6 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   )
 }
 
-const TABS = ['overview','connect','uploads','tools','knowledge','settings'] as const
-type Tab = typeof TABS[number]
-
-export default function GoogleAdsEcosystem() {
-  const [tab, setTab] = useState<Tab>('overview')
-  useEffect(() => { setEcosystemSummary('google_ads', { viewedTab: tab }) }, [tab])
-
-  return (
-    <div className="p-2">
-      <div className="mb-3 flex flex-wrap gap-2">
-        {TABS.map(t => (
-          <button
-            key={t}
-            onClick={() => setTab(t)}
-            className={`rounded-lg border px-3 py-1.5 text-sm ${tab===t ? 'bg-gray-900 text-white' : 'bg-white hover:bg-gray-50'}`}
-          >
-            {label(t)}
-          </button>
-        ))}
-      </div>
-
-      {tab === 'overview'  && <OverviewTab />}
-      {tab === 'connect'   && <ConnectTab />}
-      {tab === 'uploads'   && <UploadsTab />}
-      {tab === 'tools'     && <ToolsTab />}
-      {tab === 'knowledge' && <KnowledgeTab />}
-      {tab === 'settings'  && <SettingsTab />}
-    </div>
-  )
-}
-
-function label(t: string) { return t.charAt(0).toUpperCase() + t.slice(1) }
-
 function Badge({ children, variant='default' }: { children: React.ReactNode; variant?: 'default'|'secondary'|'outline' }) {
   const map: Record<string,string> = {
     default: 'bg-gray-900 text-white',
@@ -59,17 +26,64 @@ function Button({ children, href, variant='default', ...rest }: any) {
   return <button className={`inline-flex items-center rounded-md px-3 py-1.5 text-sm ${cls}`} {...rest}>{children}</button>
 }
 
+/* ---------------- Tabs (headless) ---------------- */
+const TABS = ['overview','connect','uploads','tools','knowledge','settings'] as const
+type Tab = typeof TABS[number]
+
+export default function GoogleAdsEcosystem() {
+  const [tab, setTab] = useState<Tab>('overview')
+
+  useEffect(() => { setEcosystemSummary('google_ads', { viewedTab: tab }) }, [tab])
+
+  return (
+    <div className="p-2">
+      {/* Tabs header */}
+      <div className="mb-3 flex flex-wrap gap-2">
+        {TABS.map(t => (
+          <button
+            key={t}
+            onClick={() => setTab(t)}
+            className={`rounded-lg border px-3 py-1.5 text-sm ${tab===t ? 'bg-gray-900 text-white' : 'bg-white hover:bg-gray-50'}`}
+          >
+            {label(t)}
+          </button>
+        ))}
+      </div>
+
+      {/* Tabs content */}
+      {tab === 'overview' && <OverviewTab />}
+      {tab === 'connect' && <ConnectTab />}
+      {tab === 'uploads' && <UploadsTab />}
+      {tab === 'tools' && <ToolsTab />}
+      {tab === 'knowledge' && <KnowledgeTab />}
+      {tab === 'settings' && <SettingsTab />}
+    </div>
+  )
+}
+
+function label(t: string) { return t.charAt(0).toUpperCase() + t.slice(1) }
+
+/* ---------------- Overview ---------------- */
 function OverviewTab() {
   const [status, setStatus] = useState<{ linked: boolean; accounts?: any[] } | null>(null)
   const [tools, setTools] = useState<{ connected: string[]; possible: string[]; score: number } | null>(null)
 
   useEffect(() => {
-    fetch('/api/google-ads/auth/status').then(r=>r.json()).then((s) => {
-      setStatus(s); setEcosystemSummary('google_ads', { linked: !!s?.linked, accounts: s?.accounts || [] })
-    }).catch(() => setStatus({linked:false}))
-    fetch('/api/tools/status?channel=google_ads').then(r=>r.json()).then((t) => {
-      setTools(t); setEcosystemSummary('google_ads', { optimizationScore: t?.score, connectedTools: t?.connected })
-    }).catch(()=>{})
+    fetch('/api/google-ads/auth/status')
+      .then(r=>r.json())
+      .then((s) => {
+        setStatus(s)
+        setEcosystemSummary('google_ads', { linked: !!s?.linked })
+      })
+      .catch(() => setStatus({linked:false} as any))
+
+    fetch('/api/tools/status?channel=google_ads')
+      .then(r=>r.json())
+      .then((t) => {
+        setTools(t)
+        setEcosystemSummary('google_ads', { optimizationScore: t?.score, connectedTools: t?.connected })
+      })
+      .catch(()=>{})
   }, [])
 
   return (
@@ -82,12 +96,14 @@ function OverviewTab() {
           {status?.accounts?.length ? <span>{status.accounts.length} account(s) linked</span> : null}
         </div>
       </Section>
+
       <Section title="Optimization Score (tools)">
         <OptimizationBar connected={tools?.connected?.length ?? 0} total={tools?.possible?.length ?? 0} />
         <div className="mt-2 text-xs text-gray-500">
           Connected: {tools?.connected?.join(', ') || '—'}
         </div>
       </Section>
+
       <Section title="Quick Links">
         <div className="flex flex-wrap gap-2 text-sm">
           <Badge variant="secondary">MCC Dashboard</Badge>
@@ -115,6 +131,7 @@ function OptimizationBar({ connected, total }: { connected: number; total: numbe
   )
 }
 
+/* ---------------- Connect ---------------- */
 function ConnectTab() {
   function onConnectClick() {
     setEcosystemSummary('google_ads', { action: 'oauth_start_clicked' })
@@ -134,6 +151,7 @@ function ConnectTab() {
   )
 }
 
+/* ---------------- Uploads ---------------- */
 function UploadsTab() {
   const [busy, setBusy] = useState(false)
   const [count, setCount] = useState(0)
@@ -163,6 +181,7 @@ function UploadsTab() {
   )
 }
 
+/* ---------------- Tools ---------------- */
 function ToolsTab() {
   return (
     <div className="space-y-4">
@@ -186,6 +205,7 @@ function ToolsTab() {
   )
 }
 
+/* ---------------- Knowledge ---------------- */
 function KnowledgeTab() {
   return (
     <div className="space-y-4">
@@ -203,6 +223,7 @@ function KnowledgeTab() {
   )
 }
 
+/* ---------------- Settings ---------------- */
 function SettingsTab() {
   return (
     <div className="space-y-4">

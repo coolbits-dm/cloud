@@ -1,102 +1,71 @@
 'use client'
 
-import React, { useMemo } from 'react'
-import {
-  ChartBarIcon,
-  DevicePhoneMobileIcon,
-  BeakerIcon,
-  BriefcaseIcon,
-  HashtagIcon,
-  GlobeAltIcon,
-  EnvelopeIcon,
-  UserGroupIcon,
-  CpuChipIcon,
-} from '@heroicons/react/24/outline'
-import { useFacts } from '@/lib/facts/store'
-import {
-  type ChannelKey,
-  CHANNEL_LABELS,
-  deriveActiveChannels,
-  getChannelCompletion,
-} from '@/lib/channels/score'
+import React from 'react'
+import { useChannelModal } from '@/lib/store/useChannelModal'
+import { Badge } from '@/components/ui/badge'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import BrandIcon from '@/components/ui/BrandIcon'
+
+export type ChannelKey =
+  | 'google_ads'
+  | 'meta_ads'
+  | 'tiktok_ads'
+  | 'linkedin_ads'
+  | 'x_ads'
+  | 'seo'
+  | 'email'
+  | 'referral'
+  | 'ai_optimization'
 
 type Channel = {
   id: ChannelKey
   label: string
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  brand: string            // cheie pentru BrandIcon
   status: 'available' | 'coming_soon'
 }
 
-const CHANNELS: Channel[] = [
-  { id: 'google_ads',    label: CHANNEL_LABELS.google_ads,    icon: ChartBarIcon,          status: 'available' },
-  { id: 'meta_ads',      label: CHANNEL_LABELS.meta_ads,      icon: DevicePhoneMobileIcon, status: 'coming_soon' },
-  { id: 'tiktok_ads',    label: CHANNEL_LABELS.tiktok_ads,    icon: BeakerIcon,            status: 'coming_soon' },
-  { id: 'linkedin_ads',  label: CHANNEL_LABELS.linkedin_ads,  icon: BriefcaseIcon,         status: 'coming_soon' },
-  { id: 'x_ads',         label: CHANNEL_LABELS.x_ads,         icon: HashtagIcon,           status: 'coming_soon' },
-  { id: 'seo',           label: CHANNEL_LABELS.seo,           icon: GlobeAltIcon,          status: 'coming_soon' },
-  { id: 'email',         label: CHANNEL_LABELS.email,         icon: EnvelopeIcon,          status: 'coming_soon' },
-  { id: 'referral',      label: CHANNEL_LABELS.referral,      icon: UserGroupIcon,         status: 'coming_soon' },
-  { id: 'ai_optimization', label: CHANNEL_LABELS.ai_optimization, icon: CpuChipIcon,       status: 'coming_soon' },
+export const CHANNELS: Channel[] = [
+  { id: 'google_ads',      label: 'Google Ads',      brand: 'google-ads',      status: 'available' },
+  { id: 'meta_ads',        label: 'Meta Ads',        brand: 'meta',            status: 'coming_soon' },
+  { id: 'tiktok_ads',      label: 'TikTok Ads',      brand: 'tiktok',          status: 'coming_soon' },
+  { id: 'linkedin_ads',    label: 'LinkedIn Ads',    brand: 'linkedin',        status: 'coming_soon' },
+  { id: 'x_ads',           label: 'X Ads',           brand: 'x',               status: 'coming_soon' },
+  { id: 'seo',             label: 'Organic (SEO)',   brand: 'seo',             status: 'coming_soon' },
+  { id: 'email',           label: 'Email',           brand: 'email',           status: 'coming_soon' },
+  { id: 'referral',        label: 'Referral',        brand: 'referral',        status: 'coming_soon' },
+  { id: 'ai_optimization', label: 'AI Optimization', brand: 'ai-optimization', status: 'coming_soon' },
 ]
 
-export default function ChannelsDock({
-  onOpen,
-  className = '',
-}: {
-  onOpen: (id: ChannelKey) => void
-  className?: string
-}) {
-  const { facts } = useFacts()
-  const activeSet = useMemo(() => deriveActiveChannels(facts), [facts])
+export default function ChannelsDock() {
+  const open = useChannelModal(s => s.open)
 
   return (
-    <div
-      className={`grid gap-2
-        [grid-template-columns:repeat(auto-fit,minmax(160px,1fr))]
-        sm:[grid-template-columns:repeat(auto-fit,minmax(170px,1fr))]
-        ${className}`}
-    >
-      {CHANNELS.map((ch) => {
-        const Icon = ch.icon
-        const isActive = activeSet.has(ch.id)
-        const completion = getChannelCompletion(facts, ch.id)
-
-        const base =
-          'w-full min-w-0 min-h-[48px] inline-flex flex-col items-stretch rounded-xl border shadow-sm transition focus:outline-none'
-        const state = isActive
-          ? 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700'
-          : 'bg-white text-gray-900 hover:shadow-md'
-
-        return (
-          <button
-            key={ch.id}
-            onClick={() => onOpen(ch.id)}
-            title={isActive ? `${ch.label} (active)` : ch.label}
-            className={`${base} ${state}`}
-          >
-            <div className="flex items-center gap-2 px-3 pt-2 pb-1 text-[11.5px] sm:text-xs md:text-sm leading-tight">
-              <Icon className="h-4 w-4 shrink-0" />
-              <span className="flex-1 whitespace-normal break-words">{ch.label}</span>
-              {ch.status === 'coming_soon' && (
-                <span className={`ml-1 inline-flex items-center rounded-full border px-1.5 py-0.5 text-[10px] ${
-                  isActive ? 'border-white/40 text-white/90' : 'bg-gray-50 text-gray-600'
-                }`}>
-                  soon
-                </span>
-              )}
-            </div>
-            {/* progress bar only (no % text) */}
-            <div className="px-3 pb-2">
-              <div className={`h-1 w-full overflow-hidden rounded-full ${isActive ? 'bg-white/30' : 'bg-gray-200'}`}>
-                <div
-                  className={`h-1 rounded-full ${isActive ? 'bg-white' : 'bg-blue-600'}`}
-                  style={{ width: `${Math.min(100, completion)}%` }}
-                />
-              </div>
-            </div>
-          </button>
-        )
-      })}
-    </div>
+    <TooltipProvider>
+      <div className="flex flex-wrap items-center gap-2">
+        {CHANNELS.map(ch => {
+          const disabled = ch.status === 'coming_soon'
+          return (
+            <Tooltip key={ch.id}>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={() => open(ch.id)}
+                  className={[
+                    'inline-flex items-center gap-2 rounded-2xl px-3 py-2 text-sm border shadow-sm transition',
+                    disabled ? 'opacity-90 hover:opacity-100' : 'hover:shadow-md'
+                  ].join(' ')}
+                >
+                  <BrandIcon brand={ch.brand} size={16} variant="solid" />
+                  <span className="truncate max-w-[10rem]">{ch.label}</span>
+                  {disabled && <Badge variant="secondary" className="ml-1">soon</Badge>}
+                </button>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <p>{disabled ? 'Preview & roadmap' : 'Open ecosystem'}</p>
+              </TooltipContent>
+            </Tooltip>
+          )
+        })}
+      </div>
+    </TooltipProvider>
   )
 }
