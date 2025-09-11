@@ -140,6 +140,7 @@ jobs:
         echo "✅ Created branch: $BRANCH_NAME"
     
     - name: Apply policy recommendations
+      id: apply-recommendations
       run: |
         echo "🔧 Applying policy recommendations..."
         python -c "
@@ -203,6 +204,7 @@ jobs:
                 f.write(f'- {change}\n')
         
         print(f'✅ Applied {len(changes_made)} policy changes')
+        echo "changes=Policy changes applied successfully" >> $GITHUB_OUTPUT
         "
     
     - name: Debug matrix/outputs
