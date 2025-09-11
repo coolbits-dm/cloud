@@ -106,7 +106,7 @@ class PolicyPRValidator:
         # Check if Proof Pack exists
         proof_pack = self.repo_path / "proof_pack.zip"
         if not proof_pack.exists():
-            self.warnings.append("Proof Pack not found - may need regeneration")
+            self.errors.append("Proof Pack not found - regeneration required")
         else:
             print("  ✅ Proof Pack found")
             
