@@ -1,0 +1,25 @@
+name: Policy PR Bot
+on:
+  pull_request:
+    branches: [ main ]
+    paths-ignore:
+      - 'panel/**'
+      - 'artifacts/**'
+      - 'report/**'
+      - '**/*.md'
+      - '**/*.MD'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  policy-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "PR policy checks OK (placeholder)"

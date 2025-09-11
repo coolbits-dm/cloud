@@ -1,0 +1,10 @@
+name: noop-only
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Actions disabled by NUKE. Manual only.'
