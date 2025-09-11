@@ -5,7 +5,6 @@ Automated recovery from AI connection errors
 """
 
 import subprocess
-import time
 import os
 import sys
 from datetime import datetime
@@ -15,8 +14,8 @@ def main():
     print("=" * 80)
     print("🔧 CURSOR AI RECOVERY SCRIPT - COOL BITS SRL")
     print("=" * 80)
-    print(f"🏢 Company: COOL BITS SRL")
-    print(f"👤 CEO: Andrei")
+    print("🏢 Company: COOL BITS SRL")
+    print("👤 CEO: Andrei")
     print(f"📅 Recovery Date: {datetime.now().isoformat()}")
     print("=" * 80)
 

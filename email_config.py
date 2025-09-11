@@ -5,12 +5,10 @@
 Configure all mentioned email addresses for @Andrei and @oOutlook
 """
 
-import os
 import sys
 import json
 import logging
 from datetime import datetime
-from mail import oOutlookEmailManager
 
 # Configure logging
 logging.basicConfig(
@@ -223,7 +221,7 @@ AI Assistant: {self.ai_assistant}
             print(f"   📊 Priority: {config['priority']}")
             print(f"   📝 Description: {config['description']}")
             print(f"   🔗 Integration: {config['integration_status']}")
-            print(f"   ⚠️ Status: Awaiting @oVertex and @oGeminiCLI integration")
+            print("   ⚠️ Status: Awaiting @oVertex and @oGeminiCLI integration")
 
         print("=" * 80)
         print("📋 Pending emails ready for @oVertex and @oGeminiCLI integration")

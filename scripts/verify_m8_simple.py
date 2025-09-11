@@ -9,11 +9,12 @@ Verifies M8 - Data Governance & Backup completion (artifacts only)
 import sys
 from pathlib import Path
 
+
 def verify_m8_artifacts():
     """Verify all M8 artifacts exist"""
     print("🔍 Verifying M8 - Data Governance & Backup (Artifacts)")
     print("=" * 60)
-    
+
     # Required artifacts
     artifacts = [
         # Data governance
@@ -21,28 +22,23 @@ def verify_m8_artifacts():
         ("data/governance/retention_policies.md", "Data retention policies"),
         ("data/governance/data_subject_requests.md", "GDPR data subject requests"),
         ("terraform/labels.tf", "Data classification labels"),
-        
         # Backup scripts
         ("backup/backup_run.ps1", "Windows backup script"),
         ("backup/backup_run.sh", "Linux backup script"),
         ("backup/verify_backup.sh", "Backup verification script"),
-        
         # Restore scripts
         ("restore/restore_run.sh", "Restore test script"),
         ("restore/verify_post_restore.sh", "Post-restore verification"),
-        
         # GDPR compliance
         ("legal/PRIVACY.md", "Privacy policy"),
         ("legal/TERMS.md", "Terms of service"),
-        
         # Security and monitoring
         ("scripts/pii_scan.py", "PII scanner script"),
         ("monitoring/backup_monitoring.yaml", "Backup monitoring config"),
-        
         # Verification
-        ("scripts/verify_m8.py", "M8 verifier")
+        ("scripts/verify_m8.py", "M8 verifier"),
     ]
-    
+
     all_exist = True
     for artifact_path, description in artifacts:
         if Path(artifact_path).exists():
@@ -50,13 +46,14 @@ def verify_m8_artifacts():
         else:
             print(f"❌ {description}: {artifact_path} MISSING")
             all_exist = False
-    
+
     return all_exist
+
 
 def verify_script_executability():
     """Verify scripts are executable"""
     print("\n🔧 Verifying script executability...")
-    
+
     scripts = [
         "backup/backup_run.ps1",
         "backup/backup_run.sh",
@@ -64,9 +61,9 @@ def verify_script_executability():
         "restore/restore_run.sh",
         "restore/verify_post_restore.sh",
         "scripts/pii_scan.py",
-        "scripts/verify_m8.py"
+        "scripts/verify_m8.py",
     ]
-    
+
     all_executable = True
     for script in scripts:
         if Path(script).exists():
@@ -74,27 +71,28 @@ def verify_script_executability():
         else:
             print(f"❌ {script} missing")
             all_executable = False
-    
+
     return all_executable
+
 
 def verify_configuration_files():
     """Verify configuration files"""
     print("\n📋 Verifying configuration files...")
-    
+
     configs = [
         ("data/governance/data_map.md", "Data classification configuration"),
         ("data/governance/retention_policies.md", "Retention policies"),
         ("legal/PRIVACY.md", "Privacy policy"),
         ("legal/TERMS.md", "Terms of service"),
         ("terraform/labels.tf", "Terraform labels"),
-        ("monitoring/backup_monitoring.yaml", "Backup monitoring")
+        ("monitoring/backup_monitoring.yaml", "Backup monitoring"),
     ]
-    
+
     all_valid = True
     for config_path, description in configs:
         if Path(config_path).exists():
             try:
-                with open(config_path, 'r') as f:
+                with open(config_path, "r") as f:
                     content = f.read()
                     if len(content) > 100:  # Basic validation
                         print(f"✅ {description}: {config_path}")
@@ -106,23 +104,24 @@ def verify_configuration_files():
         else:
             print(f"❌ {description}: {config_path} MISSING")
             all_valid = False
-    
+
     return all_valid
+
 
 def main():
     """Main verification function"""
-    
+
     # Verify artifacts
     artifacts_ok = verify_m8_artifacts()
-    
+
     # Verify scripts
     scripts_ok = verify_script_executability()
-    
+
     # Verify configurations
     configs_ok = verify_configuration_files()
-    
+
     print("\n" + "=" * 60)
-    
+
     if artifacts_ok and scripts_ok and configs_ok:
         print("✅ M8 - Data Governance & Backup COMPLETAT!")
         print("🎯 Definition of Done:")
@@ -143,6 +142,7 @@ def main():
         print("❌ M8 verification failed")
         print("🔧 Fix missing artifacts before proceeding to M9")
         return 1
+
 
 if __name__ == "__main__":
     sys.exit(main())

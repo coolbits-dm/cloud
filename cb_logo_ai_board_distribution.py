@@ -7,7 +7,6 @@ COOL BITS SRL 🏢 - Internal Secret
 Distributes cb logo integration to all AI Board members
 """
 
-import os
 import json
 from datetime import datetime
 

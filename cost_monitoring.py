@@ -4,10 +4,6 @@ Cost Monitoring Script
 Monitor API usage and costs
 """
 
-import requests
-import json
-from datetime import datetime
-
 
 def check_openai_usage():
     """Check OpenAI usage"""

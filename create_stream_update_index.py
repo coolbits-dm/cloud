@@ -4,10 +4,7 @@ Create STREAM_UPDATE Index for Vertex AI RAG Engine
 Creates a proper STREAM_UPDATE index required for RAG Engine corpus creation
 """
 
-import os
-import sys
 from google.cloud import aiplatform
-from google.cloud.aiplatform import matching_engine
 from google.cloud.aiplatform.matching_engine import matching_engine_index_config
 
 
@@ -21,7 +18,7 @@ def create_stream_update_index():
     DESCRIPTION = "STREAM_UPDATE index for Vertex AI RAG Engine corpus creation"
     DIMENSIONS = 768  # text-embedding-004 dimensions
 
-    print(f"🚀 Creating STREAM_UPDATE index for RAG Engine...")
+    print("🚀 Creating STREAM_UPDATE index for RAG Engine...")
     print(f"Project: {PROJECT_ID}")
     print(f"Location: {LOCATION}")
     print(f"Display Name: {DISPLAY_NAME}")
@@ -114,9 +111,9 @@ def main():
         print("🔗 Index Details:")
         print(f"   Name: {index.display_name}")
         print(f"   ID: {index.resource_name}")
-        print(f"   Update Method: STREAM_UPDATE")
-        print(f"   Dimensions: 768")
-        print(f"   Distance Measure: DOT_PRODUCT_DISTANCE")
+        print("   Update Method: STREAM_UPDATE")
+        print("   Dimensions: 768")
+        print("   Distance Measure: DOT_PRODUCT_DISTANCE")
 
     else:
         print()

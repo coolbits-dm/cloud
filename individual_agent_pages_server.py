@@ -7,17 +7,12 @@ Author: oCopilot (oCursor)
 Date: September 6, 2025
 """
 
-import os
-import json
 import logging
-import asyncio
 import sqlite3
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Any
 from datetime import datetime
 import uuid
-import re
 import requests
-from urllib.parse import quote
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -447,14 +442,14 @@ async def perform_self_learning_cycle(
 
         # Step 1: Generate research question for this cycle
         research_prompt = f"""
-        You are {agent_data['name']}, a {agent_data['role']} at CoolBits.ai.
+        You are {agent_data["name"]}, a {agent_data["role"]} at CoolBits.ai.
         
         Learning Topic: {topic}
         Current Cycle: {cycle_number} of {total_cycles}
         
         Based on your role and the learning topic, generate ONE specific, focused research question for this cycle.
         The question should be:
-        - Directly relevant to your role as {agent_data['role']}
+        - Directly relevant to your role as {agent_data["role"]}
         - Specific and actionable
         - Different from what might be covered in other cycles
         - Focused on practical application at CoolBits.ai
@@ -470,7 +465,7 @@ async def perform_self_learning_cycle(
 
         # Step 3: Analyze and synthesize the information
         analysis_prompt = f"""
-        You are {agent_data['name']}, a {agent_data['role']} at CoolBits.ai.
+        You are {agent_data["name"]}, a {agent_data["role"]} at CoolBits.ai.
         
         Research Question: {research_question}
         Learning Topic: {topic}
@@ -493,7 +488,7 @@ async def perform_self_learning_cycle(
 
         # Generate analysis (mock implementation)
         analysis = f"""
-        **Key Insights for {agent_data['role']}:**
+        **Key Insights for {agent_data["role"]}:**
         Based on the research about {topic}, several critical insights emerge that are directly applicable to my role at CoolBits.ai.
         
         **Application to CoolBits.ai:**
@@ -582,7 +577,7 @@ async def answer_question(
     """Answer a question for self-training"""
     try:
         answer_prompt = f"""
-        As {agents[agent_id]['name']}, {agent_role} at CoolBits.ai, please answer this question:
+        As {agents[agent_id]["name"]}, {agent_role} at CoolBits.ai, please answer this question:
         
         Question: {question}
         

@@ -1,20 +1,18 @@
 # CoolBits.ai Windows MSI Installer Script
 # ========================================
 
-import os
-import sys
-import subprocess
 from pathlib import Path
+
 
 def create_msi_installer():
     """Create MSI installer for Windows"""
-    
+
     # Create installer directory
     installer_dir = Path("installer")
     installer_dir.mkdir(exist_ok=True)
-    
+
     # Create WiX configuration
-    wxs_content = '''<?xml version="1.0" encoding="UTF-8"?>
+    wxs_content = """<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Id="*" 
            Name="CoolBits.ai" 
@@ -140,19 +138,19 @@ def create_msi_installer():
     </InstallExecuteSequence>
     
   </Product>
-</Wix>'''
-    
+</Wix>"""
+
     # Write WiX file
     wxs_file = installer_dir / "CoolBitsAI.wxs"
-    with open(wxs_file, 'w') as f:
+    with open(wxs_file, "w") as f:
         f.write(wxs_content)
-    
+
     print(f"✅ Created WiX configuration: {wxs_file}")
-    
+
     # Create batch file for building
     build_script = installer_dir / "build.bat"
-    with open(build_script, 'w') as f:
-        f.write('''@echo off
+    with open(build_script, "w") as f:
+        f.write("""@echo off
 echo Building CoolBits.ai MSI Installer...
 
 REM Check if WiX is installed
@@ -184,13 +182,14 @@ if %errorlevel% neq 0 (
 
 echo ✅ MSI installer created: CoolBitsAI.msi
 pause
-''')
-    
+""")
+
     print(f"✅ Created build script: {build_script}")
     print("📝 To build MSI installer:")
     print("1. Install WiX Toolset v3.11+ from https://wixtoolset.org/releases/")
     print("2. Run: cd installer && build.bat")
     print("3. MSI will be created as CoolBitsAI.msi")
+
 
 if __name__ == "__main__":
     create_msi_installer()

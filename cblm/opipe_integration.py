@@ -9,7 +9,7 @@ import yaml
 import json
 import logging
 from datetime import datetime
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from pathlib import Path
 
 # Configure logging
@@ -246,8 +246,8 @@ def main():
     report = integration.generate_integration_report()
 
     if report:
-        print(f"✅ Integration report generated successfully!")
-        print(f"📁 Report saved: cblm/opipe_integration_report.json")
+        print("✅ Integration report generated successfully!")
+        print("📁 Report saved: cblm/opipe_integration_report.json")
     else:
         print("❌ Failed to generate integration report")
 

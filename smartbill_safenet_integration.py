@@ -179,28 +179,28 @@ class SmartBillSafeNetIntegration:
 INVOICE DOCUMENT - COOL BITS S.R.L.
 =====================================
 
-Invoice Number: {invoice_data.get('invoice_number')}
-Issue Date: {invoice_data.get('issue_date')}
-Due Date: {invoice_data.get('due_date')}
+Invoice Number: {invoice_data.get("invoice_number")}
+Issue Date: {invoice_data.get("issue_date")}
+Due Date: {invoice_data.get("due_date")}
 
 CLIENT INFORMATION:
 -------------------
-Name: {invoice_data.get('client_name')}
-CUI: {invoice_data.get('client_cui')}
-Address: {invoice_data.get('client_address')}
+Name: {invoice_data.get("client_name")}
+CUI: {invoice_data.get("client_cui")}
+Address: {invoice_data.get("client_address")}
 
 COMPANY INFORMATION:
 --------------------
 Name: {self.company}
 CUI: {self.company_cui}
 Registration: {self.company_registration}
-Address: {self.safenet_config['company_info']['address']}
+Address: {self.safenet_config["company_info"]["address"]}
 
 INVOICE DETAILS:
 ----------------
-Subtotal: {invoice_data.get('subtotal')} {invoice_data.get('currency', 'RON')}
-VAT Total: {invoice_data.get('vat_total')} {invoice_data.get('currency', 'RON')}
-Total Amount: {invoice_data.get('total_amount')} {invoice_data.get('currency', 'RON')}
+Subtotal: {invoice_data.get("subtotal")} {invoice_data.get("currency", "RON")}
+VAT Total: {invoice_data.get("vat_total")} {invoice_data.get("currency", "RON")}
+Total Amount: {invoice_data.get("total_amount")} {invoice_data.get("currency", "RON")}
 
 ITEMS:
 -------
@@ -209,17 +209,17 @@ ITEMS:
         # Adaugă articolele
         for item in invoice_data.get("items", []):
             document_content += f"""
-- {item.get('description')}
-  Quantity: {item.get('quantity')}
-  Unit Price: {item.get('unit_price')} {invoice_data.get('currency', 'RON')}
-  VAT Rate: {item.get('vat_rate')}%
-  Total: {item.get('total_price')} {invoice_data.get('currency', 'RON')}
+- {item.get("description")}
+  Quantity: {item.get("quantity")}
+  Unit Price: {item.get("unit_price")} {invoice_data.get("currency", "RON")}
+  VAT Rate: {item.get("vat_rate")}%
+  Total: {item.get("total_price")} {invoice_data.get("currency", "RON")}
 """
 
         document_content += f"""
 =====================================
 Document Hash: {self._calculate_document_hash(document_content)}
-Signing Purpose: {self.safenet_config['signing_purpose']}
+Signing Purpose: {self.safenet_config["signing_purpose"]}
 Security Level: L4 (Critical)
 Timestamp: {datetime.now().isoformat()}
 =====================================

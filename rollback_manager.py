@@ -1,14 +1,13 @@
 # CoolBits.ai Rollback Script
 # ============================
 
-import os
 import sys
 import time
 import json
 import requests
 import subprocess
 import argparse
-from typing import Dict, List, Optional
+from typing import Optional
 from dataclasses import dataclass
 from datetime import datetime
 

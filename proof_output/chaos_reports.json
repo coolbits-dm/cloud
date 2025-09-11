@@ -1,0 +1,72 @@
+{
+  "reports": [
+    {
+      "size": 552,
+      "modified": "2025-09-11T08:19:23Z",
+      "file": "cpu_spike_20250911_081923.md"
+    },
+    {
+      "size": 553,
+      "modified": "2025-09-11T09:28:50Z",
+      "file": "cpu_spike_20250911_092850.md"
+    },
+    {
+      "size": 450,
+      "modified": "2025-09-11T07:12:53Z",
+      "file": "network_latency_20250911_071253.md"
+    },
+    {
+      "size": 501,
+      "modified": "2025-09-11T07:19:57Z",
+      "file": "network_latency_20250911_071957.md"
+    },
+    {
+      "size": 558,
+      "modified": "2025-09-11T08:11:08Z",
+      "file": "network_latency_20250911_081108.md"
+    },
+    {
+      "size": 558,
+      "modified": "2025-09-11T09:20:45Z",
+      "file": "network_latency_20250911_092045.md"
+    },
+    {
+      "size": 80,
+      "modified": "2025-09-11T08:11:11Z",
+      "file": "service_kill_20250911_081111.md"
+    },
+    {
+      "size": 554,
+      "modified": "2025-09-11T08:16:46Z",
+      "file": "service_kill_20250911_081646.md"
+    },
+    {
+      "size": 556,
+      "modified": "2025-09-11T09:26:15Z",
+      "file": "service_kill_20250911_092615.md"
+    }
+  ],
+  "report_count": 9,
+  "latest_reports": [
+    {
+      "content": "# Chaos Experiment Report: cpu_spike\r\n\r\n## Summary\r\n- **Verdict**: PASS\r\n- **Duration**: 154.2 seconds\r\n- **Reason**: SLO thresholds met\r\n\r\n## SLO Measurements\r\n### Before Experiment\r\n- P95 Latency: 118.1ms\r\n- Error Rate: 0.003\r\n- Availability: 0.997\r\n\r\n### After Experiment\r\n- P95 Latency: 139.5ms\r\n- Error Rate: 0.002\r\n- Availability: 0.996\r\n\r\n## Actions Taken\r\n\r\n\r\n## Scenario Configuration\r\n- **Target Service**: coolbits-frontend\r\n- **Duration**: 120s\r\n- **SLO Thresholds**: P95 < 400ms, Error Rate < 0.01\r\n\r\nGenerated: 2025-09-11T09:28:50.166705\r\n",
+      "file": "cpu_spike_20250911_092850.md"
+    },
+    {
+      "content": "# Chaos Experiment Report: service_kill\r\n\r\n## Summary\r\n- **Verdict**: PASS\r\n- **Duration**: 330.0 seconds\r\n- **Reason**: SLO thresholds met\r\n\r\n## SLO Measurements\r\n### Before Experiment\r\n- P95 Latency: 142.2ms\r\n- Error Rate: 0.007\r\n- Availability: 0.996\r\n\r\n### After Experiment\r\n- P95 Latency: 134.3ms\r\n- Error Rate: 0.009\r\n- Availability: 0.997\r\n\r\n## Actions Taken\r\n\r\n\r\n## Scenario Configuration\r\n- **Target Service**: coolbits-frontend\r\n- **Duration**: 300s\r\n- **SLO Thresholds**: P95 < 400ms, Error Rate < 0.01\r\n\r\nGenerated: 2025-09-11T09:26:15.598583\r\n",
+      "file": "service_kill_20250911_092615.md"
+    },
+    {
+      "content": "# Chaos Experiment Report: network_latency\r\n\r\n## Summary\r\n- **Verdict**: PASS\r\n- **Duration**: 210.0 seconds\r\n- **Reason**: SLO thresholds met\r\n\r\n## SLO Measurements\r\n### Before Experiment\r\n- P95 Latency: 97.9ms\r\n- Error Rate: 0.009\r\n- Availability: 0.997\r\n\r\n### After Experiment\r\n- P95 Latency: 126.6ms\r\n- Error Rate: 0.008\r\n- Availability: 0.997\r\n\r\n## Actions Taken\r\n\r\n\r\n## Scenario Configuration\r\n- **Target Service**: coolbits-frontend\r\n- **Duration**: 180s\r\n- **SLO Thresholds**: P95 < 400ms, Error Rate < 0.01\r\n\r\nGenerated: 2025-09-11T09:20:45.220458\r\n",
+      "file": "network_latency_20250911_092045.md"
+    },
+    {
+      "content": "# Chaos Experiment Report: cpu_spike\r\n\r\n## Summary\r\n- **Verdict**: PASS\r\n- **Duration**: 154.2 seconds\r\n- **Reason**: SLO thresholds met\r\n\r\n## SLO Measurements\r\n### Before Experiment\r\n- P95 Latency: 134.9ms\r\n- Error Rate: 0.002\r\n- Availability: 0.996\r\n\r\n### After Experiment\r\n- P95 Latency: 73.3ms\r\n- Error Rate: 0.001\r\n- Availability: 0.997\r\n\r\n## Actions Taken\r\n\r\n\r\n## Scenario Configuration\r\n- **Target Service**: coolbits-frontend\r\n- **Duration**: 120s\r\n- **SLO Thresholds**: P95 < 400ms, Error Rate < 0.01\r\n\r\nGenerated: 2025-09-11T08:19:23.629281\r\n",
+      "file": "cpu_spike_20250911_081923.md"
+    },
+    {
+      "content": "# Chaos Experiment Report: service_kill\r\n\r\n## Summary\r\n- **Verdict**: PASS\r\n- **Duration**: 330.0 seconds\r\n- **Reason**: SLO thresholds met\r\n\r\n## SLO Measurements\r\n### Before Experiment\r\n- P95 Latency: 68.1ms\r\n- Error Rate: 0.002\r\n- Availability: 0.997\r\n\r\n### After Experiment\r\n- P95 Latency: 67.7ms\r\n- Error Rate: 0.007\r\n- Availability: 0.995\r\n\r\n## Actions Taken\r\n\r\n\r\n## Scenario Configuration\r\n- **Target Service**: coolbits-frontend\r\n- **Duration**: 300s\r\n- **SLO Thresholds**: P95 < 400ms, Error Rate < 0.01\r\n\r\nGenerated: 2025-09-11T08:16:46.854958\r\n",
+      "file": "service_kill_20250911_081646.md"
+    }
+  ]
+}

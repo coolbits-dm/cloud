@@ -10,12 +10,9 @@ import logging
 import hashlib
 import hmac
 from datetime import datetime, timedelta
-from typing import Dict, List, Any, Optional, Tuple
+from typing import Dict, List, Any
 from dataclasses import dataclass, asdict
 from enum import Enum
-import subprocess
-import tempfile
-import shutil
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -183,7 +180,7 @@ class SafeNetIntegrationManager:
                 certificate_id=certificate_id,
                 certificate_type=certificate_type,
                 security_level=security_level,
-                subject_name=f"CN=COOL BITS S.R.L., O=COOL BITS S.R.L., C=RO",
+                subject_name="CN=COOL BITS S.R.L., O=COOL BITS S.R.L., C=RO",
                 issuer_name="THALES SafeNet CA",
                 serial_number=f"CB{int(datetime.now().timestamp())}",
                 valid_from=datetime.now(),

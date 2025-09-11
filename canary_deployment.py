@@ -8,7 +8,7 @@ import json
 import requests
 import subprocess
 import argparse
-from typing import Dict, List, Optional
+from typing import Dict
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 
@@ -131,7 +131,7 @@ class CanaryDeployment:
         )
 
         # Wait for canary to be ready
-        self._wait_for_health(f"http://localhost:8503")
+        self._wait_for_health("http://localhost:8503")
 
         # Configure load balancer for canary traffic
         self._configure_load_balancer()

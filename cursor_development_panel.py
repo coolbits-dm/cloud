@@ -5,13 +5,8 @@ Cursor AI Assistant - Development Panel Integration
 SC COOL BITS SRL - Full Development Integration
 """
 
-import os
-import sys
-import json
-import subprocess
-import time
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 from pathlib import Path
 
 

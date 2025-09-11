@@ -5,14 +5,10 @@ CoolBits.ai System Console with nVidia GPU Integration
 SC COOL BITS SRL - Hardware monitoring and processing
 """
 
-import os
-import sys
-import json
 import subprocess
 import psutil
-import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any
 
 
 class CoolBitsSystemConsole:

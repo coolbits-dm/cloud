@@ -12,7 +12,7 @@ import os
 import json
 import yaml
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any, Optional
 
 
 class CorporateEntitiesManager:

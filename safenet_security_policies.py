@@ -11,8 +11,6 @@ from datetime import datetime, timedelta
 from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass, asdict
 from enum import Enum
-import hashlib
-import hmac
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -621,7 +619,7 @@ def main():
         print(f"    Rules: {len(policy.rules)}")
 
     # Test policy validation
-    print(f"\n🔍 Testing Policy Validation:")
+    print("\n🔍 Testing Policy Validation:")
 
     # Test certificate operation
     cert_details = {
@@ -652,7 +650,7 @@ def main():
             print(f"    - {violation}")
 
     # Generate compliance report
-    print(f"\n📊 Compliance Report:")
+    print("\n📊 Compliance Report:")
     compliance_report = policy_manager.generate_compliance_report()
     print(f"  Overall Status: {compliance_report.overall_status.value}")
     print(f"  Total Events: {compliance_report.audit_summary['total_events']}")

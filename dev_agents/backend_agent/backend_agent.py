@@ -5,12 +5,8 @@ Backend Development Agent
 SC COOL BITS SRL - Specialized Backend Development
 """
 
-import os
-import sys
-import json
-import requests
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 from fastapi import FastAPI, HTTPException
 import uvicorn
 

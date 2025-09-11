@@ -12,7 +12,6 @@ Company: COOL BITS SRL
 """
 
 import os
-import sys
 import getpass
 import hashlib
 import time
@@ -38,14 +37,14 @@ class SecureStrManager:
     def request_pin(self) -> Optional[str]:
         """Request PIN from user with Microsoft account context"""
         # Non-interactive mode - skip PIN request
-        if os.getenv('CI') == '1' or os.getenv('NO_COLOR') == '1':
+        if os.getenv("CI") == "1" or os.getenv("NO_COLOR") == "1":
             print("🔐 Non-interactive mode: PIN request skipped")
             return None
-            
-        print(f"🔐 Secure Access Required")
+
+        print("🔐 Secure Access Required")
         print(f"📧 Microsoft Account: {self.microsoft_account}")
         print(f"📁 File: {self.str_path}")
-        print(f"⚠️  PIN required for edit operations")
+        print("⚠️  PIN required for edit operations")
 
         for attempt in range(self.max_attempts):
             try:
@@ -104,7 +103,7 @@ class SecureStrManager:
                 f.write(content)
 
             print(f"✅ Successfully wrote {len(content)} characters to str.py")
-            print(f"🔐 PIN verified for write operation")
+            print("🔐 PIN verified for write operation")
             return True
 
         except Exception as e:
@@ -160,7 +159,7 @@ def main():
             if choice == "1":
                 content = manager.read_str()
                 if content:
-                    print(f"\n📄 Content preview (first 200 chars):")
+                    print("\n📄 Content preview (first 200 chars):")
                     print("-" * 50)
                     print(content[:200] + "..." if len(content) > 200 else content)
                     print("-" * 50)
@@ -174,7 +173,7 @@ def main():
 
             elif choice == "3":
                 info = manager.get_file_info()
-                print(f"\n📋 File Information:")
+                print("\n📋 File Information:")
                 for key, value in info.items():
                     print(f"   {key}: {value}")
 

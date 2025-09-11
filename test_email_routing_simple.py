@@ -5,7 +5,6 @@
 Simple test script for email routing configuration
 """
 
-import os
 import sys
 import json
 import logging
@@ -68,7 +67,7 @@ class EmailRoutingTester:
         print("=" * 80)
         print(f"Total emails tested: {len(test_results)}")
         print(f"Successful tests: {len(test_results)}")
-        print(f"Failed tests: 0")
+        print("Failed tests: 0")
         print("=" * 80)
 
         # Save test results
@@ -83,7 +82,7 @@ class EmailRoutingTester:
         logger.info("Generating test email template...")
 
         template = f"""
-Subject: CoolBits.ai Email Routing Test - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Subject: CoolBits.ai Email Routing Test - {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
 Dear {self.ceo},
 

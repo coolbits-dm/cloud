@@ -5,8 +5,7 @@ CoolBits.ai - Automatically select the best model based on context and cost
 """
 
 import yaml
-import json
-from typing import Dict, List, Optional
+from typing import Dict
 
 
 class SmartModelSelector:
@@ -99,7 +98,7 @@ class SmartModelSelector:
                 print(f"{tier:12} | {provider:6} | {model:15} | ${cost:.6f}")
 
         print("=" * 50)
-        print(f"💡 Recommendation: Use development tier for 90%+ cost savings!")
+        print("💡 Recommendation: Use development tier for 90%+ cost savings!")
 
 
 def main():
@@ -113,7 +112,7 @@ def main():
     selector.print_cost_comparison(1000)
 
     # Example selections
-    print(f"\n🎯 Example Model Selections:")
+    print("\n🎯 Example Model Selections:")
     print("=" * 40)
 
     examples = [
@@ -128,8 +127,8 @@ def main():
             f"Context: {example['context']:12} | Model: {selection['model']:15} | Cost: ${selection['cost_per_1m']:.2f}/1M"
         )
 
-    print(f"\n✅ Smart model selection configured!")
-    print(f"🚀 Use this system to automatically select cost-optimized models!")
+    print("\n✅ Smart model selection configured!")
+    print("🚀 Use this system to automatically select cost-optimized models!")
 
 
 if __name__ == "__main__":

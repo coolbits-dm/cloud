@@ -1,7 +1,7 @@
 # Individual industry endpoints for CoolBits.ai
 # Each industry gets its own dedicated API endpoint
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import HTTPException, Depends
 from pydantic import BaseModel
 from typing import Optional, Dict
 import logging

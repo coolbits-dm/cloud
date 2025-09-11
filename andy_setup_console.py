@@ -9,7 +9,6 @@ import json
 import sqlite3
 import logging
 import os
-import shutil
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
@@ -493,7 +492,9 @@ class AndySetupConsole:
             "status": (
                 "completed"
                 if completed_tasks == total_tasks
-                else "in_progress" if in_progress_tasks > 0 else "not_started"
+                else "in_progress"
+                if in_progress_tasks > 0
+                else "not_started"
             ),
         }
 

@@ -10,8 +10,6 @@ import logging
 import websockets
 import yaml
 from datetime import datetime
-from pathlib import Path
-import os
 
 # Configure logging
 logging.basicConfig(

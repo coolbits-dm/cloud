@@ -4,14 +4,11 @@ API Cost Dashboard Server
 CoolBits.ai - Real-time cost monitoring and optimization
 """
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse
 import uvicorn
-import json
-import os
 from datetime import datetime
-from typing import Dict, List
 
 app = FastAPI(title="CoolBits.ai API Cost Dashboard", version="1.0.0")
 

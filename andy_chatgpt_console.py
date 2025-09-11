@@ -9,10 +9,7 @@ from fastapi import FastAPI, Request, WebSocket, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 import uvicorn
 import json
-import asyncio
-from datetime import datetime
-from typing import Dict, List, Any, Optional
-import uuid
+from typing import Dict, List
 
 # Import our internal systems
 from andy_internal_chat_system import (

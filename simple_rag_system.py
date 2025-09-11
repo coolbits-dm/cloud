@@ -7,7 +7,6 @@ Author: oCopilot (oCursor)
 Date: September 6, 2025
 """
 
-import os
 import json
 import logging
 import sqlite3

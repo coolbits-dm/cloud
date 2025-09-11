@@ -18,7 +18,7 @@ import time
 import uuid
 import re
 import unicodedata
-from typing import Dict, Any, Optional, Union
+from typing import Dict, Any
 from datetime import datetime
 
 # GPU Detection

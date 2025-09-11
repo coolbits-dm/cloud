@@ -4,10 +4,9 @@ Create real RAG infrastructure for all industries using Vertex AI Search (Discov
 This creates actual Search Apps, Data Stores, and Cloud Storage buckets
 """
 
-import os
 import json
 import time
-from typing import Dict, List, Optional
+from typing import Dict
 from google.cloud import discoveryengine_v1beta as discoveryengine
 from google.cloud import storage
 from google.cloud import secretmanager
@@ -108,16 +107,16 @@ class RealIndustryRAGManager:
             industry_info = self.industries[industry_id]
 
             # Create sample document
-            sample_content = f"""# {industry_info['name']} Industry Documentation
+            sample_content = f"""# {industry_info["name"]} Industry Documentation
 
 ## Industry Overview
-{industry_info['description']}
+{industry_info["description"]}
 
 ## Key Topics
-{', '.join(industry_info['keywords'])}
+{", ".join(industry_info["keywords"])}
 
 ## Sample Content
-This is a sample document for the {industry_info['name']} industry RAG system.
+This is a sample document for the {industry_info["name"]} industry RAG system.
 It contains placeholder content that should be replaced with actual industry-specific documentation.
 
 ## Industry-Specific Information
@@ -127,7 +126,7 @@ It contains placeholder content that should be replaced with actual industry-spe
 - Technology solutions
 - Case studies and examples
 
-Generated for CoolBits.ai RAG system on {time.strftime('%Y-%m-%d %H:%M:%S')}
+Generated for CoolBits.ai RAG system on {time.strftime("%Y-%m-%d %H:%M:%S")}
 """
 
             # Upload sample document
@@ -299,7 +298,7 @@ def main():
     successful = sum(1 for result in results.values() if result["success"])
     total = len(results)
 
-    print(f"\n📊 RAG Setup Summary:")
+    print("\n📊 RAG Setup Summary:")
     print(f"✅ Successful: {successful}/{total}")
     print(f"❌ Failed: {total - successful}/{total}")
 
@@ -319,7 +318,7 @@ def main():
     with open("rag_setup_results.json", "w") as f:
         json.dump(results, f, indent=2)
 
-    print(f"\n📄 Results saved to: rag_setup_results.json")
+    print("\n📄 Results saved to: rag_setup_results.json")
 
 
 if __name__ == "__main__":

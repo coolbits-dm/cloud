@@ -7,15 +7,11 @@ Author: oCopilot (oCursor)
 Date: September 6, 2025
 """
 
-import os
-import json
 import logging
 from typing import Dict, List, Optional, Any
-from pathlib import Path
 from datetime import datetime
-import asyncio
 import aiohttp
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import uvicorn
@@ -126,14 +122,14 @@ class MultiDomainRAGManager:
         # Base role document
         documents.append(
             f"""
-        Role: {role_data['name']}
-        Category: {role_data['category']}
-        Level: {role_data['level']}
-        Responsibilities: {', '.join(role_data['responsibilities'])}
-        Permissions: {', '.join(role_data['permissions'])}
+        Role: {role_data["name"]}
+        Category: {role_data["category"]}
+        Level: {role_data["level"]}
+        Responsibilities: {", ".join(role_data["responsibilities"])}
+        Permissions: {", ".join(role_data["permissions"])}
         
-        This role is responsible for {role_data['category'].lower()} operations
-        and has {role_data['level']} level access to the organization.
+        This role is responsible for {role_data["category"].lower()} operations
+        and has {role_data["level"]} level access to the organization.
         """
         )
 
@@ -181,10 +177,10 @@ class MultiDomainRAGManager:
         # Base industry document
         documents.append(
             f"""
-        Industry: {industry_data['name']}
-        Description: {industry_data['description']}
+        Industry: {industry_data["name"]}
+        Description: {industry_data["description"]}
         
-        This industry focuses on {industry_data['description'].lower()}
+        This industry focuses on {industry_data["description"].lower()}
         and requires specialized knowledge and expertise.
         """
         )

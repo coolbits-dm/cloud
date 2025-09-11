@@ -11,12 +11,10 @@ Author: oSafeNet Agent (oCursor)
 Company: COOL BITS SRL
 """
 
-import os
-import sys
 import subprocess
 import json
 from datetime import datetime
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 from pathlib import Path
 
 
@@ -267,7 +265,7 @@ def main():
     report = security_manager.generate_security_report()
 
     # Display certificate status
-    print(f"\n📜 Certificate Status:")
+    print("\n📜 Certificate Status:")
     cert_status = report["certificate_status"]
     if cert_status["status"] == "verified":
         print(f"   ✅ Status: {cert_status['status']}")
@@ -280,7 +278,7 @@ def main():
         print(f"   ⚠️  Error: {cert_status.get('error', 'Unknown')}")
 
     # Display str.py security status
-    print(f"\n📁 str.py Security Status:")
+    print("\n📁 str.py Security Status:")
     str_status = report["str_security_status"]
     if str_status["status"] == "secure":
         print(f"   ✅ Status: {str_status['status']}")
@@ -294,7 +292,7 @@ def main():
         print(f"   ⚠️  Error: {str_status.get('error', 'Unknown')}")
 
     # Display recommendations
-    print(f"\n💡 Security Recommendations:")
+    print("\n💡 Security Recommendations:")
     for i, rec in enumerate(report["recommendations"], 1):
         print(f"   {i}. {rec}")
 

@@ -5,7 +5,6 @@ Gmail Transfer Test Script
 Test email transfer functionality with authorized Gmail account
 """
 
-import os
 import sys
 import json
 import logging
@@ -164,7 +163,7 @@ class GmailTransferTester:
         print("=" * 80)
         print(f"✅ Authorization Test: {'PASSED' if auth_test else 'FAILED'}")
         print(f"✅ Connection Test: {'PASSED' if conn_test else 'FAILED'}")
-        print(f"📊 Report Generated: gmail_transfer_report.json")
+        print("📊 Report Generated: gmail_transfer_report.json")
         print("=" * 80)
 
         logger.info("🎉 Complete Gmail transfer test finished successfully")

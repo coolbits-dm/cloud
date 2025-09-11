@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai M9 Security Hardening Verification Script
 # =====================================================
 
@@ -173,3 +175,10 @@ Write-Info "✅ OPA policies configured"
 Write-Info "✅ No CVE failures"
 Write-Info "✅ Pen-test scope defined"
 Write-Info "✅ Security hardening complete"
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+
+

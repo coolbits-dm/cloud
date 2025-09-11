@@ -5,10 +5,8 @@ Adds Meta App ID and owner information to Google Cloud Secret Manager and Polici
 """
 
 import json
-import subprocess
-import time
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class MetaGoogleSecretsIntegration:
@@ -114,7 +112,7 @@ class MetaGoogleSecretsIntegration:
         print(
             f"🔑 Creating Meta API Keys secret: {self.meta_secrets['meta_api_keys']['secret_name']}"
         )
-        print(f"   Status: Placeholder (TBD)")
+        print("   Status: Placeholder (TBD)")
         print(f"   Owner: {self.meta_secrets['meta_api_keys']['owner']}")
 
         secrets_creation["secrets"]["meta_api_keys"] = {
@@ -130,7 +128,7 @@ class MetaGoogleSecretsIntegration:
         print(
             f"🔗 Creating Meta Webhook secret: {self.meta_secrets['meta_webhook_secret']['secret_name']}"
         )
-        print(f"   Status: Placeholder (TBD)")
+        print("   Status: Placeholder (TBD)")
         print(f"   Owner: {self.meta_secrets['meta_webhook_secret']['owner']}")
 
         secrets_creation["secrets"]["meta_webhook_secret"] = {

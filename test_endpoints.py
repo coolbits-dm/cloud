@@ -6,7 +6,6 @@ Tests all endpoints to ensure they're working properly
 """
 
 import requests
-import json
 from datetime import datetime
 
 
@@ -60,9 +59,9 @@ def test_endpoints():
 
     print()
     print("📊 Endpoint Summary:")
-    print(f"• API Status: http://localhost:3001/api/status")
-    print(f"• Board Members: http://localhost:3001/api/board/members")
-    print(f"• Admin Console: http://localhost:3001/")
+    print("• API Status: http://localhost:3001/api/status")
+    print("• Board Members: http://localhost:3001/api/board/members")
+    print("• Admin Console: http://localhost:3001/")
 
 
 if __name__ == "__main__":

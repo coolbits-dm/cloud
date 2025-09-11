@@ -6,16 +6,10 @@ Auto-generated integration script for CoolBits.ai
 Generated: 2025-09-07T13:04:29.626325
 """
 
-import os
 import sys
 import json
 import logging
-from datetime import datetime
 from google.oauth2 import service_account
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-import openai
-import requests
 
 # Configure logging
 logging.basicConfig(

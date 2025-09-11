@@ -1,4 +1,3 @@
-
 # CoolBits.ai Server Startup with Security Enforcement
 # ==================================================
 
@@ -10,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 
 try:
     from secret_manager_enforcer import SecretManagerEnforcer
+
     enforcer = SecretManagerEnforcer()
     enforcer.block_startup_if_invalid()
     print("✅ Security validation passed - server starting")

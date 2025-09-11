@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai Development Environment Setup
 # PowerShell version for Windows - One-command developer setup
 
@@ -301,3 +303,9 @@ function Start-Setup {
 
 # Run main function
 Start-Setup
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+

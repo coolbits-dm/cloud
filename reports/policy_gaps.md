@@ -1,7 +1,7 @@
 # Policy Gap Analysis Report
-- Generated at: 2025-09-11T06:00:30Z
+- Generated at: 2025-09-11T07:48:30Z
 - Source: reports/policy_collect_last_24h.json
-- Analysis window: 2025-09-11T06:00:30Z
+- Analysis window: 2025-09-11T07:48:24Z
 - Total violations: **2**
 - Total gaps found: **2**
 

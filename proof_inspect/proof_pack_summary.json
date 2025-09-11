@@ -1,0 +1,21 @@
+{
+  "generator": "CoolBits.ai Enterprise Proof Pack Collector",
+  "proof_pack_version": "1.0",
+  "components": {
+    "milestone_verification": true,
+    "chaos_reports": true,
+    "ci_status": true,
+    "sbom_info": true,
+    "system_health": true,
+    "git_info": true,
+    "cosign_info": true,
+    "adaptive_policy": true,
+    "policy_health": true,
+    "cve_scan": true,
+    "nha_registry": true,
+    "backup_status": true
+  },
+  "generated_at": "2025-09-11T09:36:04Z",
+  "total_files": 13,
+  "total_size_bytes": 24215.0
+}

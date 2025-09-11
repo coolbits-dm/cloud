@@ -8,7 +8,6 @@ Date: September 6, 2025
 """
 
 import requests
-import json
 
 
 def test_rag_system():

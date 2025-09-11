@@ -7,8 +7,6 @@ Integrare seamless cu oCursor și GeminiCLI pentru workflow complet
 
 import json
 import os
-import subprocess
-import requests
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 import logging
@@ -555,7 +553,7 @@ def main():
     print(
         f"\n📊 Integration Report: {report['summary']['total_operations']} operations"
     )
-    print(f"📈 Success Rate: 100%")
+    print("📈 Success Rate: 100%")
 
     print("=" * 80)
     print("🎯 SmartBill oCursor & GeminiCLI Integration ready!")

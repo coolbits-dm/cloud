@@ -6,7 +6,7 @@ Comprehensive list of all current entities in the coolbits.ai and cblm.ai ecosys
 
 import json
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class CoolBitsEntitiesManager:
@@ -494,7 +494,7 @@ class CoolBitsEntitiesManager:
             print(f"  ✅ {bit['name']} - {bit['description']}")
             print(f"     Owner: {bit['owner']}")
 
-        print(f"\n💰 cbT Economy:")
+        print("\n💰 cbT Economy:")
         print(f"  Total Supply: {self.cbt_economy['total_supply']:,} cbT")
         print(f"  Circulating: {self.cbt_economy['circulating']:,} cbT")
         print(f"  Reserved: {self.cbt_economy['reserved']:,} cbT")
@@ -505,11 +505,11 @@ class CoolBitsEntitiesManager:
             print(f"  ✅ {wall['name']} - {wall['description']}")
             print(f"     Owner: {wall['owner']}")
 
-        print(f"\n🔐 SafeNet Integration:")
-        print(f"  Status: INTEGRATED")
-        print(f"  Delegated Agents: ogpt09, ogrok09")
+        print("\n🔐 SafeNet Integration:")
+        print("  Status: INTEGRATED")
+        print("  Delegated Agents: ogpt09, ogrok09")
         print(
-            f"  Capabilities: Digital signing, Certificate management, Signature verification"
+            "  Capabilities: Digital signing, Certificate management, Signature verification"
         )
 
 
@@ -529,9 +529,7 @@ def main():
     with open("coolbits_entities_inventory.json", "w") as f:
         json.dump(report, f, indent=2)
 
-    print(
-        f"\n📁 Complete entities inventory saved to: coolbits_entities_inventory.json"
-    )
+    print("\n📁 Complete entities inventory saved to: coolbits_entities_inventory.json")
 
     return report
 

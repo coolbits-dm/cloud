@@ -6,7 +6,6 @@ Test script for CoolBits.ai Offline AI Board
 
 import asyncio
 import aiohttp
-import json
 
 
 async def test_ai_board():

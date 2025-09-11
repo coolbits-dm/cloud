@@ -4,11 +4,9 @@ Azure OpenAI Configuration for COOL BITS SRL
 Complete setup for Azure OpenAI integration with coolbits.ai and cblm.ai
 """
 
-import os
 import json
 import logging
 from datetime import datetime
-from typing import Dict, Any, Optional
 
 # Configure logging
 logging.basicConfig(
@@ -119,16 +117,16 @@ class AzureOpenAIConfig:
 
 # Azure OpenAI Settings
 AZURE_OPENAI_API_KEY=your_azure_openai_api_key_here
-AZURE_OPENAI_ENDPOINT=https://{self.azure_openai_config['base_url']}
-AZURE_OPENAI_DEPLOYMENT_NAME={self.azure_openai_config['deployment_name']}
-AZURE_OPENAI_API_VERSION={self.azure_openai_config['api_version']}
-AZURE_OPENAI_MODEL={self.azure_openai_config['model']}
+AZURE_OPENAI_ENDPOINT=https://{self.azure_openai_config["base_url"]}
+AZURE_OPENAI_DEPLOYMENT_NAME={self.azure_openai_config["deployment_name"]}
+AZURE_OPENAI_API_VERSION={self.azure_openai_config["api_version"]}
+AZURE_OPENAI_MODEL={self.azure_openai_config["model"]}
 
 # OpenAI SDK Settings
 OPENAI_API_TYPE=azure
-OPENAI_API_BASE=https://{self.azure_openai_config['base_url']}
+OPENAI_API_BASE=https://{self.azure_openai_config["base_url"]}
 OPENAI_API_KEY=your_azure_openai_api_key_here
-OPENAI_API_VERSION={self.azure_openai_config['api_version']}
+OPENAI_API_VERSION={self.azure_openai_config["api_version"]}
 
 # AWS Bedrock Settings (Currently Disabled)
 AWS_ACCESS_KEY_ID=
@@ -137,14 +135,14 @@ AWS_REGION=us-east-1
 AWS_BEDROCK_MODEL=us.anthropic.claude-3-5-sonnet
 
 # Project Settings
-COOLBITS_AI_API_URL={self.integration_endpoints['coolbits_ai']}
-CBLM_AI_API_URL={self.integration_endpoints['cblm_ai']}
-VERTEX_AI_API_URL={self.integration_endpoints['vertex_ai']}
+COOLBITS_AI_API_URL={self.integration_endpoints["coolbits_ai"]}
+CBLM_AI_API_URL={self.integration_endpoints["cblm_ai"]}
+VERTEX_AI_API_URL={self.integration_endpoints["vertex_ai"]}
 
 # Company Information
 COMPANY_NAME={self.company}
 CEO_NAME={self.ceo}
-PROJECT_DOMAINS={','.join(self.project_domains)}
+PROJECT_DOMAINS={",".join(self.project_domains)}
 """
 
         with open(".env", "w") as f:
@@ -220,7 +218,7 @@ class CoolBitsAzureOpenAIClient:
 
     def generate_code(self, prompt: str, language: str = "python"):
         """Generate code using Azure OpenAI"""
-        system_prompt = f"""You are a senior software engineer for {self.company}, specializing in {{language}} development for {', '.join(self.project_domains)} projects.
+        system_prompt = f"""You are a senior software engineer for {self.company}, specializing in {{language}} development for {", ".join(self.project_domains)} projects.
         
         Generate clean, efficient, and well-documented code that follows best practices.
         Include proper error handling and logging.
@@ -246,7 +244,7 @@ class CoolBitsAzureOpenAIClient:
 
     def analyze_document(self, content: str, analysis_type: str = "general"):
         """Analyze document content using Azure OpenAI"""
-        system_prompt = f"""You are a document analysis specialist for {self.company}, working on {', '.join(self.project_domains)} projects.
+        system_prompt = f"""You are a document analysis specialist for {self.company}, working on {", ".join(self.project_domains)} projects.
         
         Provide detailed analysis of the document content, including:
         - Key insights and findings
@@ -297,7 +295,7 @@ def main():
     print("=" * 80)
     print(f"🏢 Company: {self.company}")
     print(f"👤 CEO: {self.ceo}")
-    print(f"🌐 Domains: {', '.join(self.project_domains)}")
+    print(f"🌐 Domains: {", ".join(self.project_domains)}")
     print("=" * 80)
     
     client = CoolBitsAzureOpenAIClient()
@@ -348,7 +346,7 @@ if __name__ == "__main__":
         instructions = f"""# Azure OpenAI Setup Instructions for COOL BITS SRL
 
 ## Overview
-This guide provides step-by-step instructions for setting up Azure OpenAI integration for {self.company} projects: {', '.join(self.project_domains)}.
+This guide provides step-by-step instructions for setting up Azure OpenAI integration for {self.company} projects: {", ".join(self.project_domains)}.
 
 ## Prerequisites
 - Azure subscription with OpenAI access
@@ -379,11 +377,11 @@ AZURE_OPENAI_DEPLOYMENT_NAME=your-deployment-name
 
 ### 4. Model Configuration
 Current configuration:
-- **Model**: {self.azure_openai_config['model']}
-- **Deployment**: {self.azure_openai_config['deployment_name']}
-- **API Version**: {self.azure_openai_config['api_version']}
-- **Max Tokens**: {self.azure_openai_config['max_tokens']}
-- **Temperature**: {self.azure_openai_config['temperature']}
+- **Model**: {self.azure_openai_config["model"]}
+- **Deployment**: {self.azure_openai_config["deployment_name"]}
+- **API Version**: {self.azure_openai_config["api_version"]}
+- **Max Tokens**: {self.azure_openai_config["max_tokens"]}
+- **Temperature**: {self.azure_openai_config["temperature"]}
 
 ### 5. Testing
 Run the test script to verify configuration:
@@ -394,12 +392,12 @@ python azure_openai_client.py
 ## Integration Points
 
 ### coolbits.ai Integration
-- **Endpoint**: {self.integration_endpoints['coolbits_ai']}
+- **Endpoint**: {self.integration_endpoints["coolbits_ai"]}
 - **Use Cases**: Code generation, document processing, API integration
 - **Authentication**: Azure OpenAI API key
 
 ### cblm.ai Integration
-- **Endpoint**: {self.integration_endpoints['cblm_ai']}
+- **Endpoint**: {self.integration_endpoints["cblm_ai"]}
 - **Use Cases**: Language model training, text processing, content generation
 - **Authentication**: Azure OpenAI API key
 
@@ -419,7 +417,7 @@ python azure_openai_client.py
 For technical support, contact:
 - **Company**: {self.company}
 - **CEO**: {self.ceo}
-- **Domains**: {', '.join(self.project_domains)}
+- **Domains**: {", ".join(self.project_domains)}
 
 Generated: {datetime.now().isoformat()}
 """

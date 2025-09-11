@@ -4,22 +4,19 @@ SafeNet API Integration Layer - COOL BITS SRL
 REST API endpoints for SafeNet digital signing operations
 """
 
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
 import os
 import logging
 from datetime import datetime
-from typing import Dict, Any, Optional
-import tempfile
+from typing import Optional
 import uuid
 
 from safenet_integration_architecture import (
     SafeNetIntegrationManager,
     SafeNetCertificateType,
     SafeNetSecurityLevel,
-    SafeNetSigningRequest,
-    SafeNetSigningResult,
 )
 
 # Configure logging

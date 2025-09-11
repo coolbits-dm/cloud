@@ -5,9 +5,6 @@ CoolBits.ai - Update all systems to use cheaper models
 """
 
 import os
-import re
-import yaml
-from pathlib import Path
 
 
 def update_model_in_file(file_path, old_model, new_model, comment=""):
@@ -86,15 +83,15 @@ def main():
     # Create cost monitoring script
     create_cost_monitoring_script()
 
-    print(f"\n🎯 SUMMARY:")
+    print("\n🎯 SUMMARY:")
     print(f"✅ Total files updated: {total_updates}")
-    print(f"💰 Estimated cost reduction: 90%+ (from $30 to $0.15 per 1M tokens)")
-    print(f"🚀 All systems now use cost-optimized models!")
+    print("💰 Estimated cost reduction: 90%+ (from $30 to $0.15 per 1M tokens)")
+    print("🚀 All systems now use cost-optimized models!")
 
-    print(f"\n📊 COST COMPARISON:")
-    print(f"GPT-4: $30/1M tokens -> GPT-4o-mini: $0.15/1M tokens (200x cheaper!)")
+    print("\n📊 COST COMPARISON:")
+    print("GPT-4: $30/1M tokens -> GPT-4o-mini: $0.15/1M tokens (200x cheaper!)")
     print(
-        f"Grok-2-1212: $2.00/1M tokens -> Grok-3-mini: $0.30/1M tokens (6.7x cheaper!)"
+        "Grok-2-1212: $2.00/1M tokens -> Grok-3-mini: $0.30/1M tokens (6.7x cheaper!)"
     )
 
 

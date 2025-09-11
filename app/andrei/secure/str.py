@@ -14,7 +14,7 @@ import webbrowser
 import time
 import json
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class CoolBitsProjectStructure:
@@ -662,7 +662,7 @@ class CoolBitsProjectStructure:
 
     def print_project_status(self):
         print("=" * 70)
-        print(f"🏢 SC COOL BITS SRL 🏢 🏢 - CEO Console")
+        print("🏢 SC COOL BITS SRL 🏢 🏢 - CEO Console")
         print(f"👤 CEO: {self.ceo}")
         print(f"🤖 AI Assistant: {self.ai_assistant}")
         print(f"💻 Machine: {self.machine}")
@@ -1235,7 +1235,7 @@ class CoolBitsProjectStructure:
             f"   📋 Smart Accounts Reference: {smart_accounts_data['reference_number']}"
         )
         print(f"   🏦 Bank Consent ID: {smart_accounts_data['bank_consent_id']}")
-        print(f"   🔐 Secrets Created: 4 secrets in Google Secret Manager")
+        print("   🔐 Secrets Created: 4 secrets in Google Secret Manager")
         print(f"   📍 Project: {smart_accounts_data['project_id']}")
         print(f"   🌍 Region: {smart_accounts_data['region']}")
         print("   ✅ Status: Smart Accounts integration completed")
@@ -1245,9 +1245,9 @@ class CoolBitsProjectStructure:
             f"   📋 Smart Accounts Reference: {smart_accounts_data['reference_number']}"
         )
         print(f"   🏦 Bank Consent ID: {smart_accounts_data['bank_consent_id']}")
-        print(f"   📧 Email Integration: Ready for notifications")
+        print("   📧 Email Integration: Ready for notifications")
         print(
-            f"   🔐 Secret Access: smart-accounts-reference-number, smart-accounts-bank-consent-id"
+            "   🔐 Secret Access: smart-accounts-reference-number, smart-accounts-bank-consent-id"
         )
         print("   ✅ Status: Smart Accounts email integration ready")
 
@@ -1257,8 +1257,8 @@ class CoolBitsProjectStructure:
         print(
             f'echo "{smart_accounts_data["reference_number"]}" | gcloud secrets create smart-accounts-reference-number \\'
         )
-        print(f"    --data-file=- \\")
-        print(f'    --project={smart_accounts_data["project_id"]} \\')
+        print("    --data-file=- \\")
+        print(f"    --project={smart_accounts_data['project_id']} \\")
         print(
             '    --labels="owner=andrei_cip,platform=smart_accounts,type=reference_number,company=coolbits_srl"'
         )
@@ -1267,8 +1267,8 @@ class CoolBitsProjectStructure:
         print(
             f'echo "{smart_accounts_data["bank_consent_id"]}" | gcloud secrets create smart-accounts-bank-consent-id \\'
         )
-        print(f"    --data-file=- \\")
-        print(f'    --project={smart_accounts_data["project_id"]} \\')
+        print("    --data-file=- \\")
+        print(f"    --project={smart_accounts_data['project_id']} \\")
         print(
             '    --labels="owner=andrei_cip,platform=smart_accounts,type=bank_consent,company=coolbits_srl"'
         )
@@ -1539,7 +1539,7 @@ class CoolBitsServiceManager:
 
         bridge_url = self.services["bridge"]["url"]
         if self.open_in_chrome(bridge_url):
-            print(f"Bridge UI launched successfully!")
+            print("Bridge UI launched successfully!")
             print(f"URL: {bridge_url}")
             print("=" * 60)
             return True
@@ -1561,8 +1561,8 @@ class CoolBitsServiceManager:
 
         root_url = self.services["cursor_root"]["url"]
         if self.open_in_chrome(root_url):
-            print(f"✅ Root Console launched successfully!")
-            print(f"🔐 Access Level: ROOT/CEO")
+            print("✅ Root Console launched successfully!")
+            print("🔐 Access Level: ROOT/CEO")
             print(f"🌐 URL: {root_url}")
             print(f"📋 API: {root_url}/api/status")
             print("=" * 70)
@@ -1618,7 +1618,9 @@ class CoolBitsServiceManager:
                 priority_icon = (
                     "HIGH"
                     if service_info["priority"] == "high"
-                    else "MED" if service_info["priority"] == "medium" else "LOW"
+                    else "MED"
+                    if service_info["priority"] == "medium"
+                    else "LOW"
                 )
                 print(
                     f"  Port {service_info['port']:4d} | {service_name:20s} | {status} | {priority_icon}"
@@ -2005,7 +2007,7 @@ def run_complete_dashboard():
 
         dashboard_url = "http://localhost:8090"
         if service_manager.open_in_chrome(dashboard_url):
-            print(f"✅ Complete Dashboard launched successfully!")
+            print("✅ Complete Dashboard launched successfully!")
             print(f"🌐 URL: {dashboard_url}")
             print(f"📋 API: {dashboard_url}/api/status")
             print("=" * 70)
@@ -2039,7 +2041,7 @@ def run_gcloud_agent():
 
         gcloud_url = "http://localhost:8091"
         if service_manager.open_in_chrome(gcloud_url):
-            print(f"✅ Google Cloud Agent launched successfully!")
+            print("✅ Google Cloud Agent launched successfully!")
             print(f"☁️ URL: {gcloud_url}")
             print(f"📋 API: {gcloud_url}/api/status")
             print(f"🖥️ Hardware: {gcloud_url}/api/hardware")
@@ -2063,10 +2065,10 @@ def gcloud_status():
     print("\n☁️ GOOGLE CLOUD CLI AGENT STATUS")
     print("=" * 50)
     print("🏢 SC COOL BITS SRL 🏢 🏢 - Local Cloud Integration")
-    print(f"👤 CEO: Andrei")
-    print(f"🤖 AI Assistant: Cursor AI Assistant")
-    print(f"📅 Contract Date: 2025-09-06")
-    print(f"🌐 Port: 8091")
+    print("👤 CEO: Andrei")
+    print("🤖 AI Assistant: Cursor AI Assistant")
+    print("📅 Contract Date: 2025-09-06")
+    print("🌐 Port: 8091")
     print()
     print("🖥️ HARDWARE ACCESS:")
     print("  • CPU: Windows 11 CPU - Available for processing")
@@ -2384,7 +2386,7 @@ def policy_scope():
     for func_name, func_info in o_functions.items():
         print(f"🏢 {func_name}:")
         print(f"   Policy Scope: {func_info['policy_scope']}")
-        print(f"   Responsible: Policy Division Board AI")
+        print("   Responsible: Policy Division Board AI")
         print()
 
     print("=" * 60)
@@ -2621,7 +2623,7 @@ def ogpt_bridge_status():
         files = os.listdir(storage_path)
         print(f"   Files: {len(files)}")
     else:
-        print(f"❌ Storage Directory: Not found")
+        print("❌ Storage Directory: Not found")
 
     print()
     print("📡 Bridge System: READY")
@@ -3114,6 +3116,87 @@ def dual_account_management():
     print("=" * 80)
 
 
+# M-gate Status Management
+# ========================
+
+from pathlib import Path
+
+STATE_PATH = Path("panel/state.json")
+GATES_PATH = Path("panel/gates.jsonl")
+
+
+def set_milestone_status(milestone: str, state: dict) -> None:
+    """
+    Set milestone status and persist to panel/state.json
+
+    Args:
+        milestone: Milestone identifier (e.g., "M15", "M16")
+        state: Status dictionary with all components
+    """
+    state = dict(state or {})
+    state["milestone"] = milestone
+    state["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+
+    # Ensure panel directory exists
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    # Write state.json
+    STATE_PATH.write_text(
+        json.dumps(state, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
+    )
+
+    # Create gate record
+    gate = {
+        "ts": state["updated_at"],
+        "milestone": milestone,
+        "commit_sha": state.get("commit_sha"),
+        "overall": state.get("overall"),
+    }
+
+    # Append to gates.jsonl
+    with GATES_PATH.open("a", encoding="utf-8") as fp:
+        fp.write(json.dumps(gate, ensure_ascii=False) + "\n")
+
+    print(f"✅ Milestone {milestone} status set: {state.get('overall', 'UNKNOWN')}")
+    print(f"📁 State persisted to: {STATE_PATH}")
+    print(f"📝 Gate record added to: {GATES_PATH}")
+
+
+def get_milestone_status() -> dict:
+    """
+    Get current milestone status from panel/state.json
+
+    Returns:
+        Status dictionary or empty dict if not found
+    """
+    try:
+        if STATE_PATH.exists():
+            with STATE_PATH.open("r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Warning: Failed to load milestone status: {e}")
+
+    return {}
+
+
+def is_milestone_healthy() -> bool:
+    """
+    Check if current milestone is healthy
+
+    Returns:
+        True if overall status is HEALTHY and Proof Pack is fresh
+    """
+    status = get_milestone_status()
+
+    if not status:
+        return False
+
+    overall_healthy = status.get("overall") == "HEALTHY"
+    proofpack_fresh = status.get("proofpack", {}).get("fresh", False)
+
+    return overall_healthy and proofpack_fresh
+
+
 # Global function for current AI status
 def current_ai_status():
     """
@@ -3176,6 +3259,87 @@ def current_ai_status():
     print("=" * 80)
 
 
+# M-gate Status Management
+# ========================
+
+from pathlib import Path
+
+STATE_PATH = Path("panel/state.json")
+GATES_PATH = Path("panel/gates.jsonl")
+
+
+def set_milestone_status(milestone: str, state: dict) -> None:
+    """
+    Set milestone status and persist to panel/state.json
+
+    Args:
+        milestone: Milestone identifier (e.g., "M15", "M16")
+        state: Status dictionary with all components
+    """
+    state = dict(state or {})
+    state["milestone"] = milestone
+    state["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+
+    # Ensure panel directory exists
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    # Write state.json
+    STATE_PATH.write_text(
+        json.dumps(state, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
+    )
+
+    # Create gate record
+    gate = {
+        "ts": state["updated_at"],
+        "milestone": milestone,
+        "commit_sha": state.get("commit_sha"),
+        "overall": state.get("overall"),
+    }
+
+    # Append to gates.jsonl
+    with GATES_PATH.open("a", encoding="utf-8") as fp:
+        fp.write(json.dumps(gate, ensure_ascii=False) + "\n")
+
+    print(f"✅ Milestone {milestone} status set: {state.get('overall', 'UNKNOWN')}")
+    print(f"📁 State persisted to: {STATE_PATH}")
+    print(f"📝 Gate record added to: {GATES_PATH}")
+
+
+def get_milestone_status() -> dict:
+    """
+    Get current milestone status from panel/state.json
+
+    Returns:
+        Status dictionary or empty dict if not found
+    """
+    try:
+        if STATE_PATH.exists():
+            with STATE_PATH.open("r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Warning: Failed to load milestone status: {e}")
+
+    return {}
+
+
+def is_milestone_healthy() -> bool:
+    """
+    Check if current milestone is healthy
+
+    Returns:
+        True if overall status is HEALTHY and Proof Pack is fresh
+    """
+    status = get_milestone_status()
+
+    if not status:
+        return False
+
+    overall_healthy = status.get("overall") == "HEALTHY"
+    proofpack_fresh = status.get("proofpack", {}).get("fresh", False)
+
+    return overall_healthy and proofpack_fresh
+
+
 # Enterprise Milestone Status (M8-M14)
 def enterprise_milestone_status():
     """
@@ -3197,37 +3361,37 @@ def enterprise_milestone_status():
     print("  - Verified restore on clean env (Docker)")
     print("  - Lifecycle retention policies applied")
     print("  - PII scanning (Gitleaks in CI)")
-    
+
     print("• M9 - Security Hardening: ✅ COMPLETED")
     print("  - Secret scanning mandatory (CI + pre-commit)")
     print("  - IAM least privilege (no Editor roles)")
     print("  - Policy-as-code (OPA/Conftest on IaC)")
     print("  - SBOM + CVE scan gates")
-    
+
     print("• M10 - DevEx & Documentation: ✅ COMPLETED")
     print("  - Onboarding <20min with dev-setup scripts")
     print("  - API docs + interactive examples")
     print("  - Troubleshooting guides & runbooks")
     print("  - Workflow automation scripts")
-    
+
     print("• M11 - Chaos & Resilience: ✅ COMPLETED")
     print("  - Chaos runners & injectors (latency, kill, CPU, memory, DB, ext API)")
     print("  - SLO validation & auto-heal rollback")
     print("  - Scheduled chaos drills (daily/weekly/monthly)")
     print("  - Observability: chaos dashboard, JSONL logs")
-    
+
     print("• M12 - Compliance & Legal: ✅ COMPLETED")
     print("  - GDPR docs (PRIVACY.md, TERMS.md)")
     print("  - Retention & classification policies")
     print("  - Subject request procedures")
     print("  - Legal + infra guardrails in CI/CD")
-    
+
     print("• M13 - Runtime Governance & Enforcement: ✅ COMPLETED")
     print("  - enforcer.py + FastAPI middleware")
     print("  - Deny/Warn/Fail-closed modes")
     print("  - Enforcement of scopes, secrets, IAM, status")
     print("  - Audit JSONL + Monitoring dashboard")
-    
+
     print("• M14 - Adaptive Policy & Self-Healing: ✅ COMPLETED")
     print("  - Collector → Analyzer → Recommender pipeline")
     print("  - Policy recommendations (YAML ready-to-PR)")
@@ -3236,7 +3400,9 @@ def enterprise_milestone_status():
     print("  - Adaptive dashboard metrics")
 
     print("\n📊 PROOF PACK STATUS:")
-    print("• Last SHA: CF9D60B54787E44201B29EDF5E48A21E50D626D2ACAA93997E6BBED6D520D5E2")
+    print(
+        "• Last SHA: CF9D60B54787E44201B29EDF5E48A21E50D626D2ACAA93997E6BBED6D520D5E2"
+    )
     print("• Last Run: 2025-09-11T09:36:04Z")
     print("• Status: ✅ VERIFIED & SIGNED")
     print("• Contents: 13 verification files (24.2 KB)")
@@ -3287,3 +3453,84 @@ def enterprise_milestone_status():
     print("=" * 80)
     print("🔒 Classification: Internal Secret - CoolBits.ai Members Only")
     print("=" * 80)
+
+
+# M-gate Status Management
+# ========================
+
+from pathlib import Path
+
+STATE_PATH = Path("panel/state.json")
+GATES_PATH = Path("panel/gates.jsonl")
+
+
+def set_milestone_status(milestone: str, state: dict) -> None:
+    """
+    Set milestone status and persist to panel/state.json
+
+    Args:
+        milestone: Milestone identifier (e.g., "M15", "M16")
+        state: Status dictionary with all components
+    """
+    state = dict(state or {})
+    state["milestone"] = milestone
+    state["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+
+    # Ensure panel directory exists
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+
+    # Write state.json
+    STATE_PATH.write_text(
+        json.dumps(state, ensure_ascii=False, separators=(",", ":")), encoding="utf-8"
+    )
+
+    # Create gate record
+    gate = {
+        "ts": state["updated_at"],
+        "milestone": milestone,
+        "commit_sha": state.get("commit_sha"),
+        "overall": state.get("overall"),
+    }
+
+    # Append to gates.jsonl
+    with GATES_PATH.open("a", encoding="utf-8") as fp:
+        fp.write(json.dumps(gate, ensure_ascii=False) + "\n")
+
+    print(f"✅ Milestone {milestone} status set: {state.get('overall', 'UNKNOWN')}")
+    print(f"📁 State persisted to: {STATE_PATH}")
+    print(f"📝 Gate record added to: {GATES_PATH}")
+
+
+def get_milestone_status() -> dict:
+    """
+    Get current milestone status from panel/state.json
+
+    Returns:
+        Status dictionary or empty dict if not found
+    """
+    try:
+        if STATE_PATH.exists():
+            with STATE_PATH.open("r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Warning: Failed to load milestone status: {e}")
+
+    return {}
+
+
+def is_milestone_healthy() -> bool:
+    """
+    Check if current milestone is healthy
+
+    Returns:
+        True if overall status is HEALTHY and Proof Pack is fresh
+    """
+    status = get_milestone_status()
+
+    if not status:
+        return False
+
+    overall_healthy = status.get("overall") == "HEALTHY"
+    proofpack_fresh = status.get("proofpack", {}).get("fresh", False)
+
+    return overall_healthy and proofpack_fresh

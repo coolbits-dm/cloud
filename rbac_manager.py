@@ -2,18 +2,16 @@
 # ==================================================
 
 import os
-import sys
 import json
 import hmac
 import hashlib
 import time
 import jwt
-from datetime import datetime, timedelta
+from datetime import datetime
 from typing import Dict, List, Optional, Set
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass
 from enum import Enum
 import secrets
-import base64
 
 
 class Role(Enum):

@@ -881,7 +881,7 @@ nhas:
     capabilities:
       - name: "rag_ingestion"
         description: "RAG document ingestion worker"
-        scopes: ["read:documents", "write:vectors", "process:content"]
+        scopes: ["read:documents", "write:vectors", "process:content", "rag:ingest"]
     permissions: ["run.invoker", "storage.objectViewer", "aiplatform.user"]
     secrets: ["nha/rag-ingest-worker/hmac"]
     tags: ["env:prod", "service:mlops", "worker:ingest"]

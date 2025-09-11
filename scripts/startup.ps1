@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai Non-Interactive Startup Script
 # ==========================================
 
@@ -47,7 +49,7 @@ if ($Action -eq "start") {
         "coolbits_main_bridge.py"
     )
     
-    $bridgeProcess = Start-Process -WindowStyle Hidden -FilePath "python" -ArgumentList $bridgeArgs -PassThru
+    $bridgeProcess = Start-Process -NoNewWindow -Wait -WindowStyle Hidden -FilePath "python" -ArgumentList $bridgeArgs -PassThru
     Write-Host "  ✅ Bridge started (PID: $($bridgeProcess.Id))"
     
     # Wait for bridge to become healthy (bridge runs on port 8100)
@@ -76,7 +78,7 @@ if ($Action -eq "start") {
         "coolbits_main_dashboard.py"
     )
     
-    $webProcess = Start-Process -WindowStyle Hidden -FilePath "python" -ArgumentList $webArgs -PassThru
+    $webProcess = Start-Process -NoNewWindow -Wait -WindowStyle Hidden -FilePath "python" -ArgumentList $webArgs -PassThru
     Write-Host "  ✅ Web app started (PID: $($webProcess.Id))"
     
     # Wait for web app
@@ -187,3 +189,9 @@ if ($Action -eq "start") {
 }
 
 Write-Host "`n🎯 Use: pwsh scripts/startup.ps1 -Action start|stop|status"
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+

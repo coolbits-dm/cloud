@@ -5,7 +5,6 @@ Integration with official Microsoft Azure account: andrei@coolbits.ro
 """
 
 import os
-import openai
 from openai import AzureOpenAI
 from dotenv import load_dotenv
 import logging
@@ -145,11 +144,11 @@ def main():
     print("=" * 80)
     print("🤖 COOL BITS SRL OFFICIAL AZURE OPENAI CLIENT")
     print("=" * 80)
-    print(f"🏢 Company: COOL BITS SRL")
-    print(f"👤 CEO: Andrei")
-    print(f"📧 Official Email: andrei@coolbits.ro")
-    print(f"🌐 Project Email: andrei@coolbits.ai")
-    print(f"🏢 Domains: coolbits.ai, cblm.ai")
+    print("🏢 Company: COOL BITS SRL")
+    print("👤 CEO: Andrei")
+    print("📧 Official Email: andrei@coolbits.ro")
+    print("🌐 Project Email: andrei@coolbits.ai")
+    print("🏢 Domains: coolbits.ai, cblm.ai")
     print("=" * 80)
 
     client = CoolBitsOfficialAzureOpenAI()
@@ -166,7 +165,7 @@ def main():
     response = client.generate_text(test_prompt)
 
     if response:
-        print(f"✅ Text generation successful")
+        print("✅ Text generation successful")
         print(f"📝 Response: {response[:200]}...")
     else:
         print("❌ Text generation failed")
@@ -177,7 +176,7 @@ def main():
     code_response = client.generate_code(code_prompt)
 
     if code_response:
-        print(f"✅ Code generation successful")
+        print("✅ Code generation successful")
         print(f"💻 Code: {code_response[:200]}...")
     else:
         print("❌ Code generation failed")

@@ -13,13 +13,11 @@ SC COOL BITS SRL 🏢 🏢 - Local Google Cloud Integration Agent
 """
 
 import os
-import sys
 import json
 import subprocess
 import webbrowser
-import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 import uvicorn

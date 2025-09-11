@@ -3,8 +3,6 @@
 
 import pytest
 from playwright.sync_api import sync_playwright, Page, Browser
-import time
-import os
 
 
 class TestCoolBitsE2E:

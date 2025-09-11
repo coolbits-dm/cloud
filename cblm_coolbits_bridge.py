@@ -6,9 +6,8 @@ SC COOL BITS SRL - Language Model Platform Integration
 """
 
 import requests
-import json
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class CBLMCoolBitsBridge:

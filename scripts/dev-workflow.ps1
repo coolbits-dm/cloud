@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai Development Workflow Automation
 # PowerShell version for Windows
 
@@ -103,3 +105,9 @@ switch ($Action) {
 }
 
 Write-Info "Development workflow completed: $Action"
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+

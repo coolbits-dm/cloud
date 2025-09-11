@@ -5,13 +5,10 @@ CoolBits.ai Internal Secrets System
 SC COOL BITS SRL - Secure key management system
 """
 
-import os
-import sys
 import json
 import base64
 import hashlib
-from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any, Optional
 from pathlib import Path
 import secrets
 import string

@@ -1,0 +1,12 @@
+# GitHub Actions Linter Configuration
+# Ignore false positive warnings for secret access
+
+ignore:
+  - "Context access might be invalid: GCP_SA_KEY"
+  - "Context access might be invalid: GITLEAKS_LICENSE"
+  - "Context access might be invalid: has_critical"
+
+# These warnings are false positives because:
+# - GCP_SA_KEY is protected with if: github.event_name != 'pull_request'
+# - GITLEAKS_LICENSE is protected with if: github.event_name != 'pull_request'
+# - has_critical has proper fallback handling

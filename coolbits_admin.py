@@ -18,9 +18,8 @@ import yaml
 import argparse
 import sys
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from typing import Dict, Optional, Any
 import requests
-import os
 
 
 class CoolBitsAdmin:
@@ -169,13 +168,13 @@ class CoolBitsAdmin:
         result = self.make_api_request("/cbt")
         if result and result.get("success"):
             cbt = result.get("cbt_economy", {})
-            print(f"\n💰 cbT Economy Status:")
+            print("\n💰 cbT Economy Status:")
             print("=" * 50)
             print(f"Total Supply: {cbt.get('total_supply', 0):,} cbT")
             print(f"Circulating: {cbt.get('circulating', 0):,} cbT")
             print(f"Reserved: {cbt.get('reserved', 0):,} cbT")
             print(f"Status: {cbt.get('status', 'N/A')}")
-            print(f"\nAllocation by Bit Type:")
+            print("\nAllocation by Bit Type:")
             for bit_type, allocation in cbt.get("allocation", {}).items():
                 print(f"  {bit_type}: {allocation:,} cbT")
             print(f"\nTotal Transactions: {len(cbt.get('transactions', []))}")
@@ -185,7 +184,7 @@ class CoolBitsAdmin:
         result = self.make_api_request("/board")
         if result and result.get("success"):
             board = result.get("board_status", {})
-            print(f"\n🎯 AI Board Status:")
+            print("\n🎯 AI Board Status:")
             print("=" * 50)
             print(f"Roles: {board.get('roles', 0)}")
             print(f"Panels: {board.get('panels', 0)}")
@@ -216,7 +215,7 @@ class CoolBitsAdmin:
         result = self.make_api_request("/cbt/transfer", "POST", data)
         if result and result.get("success"):
             transaction = result.get("transaction", {})
-            print(f"\n💰 cbT Transfer Successful:")
+            print("\n💰 cbT Transfer Successful:")
             print("=" * 50)
             print(f"From: {transaction.get('from', 'N/A')}")
             print(f"To: {transaction.get('to', 'N/A')}")
@@ -231,7 +230,7 @@ class CoolBitsAdmin:
         """Show system health"""
         result = self.make_api_request("/health")
         if result:
-            print(f"\n🏥 System Health:")
+            print("\n🏥 System Health:")
             print("=" * 50)
             print(f"Status: {result.get('status', 'N/A')}")
             print(f"Service: {result.get('service', 'N/A')}")
@@ -244,18 +243,18 @@ class CoolBitsAdmin:
 
     def generate_report(self):
         """Generate comprehensive system report"""
-        print(f"\n📊 CoolBits.ai System Report")
+        print("\n📊 CoolBits.ai System Report")
         print("=" * 60)
         print(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-        print(f"CEO: Andrei - andrei@coolbits.ro")
-        print(f"Managed by: oCursor (Local Development)")
+        print("CEO: Andrei - andrei@coolbits.ro")
+        print("Managed by: oCursor (Local Development)")
         print()
 
         self.show_health()
         self.show_board_status()
         self.show_cbt_economy()
 
-        print(f"\n📋 Organizational Summary:")
+        print("\n📋 Organizational Summary:")
         print("=" * 50)
         org_structure = self.config.get("coolbits_ai", {}).get(
             "organizational_structure", {}
@@ -268,7 +267,7 @@ class CoolBitsAdmin:
             print(f"{category.upper()}: {role_count} roles")
         print(f"TOTAL ROLES: {total_roles}")
 
-        print(f"\n🎛️ Panel Summary:")
+        print("\n🎛️ Panel Summary:")
         print("=" * 50)
         panels = self.config.get("coolbits_ai", {}).get("panel_system", {})
         for panel_id, panel_data in panels.items():
@@ -276,7 +275,7 @@ class CoolBitsAdmin:
                 f"{panel_data.get('name', 'N/A')}: {panel_data.get('access_level', 'N/A')}"
             )
 
-        print(f"\n🔧 Bits Summary:")
+        print("\n🔧 Bits Summary:")
         print("=" * 50)
         bits = self.config.get("coolbits_ai", {}).get("bits_framework", {})
         for bit_id, bit_data in bits.items():

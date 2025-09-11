@@ -10,9 +10,8 @@ from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import json
-import asyncio
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, List
 import uuid
 
 # Import our internal systems
@@ -22,14 +21,13 @@ from andy_internal_chat_system import (
     create_chat_session,
 )
 from andy_google_cloud_endpoint import (
-    andy_gcloud_endpoint,
     process_gcloud_request,
     process_gemini_request,
 )
-from andy_auto_engine import andy_auto_engine, ProcessingLevel
+from andy_auto_engine import andy_auto_engine
 from andy_kim_local_rag import local_rag_system, RAGAgent, RAGQuery
-from andy_setup_console import andy_setup_console, SetupCategory, SetupStatus
-from andy_kim_routing import routing_system, AgentType, ModelProvider, ModelType
+from andy_setup_console import andy_setup_console, SetupCategory
+from andy_kim_routing import routing_system
 
 app = FastAPI(title="Andy Main Console", version="1.0.0")
 
@@ -1487,7 +1485,7 @@ async def setup_console_page(agent: str):
             <div class="agent-info">
                 <div class="agent-name">{agent.title()}</div>
                 <div class="agent-description">
-                    {f"Personal AI Assistant" if agent == "andy" else "Reasoning and Analysis Partner"}
+                    {"Personal AI Assistant" if agent == "andy" else "Reasoning and Analysis Partner"}
                 </div>
             </div>
             
@@ -2037,7 +2035,7 @@ async def model_interface_page(agent: str, provider: str, model_type: str = None
                 <div class="model-info">
                     <div class="model-name">{model_name}</div>
                     <div class="model-description">
-                        {f"Intelligent model selection based on context" if provider == "auto" else f"{provider.title()} {model_type.title() if model_type else 'Model'} for {agent.title()}"}
+                        {"Intelligent model selection based on context" if provider == "auto" else f"{provider.title()} {model_type.title() if model_type else 'Model'} for {agent.title()}"}
                     </div>
                 </div>
                 

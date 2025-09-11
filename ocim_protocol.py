@@ -9,7 +9,7 @@ import hmac
 import hashlib
 import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any
 import logging
 
 # Configure logging
@@ -41,7 +41,7 @@ class OCIMProtocol:
     ) -> Dict[str, Any]:
         """Create OCIM broadcast message"""
         timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S+03:00")
-        nonce = f"x{int(time.time() * 1000) % 0xffffff:06x}"
+        nonce = f"x{int(time.time() * 1000) % 0xFFFFFF:06x}"
 
         message_data = {
             "ver": self.version,
@@ -174,7 +174,7 @@ for agent, response in zip(agents, responses):
     print(f"  Response: {response}")
     print(f"  Compliance: {'✅' if ocim_response['audit']['compliance'] else '❌'}")
 
-print(f"\n📊 Audit Summary:")
+print("\n📊 Audit Summary:")
 print(f"  Total Messages: {len(ocim.message_history)}")
 print(
     f"  Compliance Rate: {sum(1 for msg in ocim.message_history if msg['audit']['compliance']) / len(ocim.message_history) * 100:.1f}%"

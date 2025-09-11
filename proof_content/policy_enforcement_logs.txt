@@ -1,0 +1,2 @@
+{"ts": "2025-09-11T05:51:36Z", "nha_id": "nha:unknown", "action": "rag:ingest", "result": "DENY", "reason": "unknown_agent", "policy_version": "2025-09-11", "registry_version": "1.0.0", "trace_id": "0bdc4ecf-63eb-4e9c-8b85-9be77ac46ff6", "scope": "write:rag", "extra": {}}
+{"ts": "2025-09-11T05:51:36Z", "nha_id": "nha:rag-ingest-worker", "action": "rag:ingest", "result": "DENY", "reason": "permission_not_allowed", "policy_version": "2025-09-11", "registry_version": "1.0.0", "trace_id": "fa63e298-7a57-4ebb-9375-1b5f9a712b42", "scope": "write:vectors", "extra": {}}

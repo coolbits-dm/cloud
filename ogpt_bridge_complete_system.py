@@ -7,13 +7,12 @@ COOL BITS SRL 🏢 - Internal Secret
 Complete bridge system with cron jobs and JSON forwarding between ChatGPT accounts
 """
 
-import os
 import json
 import time
 import threading
 import schedule
 from datetime import datetime
-from typing import Dict, Any, List
+from typing import Dict, Any
 from pathlib import Path
 
 

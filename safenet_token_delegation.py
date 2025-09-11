@@ -5,10 +5,9 @@ Delegates SafeNet authentication token to ogpt09 and ogrok09 agents
 """
 
 import json
-import os
 import subprocess
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class SafeNetTokenDelegation:
@@ -371,7 +370,7 @@ def main():
             print(f"  {agent_info['name']} ({agent_info['role']})")
             print(f"    - Access Level: {agent_info['safenet_access_level']}")
             print(f"    - Profile: {agent_info['profile_picture']}")
-            print(f"    - Status: ACTIVE")
+            print("    - Status: ACTIVE")
 
         print("\n🔐 SAFENET CAPABILITIES ENABLED:")
         for permission in delegation_manager.safenet_token_config["permissions"]:

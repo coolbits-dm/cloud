@@ -11,11 +11,10 @@ Keeps them always on and paired with their respective zones
 import os
 import json
 import time
-import subprocess
 import schedule
 import threading
-from datetime import datetime, timedelta
-from typing import Dict, List, Any, Optional
+from datetime import datetime
+from typing import Dict, Any
 
 
 class CorporateEntitiesCronManager:
@@ -347,7 +346,7 @@ class CorporateEntitiesCronManager:
             elif entity["schedule"] == "every 5 minutes":
                 schedule.every(5).minutes.do(self.perform_health_check, entity_key)
 
-            print(f"   ✅ Cron job scheduled")
+            print("   ✅ Cron job scheduled")
             print()
 
         print("=" * 80)
@@ -371,7 +370,7 @@ class CorporateEntitiesCronManager:
                 self.job_threads[entity_key] = thread
                 self.running_jobs[entity_key] = True
 
-                print(f"   ✅ Always-on monitoring started")
+                print("   ✅ Always-on monitoring started")
 
         print("🎯 All always-on monitoring started!")
 

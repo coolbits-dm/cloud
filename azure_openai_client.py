@@ -5,7 +5,6 @@ Integration with coolbits.ai and cblm.ai
 """
 
 import os
-import openai
 from openai import AzureOpenAI
 from dotenv import load_dotenv
 import logging
@@ -99,7 +98,7 @@ class CoolBitsAzureOpenAIClient:
 
     def analyze_document(self, content: str, analysis_type: str = "general"):
         """Analyze document content using Azure OpenAI"""
-        system_prompt = f"""You are a document analysis specialist for COOL BITS SRL, working on coolbits.ai, cblm.ai projects.
+        system_prompt = """You are a document analysis specialist for COOL BITS SRL, working on coolbits.ai, cblm.ai projects.
         
         Provide detailed analysis of the document content, including:
         - Key insights and findings
@@ -152,9 +151,9 @@ def main():
     print("=" * 80)
     print("🤖 COOL BITS SRL AZURE OPENAI CLIENT")
     print("=" * 80)
-    print(f"🏢 Company: COOL BITS SRL")
-    print(f"👤 CEO: Andrei")
-    print(f"🌐 Domains: coolbits.ai, cblm.ai")
+    print("🏢 Company: COOL BITS SRL")
+    print("👤 CEO: Andrei")
+    print("🌐 Domains: coolbits.ai, cblm.ai")
     print("=" * 80)
 
     client = CoolBitsAzureOpenAIClient()
@@ -167,7 +166,7 @@ def main():
     response = client.generate_text(test_prompt)
 
     if response:
-        print(f"✅ Text generation successful")
+        print("✅ Text generation successful")
         print(f"📝 Response: {response[:200]}...")
     else:
         print("❌ Text generation failed")
@@ -178,7 +177,7 @@ def main():
     code_response = client.generate_code(code_prompt)
 
     if code_response:
-        print(f"✅ Code generation successful")
+        print("✅ Code generation successful")
         print(f"💻 Code: {code_response[:200]}...")
     else:
         print("❌ Code generation failed")

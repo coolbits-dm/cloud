@@ -6,7 +6,6 @@ Complete demonstration of SafeNet Authentication Client integration
 
 import json
 import os
-import tempfile
 from datetime import datetime
 from safenet_integration_architecture import (
     SafeNetIntegrationManager,
@@ -90,7 +89,7 @@ This is a demonstration document for SafeNet integration testing.
         security_level=SafeNetSecurityLevel.LEVEL_4,
     )
 
-    print(f"✅ Document signed successfully")
+    print("✅ Document signed successfully")
     print(f"   Request ID: {result.request_id}")
     print(f"   Certificate: {result.certificate_used}")
     print(f"   Signature: {result.signature[:32]}...")
@@ -257,7 +256,7 @@ This is a demonstration document for SafeNet integration testing.
     with open("safenet_demo_results.json", "w") as f:
         json.dump(demo_results, f, indent=2)
 
-    print(f"\n💾 Demo results saved to: safenet_demo_results.json")
+    print("\n💾 Demo results saved to: safenet_demo_results.json")
 
 
 if __name__ == "__main__":

@@ -1,11 +1,8 @@
 # CoolBits.ai RBAC Middleware for Web Applications
 # ================================================
 
-import os
-import sys
-import json
 import time
-from typing import Dict, List, Optional, Callable, Any
+from typing import Dict, Optional, Callable
 from functools import wraps
 from flask import Flask, request, jsonify, g
 from streamlit import session_state
@@ -16,8 +13,6 @@ from rbac_manager import (
     rbac_manager,
     Role,
     Permission,
-    require_permission,
-    require_role,
 )
 
 

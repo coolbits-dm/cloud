@@ -5,7 +5,6 @@ oCursor str.py Pairing and Synchronization System
 SC COOL BITS SRL - File Pairing Management
 """
 
-import os
 import shutil
 import json
 import logging
@@ -324,8 +323,8 @@ def main():
     report = pairing_manager.generate_pairing_report()
 
     if report:
-        print(f"✅ Pairing report generated successfully!")
-        print(f"📁 Report saved: str_pairing_report.json")
+        print("✅ Pairing report generated successfully!")
+        print("📁 Report saved: str_pairing_report.json")
     else:
         print("❌ Failed to generate pairing report")
 

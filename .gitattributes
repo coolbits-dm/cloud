@@ -199,3 +199,4 @@ test/ export-ignore
 __tests__/ export-ignore
 *.test.* export-ignore
 *.spec.* export-ignore
+scripts/*.sh text eol=lf

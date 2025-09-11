@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai Autostart Script
 # ============================
 
@@ -42,7 +44,7 @@ if ($Action -eq "start") {
     # Start Bridge (FastAPI) first
     Write-Host "`n🌉 Starting Bridge (FastAPI) on port 8100..."
     $bridgeArgs = @("coolbits_main_bridge.py")
-    $bridgeProcess = Start-Process -WindowStyle Hidden -FilePath "python" -ArgumentList $bridgeArgs -PassThru
+    $bridgeProcess = Start-Process -NoNewWindow -Wait -WindowStyle Hidden -FilePath "python" -ArgumentList $bridgeArgs -PassThru
     Write-Host "  ✅ Bridge started (PID: $($bridgeProcess.Id))"
     
     # Wait for bridge to become healthy
@@ -68,7 +70,7 @@ if ($Action -eq "start") {
     # Start Dashboard
     Write-Host "`n🌐 Starting Dashboard on port 8080..."
     $dashboardArgs = @("coolbits_main_dashboard.py")
-    $dashboardProcess = Start-Process -WindowStyle Hidden -FilePath "python" -ArgumentList $dashboardArgs -PassThru
+    $dashboardProcess = Start-Process -NoNewWindow -Wait -WindowStyle Hidden -FilePath "python" -ArgumentList $dashboardArgs -PassThru
     Write-Host "  ✅ Dashboard started (PID: $($dashboardProcess.Id))"
     
     # Wait for dashboard
@@ -201,3 +203,9 @@ if ($Action -eq "start") {
 }
 
 Write-Host "`n🎯 Use: pwsh scripts/autostart.ps1 -Action start|stop|status"
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+

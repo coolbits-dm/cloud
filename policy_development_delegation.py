@@ -5,9 +5,8 @@ Delegation to oGrok08 (CISO) and oGrok09 (CAIO) for Policy Systems Development
 """
 
 import json
-import time
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class PolicyDevelopmentDelegation:
@@ -236,10 +235,10 @@ def main():
 
     print("🏛️ Policy Development Delegation - CoolBits.ai Board AI Division")
     print("=" * 70)
-    print(f"Company: COOL BITS SRL")
-    print(f"CEO: Andrei")
-    print(f"Project: coolbits-ai")
-    print(f"Decision: Full Cloud Development")
+    print("Company: COOL BITS SRL")
+    print("CEO: Andrei")
+    print("Project: coolbits-ai")
+    print("Decision: Full Cloud Development")
     print("=" * 70)
 
     # Initialize delegation system
@@ -281,12 +280,12 @@ def main():
 
     # Print summary
     print("\n🎯 DELEGATION SUMMARY:")
-    print(f"📋 Responsible Agents: oGrok08 (CISO) + oGrok09 (CAIO)")
-    print(f"🏛️ Policy Systems: 4 systems (coolbits.ai + cblm.ai)")
-    print(f"📄 Terms & Conditions: Integration strategy required")
-    print(f"☁️ Platform: Vertex AI Full Cloud")
-    print(f"💰 Cost Analysis: Required with optimization")
-    print(f"⏱️ Timeline: 5-7 weeks estimated")
+    print("📋 Responsible Agents: oGrok08 (CISO) + oGrok09 (CAIO)")
+    print("🏛️ Policy Systems: 4 systems (coolbits.ai + cblm.ai)")
+    print("📄 Terms & Conditions: Integration strategy required")
+    print("☁️ Platform: Vertex AI Full Cloud")
+    print("💰 Cost Analysis: Required with optimization")
+    print("⏱️ Timeline: 5-7 weeks estimated")
 
     print("\n📡 AGENTS INFORMED:")
     print("✅ GeminiCLI - Cloud infrastructure preparation")

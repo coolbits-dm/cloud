@@ -1,7 +1,6 @@
 # CoolBits.ai Infrastructure Automation Setup
 # ===========================================
 
-import os
 import sys
 import subprocess
 from pathlib import Path
@@ -11,10 +10,10 @@ def setup_automated_maintenance():
     """Setup automated maintenance for CoolBits.ai."""
     print("🚀 Setting up CoolBits.ai Automated Maintenance")
     print("=" * 50)
-    
+
     # Install required packages
     print("📦 Installing required packages...")
-    
+
     packages = [
         "schedule",
         "psutil",
@@ -23,36 +22,34 @@ def setup_automated_maintenance():
         "pytest",
         "black",
         "flake8",
-        "mypy"
+        "mypy",
     ]
-    
+
     for package in packages:
         try:
-            subprocess.run([sys.executable, "-m", "pip", "install", package], 
-                         check=True, capture_output=True)
+            subprocess.run(
+                [sys.executable, "-m", "pip", "install", package],
+                check=True,
+                capture_output=True,
+            )
             print(f"   ✅ {package}")
         except subprocess.CalledProcessError:
             print(f"   ❌ {package} - installation failed")
-    
+
     # Create maintenance directories
     print("\n📁 Creating maintenance directories...")
-    
-    directories = [
-        "logs",
-        "reports", 
-        "backups",
-        "scripts"
-    ]
-    
+
+    directories = ["logs", "reports", "backups", "scripts"]
+
     for directory in directories:
         Path(directory).mkdir(exist_ok=True)
         print(f"   ✅ {directory}/")
-    
+
     # Create maintenance scripts
     print("\n📝 Creating maintenance scripts...")
-    
+
     # Daily maintenance script
-    daily_script = '''#!/bin/bash
+    daily_script = """#!/bin/bash
 # CoolBits.ai Daily Maintenance Script
 
 echo "🔧 Running daily maintenance..."
@@ -68,13 +65,13 @@ python -c "import requests; print('Health:', requests.get('http://localhost:8501
 find logs/ -name "*.log" -mtime +30 -delete
 
 echo "✅ Daily maintenance completed"
-'''
-    
+"""
+
     with open("scripts/daily_maintenance.sh", "w", encoding="utf-8") as f:
         f.write(daily_script)
-    
+
     # Weekly maintenance script
-    weekly_script = '''#!/bin/bash
+    weekly_script = """#!/bin/bash
 # CoolBits.ai Weekly Maintenance Script
 
 echo "🚀 Running weekly maintenance..."
@@ -92,13 +89,13 @@ python test_rbac_hmac.py
 python test_dashboard_real_api.py
 
 echo "✅ Weekly maintenance completed"
-'''
-    
+"""
+
     with open("scripts/weekly_maintenance.sh", "w", encoding="utf-8") as f:
         f.write(weekly_script)
-    
+
     # Monthly maintenance script
-    monthly_script = '''#!/bin/bash
+    monthly_script = """#!/bin/bash
 # CoolBits.ai Monthly Maintenance Script
 
 echo "🔑 Running monthly maintenance..."
@@ -116,19 +113,19 @@ python operational_checklist.py --all
 pip list --outdated
 
 echo "✅ Monthly maintenance completed"
-'''
-    
+"""
+
     with open("scripts/monthly_maintenance.sh", "w", encoding="utf-8") as f:
         f.write(monthly_script)
-    
+
     print("   ✅ daily_maintenance.sh")
     print("   ✅ weekly_maintenance.sh")
     print("   ✅ monthly_maintenance.sh")
-    
+
     # Create Windows batch files
     print("\n🪟 Creating Windows batch files...")
-    
-    daily_batch = '''@echo off
+
+    daily_batch = """@echo off
 REM CoolBits.ai Daily Maintenance Script
 
 echo 🔧 Running daily maintenance...
@@ -145,12 +142,12 @@ forfiles /p logs /s /m *.log /d -30 /c "cmd /c del @path"
 
 echo ✅ Daily maintenance completed
 pause
-'''
-    
+"""
+
     with open("scripts/daily_maintenance.bat", "w", encoding="utf-8") as f:
         f.write(daily_batch)
-    
-    weekly_batch = '''@echo off
+
+    weekly_batch = """@echo off
 REM CoolBits.ai Weekly Maintenance Script
 
 echo 🚀 Running weekly maintenance...
@@ -169,18 +166,18 @@ python test_dashboard_real_api.py
 
 echo ✅ Weekly maintenance completed
 pause
-'''
-    
+"""
+
     with open("scripts/weekly_maintenance.bat", "w", encoding="utf-8") as f:
         f.write(weekly_batch)
-    
+
     print("   ✅ daily_maintenance.bat")
     print("   ✅ weekly_maintenance.bat")
-    
+
     # Create systemd service (Linux)
     print("\n🐧 Creating systemd service...")
-    
-    systemd_service = '''[Unit]
+
+    systemd_service = """[Unit]
 Description=CoolBits.ai Automated Maintenance
 After=network.target
 
@@ -194,17 +191,17 @@ RestartSec=60
 
 [Install]
 WantedBy=multi-user.target
-'''
-    
+"""
+
     with open("scripts/coolbits-maintenance.service", "w", encoding="utf-8") as f:
         f.write(systemd_service)
-    
+
     print("   ✅ coolbits-maintenance.service")
-    
+
     # Create Windows service
     print("\n🪟 Creating Windows service...")
-    
-    windows_service = '''@echo off
+
+    windows_service = """@echo off
 REM CoolBits.ai Windows Service Installation
 
 echo Installing CoolBits.ai Maintenance Service...
@@ -220,17 +217,17 @@ python coolbits_maintenance_service.py start
 
 echo ✅ Windows service installed and started
 pause
-'''
-    
+"""
+
     with open("scripts/install_windows_service.bat", "w", encoding="utf-8") as f:
         f.write(windows_service)
-    
+
     print("   ✅ install_windows_service.bat")
-    
+
     # Create monitoring dashboard
     print("\n📊 Creating monitoring dashboard...")
-    
-    dashboard_script = '''#!/usr/bin/env python3
+
+    dashboard_script = """#!/usr/bin/env python3
 # CoolBits.ai Monitoring Dashboard
 
 import streamlit as st
@@ -319,17 +316,17 @@ if st.button("Test Security"):
 # Footer
 st.markdown("---")
 st.markdown("**CoolBits.ai Infrastructure Monitoring** | Last Updated: " + datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-'''
-    
+"""
+
     with open("monitoring_dashboard.py", "w", encoding="utf-8") as f:
         f.write(dashboard_script)
-    
+
     print("   ✅ monitoring_dashboard.py")
-    
+
     # Create README
     print("\n📖 Creating documentation...")
-    
-    readme_content = '''# CoolBits.ai Automated Maintenance
+
+    readme_content = """# CoolBits.ai Automated Maintenance
 
 This directory contains automated maintenance scripts and routines for CoolBits.ai infrastructure.
 
@@ -463,13 +460,13 @@ This maintenance system is designed to evolve with CoolBits.ai infrastructure. R
 ---
 
 **CoolBits.ai Infrastructure Team** | Last Updated: 2025-09-10
-'''
-    
+"""
+
     with open("MAINTENANCE_README.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
-    
+
     print("   ✅ MAINTENANCE_README.md")
-    
+
     print("\n🎉 Automated Maintenance Setup Complete!")
     print("=" * 50)
     print("📁 Created directories: logs/, reports/, backups/, scripts/")
@@ -478,14 +475,14 @@ This maintenance system is designed to evolve with CoolBits.ai infrastructure. R
     print("🐧 Created Linux: systemd service")
     print("📊 Created monitoring dashboard")
     print("📖 Created documentation")
-    
+
     print("\n🚀 Next Steps:")
     print("1. Review and customize scripts in scripts/ directory")
     print("2. Test maintenance scripts manually")
     print("3. Setup automated scheduling: python automated_maintenance.py --setup")
     print("4. Start monitoring dashboard: streamlit run monitoring_dashboard.py")
     print("5. Schedule weekly validation: python weekly_validator.py --schedule")
-    
+
     print("\n📋 Operational Checklist:")
     print("- [ ] All scripts tested manually")
     print("- [ ] Automated scheduling configured")

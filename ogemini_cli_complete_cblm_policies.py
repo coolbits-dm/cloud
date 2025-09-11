@@ -4,7 +4,6 @@ oGeminiCLI - Complete cblm.ai Organization Policies
 Final prompt to complete organization policies deployment
 """
 
-import json
 from datetime import datetime
 
 
@@ -24,7 +23,7 @@ def generate_complete_policies_prompt():
 
 Company: COOL BITS SRL
 CEO: Andrei
-Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 Project: coolbits-ai
 Region: europe-west3
 
@@ -186,7 +185,7 @@ Policy Division (oGrok08 CISO + oGrok09 CAIO) responsible for access control.
 
 🤖 oGeminiCLI - Complete the organization policies deployment for cblm.ai official registration.
 
-Company: COOL BITS SRL | CEO: Andrei | Date: {datetime.now().strftime('%Y-%m-%d')}
+Company: COOL BITS SRL | CEO: Andrei | Date: {datetime.now().strftime("%Y-%m-%d")}
 """
 
     return prompt

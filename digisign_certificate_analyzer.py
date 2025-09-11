@@ -13,8 +13,7 @@ Certificate Manager: @oSafeNet
 """
 
 import json
-from datetime import datetime, timedelta
-from typing import Dict, Any, List
+from typing import Dict, Any
 
 
 class DigiSignCertificateAnalyzer:
@@ -217,9 +216,9 @@ CEO: {self.ceo}
 Certificate Manager: {self.certificate_manager}
 
 CERTIFICATE DETAILS:
-- Issuer: {self.certificate_info['issuer']}
-- Subject: {self.certificate_info['subject']}
-- Thumbprint: {self.certificate_info['thumbprint']}
+- Issuer: {self.certificate_info["issuer"]}
+- Subject: {self.certificate_info["subject"]}
+- Thumbprint: {self.certificate_info["thumbprint"]}
 - Status: EXPIRED (94 days overdue)
 
 REQUEST:

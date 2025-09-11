@@ -5,7 +5,6 @@ Based on official Google Cloud documentation
 """
 
 import os
-import sys
 from vertexai import rag
 import vertexai
 

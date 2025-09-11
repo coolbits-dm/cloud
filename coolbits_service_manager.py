@@ -251,11 +251,13 @@ def main():
         while True:
             try:
                 # Non-interactive mode check
-                if os.getenv('CI') == '1' or os.getenv('NO_COLOR') == '1':
-                    print("🔧 Non-interactive mode: Service manager running in background")
+                if os.getenv("CI") == "1" or os.getenv("NO_COLOR") == "1":
+                    print(
+                        "🔧 Non-interactive mode: Service manager running in background"
+                    )
                     time.sleep(60)  # Sleep for 1 minute then check again
                     continue
-                    
+
                 command = input("Enter command (or 'quit' to exit): ").strip().lower()
 
                 if command == "quit":

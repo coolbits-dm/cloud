@@ -10,7 +10,6 @@ import logging
 import sounddevice as sd
 import numpy as np
 import wave
-from datetime import datetime
 from pathlib import Path
 
 # Configure logging

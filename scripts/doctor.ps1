@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai Doctor Script - Non-Interactive Health Check
 # ========================================================
 
@@ -114,3 +116,9 @@ Write-Host "`n📊 FINAL STATUS: $(if($ok){'✅ OK'}else{'❌ BROKEN'})"
 Write-Host "====================================================="
 
 return $ok
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+

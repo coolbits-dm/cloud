@@ -8,8 +8,7 @@ SC COOL BITS SRL - AI-Only Protocol Secret Management
 import json
 import logging
 from datetime import datetime
-from typing import Dict, Any, Optional
-from pathlib import Path
+from typing import Dict, Any
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -83,25 +82,25 @@ class IIMSIBISSecretProtocol:
 
     def create_google_secret_command(self) -> str:
         """Generează comanda pentru crearea secretului în Google Cloud"""
-        return f"""gcloud secrets create {self.google_cloud_config['secret_name']} \\
+        return f"""gcloud secrets create {self.google_cloud_config["secret_name"]} \\
     --data-file=- \\
-    --project={self.google_cloud_config['project_id']} \\
-    --labels={','.join([f'{k}={v}' for k, v in self.google_cloud_config['labels'].items()])} \\
-    --description="{self.google_cloud_config['description']}" <<< "{self.google_cloud_config['secret_value']}" """
+    --project={self.google_cloud_config["project_id"]} \\
+    --labels={",".join([f"{k}={v}" for k, v in self.google_cloud_config["labels"].items()])} \\
+    --description="{self.google_cloud_config["description"]}" <<< "{self.google_cloud_config["secret_value"]}" """
 
     def create_secret_with_value_command(self) -> str:
         """Generează comanda pentru crearea secretului cu valoare"""
-        return f"""echo "{self.google_cloud_config['secret_value']}" | gcloud secrets create {self.google_cloud_config['secret_name']} \\
+        return f"""echo "{self.google_cloud_config["secret_value"]}" | gcloud secrets create {self.google_cloud_config["secret_name"]} \\
     --data-file=- \\
-    --project={self.google_cloud_config['project_id']} \\
-    --labels={','.join([f'{k}={v}' for k, v in self.google_cloud_config['labels'].items()])} \\
-    --description="{self.google_cloud_config['description']}" """
+    --project={self.google_cloud_config["project_id"]} \\
+    --labels={",".join([f"{k}={v}" for k, v in self.google_cloud_config["labels"].items()])} \\
+    --description="{self.google_cloud_config["description"]}" """
 
     def verify_secret_command(self) -> str:
         """Generează comanda pentru verificarea secretului"""
         return f"""gcloud secrets versions access latest \\
-    --secret={self.google_cloud_config['secret_name']} \\
-    --project={self.google_cloud_config['project_id']} """
+    --secret={self.google_cloud_config["secret_name"]} \\
+    --project={self.google_cloud_config["project_id"]} """
 
     def get_protocol_status(self) -> Dict[str, Any]:
         """Returnează statusul protocolului IIMSIBIS"""
@@ -122,7 +121,7 @@ class IIMSIBISSecretProtocol:
 echo "🔐 Deploying IIMSIBIS Secret Protocol to Google Cloud..."
 
 # Set project
-gcloud config set project {self.google_cloud_config['project_id']}
+gcloud config set project {self.google_cloud_config["project_id"]}
 
 # Create secret
 echo "📝 Creating IIMSIBIS secret..."
@@ -136,22 +135,22 @@ echo "✅ Verifying IIMSIBIS secret..."
 echo "🔑 Setting IAM permissions for AI agents..."
 
 # oPython access
-gcloud secrets add-iam-policy-binding {self.google_cloud_config['secret_name']} \\
+gcloud secrets add-iam-policy-binding {self.google_cloud_config["secret_name"]} \\
     --member="serviceAccount:opython@coolbits-ai.iam.gserviceaccount.com" \\
     --role="roles/secretmanager.secretAccessor" \\
-    --project={self.google_cloud_config['project_id']}
+    --project={self.google_cloud_config["project_id"]}
 
 # oCursor access  
-gcloud secrets add-iam-policy-binding {self.google_cloud_config['secret_name']} \\
+gcloud secrets add-iam-policy-binding {self.google_cloud_config["secret_name"]} \\
     --member="serviceAccount:ocursor@coolbits-ai.iam.gserviceaccount.com" \\
     --role="roles/secretmanager.secretAccessor" \\
-    --project={self.google_cloud_config['project_id']}
+    --project={self.google_cloud_config["project_id"]}
 
 # oGeminiCLI access
-gcloud secrets add-iam-policy-binding {self.google_cloud_config['secret_name']} \\
+gcloud secrets add-iam-policy-binding {self.google_cloud_config["secret_name"]} \\
     --member="serviceAccount:ogeminicli@coolbits-ai.iam.gserviceaccount.com" \\
     --role="roles/secretmanager.secretAccessor" \\
-    --project={self.google_cloud_config['project_id']}
+    --project={self.google_cloud_config["project_id"]}
 
 echo "🎯 IIMSIBIS Secret Protocol deployment complete!"
 echo "🔒 Classification: Top Secret - AI Agents Only"
@@ -189,7 +188,9 @@ echo "🏢 Company: SC COOL BITS SRL | CEO: Andrei"
             status_emoji = (
                 "✅"
                 if config["status"] == "integrated"
-                else "📢" if config["status"] == "notified" else "⏳"
+                else "📢"
+                if config["status"] == "notified"
+                else "⏳"
             )
             print(
                 f"   {status_emoji} @{agent}: {config['status']} - {config['capabilities']}"
@@ -294,8 +295,8 @@ def main():
     report = protocol.generate_protocol_report()
 
     if report:
-        print(f"✅ Protocol report generated successfully!")
-        print(f"📁 Report saved: iimsibis_protocol_report.json")
+        print("✅ Protocol report generated successfully!")
+        print("📁 Report saved: iimsibis_protocol_report.json")
     else:
         print("❌ Failed to generate protocol report")
 

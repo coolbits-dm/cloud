@@ -8,9 +8,6 @@ Demonstrates complete logo integration functionality
 """
 
 import os
-import webbrowser
-import time
-from datetime import datetime
 
 
 def demo_logo_integration():
@@ -155,9 +152,9 @@ def demo_logo_integration():
 
     print(f"📱 Favicon Files: {total_favicons}/{len(favicon_files)} created")
     print(f"👤 Profile Pictures: {total_profiles}/{len(entities)} created")
-    print(f"🌐 API Endpoints: 3 functional")
-    print(f"📁 Files Updated: 9+ files integrated")
-    print(f"🏢 Company Branding: Complete")
+    print("🌐 API Endpoints: 3 functional")
+    print("📁 Files Updated: 9+ files integrated")
+    print("🏢 Company Branding: Complete")
 
     print("\n🚀 NEXT STEPS:")
     print("-" * 15)

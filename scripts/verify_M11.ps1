@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai M11 Chaos & Resilience Verification Script
 # Verifies that chaos engineering is properly implemented and working
 
@@ -319,3 +321,10 @@ Write-Info "✅ RTO validation"
 Write-Info "✅ Business continuity testing"
 Write-Info "✅ Safety guards and blast radius protection"
 Write-Info "✅ Error budget protection"
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+
+

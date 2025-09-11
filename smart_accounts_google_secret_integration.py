@@ -296,7 +296,7 @@ class SmartAccountsGoogleSecretIntegration:
             print(
                 f"   🏦 Bank Consent ID: {self.smart_accounts_data['bank_consent_id']}"
             )
-            print(f"   🔐 Secrets Created: 4 secrets in Google Secret Manager")
+            print("   🔐 Secrets Created: 4 secrets in Google Secret Manager")
             print(f"   📍 Project: {self.project_id}")
             print(f"   🌍 Region: {self.region}")
             print("   ✅ Status: Smart Accounts integration completed")
@@ -309,9 +309,9 @@ class SmartAccountsGoogleSecretIntegration:
             print(
                 f"   🏦 Bank Consent ID: {self.smart_accounts_data['bank_consent_id']}"
             )
-            print(f"   📧 Email Integration: Ready for notifications")
+            print("   📧 Email Integration: Ready for notifications")
             print(
-                f"   🔐 Secret Access: smart-accounts-reference-number, smart-accounts-bank-consent-id"
+                "   🔐 Secret Access: smart-accounts-reference-number, smart-accounts-bank-consent-id"
             )
             print("   ✅ Status: Smart Accounts email integration ready")
 
@@ -443,10 +443,10 @@ def main():
         print("\n📊 GENERATING INTEGRATION REPORT:")
         report = integration.generate_integration_report()
 
-        print(f"\n✅ Smart Accounts integration completed successfully!")
-        print(f"📊 Report saved: smart_accounts_integration_report.json")
+        print("\n✅ Smart Accounts integration completed successfully!")
+        print("📊 Report saved: smart_accounts_integration_report.json")
         print(f"🔐 Secrets created: {len(report['created_secrets'])}")
-        print(f"🤖 Agents notified: @oGeminiCLI, @oOutlook")
+        print("🤖 Agents notified: @oGeminiCLI, @oOutlook")
 
     else:
         print("\n❌ Smart Accounts integration failed!")

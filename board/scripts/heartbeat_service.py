@@ -5,7 +5,6 @@ Periodic status checks & feed for oCopilot Board Orchestrator
 """
 
 import argparse
-import json
 import logging
 import psutil
 import subprocess

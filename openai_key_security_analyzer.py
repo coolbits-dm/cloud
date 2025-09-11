@@ -14,7 +14,7 @@ Company: COOL BITS SRL
 import base64
 import json
 from datetime import datetime
-from typing import Dict, Any, List
+from typing import Dict, Any
 
 
 class OpenAIKeySecurityAnalyzer:
@@ -132,8 +132,8 @@ class OpenAIKeySecurityAnalyzer:
         print("=" * 80)
         print(f"Fragment: {self.fragment}")
         print(f"Decoded: {self.decoded_fragment}")
-        print(f"Type: OpenAI API Key Fragment")
-        print(f"Format: Base64")
+        print("Type: OpenAI API Key Fragment")
+        print("Format: Base64")
         print()
         print("🚨 SECURITY RISK ASSESSMENT:")
         print("   Risk Level: HIGH")
