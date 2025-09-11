@@ -6,7 +6,7 @@ $env:CB_BILLING_MODE = $env:CB_BILLING_MODE ?? 'dev'
 $env:PYTHONUTF8='1'
 
 # 0) No-interactive guard
-pwsh -NoLogo -NoProfile -File scripts/no_interactive_guard.ps1
+pwsh -NoLogo -NoProfile -NonInteractive -File scripts/no_interactive_guard.ps1 -Root . -TimeoutSec 25
 
 # 1) Info toolchain (fără prompts)
 $nodev = (node -v) 2>$null
