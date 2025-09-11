@@ -50,25 +50,19 @@ def guard_tool_call(tool_name: str, max_calls: int = 8):
     return decorator
 
 def guard_subagent(max_depth: int = 3):
-    """Decorator to guard subagent calls"""
     def decorator(func: Callable) -> Callable:
         @functools.wraps(func)
         async def wrapper(*args, **kwargs):
             guard = get_guard()
-            
-            if not guard.increment_depth():
-                return {
-                    "error": "max_depth_exceeded",
-                    "reason": "subagent_depth_limit_reached"
-                }
-            
+            # verificăm înainte, nu incrementăm
+            if getattr(guard, "current_depth", 0) >= max_depth:
+                return {"error": "max_depth_exceeded", "reason": "subagent_depth_limit_reached"}
+            # acceptăm → incrementăm; garantăm decrement în finally
+            guard.current_depth = getattr(guard, "current_depth", 0) + 1
             try:
-                result = await func(*args, **kwargs)
-                return result
+                return await func(*args, **kwargs)
             finally:
-                # Reset depth on completion
                 guard.current_depth = max(0, guard.current_depth - 1)
-        
         return wrapper
     return decorator
 
