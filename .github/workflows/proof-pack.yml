@@ -33,7 +33,7 @@ jobs:
       if: ${{ github.event_name != 'pull_request' }}
       uses: google-github-actions/auth@v2
       with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
+        credentials_json: ${{ github.event_name != 'pull_request' && secrets.GCP_SA_KEY || '' }}
     
     - name: Setup Google Cloud SDK
       if: ${{ github.event_name != 'pull_request' }}
@@ -79,7 +79,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+        GITLEAKS_LICENSE: ${{ github.event_name != 'pull_request' && secrets.GITLEAKS_LICENSE || '' }}
     
     - name: Get gitleaks version
       id: gitleaks-version
@@ -150,7 +150,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+        GITLEAKS_LICENSE: ${{ github.event_name != 'pull_request' && secrets.GITLEAKS_LICENSE || '' }}
     
     - name: Setup Conftest
       uses: instrumenta/conftest-action@v0.3.0
@@ -299,7 +299,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+        GITLEAKS_LICENSE: ${{ github.event_name != 'pull_request' && secrets.GITLEAKS_LICENSE || '' }}
     
     - name: Setup Conftest
       uses: instrumenta/conftest-action@v0.3.0
@@ -378,7 +378,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
+        GITLEAKS_LICENSE: ${{ github.event_name != 'pull_request' && secrets.GITLEAKS_LICENSE || '' }}
     
     - name: Setup Trivy
       uses: aquasecurity/trivy-action@master
