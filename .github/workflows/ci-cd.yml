@@ -19,7 +19,7 @@ env:
 jobs:
   verify:
     # rulează pe PR și pe push când NU e prod
-    if: ${{ github.event_name == 'pull_request' || env.CB_BILLING_MODE != 'prod' }}
+    if: ${{ github.event_name == 'pull_request' || github.env.CB_BILLING_MODE != 'prod' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +33,7 @@ jobs:
 
   release:
     # DOAR pe push + prod
-    if: ${{ github.event_name == 'push' && env.CB_BILLING_MODE == 'prod' }}
+    if: ${{ github.event_name == 'push' && github.env.CB_BILLING_MODE == 'prod' }}
     needs: [verify]
     runs-on: ubuntu-latest
     steps:

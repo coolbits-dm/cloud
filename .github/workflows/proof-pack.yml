@@ -14,14 +14,14 @@ env:
 
 jobs:
   dev_noop:
-    if: ${{ env.CB_BILLING_MODE != 'prod' }}
+    if: ${{ github.env.CB_BILLING_MODE != 'prod' }}
     runs-on: ubuntu-latest
     steps:
       - run: echo "Dev mode → Proof Pack SKIPPED (noop success)."
 
   # Job 1: Toolchain Setup
   toolchain-setup:
-    if: ${{ env.CB_BILLING_MODE == 'prod' }}
+    if: ${{ github.env.CB_BILLING_MODE == 'prod' }}
     runs-on: ubuntu-latest
     name: Setup Enterprise Toolchain
     outputs:
@@ -50,7 +50,7 @@ jobs:
         version: 'latest'
     
     - name: Get gcloud version
-      if: ${{ github.event_name == 'push' && env.CB_BILLING_MODE == 'prod' }}
+      if: ${{ github.event_name == 'push' && github.env.CB_BILLING_MODE == 'prod' }}
       id: gcloud-version
       shell: bash
       run: |
@@ -288,7 +288,7 @@ jobs:
 
   # Job 3: Generate Proof Pack
   proof-pack-generation:
-    if: ${{ github.event_name == 'push' && env.CB_BILLING_MODE == 'prod' }}
+    if: ${{ github.event_name == 'push' && github.env.CB_BILLING_MODE == 'prod' }}
     runs-on: ubuntu-latest
     name: Generate & Sign Proof Pack
     needs: [toolchain-setup, milestone-verification]
