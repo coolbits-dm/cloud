@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 #!/usr/bin/env pwsh
 # Fix Dev Scripts - Add Timeouts & Non-Interactive Mode
 # Fixes all PowerShell scripts to prevent hanging and blocking
@@ -23,30 +25,30 @@ foreach ($script in $scripts) {
 
 # Common fixes to apply
 $fixes = @{
-    "Invoke-WebRequest" = @{
-        pattern = "Invoke-WebRequest"
-        replacement = "Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing"
+    "Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing" = @{
+        pattern = "Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing"
+        replacement = "Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing -TimeoutSec 10 -UseBasicParsing"
         description = "Add timeout and basic parsing to web requests"
     }
-    "Read-Host" = @{
-        pattern = "Read-Host"
-        replacement = "# Read-Host (disabled for non-interactive mode)"
+    "# Read-Host (disabled for non-interactive mode)" = @{
+        pattern = "# Read-Host (disabled for non-interactive mode)"
+        replacement = "# # Read-Host (disabled for non-interactive mode) (disabled for non-interactive mode)"
         description = "Disable interactive prompts"
     }
-    "Start-Process" = @{
-        pattern = "Start-Process"
-        replacement = "Start-Process -NoNewWindow -Wait"
+    "Start-Process -NoNewWindow -Wait" = @{
+        pattern = "Start-Process -NoNewWindow -Wait"
+        replacement = "Start-Process -NoNewWindow -Wait -NoNewWindow -Wait"
         description = "Add non-interactive flags to process starts"
     }
     "Get-Content" = @{
-        pattern = "Get-Content.*-Wait"
+        pattern = "Get-Content"
         replacement = "Get-Content"
         description = "Remove -Wait flag from Get-Content"
     }
     "curl.exe" = @{
         pattern = "curl\s+"
         replacement = "curl.exe --max-time 10 "
-        description = "Add timeout to curl commands"
+        description = "Add timeout to curl.exe --max-time 10 commands"
     }
 }
 
@@ -137,15 +139,15 @@ foreach ($scriptPath in $problematicScripts) {
                 $content = Get-Content $scriptPath -Raw -Encoding UTF8
                 
                 # Replace problematic patterns
-                $content = $content -replace "Invoke-WebRequest.*-Uri", "Invoke-WebRequest -Uri"
-                $content = $content -replace "Invoke-WebRequest -Uri", "Invoke-WebRequest -Uri -TimeoutSec 10 -UseBasicParsing"
+                $content = $content -replace "Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing.*-Uri", "Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing -Uri"
+                $content = $content -replace "Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing -Uri", "Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing -Uri -TimeoutSec 10 -UseBasicParsing"
                 $content = $content -replace "curl\s+", "curl.exe --max-time 10 "
-                $content = $content -replace "Read-Host", "# Read-Host (disabled for non-interactive mode)"
+                $content = $content -replace "# Read-Host (disabled for non-interactive mode)", "# # Read-Host (disabled for non-interactive mode) (disabled for non-interactive mode)"
                 
                 Set-Content $scriptPath -Value $content -Encoding UTF8
                 Write-Host "    ✅ Fixed $scriptPath" -ForegroundColor Green
             } catch {
-                Write-Host "    ❌ Error fixing $scriptPath: $($_.Exception.Message)" -ForegroundColor Red
+                Write-Host "    ❌ Error fixing $scriptPath" -ForegroundColor Red
             }
         } else {
             Write-Host "    [DRY RUN] Would fix $scriptPath" -ForegroundColor Yellow
@@ -168,18 +170,18 @@ Write-Host "[TEST] Verifying dev script fixes..." -ForegroundColor Green
 
 # Test 1: Web request with timeout
 try {
-    `$response = Invoke-WebRequest -Uri "https://httpbin.org/delay/1" -TimeoutSec 5 -UseBasicParsing
+    `$response = Invoke-WebRequest -TimeoutSec 10 -UseBasicParsing -Uri "https://httpbin.org/delay/1" -TimeoutSec 5 -UseBasicParsing
     Write-Host "✅ Web request timeout test: PASS" -ForegroundColor Green
 } catch {
     Write-Host "✅ Web request timeout test: PASS (timeout as expected)" -ForegroundColor Green
 }
 
-# Test 2: Curl with timeout
+# Test 2: curl.exe --max-time 10 with timeout
 try {
     `$result = curl.exe --max-time 5 https://httpbin.org/delay/1
-    Write-Host "✅ Curl timeout test: PASS" -ForegroundColor Green
+    Write-Host "✅ curl.exe --max-time 10 timeout test: PASS" -ForegroundColor Green
 } catch {
-    Write-Host "✅ Curl timeout test: PASS (timeout as expected)" -ForegroundColor Green
+    Write-Host "✅ curl.exe --max-time 10 timeout test: PASS (timeout as expected)" -ForegroundColor Green
 }
 
 # Test 3: Non-interactive mode
@@ -202,3 +204,9 @@ Write-Host "• Test script created: $(if ($DryRun) { 'No' } else { 'Yes' })" -F
 if (-not $DryRun) {
     Write-Host "`n[INFO] To test fixes, run: .\scripts\test-dev-fixes.ps1" -ForegroundColor Cyan
 }
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+
