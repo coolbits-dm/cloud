@@ -30,12 +30,13 @@ jobs:
         fetch-depth: 0
     
     - name: Setup Google Cloud SDK
+      if: ${{ github.event_name != 'pull_request' }}
+      if: ${{ github.event_name != 'pull_request' }}
       uses: google-github-actions/setup-gcloud@v2
       with:
         version: 'latest'
         project_id: ${{ secrets.GCP_PROJECT_ID }}
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
-        export_default_credentials: true
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
     
     - name: Get gcloud version
       id: gcloud-version
@@ -87,7 +88,10 @@ jobs:
     - name: Setup Conftest
       uses: instrumenta/conftest-action@v0.3.0
       with:
-        version: 'v0.50.0'
+        files: |
+          policy/**
+        policy: policy
+        args: "--no-color"
     
     - name: Get conftest version
       id: conftest-version
@@ -127,11 +131,11 @@ jobs:
         fetch-depth: 0
     
     - name: Setup Google Cloud SDK
+      if: ${{ github.event_name != 'pull_request' }}
       uses: google-github-actions/setup-gcloud@v2
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
-        export_default_credentials: true
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
     
     - name: Setup Cosign
       uses: sigstore/cosign-installer@v3
@@ -150,7 +154,10 @@ jobs:
     - name: Setup Conftest
       uses: instrumenta/conftest-action@v0.3.0
       with:
-        version: 'v0.50.0'
+        files: |
+          policy/**
+        policy: policy
+        args: "--no-color"
     
     - name: Make scripts executable
       run: |
@@ -275,11 +282,11 @@ jobs:
         fetch-depth: 0
     
     - name: Setup Google Cloud SDK
+      if: ${{ github.event_name != 'pull_request' }}
       uses: google-github-actions/setup-gcloud@v2
       with:
         project_id: ${{ secrets.GCP_PROJECT_ID }}
-        service_account_key: ${{ secrets.GCP_SA_KEY }}
-        export_default_credentials: true
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
     
     - name: Setup Cosign
       uses: sigstore/cosign-installer@v3
@@ -298,7 +305,10 @@ jobs:
     - name: Setup Conftest
       uses: instrumenta/conftest-action@v0.3.0
       with:
-        version: 'v0.50.0'
+        files: |
+          policy/**
+        policy: policy
+        args: "--no-color"
     
     - name: Generate Proof Pack
       run: |
@@ -378,7 +388,10 @@ jobs:
     - name: Setup Conftest
       uses: instrumenta/conftest-action@v0.3.0
       with:
-        version: 'v0.50.0'
+        files: |
+          policy/**
+        policy: policy
+        args: "--no-color"
     
     - name: Secret Scanning
       run: |
