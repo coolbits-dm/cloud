@@ -2,6 +2,22 @@
 
 ![CI - verify](https://github.com/coolbits-dm/cloud/actions/workflows/ci-cd.yml/badge.svg?branch=main)
 
+## 🏠 Local M16 Development
+
+### Quick Local Setup
+```bash
+# Set environment
+$env:CB_BILLING_MODE='dev'
+
+# Run local M16 orchestrator
+python app\andrei\andrei.py
+
+# Run tests
+pytest -q
+```
+
+**Note**: Actions remain disabled (NUKE applied). All development is local-only.
+
 ## 🚀 Quick Start (20 minutes)
 
 ### Prerequisites

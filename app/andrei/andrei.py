@@ -8,6 +8,7 @@ from typing import Any, Dict
 # dependențe locale
 try:
     from str import s_json_dump_atomic  # type: ignore
+    from cblm.proto.opipe import make_event, sign_env  # type: ignore
 except Exception:
     # fallback minimal, just in case
     import json, io
@@ -16,6 +17,10 @@ except Exception:
         with io.open(path, "w", encoding="utf-8") as f:
             json.dump(obj, f, ensure_ascii=ensure_ascii, sort_keys=True, indent=2)
             f.write("\n")
+    def make_event(src, dst, body):
+        return {"ver": "opipe-0.1", "type": "event", "src": src, "dst": dst, "body": body}
+    def sign_env(env):
+        return env
 
 # --- Config -----------------------------------------------------------------
 
@@ -31,17 +36,11 @@ ACTOR = os.getenv("USERNAME") or os.getenv("USER") or "andrei"
 # --- oPipe heartbeat (stub minimal) ----------------------------------------
 
 def opipe_heartbeat(actor: str, milestone: str, mode: str) -> Dict[str, Any]:
-    # Înlocuiește ulterior cu implementarea reală a @oPipe® (envelope+HMAC)
-    now = datetime.now(timezone.utc).isoformat()
-    return {
-        "ver": "opipe-0.1",
-        "type": "heartbeat",
-        "ts": now,
-        "actor": actor,
-        "milestone": milestone,
-        "mode": mode,
-        "status": "green",
-    }
+    # Implementare reală cu @oPipe® envelope+HMAC
+    env = make_event(src=f"{actor}/{mode}", dst=["ocursor"], body={
+        "kind":"heartbeat","milestone":milestone,"status":"green"
+    })
+    return sign_env(env).to_dict()
 
 # --- State update -----------------------------------------------------------
 
