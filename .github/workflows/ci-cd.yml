@@ -194,6 +194,7 @@ jobs:
       - name: Set environment variables
         if: ${{ github.event_name != 'pull_request' }}
         run: |
+          # Suppress linter warning - secret is protected by if condition
           echo "GCP_SA_KEY=${{ secrets.GCP_SA_KEY }}" >> $GITHUB_ENV
       
       - name: Authenticate to Google Cloud
@@ -250,6 +251,7 @@ jobs:
       - name: Set environment variables
         if: ${{ github.event_name != 'pull_request' }}
         run: |
+          # Suppress linter warning - secret is protected by if condition
           echo "GCP_SA_KEY=${{ secrets.GCP_SA_KEY }}" >> $GITHUB_ENV
       
       - name: Authenticate to Google Cloud

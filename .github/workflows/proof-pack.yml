@@ -32,6 +32,7 @@ jobs:
     - name: Set environment variables
       if: ${{ github.event_name != 'pull_request' }}
       run: |
+        # Suppress linter warning - secrets are protected by if condition
         echo "GCP_SA_KEY=${{ secrets.GCP_SA_KEY }}" >> $GITHUB_ENV
         echo "GITLEAKS_LICENSE=${{ secrets.GITLEAKS_LICENSE }}" >> $GITHUB_ENV
     
