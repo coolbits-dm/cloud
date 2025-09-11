@@ -1,0 +1,19 @@
+{
+  "body": {
+    "kind": "heartbeat",
+    "milestone": "M16",
+    "status": "green"
+  },
+  "corr": null,
+  "dst": [
+    "ocursor"
+  ],
+  "id": "IIOYtwDQNdLeQjiq9FxKBVch4_c",
+  "nonce": "QvRtV4uiE0gTiO1ZjMEHhQ",
+  "sig": "ed1faf053d3e51f99af6a4baf60559072400a7f2d8aafef119d2c7bdd1fc25c5",
+  "src": "andre/dev",
+  "ts": 1757603368.7540448,
+  "ttl_s": 300,
+  "typ": "event",
+  "ver": "opipe-0.1"
+}
