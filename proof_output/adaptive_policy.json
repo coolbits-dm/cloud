@@ -1,0 +1,123 @@
+{
+  "collector_report": {
+    "generated_at": "2025-09-11T06:00:30Z",
+    "total_records": 2,
+    "violations_total": 2,
+    "denies": 2,
+    "warns_included": 0,
+    "top_agents": [
+      {
+        "key": "nha:unknown",
+        "count": 1
+      },
+      {
+        "key": "nha:rag-ingest-worker",
+        "count": 1
+      }
+    ],
+    "top_actions": [
+      {
+        "key": "rag:ingest",
+        "count": 2
+      }
+    ],
+    "top_scopes": [
+      {
+        "key": "write:rag",
+        "count": 1
+      },
+      {
+        "key": "write:vectors",
+        "count": 1
+      }
+    ],
+    "top_reasons": [
+      {
+        "key": "unknown_agent",
+        "count": 1
+      },
+      {
+        "key": "permission_not_allowed",
+        "count": 1
+      }
+    ],
+    "missing_scopes": [
+      {
+        "key": "write:vectors",
+        "count": 1
+      }
+    ],
+    "missing_secrets": [],
+    "agent_action_matrix": {
+      "nha:unknown": [
+        "@{action=rag:ingest; count=1}"
+      ],
+      "nha:rag-ingest-worker": [
+        "@{action=rag:ingest; count=1}"
+      ]
+    },
+    "agent_scope_matrix": {
+      "nha:unknown": [
+        "@{scope=write:rag; count=1}"
+      ],
+      "nha:rag-ingest-worker": [
+        "@{scope=write:vectors; count=1}"
+      ]
+    }
+  },
+  "policy_gaps": {
+    "generated_at": "2025-09-11T06:00:30Z",
+    "source_file": "reports/policy_collect_last_24h.json",
+    "analysis_window": "2025-09-11T06:00:30Z",
+    "total_violations": 2,
+    "total_gaps": 2,
+    "gaps_by_priority": {
+      "high": 2,
+      "medium": 0,
+      "low": 0
+    },
+    "gaps_by_type": {
+      "unknown_agent": 1,
+      "permission_gap": 1
+    },
+    "all_gaps": [
+      {
+        "type": "unknown_agent",
+        "agent_id": "nha:unknown",
+        "violation_count": 1,
+        "rationale": "Unknown agent has 1 violations - check agent configuration",
+        "priority": "high",
+        "recommendation": "Verify agent ID configuration and registry entries"
+      },
+      {
+        "type": "permission_gap",
+        "reason": "permission_not_allowed",
+        "violation_count": 1,
+        "rationale": "Permission denied 1 times - check IAM policies",
+        "priority": "high",
+        "recommendation": "Review and update IAM permissions in registry"
+      }
+    ],
+    "high_priority_gaps": [
+      {
+        "type": "unknown_agent",
+        "agent_id": "nha:unknown",
+        "violation_count": 1,
+        "rationale": "Unknown agent has 1 violations - check agent configuration",
+        "priority": "high",
+        "recommendation": "Verify agent ID configuration and registry entries"
+      },
+      {
+        "type": "permission_gap",
+        "reason": "permission_not_allowed",
+        "violation_count": 1,
+        "rationale": "Permission denied 1 times - check IAM policies",
+        "priority": "high",
+        "recommendation": "Review and update IAM permissions in registry"
+      }
+    ],
+    "medium_priority_gaps": [],
+    "low_priority_gaps": []
+  },
+  "recommendations": "policy_recommendations:\r\n  agents:\r\n  - id: unknown\r\n    recommendations:\r\n    - action: investigate_agent\r\n      priority: high\r\n      rationale: Unknown agent has 1 violations - check agent configuration\r\n      violation_count: 1\r\n  generated_at: '2025-09-11T06:00:31Z'\r\n  summary:\r\n    agent_recommendations: 1\r\n    permission_recommendations: 0\r\n    scope_recommendations: 0\r\n    secret_recommendations: 0\r\n  total_recommendations: 1\r\n"
+}

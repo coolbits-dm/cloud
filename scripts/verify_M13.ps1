@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 #!/usr/bin/env pwsh
 # M13 - Runtime Governance & Policy Enforcement Verification
 # Verifies NHA enforcement, policy checks, and runtime governance
@@ -196,3 +198,8 @@ if ($failedChecks -eq 0) {
     Write-Host "`n[M13] Runtime Governance & Policy Enforcement verification FAILED" -ForegroundColor Red
     exit 1
 }
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+

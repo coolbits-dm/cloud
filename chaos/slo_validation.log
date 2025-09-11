@@ -1,0 +1,2 @@
+2025-09-11 09:28:50,527 - chaos.runners.validators - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 09:35:48,230 - chaos.runners.validators - INFO - SLO measurement: p95=0.0ms, error_rate=1.000, availability=0.000

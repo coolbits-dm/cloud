@@ -1,0 +1,64 @@
+# Branch Protection Configuration for CoolBits.ai
+# This file defines the required checks for main branch protection
+
+name: Branch Protection Rules
+description: Enterprise-grade branch protection for CoolBits.ai main branch
+
+# Required Status Checks
+required_status_checks:
+  - proof-pack-automation
+  - milestone-verification
+  - proof-pack-generation
+  - security-gates
+  - final-status
+
+# Required Reviewers
+required_reviewers:
+  - minimum_reviewers: 2
+    required_teams:
+      - security-team
+      - infrastructure-team
+    dismiss_stale_reviews: true
+    require_code_owner_reviews: true
+
+# Restriction Rules
+restrictions:
+  - enforce_admins: true
+  - allow_force_pushes: false
+  - allow_deletions: false
+  - required_linear_history: true
+
+# Protection Rules
+protection_rules:
+  - name: "Proof Pack Required"
+    description: "All commits must have valid Proof Pack"
+    required: true
+    check: "proof-pack-generation"
+  
+  - name: "Security Gates"
+    description: "All security checks must pass"
+    required: true
+    check: "security-gates"
+  
+  - name: "Milestone Verification"
+    description: "M8-M14 verification must pass"
+    required: true
+    check: "milestone-verification"
+
+# Environment Variables for Production
+production_env:
+  NHA_ENFORCEMENT_MODE: "fail-closed"
+  VERIFY_MODE: "prod"
+  PROOF_PACK_REQUIRED: "true"
+  SECURITY_GATES_ENABLED: "true"
+  CHAOS_DRILLS_ENABLED: "true"
+  POLICY_ENFORCEMENT_STRICT: "true"
+
+# Fail-Closed Configuration
+fail_closed_config:
+  enabled: true
+  health_check_endpoint: "/policy/health"
+  enforcement_mode: "fail-closed"
+  audit_logging: "enabled"
+  kill_switch: "enabled"
+  auto_rollback: "enabled"

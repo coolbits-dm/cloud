@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai M8 Reality Check Script
 # ====================================
 
@@ -163,3 +165,10 @@ Write-Info "✅ Restore functionality verified"
 Write-Info "✅ Retention policy applied"
 Write-Info "✅ PII scan in CI configured"
 Write-Info "✅ CMEK/DPAPI verified"
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+
+

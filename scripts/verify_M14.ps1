@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 #!/usr/bin/env pwsh
 # M14 - Adaptive Policy & Self-Healing Verification
 # Verifies adaptive policy pipeline, self-healing, and policy recommendations
@@ -176,3 +178,9 @@ if ($failedChecks -eq 0) {
     Write-Host "`n[M14] Adaptive Policy & Self-Healing verification FAILED" -ForegroundColor Red
     exit 1
 }
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+

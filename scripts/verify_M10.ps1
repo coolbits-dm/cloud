@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 #!/usr/bin/env pwsh
 # M10 - DevEx & Documentation Verification
 # Verifies developer experience and documentation completeness
@@ -181,3 +183,9 @@ if ($failedChecks -eq 0) {
     Write-Host "`n[M10] DevEx & Documentation verification FAILED" -ForegroundColor Red
     exit 1
 }
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+

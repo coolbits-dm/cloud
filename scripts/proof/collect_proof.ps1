@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 #!/usr/bin/env pwsh
 # Proof Pack Collector - Enterprise Verification Script
 # Generates signed proof_pack.zip with all verification evidence
@@ -475,7 +477,7 @@ try {
     $services = @("localhost:3001", "localhost:8080", "localhost:5000")
     foreach ($service in $services) {
         try {
-            $response = Invoke-WebRequest -Uri "http://$service/health" -Method GET -TimeoutSec 5 -ErrorAction Stop
+            $response = Invoke-WebRequest -Uri -TimeoutSec 10 -UseBasicParsing "http://$service/health" -Method GET -TimeoutSec 5 -ErrorAction Stop
             $healthChecks.services += @{
                 "service" = $service
                 "status" = "healthy"
@@ -600,3 +602,10 @@ foreach ($component in $summary.components.PSObject.Properties) {
 }
 
 Write-ColorOutput "`n🚀 Ready for @oRunner verification!" "Magenta"
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+
+

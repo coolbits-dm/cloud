@@ -1,3 +1,5 @@
+$ErrorActionPreference = "Stop"
+$ProgressPreference = "SilentlyContinue"
 # CoolBits.ai Chaos Engineering - PowerShell Runner
 # Run chaos experiments locally and on staging
 
@@ -259,3 +261,9 @@ function Start-ChaosExperiments {
 
 # Run main function
 Start-ChaosExperiments
+
+# Set timeout environment variables
+$env:POWERSHELL_TELEMETRY_OPTOUT = '1'
+$env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+$env:HTTPS_PROXY = ''
+
