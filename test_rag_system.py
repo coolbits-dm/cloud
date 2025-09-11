@@ -175,13 +175,13 @@ class RAGTestSuite:
         error_tests = len([r for r in self.test_results if r["status"] == "ERROR"])
 
         print(f"Total Tests: {total_tests}")
-        print(f"Passed: {passed_tests} ({passed_tests/total_tests*100:.1f}%)")
-        print(f"Failed: {failed_tests} ({failed_tests/total_tests*100:.1f}%)")
-        print(f"Errors: {error_tests} ({error_tests/total_tests*100:.1f}%)")
+        print(f"Passed: {passed_tests} ({passed_tests / total_tests * 100:.1f}%)")
+        print(f"Failed: {failed_tests} ({failed_tests / total_tests * 100:.1f}%)")
+        print(f"Errors: {error_tests} ({error_tests / total_tests * 100:.1f}%)")
 
         total_duration = sum(r["duration"] for r in self.test_results)
         print(f"Total Duration: {total_duration:.2f}s")
-        print(f"Average Duration: {total_duration/total_tests:.2f}s")
+        print(f"Average Duration: {total_duration / total_tests:.2f}s")
 
         # Show failed tests
         if failed_tests > 0 or error_tests > 0:

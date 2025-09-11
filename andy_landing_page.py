@@ -5,14 +5,11 @@ Andy Landing Page
 CoolBits.ai - Landing page with Google authentication
 """
 
-from fastapi import FastAPI, Request, HTTPException
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-import json
 from datetime import datetime
-from typing import Dict, List, Any, Optional
-import uuid
 
 app = FastAPI(title="Andy Landing Page", version="1.0.0")
 

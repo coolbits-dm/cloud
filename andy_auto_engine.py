@@ -5,15 +5,13 @@ CoolBits.ai - Personal 1:1 Agent
 """
 
 import asyncio
-import json
 import sqlite3
 import logging
 from datetime import datetime
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Any
 from dataclasses import dataclass
 from enum import Enum
 import hashlib
-import os
 
 # Import RAG system
 from andy_kim_local_rag import local_rag_system, RAGAgent, RAGQuery
@@ -439,7 +437,7 @@ This requires deeper analysis than simple database lookup. Let me provide a comp
 
             if rag_results:
                 # Build Kim's reasoning response
-                response = f"Kim Reasoning Partner Analysis:\n\n"
+                response = "Kim Reasoning Partner Analysis:\n\n"
                 response += f'I\'ve analyzed your request: "{prompt}"\n\n'
                 response += "This requires advanced reasoning and analysis. I'm processing this through:\n"
                 response += "- Deep reasoning algorithms\n"

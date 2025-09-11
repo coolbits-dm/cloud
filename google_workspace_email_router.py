@@ -6,12 +6,10 @@ Complete email routing setup for CoolBits.ai to andrei@coolbits.ai
 Based on Google Workspace Admin Console routing features
 """
 
-import os
 import sys
 import json
 import logging
 from datetime import datetime
-from typing import Dict, List, Any, Optional
 
 # Configure logging
 logging.basicConfig(

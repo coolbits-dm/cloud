@@ -91,7 +91,7 @@ async def root():
             </div>
             <p style="margin-top: 20px;">
                 <strong>Status:</strong> Active | 
-                <strong>Timestamp:</strong> {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+                <strong>Timestamp:</strong> {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
             </p>
         </div>
     </div>

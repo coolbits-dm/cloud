@@ -5,17 +5,14 @@ Service Management and Control System
 """
 
 import yaml
-import json
 import subprocess
 import psutil
 import time
 import os
-import signal
 from datetime import datetime
-from typing import Dict, List, Optional
-from fastapi import FastAPI, HTTPException, BackgroundTasks
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, JSONResponse
+from typing import Dict, Optional
+from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 import uvicorn
 

@@ -138,7 +138,7 @@ Get-BitLockerVolume
 5. Update compliance documentation
 
 ═══════════════════════════════════════════════════════════════
-Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 Agent: @SafeNet (Security Administration)
 Target: @oPython (Local Security Management)
 Company: COOL BITS SRL

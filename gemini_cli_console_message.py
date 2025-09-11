@@ -4,7 +4,6 @@ oVertex Agent - Console-Friendly Message for Gemini CLI
 COOL BITS S.R.L. Infrastructure Implementation Plan
 """
 
-import json
 from datetime import datetime
 
 
@@ -95,7 +94,7 @@ def generate_gemini_cli_console_message():
    Sync Interval: 30s
 
 ═══════════════════════════════════════════════════════════════
-Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 Agent: oVertex (Local Windows 11 Integration)
 Target: Gemini CLI (Google Cloud Operations)
 ═══════════════════════════════════════════════════════════════

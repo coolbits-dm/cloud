@@ -5,12 +5,10 @@
 Complete Google Services integration for CoolBits.ai ecosystem
 """
 
-import os
 import sys
 import json
 import logging
 from datetime import datetime
-from typing import Dict, List, Any, Optional
 
 # Configure logging
 logging.basicConfig(
@@ -252,7 +250,7 @@ class oGoogleServicesManager:
             print(f"   🔗 Integration: {service_config['integration_status']}")
 
             # Display use cases
-            print(f"   🎯 Use Cases:")
+            print("   🎯 Use Cases:")
             for use_case in service_config["use_cases"]:
                 print(f"      • {use_case}")
 

@@ -1,0 +1,17 @@
+{
+  "id": "@oRunner",
+  "role": "executor", 
+  "milestone": "M16-PRE",
+  "mode": "dev",
+  "corr_id": "fe28e1272-m16pre-001",
+  "invariants": [
+    "fail-closed",
+    "no cloud in dev", 
+    "proof-pack fresh"
+  ],
+  "sentinel": {
+    "id": "@oRunner",
+    "role": "executor",
+    "status": "active"
+  }
+}

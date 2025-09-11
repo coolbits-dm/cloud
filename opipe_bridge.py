@@ -24,9 +24,8 @@ import ipaddress
 from typing import Dict, Any, Optional, List, Tuple
 from datetime import datetime, timedelta
 from dataclasses import dataclass
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify
 import threading
-import queue
 
 # GPU Detection
 try:
@@ -438,7 +437,7 @@ class OPipeBridge:
 
                 return jsonify({"ok": True, "json": json_str})
 
-            except Exception as e:
+            except Exception:
                 return (
                     jsonify(
                         {
@@ -476,7 +475,7 @@ class OPipeBridge:
 
                 return jsonify({"ok": True, "obj": obj})
 
-            except Exception as e:
+            except Exception:
                 return (
                     jsonify(
                         {

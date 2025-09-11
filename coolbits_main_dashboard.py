@@ -6,14 +6,12 @@ Central dashboard for all CoolBits services and processes
 
 import json
 import time
-import subprocess
-import threading
 from datetime import datetime
 from flask import Flask, render_template_string, request, jsonify
 from flask_cors import CORS
 import psutil
 import requests
-from feature_flags import feature_flags, is_feature_enabled, require_feature, FeatureNotEnabledError
+from feature_flags import feature_flags
 
 app = Flask(__name__)
 CORS(app)
@@ -80,7 +78,7 @@ class CoolBitsServiceManager:
                 if conn.laddr.port == port and conn.status == "LISTEN":
                     return "running"
             return "stopped"
-        except Exception as e:
+        except Exception:
             return "error"
 
     def monitor_services(self):
@@ -529,19 +527,22 @@ def dashboard():
 @app.route("/api/feature-flags")
 def get_feature_flags():
     """Get all feature flags"""
-    return jsonify({
-        "flags": feature_flags.get_all_flags(),
-        "enabled": feature_flags.get_enabled_flags(),
-        "disabled": feature_flags.get_disabled_flags(),
-        "timestamp": datetime.now().isoformat()
-    })
+    return jsonify(
+        {
+            "flags": feature_flags.get_all_flags(),
+            "enabled": feature_flags.get_enabled_flags(),
+            "disabled": feature_flags.get_disabled_flags(),
+            "timestamp": datetime.now().isoformat(),
+        }
+    )
+
 
 @app.route("/api/feature-flags/<flag_name>", methods=["POST"])
 def toggle_feature_flag(flag_name):
     """Toggle a feature flag"""
     try:
         action = request.json.get("action", "toggle")
-        
+
         if action == "enable":
             success = feature_flags.enable(flag_name)
         elif action == "disable":
@@ -550,17 +551,19 @@ def toggle_feature_flag(flag_name):
             success = feature_flags.toggle(flag_name)
         else:
             return jsonify({"error": "Invalid action"}), 400
-        
+
         if success:
-            return jsonify({
-                "flag": flag_name,
-                "enabled": feature_flags.is_enabled(flag_name),
-                "action": action,
-                "timestamp": datetime.now().isoformat()
-            })
+            return jsonify(
+                {
+                    "flag": flag_name,
+                    "enabled": feature_flags.is_enabled(flag_name),
+                    "action": action,
+                    "timestamp": datetime.now().isoformat(),
+                }
+            )
         else:
             return jsonify({"error": "Flag not found"}), 404
-            
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -570,31 +573,35 @@ def health_check():
     """Standardized health check endpoint"""
     import platform
     import os
-    
+
     # Get runtime info
     runtime_info = {}
-    if os.path.exists('.runtime.json'):
+    if os.path.exists(".runtime.json"):
         try:
-            with open('.runtime.json', 'r') as f:
+            with open(".runtime.json", "r") as f:
                 runtime_info = json.load(f)
         except:
             pass
-    
-    return jsonify({
-        "status": "healthy",
-        "service": "CoolBits.ai Main Dashboard",
-        "version": "1.0.0",
-        "commitSha": "main",  # TODO: Get from git
-        "buildTime": runtime_info.get('started_at', datetime.now().isoformat()),
-        "node": platform.node(),
-        "env": "production" if os.getenv('CI') == '1' else "development",
-        "appMode": "web",
-        "schemaVersion": "1.0",
-        "uptimeSec": int(time.time() - os.path.getctime('.runtime.json')) if os.path.exists('.runtime.json') else 0,
-        "port": 8080,
-        "bridge_port": 8100,
-        "timestamp": datetime.now().isoformat()
-    })
+
+    return jsonify(
+        {
+            "status": "healthy",
+            "service": "CoolBits.ai Main Dashboard",
+            "version": "1.0.0",
+            "commitSha": "main",  # TODO: Get from git
+            "buildTime": runtime_info.get("started_at", datetime.now().isoformat()),
+            "node": platform.node(),
+            "env": "production" if os.getenv("CI") == "1" else "development",
+            "appMode": "web",
+            "schemaVersion": "1.0",
+            "uptimeSec": int(time.time() - os.path.getctime(".runtime.json"))
+            if os.path.exists(".runtime.json")
+            else 0,
+            "port": 8080,
+            "bridge_port": 8100,
+            "timestamp": datetime.now().isoformat(),
+        }
+    )
 
 
 @app.route("/api/services/status")

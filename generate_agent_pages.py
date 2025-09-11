@@ -9,7 +9,7 @@ Date: September 6, 2025
 
 import os
 import json
-from typing import Dict, List
+from typing import Dict
 
 # Agent definitions
 agents = {
@@ -195,33 +195,33 @@ def generate_agent_page(agent_id: str, agent_data: Dict) -> str:
 def create_agent_index_page() -> str:
     """Create index page with links to all agents"""
 
-    html_content = f"""<!DOCTYPE html>
+    html_content = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoolBits.ai Agent Portal - All Agents</title>
     <style>
-        * {{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }}
+        }
 
-        body {{
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
-        }}
+        }
 
-        .container {{
+        .container {
             max-width: 1600px;
             margin: 0 auto;
             padding: 20px;
-        }}
+        }
 
-        .header {{
+        .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 15px;
@@ -229,9 +229,9 @@ def create_agent_index_page() -> str:
             margin-bottom: 30px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             text-align: center;
-        }}
+        }
 
-        .header h1 {{
+        .header h1 {
             color: #2c3e50;
             font-size: 2.5rem;
             margin-bottom: 10px;
@@ -239,16 +239,16 @@ def create_agent_index_page() -> str:
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-        }}
+        }
 
-        .agents-grid {{
+        .agents-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
-        }}
+        }
 
-        .agent-card {{
+        .agent-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 15px;
@@ -256,74 +256,74 @@ def create_agent_index_page() -> str:
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-        }}
+        }
 
-        .agent-card:hover {{
+        .agent-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-        }}
+        }
 
-        .agent-name {{
+        .agent-name {
             font-size: 1.3rem;
             font-weight: bold;
             color: #2c3e50;
             margin-bottom: 8px;
-        }}
+        }
 
-        .agent-role {{
+        .agent-role {
             font-size: 1rem;
             color: #7f8c8d;
             margin-bottom: 12px;
-        }}
+        }
 
-        .agent-description {{
+        .agent-description {
             font-size: 0.9rem;
             color: #34495e;
             margin-bottom: 15px;
             line-height: 1.4;
-        }}
+        }
 
-        .agent-meta {{
+        .agent-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.8rem;
             color: #95a5a6;
-        }}
+        }
 
-        .rag-access {{
+        .rag-access {
             display: flex;
             gap: 5px;
             flex-wrap: wrap;
-        }}
+        }
 
-        .rag-tag {{
+        .rag-tag {
             background: #3498db;
             color: white;
             padding: 2px 8px;
             border-radius: 12px;
             font-size: 0.7rem;
-        }}
+        }
 
-        .footer {{
+        .footer {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 20px;
             text-align: center;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-        }}
+        }
 
-        .footer a {{
+        .footer a {
             color: #667eea;
             text-decoration: none;
             margin: 0 15px;
             font-weight: bold;
-        }}
+        }
 
-        .footer a:hover {{
+        .footer a:hover {
             text-decoration: underline;
-        }}
+        }
     </style>
 </head>
 <body>
@@ -338,13 +338,13 @@ def create_agent_index_page() -> str:
     for agent_id, agent_data in agents.items():
         html_content += f"""
             <div class="agent-card" onclick="openAgentPage('{agent_id}')">
-                <div class="agent-name">{agent_data['name']}</div>
-                <div class="agent-role">{agent_data['role']}</div>
-                <div class="agent-description">{agent_data['description']}</div>
+                <div class="agent-name">{agent_data["name"]}</div>
+                <div class="agent-role">{agent_data["role"]}</div>
+                <div class="agent-description">{agent_data["description"]}</div>
                 <div class="agent-meta">
-                    <span>Provider: {agent_data['api_provider'].upper()}</span>
+                    <span>Provider: {agent_data["api_provider"].upper()}</span>
                     <div class="rag-access">
-                        {''.join([f'<span class="rag-tag">{rag}</span>' for rag in agent_data['rag_access']])}
+                        {"".join([f'<span class="rag-tag">{rag}</span>' for rag in agent_data["rag_access"]])}
                     </div>
                 </div>
             </div>"""

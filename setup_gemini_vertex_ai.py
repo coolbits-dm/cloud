@@ -5,7 +5,6 @@
 Setup script for Gemini Vertex AI integration with CoolBits.ai
 """
 
-import os
 import sys
 import subprocess
 import json

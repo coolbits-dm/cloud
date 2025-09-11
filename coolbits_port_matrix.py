@@ -5,13 +5,8 @@ CoolBits.ai Port Matrix Manager
 SC COOL BITS SRL - Scalable Port Management System
 """
 
-import os
-import sys
-import json
-import subprocess
 from datetime import datetime
 from typing import Dict, List, Any, Optional
-from pathlib import Path
 
 
 class CoolBitsPortMatrix:
@@ -539,9 +534,9 @@ class CoolBitsPortMatrix:
 
             if service_name in self.port_matrix[category]["services"]:
                 self.port_matrix[category]["services"][service_name]["port"] = port
-                self.port_matrix[category]["services"][service_name][
-                    "status"
-                ] = "allocated"
+                self.port_matrix[category]["services"][service_name]["status"] = (
+                    "allocated"
+                )
                 return True
 
             return False
@@ -616,7 +611,9 @@ class CoolBitsPortMatrix:
                     else (
                         "🟡"
                         if service_info["status"] == "ready"
-                        else "🔵" if service_info["status"] == "reserved" else "⚪"
+                        else "🔵"
+                        if service_info["status"] == "reserved"
+                        else "⚪"
                     )
                 )
                 print(

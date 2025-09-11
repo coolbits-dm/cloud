@@ -10,7 +10,6 @@ Integrates RAG system with existing AI Board for enhanced functionality.
 
 import json
 import requests
-import time
 from datetime import datetime
 from coolbits_rag_system import CoolBitsRAG
 

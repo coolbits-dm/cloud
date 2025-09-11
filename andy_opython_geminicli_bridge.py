@@ -5,19 +5,12 @@ Andy oPython ↔ GeminiCLI Communication Bridge
 SC COOL BITS SRL - Open communication method between oPython and GeminiCLI
 """
 
-import os
-import sys
-import json
 import asyncio
-import subprocess
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any
 import uuid
-import base64
-import hashlib
 
 # Import our internal systems
-from coolbits_secrets_manager import get_secret, set_secret, get_andy_keys
 
 
 class oPythonGeminiCLIBridge:

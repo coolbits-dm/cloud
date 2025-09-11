@@ -5,19 +5,14 @@ Andy Core Engine - Local Python Engine
 SC COOL BITS SRL - Main processing engine for Andy agent
 """
 
-import os
-import sys
-import json
 import asyncio
-import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional
-from pathlib import Path
+from typing import Dict, Any
 import subprocess
 import psutil
 
 # Import our internal systems
-from coolbits_secrets_manager import get_andy_keys, get_secret, set_secret
+from coolbits_secrets_manager import get_andy_keys
 
 
 class AndyCoreEngine:
@@ -132,7 +127,7 @@ class AndyCoreEngine:
         else:
             return {
                 "type": "general",
-                "response": f"Hello Andrei! I'm Andy, your personal 1:1 agent. I have full access to all project information and can help you with anything related to CoolBits.ai, cbLM.ai, system monitoring, agent management, or any other aspect of our ecosystem.",
+                "response": "Hello Andrei! I'm Andy, your personal 1:1 agent. I have full access to all project information and can help you with anything related to CoolBits.ai, cbLM.ai, system monitoring, agent management, or any other aspect of our ecosystem.",
                 "capabilities": list(self.capabilities.keys()),
             }
 

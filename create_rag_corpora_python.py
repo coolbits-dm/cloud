@@ -10,7 +10,7 @@ pip install google-cloud-discoveryengine google-cloud-storage
 import json
 import time
 import logging
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, Optional
 from dataclasses import dataclass
 
 from google.cloud import discoveryengine_v1beta as discoveryengine
@@ -89,7 +89,7 @@ class RAGCorpusCreator:
             )
 
             # Wait for operation to complete
-            logger.info(f"Waiting for data store creation to complete...")
+            logger.info("Waiting for data store creation to complete...")
             result = operation.result(timeout=300)  # 5 minutes timeout
 
             logger.success(f"Created data store: {data_store_name} (ID: {result.name})")
@@ -143,7 +143,7 @@ class RAGCorpusCreator:
             )
 
             # Wait for operation to complete
-            logger.info(f"Waiting for connector creation to complete...")
+            logger.info("Waiting for connector creation to complete...")
             result = operation.result(timeout=300)
 
             logger.success(f"Created GCS connector: {connector_name}")
@@ -197,7 +197,7 @@ class RAGCorpusCreator:
             )
 
             # Wait for operation to complete
-            logger.info(f"Waiting for search app creation to complete...")
+            logger.info("Waiting for search app creation to complete...")
             result = operation.result(timeout=300)
 
             logger.success(f"Created search app: {search_app_name} (ID: {result.name})")
@@ -263,7 +263,7 @@ def main():
     logger.info("🚀 Starting RAG corpus creation for CoolBits.ai...")
     logger.info(f"Project: {config.project_id}")
     logger.info(f"Location: {config.location}")
-    logger.info(f"Total RAGs to create: 88")
+    logger.info("Total RAGs to create: 88")
 
     # Define all RAGs to create
     all_rags = [
@@ -418,9 +418,9 @@ def main():
         logger.info(f"\n{phase_name}...")
 
         for rag_id, rag_name, rag_description in phase_rags:
-            logger.info(f"\n{'='*50}")
+            logger.info(f"\n{'=' * 50}")
             logger.info(f"Processing: {rag_name} ({rag_id})")
-            logger.info(f"{'='*50}")
+            logger.info(f"{'=' * 50}")
 
             result = creator.create_rag_complete(rag_id, rag_name, rag_description)
             results.append(result)
@@ -436,9 +436,9 @@ def main():
         json.dump(results, f, indent=2)
 
     # Final summary
-    logger.info(f"\n{'='*60}")
+    logger.info(f"\n{'=' * 60}")
     logger.info("=== FINAL SUMMARY ===")
-    logger.info(f"{'='*60}")
+    logger.info(f"{'=' * 60}")
     logger.info(f"Total RAGs processed: {total}")
     logger.info(f"Successful creations: {successful}")
     logger.info(f"Failed creations: {total - successful}")
@@ -454,7 +454,7 @@ def main():
     logger.info("3. Test RAG queries through API endpoints")
     logger.info("4. Integrate with Business Panel")
 
-    logger.info(f"\n📄 Results saved to: rag_creation_results.json")
+    logger.info("\n📄 Results saved to: rag_creation_results.json")
 
 
 if __name__ == "__main__":

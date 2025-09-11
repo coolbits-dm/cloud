@@ -7,9 +7,6 @@ Sistem complet de facturare cu integrare SafeNet și delegare agenți
 
 import os
 import sys
-import json
-from datetime import datetime
-from typing import Dict, Any
 
 # Add current directory to path for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -87,7 +84,7 @@ def main():
         print(f"\n{component_name}:")
         print(f"  📁 File: {component_info['file']}")
         print(f"  📝 Description: {component_info['description']}")
-        print(f"  ⚡ Features:")
+        print("  ⚡ Features:")
         for feature in component_info["features"]:
             print(f"    • {feature}")
 

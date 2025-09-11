@@ -14,7 +14,7 @@ import webbrowser
 import time
 import json
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class CoolBitsProjectStructure:
@@ -662,7 +662,7 @@ class CoolBitsProjectStructure:
 
     def print_project_status(self):
         print("=" * 70)
-        print(f"🏢 SC COOL BITS SRL 🏢 🏢 - CEO Console")
+        print("🏢 SC COOL BITS SRL 🏢 🏢 - CEO Console")
         print(f"👤 CEO: {self.ceo}")
         print(f"🤖 AI Assistant: {self.ai_assistant}")
         print(f"💻 Machine: {self.machine}")
@@ -1235,7 +1235,7 @@ class CoolBitsProjectStructure:
             f"   📋 Smart Accounts Reference: {smart_accounts_data['reference_number']}"
         )
         print(f"   🏦 Bank Consent ID: {smart_accounts_data['bank_consent_id']}")
-        print(f"   🔐 Secrets Created: 4 secrets in Google Secret Manager")
+        print("   🔐 Secrets Created: 4 secrets in Google Secret Manager")
         print(f"   📍 Project: {smart_accounts_data['project_id']}")
         print(f"   🌍 Region: {smart_accounts_data['region']}")
         print("   ✅ Status: Smart Accounts integration completed")
@@ -1245,9 +1245,9 @@ class CoolBitsProjectStructure:
             f"   📋 Smart Accounts Reference: {smart_accounts_data['reference_number']}"
         )
         print(f"   🏦 Bank Consent ID: {smart_accounts_data['bank_consent_id']}")
-        print(f"   📧 Email Integration: Ready for notifications")
+        print("   📧 Email Integration: Ready for notifications")
         print(
-            f"   🔐 Secret Access: smart-accounts-reference-number, smart-accounts-bank-consent-id"
+            "   🔐 Secret Access: smart-accounts-reference-number, smart-accounts-bank-consent-id"
         )
         print("   ✅ Status: Smart Accounts email integration ready")
 
@@ -1257,8 +1257,8 @@ class CoolBitsProjectStructure:
         print(
             f'echo "{smart_accounts_data["reference_number"]}" | gcloud secrets create smart-accounts-reference-number \\'
         )
-        print(f"    --data-file=- \\")
-        print(f'    --project={smart_accounts_data["project_id"]} \\')
+        print("    --data-file=- \\")
+        print(f"    --project={smart_accounts_data['project_id']} \\")
         print(
             '    --labels="owner=andrei_cip,platform=smart_accounts,type=reference_number,company=coolbits_srl"'
         )
@@ -1267,8 +1267,8 @@ class CoolBitsProjectStructure:
         print(
             f'echo "{smart_accounts_data["bank_consent_id"]}" | gcloud secrets create smart-accounts-bank-consent-id \\'
         )
-        print(f"    --data-file=- \\")
-        print(f'    --project={smart_accounts_data["project_id"]} \\')
+        print("    --data-file=- \\")
+        print(f"    --project={smart_accounts_data['project_id']} \\")
         print(
             '    --labels="owner=andrei_cip,platform=smart_accounts,type=bank_consent,company=coolbits_srl"'
         )
@@ -1539,7 +1539,7 @@ class CoolBitsServiceManager:
 
         bridge_url = self.services["bridge"]["url"]
         if self.open_in_chrome(bridge_url):
-            print(f"Bridge UI launched successfully!")
+            print("Bridge UI launched successfully!")
             print(f"URL: {bridge_url}")
             print("=" * 60)
             return True
@@ -1561,8 +1561,8 @@ class CoolBitsServiceManager:
 
         root_url = self.services["cursor_root"]["url"]
         if self.open_in_chrome(root_url):
-            print(f"✅ Root Console launched successfully!")
-            print(f"🔐 Access Level: ROOT/CEO")
+            print("✅ Root Console launched successfully!")
+            print("🔐 Access Level: ROOT/CEO")
             print(f"🌐 URL: {root_url}")
             print(f"📋 API: {root_url}/api/status")
             print("=" * 70)
@@ -1618,7 +1618,9 @@ class CoolBitsServiceManager:
                 priority_icon = (
                     "HIGH"
                     if service_info["priority"] == "high"
-                    else "MED" if service_info["priority"] == "medium" else "LOW"
+                    else "MED"
+                    if service_info["priority"] == "medium"
+                    else "LOW"
                 )
                 print(
                     f"  Port {service_info['port']:4d} | {service_name:20s} | {status} | {priority_icon}"
@@ -2005,7 +2007,7 @@ def run_complete_dashboard():
 
         dashboard_url = "http://localhost:8090"
         if service_manager.open_in_chrome(dashboard_url):
-            print(f"✅ Complete Dashboard launched successfully!")
+            print("✅ Complete Dashboard launched successfully!")
             print(f"🌐 URL: {dashboard_url}")
             print(f"📋 API: {dashboard_url}/api/status")
             print("=" * 70)
@@ -2039,7 +2041,7 @@ def run_gcloud_agent():
 
         gcloud_url = "http://localhost:8091"
         if service_manager.open_in_chrome(gcloud_url):
-            print(f"✅ Google Cloud Agent launched successfully!")
+            print("✅ Google Cloud Agent launched successfully!")
             print(f"☁️ URL: {gcloud_url}")
             print(f"📋 API: {gcloud_url}/api/status")
             print(f"🖥️ Hardware: {gcloud_url}/api/hardware")
@@ -2063,10 +2065,10 @@ def gcloud_status():
     print("\n☁️ GOOGLE CLOUD CLI AGENT STATUS")
     print("=" * 50)
     print("🏢 SC COOL BITS SRL 🏢 🏢 - Local Cloud Integration")
-    print(f"👤 CEO: Andrei")
-    print(f"🤖 AI Assistant: Cursor AI Assistant")
-    print(f"📅 Contract Date: 2025-09-06")
-    print(f"🌐 Port: 8091")
+    print("👤 CEO: Andrei")
+    print("🤖 AI Assistant: Cursor AI Assistant")
+    print("📅 Contract Date: 2025-09-06")
+    print("🌐 Port: 8091")
     print()
     print("🖥️ HARDWARE ACCESS:")
     print("  • CPU: Windows 11 CPU - Available for processing")
@@ -2384,7 +2386,7 @@ def policy_scope():
     for func_name, func_info in o_functions.items():
         print(f"🏢 {func_name}:")
         print(f"   Policy Scope: {func_info['policy_scope']}")
-        print(f"   Responsible: Policy Division Board AI")
+        print("   Responsible: Policy Division Board AI")
         print()
 
     print("=" * 60)
@@ -2621,7 +2623,7 @@ def ogpt_bridge_status():
         files = os.listdir(storage_path)
         print(f"   Files: {len(files)}")
     else:
-        print(f"❌ Storage Directory: Not found")
+        print("❌ Storage Directory: Not found")
 
     print()
     print("📡 Bridge System: READY")

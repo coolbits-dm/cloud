@@ -4,12 +4,10 @@ CoolBits.ai Unified Dashboard Server
 Serves the main dashboard with hierarchical panel system
 """
 
-from fastapi import FastAPI, Request
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-import os
 
 # Initialize FastAPI app
 app = FastAPI(

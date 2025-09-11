@@ -5,12 +5,9 @@ Local/LAN discovery & agents.yaml synthesis
 """
 
 import argparse
-import json
 import logging
 import socket
-import subprocess
 import yaml
-from datetime import datetime
 from pathlib import Path
 
 # Configure logging
@@ -130,7 +127,7 @@ class AgentDiscovery:
 
                     if result == 0:
                         agent_info = {
-                            "id": f'lan-{ip.replace(".", "-")}',
+                            "id": f"lan-{ip.replace('.', '-')}",
                             "name": f"LAN Agent {ip}",
                             "type": "Unknown",
                             "host": ip,

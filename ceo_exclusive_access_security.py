@@ -10,7 +10,7 @@ import json
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Any, Optional
+from typing import Dict, Any, Optional
 import hashlib
 import getpass
 
@@ -75,10 +75,10 @@ class CEOExclusiveAccessManager:
         """Verifică identitatea CEO-ului"""
         try:
             # Non-interactive mode check
-            if os.getenv('CI') == '1' or os.getenv('NO_COLOR') == '1':
+            if os.getenv("CI") == "1" or os.getenv("NO_COLOR") == "1":
                 print("🔐 Non-interactive mode: CEO access check skipped")
                 return True
-                
+
             # Get current user
             current_user = getpass.getuser()
 
@@ -222,12 +222,12 @@ class CEOExclusiveAccessManager:
 
         print("\n🔑 ACCESS CONTROL STATUS:")
         if access_status["access_granted"]:
-            print(f"   ✅ Access Status: GRANTED")
+            print("   ✅ Access Status: GRANTED")
             print(f"   👤 Authorized User: {access_status['authorized_user']}")
             print(f"   📊 File Size: {access_status.get('file_size', 'N/A')} bytes")
             print(f"   📅 Last Modified: {access_status.get('last_modified', 'N/A')}")
         else:
-            print(f"   ❌ Access Status: DENIED")
+            print("   ❌ Access Status: DENIED")
             print(f"   📝 Reason: {access_status['reason']}")
 
         print("\n🛡️ SECURITY CONFIGURATION:")
@@ -332,8 +332,8 @@ def main():
     report = security_manager.generate_security_report()
 
     if report:
-        print(f"✅ Security report generated successfully!")
-        print(f"📁 Report saved: ceo_exclusive_access_report.json")
+        print("✅ Security report generated successfully!")
+        print("📁 Report saved: ceo_exclusive_access_report.json")
         print(f"📝 Access log created: {report.get('log_path', 'N/A')}")
     else:
         print("❌ Failed to generate security report")

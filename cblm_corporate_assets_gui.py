@@ -11,12 +11,9 @@ with cb.svg logo integration
 import tkinter as tk
 from tkinter import ttk, messagebox, scrolledtext
 import threading
-import json
 import os
 import time
-import subprocess
 import psutil
-import requests
 from datetime import datetime
 from PIL import Image, ImageTk
 import webbrowser
@@ -325,7 +322,9 @@ class CBLMCorporateAssetsGUI:
             status_color = (
                 "green"
                 if entity["status"] == "active"
-                else "orange" if entity["status"] == "proprietary" else "red"
+                else "orange"
+                if entity["status"] == "proprietary"
+                else "red"
             )
 
             # Create item with icon
@@ -371,16 +370,16 @@ class CBLMCorporateAssetsGUI:
         entity = self.corporate_entities[entity_key]
         zone = self.zones[entity["zone"]]
 
-        details = f"""Entity: {entity['name']}
+        details = f"""Entity: {entity["name"]}
 Key: {entity_key}
-Zone: {zone['name']}
-Status: {entity['status'].title()}
-Priority: {entity['priority'].title()}
-Schedule: {entity['schedule']}
-URL: {entity['url']}
-Icon: {entity['icon']}
+Zone: {zone["name"]}
+Status: {entity["status"].title()}
+Priority: {entity["priority"].title()}
+Schedule: {entity["schedule"]}
+URL: {entity["url"]}
+Icon: {entity["icon"]}
 
-Zone Color: {zone['color']}
+Zone Color: {zone["color"]}
 """
 
         if "owner" in entity:
@@ -501,14 +500,14 @@ Memory Usage: {memory.percent}% ({memory.used // (1024**3)}GB / {memory.total //
 Disk Usage: {disk.percent}% ({disk.used // (1024**3)}GB / {disk.total // (1024**3)}GB)
 
 Processes Running: {len(self.running_processes)}
-Active Entities: {len([e for e in self.corporate_entities.values() if e['status'] == 'active'])}
+Active Entities: {len([e for e in self.corporate_entities.values() if e["status"] == "active"])}
 
 Company: {self.company}
 CEO: {self.ceo}
 AI Assistant: {self.ai_assistant}
 Classification: {self.classification}
 
-Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Last Updated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 """
 
             self.system_text.delete(1.0, tk.END)
@@ -535,7 +534,7 @@ Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 
             cron_status = f"""Cron Jobs Status:
 Python Processes: {len(cron_processes)}
-Cron Manager Running: {'Yes' if cron_processes else 'No'}
+Cron Manager Running: {"Yes" if cron_processes else "No"}
 
 Active Monitoring:
 """
@@ -569,7 +568,7 @@ Active Monitoring:
         # Keep only last 1000 lines
         lines = self.logs_text.get(1.0, tk.END).split("\n")
         if len(lines) > 1000:
-            self.logs_text.delete(1.0, f"{len(lines)-1000}.0")
+            self.logs_text.delete(1.0, f"{len(lines) - 1000}.0")
 
     def refresh_all(self):
         """Refresh all information"""
@@ -592,7 +591,7 @@ CEO: {self.ceo}
 AI Assistant: {self.ai_assistant}
 Classification: {self.classification}
 
-Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
 CORPORATE ENTITIES STATUS:
 """
@@ -602,13 +601,13 @@ CORPORATE ENTITIES STATUS:
                 "Active" if entity_key in self.running_processes else "Inactive"
             )
             status_info += f"""
-{entity['icon']} {entity['name']} ({entity_key}):
-  Zone: {self.zones[entity['zone']]['name']}
-  Status: {entity['status'].title()}
-  Priority: {entity['priority'].title()}
-  Schedule: {entity['schedule']}
+{entity["icon"]} {entity["name"]} ({entity_key}):
+  Zone: {self.zones[entity["zone"]]["name"]}
+  Status: {entity["status"].title()}
+  Priority: {entity["priority"].title()}
+  Schedule: {entity["schedule"]}
   Monitoring: {monitoring_status}
-  URL: {entity['url']}
+  URL: {entity["url"]}
 """
             if "owner" in entity:
                 status_info += f"  Owner: {entity['owner']}\n"
@@ -618,7 +617,7 @@ CORPORATE ENTITIES STATUS:
 SYSTEM STATUS:
 Running Processes: {len(self.running_processes)}
 Total Entities: {len(self.corporate_entities)}
-Active Entities: {len([e for e in self.corporate_entities.values() if e['status'] == 'active'])}
+Active Entities: {len([e for e in self.corporate_entities.values() if e["status"] == "active"])}
 
 ZONES:
 """

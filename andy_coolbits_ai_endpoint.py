@@ -10,10 +10,7 @@ from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 import json
-import asyncio
-from datetime import datetime
-from typing import Dict, List, Any, Optional
-import uuid
+from typing import Dict, List
 
 # Import our internal systems
 from andy_internal_chat_system import (
@@ -22,7 +19,6 @@ from andy_internal_chat_system import (
     create_chat_session,
 )
 from andy_google_cloud_endpoint import (
-    andy_gcloud_endpoint,
     process_gcloud_request,
     process_gemini_request,
 )

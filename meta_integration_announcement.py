@@ -307,8 +307,8 @@ def main():
     print(f"👤 CEO: {results['ceo']}")
     print(f"📅 Verification Date: {results['summary']['meta_status']}")
     print(f"🎯 Current Focus: {results['summary']['current_focus']}")
-    print(f"🔮 Future Integration: Meta platform environment preparation")
-    print(f"📋 Policy Development: Meta-specific policies by Policy Division")
+    print("🔮 Future Integration: Meta platform environment preparation")
+    print("📋 Policy Development: Meta-specific policies by Policy Division")
 
 
 if __name__ == "__main__":

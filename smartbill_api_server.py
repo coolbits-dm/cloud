@@ -5,17 +5,14 @@ SmartBill API Server - COOL BITS SRL
 API endpoints pentru SmartBill cu autentificare SafeNet
 """
 
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify
 from flask_cors import CORS
-import json
-import os
-import uuid
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Optional
 import logging
 
 # Import SmartBill modules
-from smartbill_core_system import SmartBillCore, InvoiceStatus, InvoiceType
+from smartbill_core_system import SmartBillCore, InvoiceType
 from smartbill_safenet_integration import SmartBillSafeNetIntegration
 from smartbill_agent_delegation import SmartBillAgentDelegation
 from smartbill_cursor_gemini_integration import SmartBillCursorGeminiIntegration
@@ -37,7 +34,11 @@ cursor_gemini_integration: Optional[SmartBillCursorGeminiIntegration] = None
 
 def initialize_smartbill_system():
     """Initialize SmartBill system components"""
-    global smartbill_core, safenet_integration, agent_delegation, cursor_gemini_integration
+    global \
+        smartbill_core, \
+        safenet_integration, \
+        agent_delegation, \
+        cursor_gemini_integration
 
     try:
         logger.info("🚀 Initializing SmartBill API Server...")

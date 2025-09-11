@@ -4,14 +4,11 @@ Meta Platform Local Server
 Serves Meta Platform Integration Panel and handles Meta API connections
 """
 
-import json
 import time
 import logging
 from datetime import datetime
-from flask import Flask, render_template, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-import requests
-import os
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

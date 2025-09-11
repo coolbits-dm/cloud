@@ -12,11 +12,8 @@ Classification: Internal Secret - CoolBits.ai Members Only
 """
 
 import json
-import subprocess
-import webbrowser
 import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional
 
 
 class CoolBitsDualAccountManager:

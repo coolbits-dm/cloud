@@ -26,14 +26,14 @@ class CoolBitsHTTPServer:
             handler = http.server.SimpleHTTPRequestHandler
             self.server = socketserver.TCPServer(("", self.port), handler)
 
-            print(f"🚀 CoolBits.ai Local Server Starting...")
+            print("🚀 CoolBits.ai Local Server Starting...")
             print(f"📡 Server running on http://localhost:{self.port}")
             print(f"📁 Serving files from: {os.getcwd()}")
             print(
                 f"🌐 Admin Panel: http://localhost:{self.port}/coolbits_admin_panel.html"
             )
             print(f"⏰ Started at: {datetime.now().strftime('%H:%M:%S')}")
-            print(f"🔄 Press Ctrl+C to stop the server")
+            print("🔄 Press Ctrl+C to stop the server")
             print("=" * 60)
 
             # Open browser automatically
@@ -44,7 +44,7 @@ class CoolBitsHTTPServer:
             self.server.serve_forever()
 
         except KeyboardInterrupt:
-            print(f"\n🛑 Server stopped by user")
+            print("\n🛑 Server stopped by user")
             self.stop_server()
         except Exception as e:
             print(f"❌ Error starting server: {e}")
@@ -54,7 +54,7 @@ class CoolBitsHTTPServer:
         time.sleep(2)  # Wait for server to start
         try:
             webbrowser.open(f"http://localhost:{self.port}/coolbits_admin_panel.html")
-            print(f"🌐 Browser opened automatically")
+            print("🌐 Browser opened automatically")
         except Exception as e:
             print(f"⚠️ Could not open browser automatically: {e}")
             print(
@@ -67,7 +67,7 @@ class CoolBitsHTTPServer:
             self.server.shutdown()
             self.server.server_close()
             self.running = False
-            print(f"✅ Server stopped successfully")
+            print("✅ Server stopped successfully")
 
 
 def main():

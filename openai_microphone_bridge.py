@@ -5,16 +5,11 @@ Conectare la OpenAI API + acces microfon pentru comunicare vocală
 """
 
 import os
-import sys
-import json
-import time
 import threading
 import pyaudio
 import wave
 import openai
 from datetime import datetime
-import requests
-import subprocess
 
 
 class OpenAIMicrophoneBridge:
@@ -271,7 +266,7 @@ def main():
                     print(f"✅ OpenAI test successful: {test_response}")
 
             elif command == "status":
-                print(f"📊 Status:")
+                print("📊 Status:")
                 print(
                     f"  - OpenAI: {'✅ Connected' if bridge.openai_client else '❌ Disconnected'}"
                 )

@@ -7,9 +7,7 @@ Author: oCopilot (oCursor)
 Date: September 6, 2025
 """
 
-import os
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 import uvicorn
 

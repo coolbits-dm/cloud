@@ -8,9 +8,6 @@ Company: COOL BITS SRL
 Purpose: Automated switching between Google accounts in Cursor
 """
 
-import json
-import subprocess
-import webbrowser
 from datetime import datetime
 
 

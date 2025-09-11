@@ -2,10 +2,9 @@
 # Centralized console management for Andrei (CEO)
 
 import tkinter as tk
-from tkinter import ttk, scrolledtext, messagebox
+from tkinter import scrolledtext
 import subprocess
 import threading
-import json
 import time
 from datetime import datetime
 import os
@@ -244,7 +243,9 @@ class CoolBitsAdminPanel:
         color = (
             "#00ff00"
             if level == "INFO"
-            else "#ffaa00" if level == "WARNING" else "#ff0000"
+            else "#ffaa00"
+            if level == "WARNING"
+            else "#ff0000"
         )
 
         self.console_output.insert(tk.END, f"[{timestamp}] {level}: {message}\n")

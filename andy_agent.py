@@ -6,18 +6,13 @@ SC COOL BITS SRL - Port 8101
 Personal AI Assistant with full project access and RAG system
 """
 
-import os
-import sys
 import json
 import uvicorn
 from fastapi import FastAPI, HTTPException, Request, WebSocket, WebSocketDisconnect
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any
 import uuid
-import asyncio
-import subprocess
-import psutil
 
 
 class AndyAgent:
@@ -308,7 +303,7 @@ class AndyAgent:
 
         # General queries
         else:
-            return f"Hello Andrei! I'm Andy, your personal 1:1 agent. I have full access to all project information and can help you with anything related to CoolBits.ai, cbLM.ai, system monitoring, agent management, or any other aspect of our ecosystem. How can I assist you today?"
+            return "Hello Andrei! I'm Andy, your personal 1:1 agent. I have full access to all project information and can help you with anything related to CoolBits.ai, cbLM.ai, system monitoring, agent management, or any other aspect of our ecosystem. How can I assist you today?"
 
     def get_andy_dashboard_html(self) -> str:
         """Generate Andy's personal dashboard HTML"""
@@ -653,7 +648,7 @@ class AndyAgent:
                     </div>
                     <div class="status-item">
                         <span class="status-label">Last Update:</span>
-                        <span class="status-value">{datetime.now().strftime('%H:%M:%S')}</span>
+                        <span class="status-value">{datetime.now().strftime("%H:%M:%S")}</span>
                     </div>
                 </div>
             </div>
@@ -669,7 +664,7 @@ class AndyAgent:
                 
                 <div class="messages-container" id="messagesContainer">
                     <div class="message andy">
-                        <div class="message-header">Andy • {datetime.now().strftime('%H:%M:%S')}</div>
+                        <div class="message-header">Andy • {datetime.now().strftime("%H:%M:%S")}</div>
                         <div class="message-content">Hello Andrei! I'm Andy, your personal 1:1 agent. I have full access to all project information and can help you with anything related to CoolBits.ai, cbLM.ai, system monitoring, agent management, or any other aspect of our ecosystem. How can I assist you today?</div>
                     </div>
                 </div>
@@ -726,7 +721,7 @@ class AndyAgent:
                 🧠 RAG System Online |
                 🔑 API Keys Connected |
                 🌐 Port: {self.port} |
-                📅 Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+                📅 Last Updated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
             </p>
         </div>
     </div>

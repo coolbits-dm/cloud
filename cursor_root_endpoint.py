@@ -8,13 +8,9 @@ Port: 8082 (Root Access)
 
 import os
 import sys
-import json
-import time
 from datetime import datetime
-from typing import Dict, List, Any
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.staticfiles import StaticFiles
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 import uvicorn
 
 # Add current directory to path for imports
@@ -482,10 +478,10 @@ async def root_dashboard():
         html_content += f"""
                     <div class="pillar-card">
                         <div class="pillar-header">
-                            <div class="pillar-icon">{pillar_info['icon']}</div>
-                            <div class="pillar-title">{pillar_info['name']}</div>
+                            <div class="pillar-icon">{pillar_info["icon"]}</div>
+                            <div class="pillar-title">{pillar_info["name"]}</div>
                         </div>
-                        <div class="pillar-desc">{pillar_info['description']}</div>
+                        <div class="pillar-desc">{pillar_info["description"]}</div>
                         <div class="services-list">
         """
         for service in pillar_info["services"]:
@@ -518,12 +514,12 @@ async def root_dashboard():
         html_content += f"""
                     <div class="service-card">
                         <div class="service-header">
-                            <div class="service-name">{service_name.replace('_', ' ').title()}</div>
-                            <div class="service-status {status_class}">{service_info['status'].upper()}</div>
+                            <div class="service-name">{service_name.replace("_", " ").title()}</div>
+                            <div class="service-status {status_class}">{service_info["status"].upper()}</div>
                         </div>
                         <div>
-                            <div>Port: {service_info['port']}</div>
-                            <a href="{service_info['url']}" target="_blank" class="service-url">{service_info['url']}</a>
+                            <div>Port: {service_info["port"]}</div>
+                            <a href="{service_info["url"]}" target="_blank" class="service-url">{service_info["url"]}</a>
                         </div>
                     </div>
         """

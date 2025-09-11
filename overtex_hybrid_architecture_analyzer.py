@@ -5,9 +5,8 @@ Specialized for Hybrid Architecture Windows 11 + Cloud Analysis
 """
 
 import json
-import time
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class oVertexHybridArchitectureAnalyzer:
@@ -256,8 +255,8 @@ def main():
 
     print("🚀 oVertex Agent - Hybrid Architecture Analysis")
     print("=" * 60)
-    print(f"Company: COOL BITS SRL")
-    print(f"CEO: Andrei")
+    print("Company: COOL BITS SRL")
+    print("CEO: Andrei")
     print(f"Project: {oVertexHybridArchitectureAnalyzer().project_id}")
     print("=" * 60)
 

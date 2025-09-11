@@ -5,9 +5,8 @@ Updates SafeNet authentication token delegation to ogpt09 and ogrok09 agents
 """
 
 import json
-import os
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class SafeNetTokenDelegationUpdate:
@@ -120,8 +119,8 @@ class SafeNetTokenDelegationUpdate:
 
             integration_code = f'''#!/usr/bin/env python3
 """
-SafeNet Integration Module for {agent_info['name']} - COOL BITS SRL
-Digital signing capabilities for {agent_info['role']}
+SafeNet Integration Module for {agent_info["name"]} - COOL BITS SRL
+Digital signing capabilities for {agent_info["role"]}
 """
 
 import json
@@ -129,24 +128,24 @@ import requests
 from datetime import datetime
 from typing import Dict, Any, Optional
 
-class {agent_info['name']}SafeNetIntegration:
-    """SafeNet Integration for {agent_info['name']}"""
+class {agent_info["name"]}SafeNetIntegration:
+    """SafeNet Integration for {agent_info["name"]}"""
     
     def __init__(self):
         self.agent_id = "{agent_id}"
-        self.agent_name = "{agent_info['name']}"
-        self.agent_role = "{agent_info['role']}"
+        self.agent_name = "{agent_info["name"]}"
+        self.agent_role = "{agent_info["role"]}"
         self.company = "{self.company}"
         self.company_cui = "{self.company_cui}"
         self.company_registration = "{self.company_registration}"
         
         # SafeNet configuration
         self.safenet_config = {{
-            "secret_name": "{self.safenet_secret['secret_name']}",
-            "secret_version": "{self.safenet_secret['secret_version']}",
-            "pin": "{self.safenet_secret['pin']}",
+            "secret_name": "{self.safenet_secret["secret_name"]}",
+            "secret_version": "{self.safenet_secret["secret_version"]}",
+            "pin": "{self.safenet_secret["pin"]}",
             "api_endpoint": "http://localhost:5001/api/safenet",
-            "access_level": "{agent_info['safenet_access_level']}"
+            "access_level": "{agent_info["safenet_access_level"]}"
         }}
         
         # Load agent-specific config
@@ -252,7 +251,7 @@ class {agent_info['name']}SafeNetIntegration:
             return None
 
 def main():
-    """Main function for {agent_info['name']} SafeNet integration"""
+    """Main function for {agent_info["name"]} SafeNet integration"""
     print(f"🔐 {{self.agent_name}} SafeNet Integration")
     print("=" * 50)
     print(f"Agent: {{self.agent_name}}")
@@ -262,7 +261,7 @@ def main():
     print("=" * 50)
     
     # Initialize SafeNet integration
-    safenet = {agent_info['name']}SafeNetIntegration()
+    safenet = {agent_info["name"]}SafeNetIntegration()
     
     print("✅ SafeNet integration initialized successfully")
     print(f"📋 Available operations:")
@@ -418,7 +417,7 @@ def main():
             print(f"  {agent_info['name']} ({agent_info['role']})")
             print(f"    - Access Level: {agent_info['safenet_access_level']}")
             print(f"    - Profile: {agent_info['profile_picture']}")
-            print(f"    - Status: ACTIVE")
+            print("    - Status: ACTIVE")
             print(f"    - Config: {agent_id}_safenet_config.json")
             print(f"    - Integration: {agent_id}_safenet_integration.py")
 

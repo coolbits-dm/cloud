@@ -204,14 +204,14 @@ COMPANY_CUI={self.company_cui}
 COMPANY_REGISTRATION={self.company_registration}
 
 # SafeNet Paths
-SAFENET_INSTALLATION_PATH={self.deployment_config['installation_path']}
-SAFENET_CERTIFICATES_PATH={self.deployment_config['certificates_path']}
-SAFENET_LOGS_PATH={self.deployment_config['logs_path']}
-SAFENET_BACKUP_PATH={self.deployment_config['backup_path']}
+SAFENET_INSTALLATION_PATH={self.deployment_config["installation_path"]}
+SAFENET_CERTIFICATES_PATH={self.deployment_config["certificates_path"]}
+SAFENET_LOGS_PATH={self.deployment_config["logs_path"]}
+SAFENET_BACKUP_PATH={self.deployment_config["backup_path"]}
 
 # API Configuration
-SAFENET_API_HOST={self.deployment_config['api_host']}
-SAFENET_API_PORT={self.deployment_config['api_port']}
+SAFENET_API_HOST={self.deployment_config["api_host"]}
+SAFENET_API_PORT={self.deployment_config["api_port"]}
 
 # Security Settings
 SAFENET_DEFAULT_SECURITY_LEVEL=L3
@@ -250,7 +250,7 @@ echo.
 
 cd /d "{self.workspace_path}"
 
-echo Starting SafeNet API server on port {self.deployment_config['api_port']}...
+echo Starting SafeNet API server on port {self.deployment_config["api_port"]}...
 python safenet_api_integration.py
 
 pause
@@ -271,7 +271,7 @@ echo ""
 
 cd "{self.workspace_path}"
 
-echo "Starting SafeNet API server on port {self.deployment_config['api_port']}..."
+echo "Starting SafeNet API server on port {self.deployment_config["api_port"]}..."
 python3 safenet_api_integration.py
 """
 

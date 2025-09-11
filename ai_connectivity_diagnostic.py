@@ -4,13 +4,10 @@ AI Agent Connectivity Diagnostic Tool for COOL BITS SRL
 Analyzes and resolves Cursor AI connection errors
 """
 
-import json
 import logging
 import subprocess
 import sys
-import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional
 
 # Configure logging
 logging.basicConfig(

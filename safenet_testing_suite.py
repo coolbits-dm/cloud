@@ -10,7 +10,7 @@ import os
 import tempfile
 import shutil
 from datetime import datetime, timedelta
-from unittest.mock import Mock, patch, MagicMock
+from unittest.mock import Mock, patch
 import sys
 
 # Add current directory to path for imports
@@ -21,13 +21,11 @@ from safenet_integration_architecture import (
     SafeNetCertificateType,
     SafeNetSecurityLevel,
     SafeNetCertificate,
-    SafeNetSigningRequest,
     SafeNetSigningResult,
 )
 
 from safenet_security_policies import (
     SafeNetSecurityPolicyManager,
-    SecurityPolicyLevel,
     AuditEventType,
     ComplianceStatus,
 )

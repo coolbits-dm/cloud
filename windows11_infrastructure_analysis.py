@@ -8,7 +8,6 @@ import json
 import subprocess
 import platform
 import psutil
-import os
 from datetime import datetime
 
 

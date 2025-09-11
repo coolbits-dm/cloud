@@ -1,109 +1,101 @@
 # CoolBits.ai Security Hardening - IMMEDIATE ACTIONS
 # =================================================
 
-import os
-import sys
 import json
-import hmac
-import hashlib
-import base64
 import subprocess
-from datetime import datetime, timedelta
-from pathlib import Path
+from datetime import datetime
 
 
 class SecurityHardening:
     """Immediate security hardening for CoolBits.ai."""
-    
+
     def __init__(self):
         self.compromised_key = "cb401cb643e9f67a"  # EXPOSED IN CHAT - COMPROMISED
         self.secret_manager_keys = []
         self.audit_log_file = "security_audit.jsonl"
-    
+
     def log_security_event(self, event_type: str, details: dict):
         """Log security events to JSONL audit log."""
         event = {
             "timestamp": datetime.now().isoformat(),
             "event_type": event_type,
             "details": details,
-            "severity": "CRITICAL" if "compromised" in event_type.lower() else "HIGH"
+            "severity": "CRITICAL" if "compromised" in event_type.lower() else "HIGH",
         }
-        
+
         with open(self.audit_log_file, "a", encoding="utf-8") as f:
             f.write(json.dumps(event) + "\n")
-        
+
         print(f"🚨 SECURITY EVENT: {event_type}")
         print(f"   Details: {details}")
-    
+
     def rotate_compromised_key(self):
         """IMMEDIATE: Rotate compromised HMAC key."""
         print("🚨 ROTATING COMPROMISED HMAC KEY")
         print("=" * 40)
-        
+
         try:
             from hmac_key_manager import HMACKeyManager
-            
+
             key_manager = HMACKeyManager()
-            
+
             # Generate new secure key
             new_key = key_manager.generate_key(
                 name="emergency-rotation-2025-09-10",
                 description="Emergency rotation due to key exposure in chat",
-                expires_in_days=30
+                expires_in_days=30,
             )
-            
+
             if new_key:
                 print(f"✅ New secure key generated: {new_key['key_id']}")
-                
+
                 # Revoke compromised key
                 revoked = key_manager.revoke_key(key_id=self.compromised_key)
-                
+
                 if revoked:
                     print(f"🚫 Compromised key revoked: {self.compromised_key}")
-                    
+
                     # Log security event
                     self.log_security_event(
                         "KEY_COMPROMISED_ROTATION",
                         {
                             "compromised_key": self.compromised_key,
-                            "new_key": new_key['key_id'],
+                            "new_key": new_key["key_id"],
                             "reason": "Key exposed in chat",
-                            "action": "rotated_and_revoked"
-                        }
+                            "action": "rotated_and_revoked",
+                        },
                     )
-                    
-                    return new_key['key_id']
+
+                    return new_key["key_id"]
                 else:
-                    print(f"❌ Failed to revoke compromised key")
+                    print("❌ Failed to revoke compromised key")
                     return None
             else:
-                print(f"❌ Failed to generate new key")
+                print("❌ Failed to generate new key")
                 return None
-                
+
         except Exception as e:
             print(f"❌ Key rotation failed: {e}")
             self.log_security_event(
                 "KEY_ROTATION_FAILED",
-                {"error": str(e), "compromised_key": self.compromised_key}
+                {"error": str(e), "compromised_key": self.compromised_key},
             )
             return None
-    
+
     def setup_secret_manager(self):
         """Setup Google Secret Manager integration."""
         print("\n🔐 SETTING UP SECRET MANAGER")
         print("=" * 35)
-        
+
         try:
             # Check if Google Cloud SDK is available
             result = subprocess.run(
-                ["gcloud", "--version"],
-                capture_output=True,
-                text=True
+                ["gcloud", "--version"], capture_output=True, text=True
             )
-            
+
             if result.returncode == 0:
                 print("✅ Google Cloud SDK available")
-                
+
                 # Create secret manager configuration
                 secret_config = {
                     "project_id": "coolbits-ai",
@@ -111,26 +103,26 @@ class SecurityHardening:
                         {
                             "name": "hmac-keys",
                             "description": "HMAC signing keys for CoolBits.ai",
-                            "replication": "automatic"
+                            "replication": "automatic",
                         },
                         {
                             "name": "jwt-secret",
                             "description": "JWT signing secret",
-                            "replication": "automatic"
+                            "replication": "automatic",
                         },
                         {
                             "name": "api-keys",
                             "description": "External API keys",
-                            "replication": "automatic"
-                        }
-                    ]
+                            "replication": "automatic",
+                        },
+                    ],
                 }
-                
+
                 with open("secret_manager_config.json", "w", encoding="utf-8") as f:
                     json.dump(secret_config, f, indent=2)
-                
+
                 print("✅ Secret Manager configuration created")
-                
+
                 # Create secret manager client
                 secret_manager_script = '''
 import os
@@ -199,29 +191,29 @@ if __name__ == "__main__":
     client = SecretManagerClient()
     print("🔐 Secret Manager client ready")
 '''
-                
+
                 with open("secret_manager_client.py", "w", encoding="utf-8") as f:
                     f.write(secret_manager_script)
-                
+
                 print("✅ Secret Manager client created")
-                
+
                 return True
             else:
                 print("❌ Google Cloud SDK not available")
                 return False
-                
+
         except Exception as e:
             print(f"❌ Secret Manager setup failed: {e}")
             return False
-    
+
     def setup_windows_dpapi(self):
         """Setup Windows DPAPI for local key storage."""
         print("\n🪟 SETTING UP WINDOWS DPAPI")
         print("=" * 30)
-        
+
         try:
             import win32crypt
-            
+
             dpapi_script = '''
 import win32crypt
 import base64
@@ -298,25 +290,25 @@ if __name__ == "__main__":
     dpapi = WindowsDPAPI()
     print("🔐 Windows DPAPI ready")
 '''
-            
+
             with open("windows_dpapi.py", "w", encoding="utf-8") as f:
                 f.write(dpapi_script)
-            
+
             print("✅ Windows DPAPI client created")
             return True
-            
+
         except ImportError:
             print("❌ pywin32 not available - install with: pip install pywin32")
             return False
         except Exception as e:
             print(f"❌ Windows DPAPI setup failed: {e}")
             return False
-    
+
     def enforce_secret_manager_startup(self):
         """Enforce server startup only with Secret Manager secrets."""
         print("\n🚫 ENFORCING SECRET MANAGER STARTUP")
         print("=" * 40)
-        
+
         startup_check_script = '''
 import os
 import sys
@@ -394,14 +386,14 @@ if __name__ == "__main__":
     enforcer = SecretManagerEnforcer()
     enforcer.block_startup_if_invalid()
 '''
-        
+
         with open("secret_manager_enforcer.py", "w", encoding="utf-8") as f:
             f.write(startup_check_script)
-        
+
         print("✅ Secret Manager enforcer created")
-        
+
         # Update main server to include enforcer
-        server_startup_script = '''
+        server_startup_script = """
 # CoolBits.ai Server Startup with Security Enforcement
 # ==================================================
 
@@ -425,51 +417,51 @@ except Exception as e:
 
 # Continue with normal server startup...
 print("🚀 CoolBits.ai server starting with security enforcement")
-'''
-        
+"""
+
         with open("secure_server_startup.py", "w", encoding="utf-8") as f:
             f.write(server_startup_script)
-        
+
         print("✅ Secure server startup script created")
         return True
-    
+
     def create_security_policies(self):
         """Create enterprise security policies."""
         print("\n📋 CREATING SECURITY POLICIES")
         print("=" * 35)
-        
+
         security_policies = {
             "key_management": {
                 "policy": "NO_KEYS_IN_ENV_FILES",
                 "description": "No keys allowed in .env files on disk unencrypted",
                 "enforcement": "Secret Manager or DPAPI only",
-                "violation_action": "Server startup blocked"
+                "violation_action": "Server startup blocked",
             },
             "build_security": {
                 "policy": "SIGNED_BUILDS_ONLY",
                 "description": "Builds must be from commit SHA signed",
                 "enforcement": "Health endpoint displays SHA, release blocked if missing",
-                "violation_action": "Deployment blocked"
+                "violation_action": "Deployment blocked",
             },
             "mock_policy": {
                 "policy": "NO_MOCKS_IN_MAIN",
                 "description": "No mock code allowed in main branch",
                 "enforcement": "Mocks only in 'sim' branch, CI fails on main",
-                "violation_action": "CI pipeline fails"
+                "violation_action": "CI pipeline fails",
             },
             "desktop_parity": {
                 "policy": "WEB_AS_SOURCE_OF_TRUTH",
                 "description": "Desktop/Tauri remains consumer, web parity is source of truth",
                 "enforcement": "Desktop syncs with web, not vice versa",
-                "violation_action": "Sync blocked"
-            }
+                "violation_action": "Sync blocked",
+            },
         }
-        
+
         with open("security_policies.json", "w", encoding="utf-8") as f:
             json.dump(security_policies, f, indent=2)
-        
+
         print("✅ Security policies created")
-        
+
         # Create policy enforcer
         policy_enforcer_script = '''
 import json
@@ -581,34 +573,34 @@ if __name__ == "__main__":
     if not enforcer.enforce_all_policies():
         sys.exit(1)
 '''
-        
+
         with open("security_policy_enforcer.py", "w", encoding="utf-8") as f:
             f.write(policy_enforcer_script)
-        
+
         print("✅ Security policy enforcer created")
         return True
-    
+
     def run_immediate_hardening(self):
         """Run immediate security hardening."""
         print("🚨 COOLBITS.AI IMMEDIATE SECURITY HARDENING")
         print("=" * 50)
         print(f"🕐 Started: {datetime.now().isoformat()}")
-        
+
         # 1. Rotate compromised key
         new_key = self.rotate_compromised_key()
-        
+
         # 2. Setup Secret Manager
         secret_manager_ready = self.setup_secret_manager()
-        
+
         # 3. Setup Windows DPAPI
         dpapi_ready = self.setup_windows_dpapi()
-        
+
         # 4. Enforce Secret Manager startup
         startup_enforced = self.enforce_secret_manager_startup()
-        
+
         # 5. Create security policies
         policies_created = self.create_security_policies()
-        
+
         # Summary
         print("\n🎯 IMMEDIATE HARDENING SUMMARY")
         print("=" * 35)
@@ -617,8 +609,16 @@ if __name__ == "__main__":
         print(f"✅ Windows DPAPI ready: {dpapi_ready}")
         print(f"✅ Startup enforcement: {startup_enforced}")
         print(f"✅ Security policies: {policies_created}")
-        
-        if all([new_key, secret_manager_ready, dpapi_ready, startup_enforced, policies_created]):
+
+        if all(
+            [
+                new_key,
+                secret_manager_ready,
+                dpapi_ready,
+                startup_enforced,
+                policies_created,
+            ]
+        ):
             print("\n🎉 IMMEDIATE HARDENING COMPLETE!")
             print("🚀 CoolBits.ai is now enterprise-secure")
             return True

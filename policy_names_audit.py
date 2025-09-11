@@ -5,7 +5,6 @@ Audits all policies and declared names for COOL BITS SRL
 """
 
 import json
-import os
 from datetime import datetime
 
 

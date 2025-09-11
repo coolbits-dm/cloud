@@ -575,7 +575,7 @@ def main():
 
     # Deleagă către agent
     if smartbill.delegate_to_agent(invoice.id, "ogpt01", "invoice_creation"):
-        print(f"✅ Operațiune delegată către ogpt01")
+        print("✅ Operațiune delegată către ogpt01")
 
     # Generează raport
     report = smartbill.generate_invoice_report()

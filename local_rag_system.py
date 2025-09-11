@@ -9,11 +9,9 @@ Date: September 5, 2025
 
 import os
 import json
-import time
 import logging
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any
 from pathlib import Path
-import asyncio
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -30,12 +28,10 @@ import PyPDF2
 import docx
 import markdown
 from bs4 import BeautifulSoup
-import requests
 
 # API Framework
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 import uvicorn
 
 

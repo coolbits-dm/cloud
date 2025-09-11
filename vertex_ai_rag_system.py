@@ -7,17 +7,13 @@ Author: oCopilot (oCursor)
 Date: September 6, 2025
 """
 
-import os
 import json
 import logging
 import sqlite3
 import numpy as np
-from typing import Dict, List, Optional, Any, Tuple
+from typing import Dict, List, Optional, Any
 from datetime import datetime
 import uuid
-import hashlib
-import pickle
-import base64
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware

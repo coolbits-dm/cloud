@@ -8,11 +8,8 @@ Response to @GeminiCLI GPU and service status requests
 import json
 import logging
 import subprocess
-import sys
 import socket
-import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional
 
 # Configure logging
 logging.basicConfig(

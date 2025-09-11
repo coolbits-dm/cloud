@@ -5,13 +5,10 @@ Development Panel Agents Creator
 SC COOL BITS SRL - Specialized Development Agents
 """
 
-import os
-import sys
 import json
-import subprocess
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class DevelopmentAgentsCreator:
@@ -152,8 +149,8 @@ class DevelopmentAgentsCreator:
             with open(config_file, "w", encoding="utf-8") as f:
                 json.dump(config_content, f, indent=2)
 
-            print(f"  ✅ Created: frontend_agent.py")
-            print(f"  ✅ Created: config/agent_config.json")
+            print("  ✅ Created: frontend_agent.py")
+            print("  ✅ Created: config/agent_config.json")
             print("🎉 Frontend Agent created successfully!")
             return True
 
@@ -190,8 +187,8 @@ class DevelopmentAgentsCreator:
             with open(config_file, "w", encoding="utf-8") as f:
                 json.dump(config_content, f, indent=2)
 
-            print(f"  ✅ Created: backend_agent.py")
-            print(f"  ✅ Created: config/agent_config.json")
+            print("  ✅ Created: backend_agent.py")
+            print("  ✅ Created: config/agent_config.json")
             print("🎉 Backend Agent created successfully!")
             return True
 
@@ -228,8 +225,8 @@ class DevelopmentAgentsCreator:
             with open(config_file, "w", encoding="utf-8") as f:
                 json.dump(config_content, f, indent=2)
 
-            print(f"  ✅ Created: devops_agent.py")
-            print(f"  ✅ Created: config/agent_config.json")
+            print("  ✅ Created: devops_agent.py")
+            print("  ✅ Created: config/agent_config.json")
             print("🎉 DevOps Agent created successfully!")
             return True
 
@@ -266,8 +263,8 @@ class DevelopmentAgentsCreator:
             with open(config_file, "w", encoding="utf-8") as f:
                 json.dump(config_content, f, indent=2)
 
-            print(f"  ✅ Created: testing_agent.py")
-            print(f"  ✅ Created: config/agent_config.json")
+            print("  ✅ Created: testing_agent.py")
+            print("  ✅ Created: config/agent_config.json")
             print("🎉 Testing Agent created successfully!")
             return True
 
@@ -300,23 +297,23 @@ class FrontendDevelopmentAgent:
         self.ceo = "{self.ceo}"
         self.ai_assistant = "{self.ai_assistant}"
         self.contract_date = "{self.contract_date}"
-        self.agent_name = "{agent_info['name']}"
-        self.agent_icon = "{agent_info['icon']}"
-        self.port = {agent_info['port']}
+        self.agent_name = "{agent_info["name"]}"
+        self.agent_icon = "{agent_info["icon"]}"
+        self.port = {agent_info["port"]}
         
         # API Keys
-        self.api_keys = {json.dumps(agent_info['api_keys'], indent=2)}
+        self.api_keys = {json.dumps(agent_info["api_keys"], indent=2)}
         
         # Technologies
-        self.technologies = {json.dumps(agent_info['technologies'], indent=2)}
+        self.technologies = {json.dumps(agent_info["technologies"], indent=2)}
         
         # Responsibilities
-        self.responsibilities = {json.dumps(agent_info['responsibilities'], indent=2)}
+        self.responsibilities = {json.dumps(agent_info["responsibilities"], indent=2)}
         
         # Initialize FastAPI app
         self.app = FastAPI(
-            title="{agent_info['name']}",
-            description="{agent_info['description']}",
+            title="{agent_info["name"]}",
+            description="{agent_info["description"]}",
             version="1.0.0"
         )
         
@@ -451,23 +448,23 @@ class BackendDevelopmentAgent:
         self.ceo = "{self.ceo}"
         self.ai_assistant = "{self.ai_assistant}"
         self.contract_date = "{self.contract_date}"
-        self.agent_name = "{agent_info['name']}"
-        self.agent_icon = "{agent_info['icon']}"
-        self.port = {agent_info['port']}
+        self.agent_name = "{agent_info["name"]}"
+        self.agent_icon = "{agent_info["icon"]}"
+        self.port = {agent_info["port"]}
         
         # API Keys
-        self.api_keys = {json.dumps(agent_info['api_keys'], indent=2)}
+        self.api_keys = {json.dumps(agent_info["api_keys"], indent=2)}
         
         # Technologies
-        self.technologies = {json.dumps(agent_info['technologies'], indent=2)}
+        self.technologies = {json.dumps(agent_info["technologies"], indent=2)}
         
         # Responsibilities
-        self.responsibilities = {json.dumps(agent_info['responsibilities'], indent=2)}
+        self.responsibilities = {json.dumps(agent_info["responsibilities"], indent=2)}
         
         # Initialize FastAPI app
         self.app = FastAPI(
-            title="{agent_info['name']}",
-            description="{agent_info['description']}",
+            title="{agent_info["name"]}",
+            description="{agent_info["description"]}",
             version="1.0.0"
         )
         
@@ -603,23 +600,23 @@ class DevOpsAutomationAgent:
         self.ceo = "{self.ceo}"
         self.ai_assistant = "{self.ai_assistant}"
         self.contract_date = "{self.contract_date}"
-        self.agent_name = "{agent_info['name']}"
-        self.agent_icon = "{agent_info['icon']}"
-        self.port = {agent_info['port']}
+        self.agent_name = "{agent_info["name"]}"
+        self.agent_icon = "{agent_info["icon"]}"
+        self.port = {agent_info["port"]}
         
         # API Keys
-        self.api_keys = {json.dumps(agent_info['api_keys'], indent=2)}
+        self.api_keys = {json.dumps(agent_info["api_keys"], indent=2)}
         
         # Technologies
-        self.technologies = {json.dumps(agent_info['technologies'], indent=2)}
+        self.technologies = {json.dumps(agent_info["technologies"], indent=2)}
         
         # Responsibilities
-        self.responsibilities = {json.dumps(agent_info['responsibilities'], indent=2)}
+        self.responsibilities = {json.dumps(agent_info["responsibilities"], indent=2)}
         
         # Initialize FastAPI app
         self.app = FastAPI(
-            title="{agent_info['name']}",
-            description="{agent_info['description']}",
+            title="{agent_info["name"]}",
+            description="{agent_info["description"]}",
             version="1.0.0"
         )
         
@@ -754,23 +751,23 @@ class QualityAssuranceAgent:
         self.ceo = "{self.ceo}"
         self.ai_assistant = "{self.ai_assistant}"
         self.contract_date = "{self.contract_date}"
-        self.agent_name = "{agent_info['name']}"
-        self.agent_icon = "{agent_info['icon']}"
-        self.port = {agent_info['port']}
+        self.agent_name = "{agent_info["name"]}"
+        self.agent_icon = "{agent_info["icon"]}"
+        self.port = {agent_info["port"]}
         
         # API Keys
-        self.api_keys = {json.dumps(agent_info['api_keys'], indent=2)}
+        self.api_keys = {json.dumps(agent_info["api_keys"], indent=2)}
         
         # Technologies
-        self.technologies = {json.dumps(agent_info['technologies'], indent=2)}
+        self.technologies = {json.dumps(agent_info["technologies"], indent=2)}
         
         # Responsibilities
-        self.responsibilities = {json.dumps(agent_info['responsibilities'], indent=2)}
+        self.responsibilities = {json.dumps(agent_info["responsibilities"], indent=2)}
         
         # Initialize FastAPI app
         self.app = FastAPI(
-            title="{agent_info['name']}",
-            description="{agent_info['description']}",
+            title="{agent_info["name"]}",
+            description="{agent_info["description"]}",
             version="1.0.0"
         )
         

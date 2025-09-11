@@ -13,10 +13,9 @@ Company: COOL BITS SRL
 
 import json
 import subprocess
-import os
 import time
 from datetime import datetime
-from typing import Dict, Any, Optional, List
+from typing import Dict, Any, List
 from pathlib import Path
 
 

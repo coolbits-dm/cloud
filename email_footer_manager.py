@@ -5,12 +5,11 @@
 Professional email footers for CoolBits.ai with best practices
 """
 
-import os
 import sys
 import json
 import logging
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Optional
 from dataclasses import dataclass
 
 # Configure logging
@@ -147,9 +146,9 @@ class CoolBitsEmailFooterManager:
         
         <div style="font-size: 10px; color: #999999; margin-top: 10px;">
             <strong>Legal Information:</strong><br>
-            {self.legal_info['company_registration']} | CUI: {self.legal_info['cui']} | Reg. No: {self.legal_info['registration']}<br>
-            <strong>Classification:</strong> {self.legal_info['classification']}<br>
-            <strong>Compliance:</strong> {self.legal_info['gdpr_compliance']} | {self.legal_info['data_protection']}
+            {self.legal_info["company_registration"]} | CUI: {self.legal_info["cui"]} | Reg. No: {self.legal_info["registration"]}<br>
+            <strong>Classification:</strong> {self.legal_info["classification"]}<br>
+            <strong>Compliance:</strong> {self.legal_info["gdpr_compliance"]} | {self.legal_info["data_protection"]}
         </div>
         
         <div style="font-size: 10px; color: #cccccc; margin-top: 8px; text-align: center;">
@@ -172,8 +171,8 @@ class CoolBitsEmailFooterManager:
         🌐 <a href="{contact.website}" style="color: #0066cc;">{contact.website}</a>
     </div>
     <div style="font-size: 9px; color: #999999; margin-top: 8px;">
-        {self.legal_info['company_registration']} | CUI: {self.legal_info['cui']} | 
-        Classification: {self.legal_info['classification']} | 
+        {self.legal_info["company_registration"]} | CUI: {self.legal_info["cui"]} | 
+        Classification: {self.legal_info["classification"]} | 
         © {datetime.now().year} {self.company}
     </div>
 </div>
@@ -219,15 +218,15 @@ class CoolBitsEmailFooterManager:
         
         <div style="font-size: 10px; color: #666666; line-height: 1.4;">
             <div style="margin-bottom: 4px;">
-                <strong>Company:</strong> {self.legal_info['company_registration']} | 
-                <strong>CUI:</strong> {self.legal_info['cui']} | 
-                <strong>Registration:</strong> {self.legal_info['registration']}
+                <strong>Company:</strong> {self.legal_info["company_registration"]} | 
+                <strong>CUI:</strong> {self.legal_info["cui"]} | 
+                <strong>Registration:</strong> {self.legal_info["registration"]}
             </div>
             <div style="margin-bottom: 4px;">
-                <strong>Classification:</strong> {self.legal_info['classification']}
+                <strong>Classification:</strong> {self.legal_info["classification"]}
             </div>
             <div>
-                <strong>Compliance:</strong> {self.legal_info['gdpr_compliance']} | {self.legal_info['data_protection']}
+                <strong>Compliance:</strong> {self.legal_info["gdpr_compliance"]} | {self.legal_info["data_protection"]}
             </div>
         </div>
         
@@ -261,9 +260,9 @@ Twitter: {self.social_media.twitter}
 GitHub: {self.social_media.github}
 
 Legal Information:
-{self.legal_info['company_registration']} | CUI: {self.legal_info['cui']} | Reg. No: {self.legal_info['registration']}
-Classification: {self.legal_info['classification']}
-Compliance: {self.legal_info['gdpr_compliance']} | {self.legal_info['data_protection']}
+{self.legal_info["company_registration"]} | CUI: {self.legal_info["cui"]} | Reg. No: {self.legal_info["registration"]}
+Classification: {self.legal_info["classification"]}
+Compliance: {self.legal_info["gdpr_compliance"]} | {self.legal_info["data_protection"]}
 
 © {datetime.now().year} {self.company}. All rights reserved.
 Powered by @oOutlook Email Management System

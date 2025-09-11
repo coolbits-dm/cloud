@@ -7,7 +7,6 @@ GCP token stub for oGeminiCLI pairing
 import argparse
 import json
 import logging
-import os
 from datetime import datetime
 from pathlib import Path
 
@@ -115,7 +114,7 @@ class oGeminiCLI:
             import requests
 
             headers = {
-                "Authorization": f'Bearer {token_data["access_token"]}',
+                "Authorization": f"Bearer {token_data['access_token']}",
                 "Content-Type": "application/json",
             }
 

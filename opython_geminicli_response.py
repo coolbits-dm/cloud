@@ -7,11 +7,8 @@ COOL BITS SRL Local Windows 11 Machine Status Check
 import json
 import logging
 import subprocess
-import sys
 import socket
-import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional
 
 # Configure logging
 logging.basicConfig(
@@ -185,7 +182,7 @@ class oPythonLocalStatusReport:
         with open("local_secrets_template.json", "w") as f:
             json.dump(secrets_template, f, indent=2)
 
-        print(f"\n📝 Template created: local_secrets_template.json")
+        print("\n📝 Template created: local_secrets_template.json")
         print("📋 Instructions:")
         print("   1. Copy local_secrets_template.json to local_secrets.json")
         print("   2. Replace 'YOUR_*_HERE' with actual API keys")

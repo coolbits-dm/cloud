@@ -15,95 +15,95 @@ app = FastAPI(title="CoolBits.ai Multi-Agent Chat", version="1.0.0")
 
 @app.get("/", response_class=HTMLResponse)
 async def root():
-    return f"""
+    return """
 <!DOCTYPE html>
 <html>
 <head>
     <title>CoolBits.ai Multi-Agent Chat</title>
     <style>
-        body {{ 
+        body { 
             font-family: Arial, sans-serif; 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
             color: white; 
             margin: 0; 
             padding: 20px; 
-        }}
-        .container {{ 
+        }
+        .container { 
             max-width: 1000px; 
             margin: 0 auto; 
-        }}
-        .header {{ 
+        }
+        .header { 
             background: rgba(255,255,255,0.1); 
             padding: 30px; 
             border-radius: 15px; 
             margin-bottom: 20px; 
             text-align: center;
-        }}
-        .main-content {{
+        }
+        .main-content {
             display: grid;
             grid-template-columns: 1fr 2fr;
             gap: 20px;
-        }}
-        .agents-panel {{ 
+        }
+        .agents-panel { 
             background: rgba(255,255,255,0.1); 
             padding: 20px; 
             border-radius: 15px; 
-        }}
-        .chat-panel {{ 
+        }
+        .chat-panel { 
             background: rgba(255,255,255,0.1); 
             padding: 20px; 
             border-radius: 15px; 
-        }}
-        .agent-item {{
+        }
+        .agent-item {
             background: rgba(255,255,255,0.1);
             margin: 10px 0;
             padding: 15px;
             border-radius: 10px;
             cursor: pointer;
-        }}
-        .agent-item:hover {{
+        }
+        .agent-item:hover {
             background: rgba(255,255,255,0.2);
-        }}
-        .messages {{
+        }
+        .messages {
             background: rgba(0,0,0,0.2);
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
             max-height: 300px;
             overflow-y: auto;
-        }}
-        .message {{
+        }
+        .message {
             margin: 10px 0;
             padding: 10px;
             border-radius: 10px;
-        }}
-        .message.user {{
+        }
+        .message.user {
             background: rgba(76,175,80,0.3);
             text-align: right;
-        }}
-        .message.ai {{
+        }
+        .message.ai {
             background: rgba(33,150,243,0.3);
-        }}
-        .input-container {{
+        }
+        .input-container {
             display: flex;
             gap: 10px;
-        }}
-        .message-input {{
+        }
+        .message-input {
             flex: 1;
             padding: 12px;
             border: none;
             border-radius: 25px;
             background: rgba(255,255,255,0.1);
             color: white;
-        }}
-        .send-button {{
+        }
+        .send-button {
             padding: 12px 25px;
             border: none;
             border-radius: 25px;
             background: #4CAF50;
             color: white;
             cursor: pointer;
-        }}
+        }
     </style>
 </head>
 <body>
@@ -162,28 +162,28 @@ async def root():
     <script>
         let selectedAgents = [];
         
-        function selectAgent(agentId) {{
+        function selectAgent(agentId) {
             const agentItem = event.target.closest('.agent-item');
-            if (agentItem.classList.contains('selected')) {{
+            if (agentItem.classList.contains('selected')) {
                 agentItem.classList.remove('selected');
                 selectedAgents = selectedAgents.filter(id => id !== agentId);
-            }} else {{
+            } else {
                 agentItem.classList.add('selected');
                 selectedAgents.push(agentId);
-            }}
+            }
             updateChatTitle();
-        }}
+        }
         
-        function updateChatTitle() {{
+        function updateChatTitle() {
             const chatTitle = document.querySelector('.chat-panel h3');
-            if (selectedAgents.length === 0) {{
+            if (selectedAgents.length === 0) {
                 chatTitle.textContent = '💬 Multi-Agent Discussion';
-            }} else {{
-                chatTitle.textContent = `💬 Discussion with ${{selectedAgents.length}} agent(s)`;
-            }}
-        }}
+            } else {
+                chatTitle.textContent = `💬 Discussion with ${selectedAgents.length} agent(s)`;
+            }
+        }
         
-        function sendMessage() {{
+        function sendMessage() {
             const messageInput = document.getElementById('messageInput');
             const content = messageInput.value.trim();
             
@@ -193,26 +193,26 @@ async def root():
             messageInput.value = '';
             
             // Simulate AI response
-            setTimeout(() => {{
+            setTimeout(() => {
                 addMessage('Thank you for your message! I am here to facilitate intelligent discussions between our agents.', 'ai');
-            }}, 1000);
-        }}
+            }, 1000);
+        }
         
-        function addMessage(content, sender) {{
+        function addMessage(content, sender) {
             const messagesContainer = document.getElementById('messages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${{sender}}`;
+            messageDiv.className = `message ${sender}`;
             messageDiv.textContent = content;
             
             messagesContainer.appendChild(messageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
-        }}
+        }
         
-        function handleKeyPress(event) {{
-            if (event.key === 'Enter') {{
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
                 sendMessage();
-            }}
-        }}
+            }
+        }
     </script>
 </body>
 </html>

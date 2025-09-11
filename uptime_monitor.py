@@ -2,7 +2,6 @@
 # ==================================================
 
 import os
-import sys
 import json
 import time
 import requests
@@ -10,13 +9,12 @@ import psutil
 import threading
 from typing import Dict, List, Optional, Callable
 from dataclasses import dataclass, asdict
-from datetime import datetime, timedelta
+from datetime import datetime
 from enum import Enum
 import statistics
 import logging
 from collections import deque
 import smtplib
-from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 

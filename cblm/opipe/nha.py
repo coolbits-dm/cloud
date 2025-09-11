@@ -5,14 +5,16 @@
 import json
 import logging
 import os
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional
 from dataclasses import dataclass, asdict
 from datetime import datetime
 import subprocess
 
+
 @dataclass
 class NHAAgent:
     """Non-Human Agent definition"""
+
     name: str
     category: str
     description: str
@@ -23,59 +25,60 @@ class NHAAgent:
     permissions: List[str] = None
     last_updated: str = None
     version: str = "1.0"
-    
+
     def __post_init__(self):
         if self.permissions is None:
             self.permissions = []
         if self.last_updated is None:
             self.last_updated = datetime.now().isoformat()
 
+
 class NHARegistry:
     """Centralized registry for all Non-Human Agents"""
-    
+
     def __init__(self):
         self.logger = logging.getLogger(__name__)
         self.agents: Dict[str, NHAAgent] = {}
         self.setup_logging()
         self.load_agents()
-    
+
     def setup_logging(self):
         """Setup logging for NHA registry"""
         logging.basicConfig(
             level=logging.INFO,
-            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
             handlers=[
-                logging.FileHandler('logs/nha_registry.log'),
-                logging.StreamHandler()
-            ]
+                logging.FileHandler("logs/nha_registry.log"),
+                logging.StreamHandler(),
+            ],
         )
-    
+
     def load_agents(self):
         """Load all NHA agents into registry"""
         try:
             # Personal Agents
             self._register_personal_agents()
-            
+
             # Business Channel Agents
             self._register_business_channel_agents()
-            
+
             # Business Tool Agents
             self._register_business_tool_agents()
-            
+
             # Development Tool Agents
             self._register_dev_tool_agents()
-            
+
             # SEO Tool Agents
             self._register_seo_tool_agents()
-            
+
             # Agency/MCC Agents
             self._register_agency_agents()
-            
+
             self.logger.info(f"Loaded {len(self.agents)} NHA agents into registry")
-            
+
         except Exception as e:
             self.logger.error(f"Failed to load agents: {e}")
-    
+
     def _register_personal_agents(self):
         """Register personal communication agents"""
         personal_agents = [
@@ -86,16 +89,16 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oKim",
-                category="personal_agent", 
+                category="personal_agent",
                 description="Personal communication agent",
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oPersonal",
@@ -104,7 +107,11 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "run.invoker"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "run.invoker",
+                ],
             ),
             NHAAgent(
                 name="oFacebook",
@@ -113,7 +120,7 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oTelegram",
@@ -122,7 +129,7 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oTikTok",
@@ -131,7 +138,7 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oLinkedIn",
@@ -140,7 +147,7 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oX",
@@ -149,7 +156,7 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oReddit",
@@ -158,7 +165,7 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oGmail",
@@ -167,7 +174,11 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "gmail.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "gmail.readonly",
+                ],
             ),
             NHAAgent(
                 name="oDocs",
@@ -176,7 +187,11 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "docs.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "docs.readonly",
+                ],
             ),
             NHAAgent(
                 name="oSheets",
@@ -185,7 +200,11 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "sheets.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "sheets.readonly",
+                ],
             ),
             NHAAgent(
                 name="oDiscord",
@@ -194,13 +213,13 @@ class NHARegistry:
                 responsible_bot="oPersonal",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
-            )
+                permissions=["storage.objectViewer", "logging.logWriter"],
+            ),
         ]
-        
+
         for agent in personal_agents:
             self.agents[agent.name] = agent
-    
+
     def _register_business_channel_agents(self):
         """Register business channel agents"""
         business_channel_agents = [
@@ -211,7 +230,11 @@ class NHARegistry:
                 responsible_bot="oBusinessChannels",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "run.invoker"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "run.invoker",
+                ],
             ),
             NHAAgent(
                 name="oGoogleAds",
@@ -220,7 +243,11 @@ class NHARegistry:
                 responsible_bot="oBusinessChannels",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "ads.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "ads.readonly",
+                ],
             ),
             NHAAgent(
                 name="oMetaAds",
@@ -229,7 +256,7 @@ class NHARegistry:
                 responsible_bot="oBusinessChannels",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oTikTokAds",
@@ -238,7 +265,7 @@ class NHARegistry:
                 responsible_bot="oBusinessChannels",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oLinkedInAds",
@@ -247,13 +274,13 @@ class NHARegistry:
                 responsible_bot="oBusinessChannels",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
-            )
+                permissions=["storage.objectViewer", "logging.logWriter"],
+            ),
         ]
-        
+
         for agent in business_channel_agents:
             self.agents[agent.name] = agent
-    
+
     def _register_business_tool_agents(self):
         """Register business tool agents"""
         business_tool_agents = [
@@ -264,7 +291,11 @@ class NHARegistry:
                 responsible_bot="oBusinessTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "run.invoker"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "run.invoker",
+                ],
             ),
             NHAAgent(
                 name="oGA4",
@@ -273,7 +304,11 @@ class NHARegistry:
                 responsible_bot="oBusinessTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "analytics.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "analytics.readonly",
+                ],
             ),
             NHAAgent(
                 name="oGTM",
@@ -282,7 +317,11 @@ class NHARegistry:
                 responsible_bot="oBusinessTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "tagmanager.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "tagmanager.readonly",
+                ],
             ),
             NHAAgent(
                 name="oGSC",
@@ -291,7 +330,11 @@ class NHARegistry:
                 responsible_bot="oBusinessTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "webmasters.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "webmasters.readonly",
+                ],
             ),
             NHAAgent(
                 name="oGBP",
@@ -300,7 +343,11 @@ class NHARegistry:
                 responsible_bot="oBusinessTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "businessprofile.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "businessprofile.readonly",
+                ],
             ),
             NHAAgent(
                 name="oCGS",
@@ -309,13 +356,17 @@ class NHARegistry:
                 responsible_bot="oBusinessTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "storage.objectViewer"]
-            )
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "storage.objectViewer",
+                ],
+            ),
         ]
-        
+
         for agent in business_tool_agents:
             self.agents[agent.name] = agent
-    
+
     def _register_seo_tool_agents(self):
         """Register SEO tool agents"""
         seo_tool_agents = [
@@ -326,7 +377,11 @@ class NHARegistry:
                 responsible_bot="oSEOTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "run.invoker"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "run.invoker",
+                ],
             ),
             NHAAgent(
                 name="oSEMrush",
@@ -335,7 +390,7 @@ class NHARegistry:
                 responsible_bot="oSEOTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oAhrefs",
@@ -344,7 +399,7 @@ class NHARegistry:
                 responsible_bot="oSEOTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oMoz",
@@ -353,7 +408,7 @@ class NHARegistry:
                 responsible_bot="oSEOTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oScreamingFrog",
@@ -362,13 +417,13 @@ class NHARegistry:
                 responsible_bot="oSEOTools",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
-            )
+                permissions=["storage.objectViewer", "logging.logWriter"],
+            ),
         ]
-        
+
         for agent in seo_tool_agents:
             self.agents[agent.name] = agent
-    
+
     def _register_agency_agents(self):
         """Register agency/MCC agents"""
         agency_agents = [
@@ -379,7 +434,11 @@ class NHARegistry:
                 responsible_bot="oAgencyMCC",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "run.invoker"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "run.invoker",
+                ],
             ),
             NHAAgent(
                 name="oGoogleAdsMCC",
@@ -388,7 +447,11 @@ class NHARegistry:
                 responsible_bot="oAgencyMCC",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "ads.readonly"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "ads.readonly",
+                ],
             ),
             NHAAgent(
                 name="oMetaAdsMCC",
@@ -397,7 +460,7 @@ class NHARegistry:
                 responsible_bot="oAgencyMCC",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oLinkedInMCC",
@@ -406,13 +469,13 @@ class NHARegistry:
                 responsible_bot="oAgencyMCC",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
-            )
+                permissions=["storage.objectViewer", "logging.logWriter"],
+            ),
         ]
-        
+
         for agent in agency_agents:
             self.agents[agent.name] = agent
-    
+
     def _register_dev_tool_agents(self):
         """Register development tool agents"""
         dev_tool_agents = [
@@ -423,7 +486,12 @@ class NHARegistry:
                 responsible_bot="oDev",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "run.invoker", "cloudbuild.builds.create"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "run.invoker",
+                    "cloudbuild.builds.create",
+                ],
             ),
             NHAAgent(
                 name="oCursor",
@@ -432,7 +500,7 @@ class NHARegistry:
                 responsible_bot="oDev",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oGit",
@@ -441,7 +509,11 @@ class NHARegistry:
                 responsible_bot="oDev",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "source.repos.read"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "source.repos.read",
+                ],
             ),
             NHAAgent(
                 name="oDocker",
@@ -450,7 +522,11 @@ class NHARegistry:
                 responsible_bot="oDev",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "run.invoker"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "run.invoker",
+                ],
             ),
             NHAAgent(
                 name="oTerminal",
@@ -459,7 +535,7 @@ class NHARegistry:
                 responsible_bot="oDev",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter"]
+                permissions=["storage.objectViewer", "logging.logWriter"],
             ),
             NHAAgent(
                 name="oCloudBuild",
@@ -468,7 +544,11 @@ class NHARegistry:
                 responsible_bot="oDev",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "cloudbuild.builds.create"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "cloudbuild.builds.create",
+                ],
             ),
             NHAAgent(
                 name="oCloudRun",
@@ -477,7 +557,11 @@ class NHARegistry:
                 responsible_bot="oDev",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "run.invoker"]
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "run.invoker",
+                ],
             ),
             NHAAgent(
                 name="oVertexAI",
@@ -486,118 +570,138 @@ class NHARegistry:
                 responsible_bot="oDev",
                 status="active",
                 gcloud_project="coolbits-ai",
-                permissions=["storage.objectViewer", "logging.logWriter", "aiplatform.endpoints.predict"]
-            )
+                permissions=[
+                    "storage.objectViewer",
+                    "logging.logWriter",
+                    "aiplatform.endpoints.predict",
+                ],
+            ),
         ]
-        
+
         for agent in dev_tool_agents:
             self.agents[agent.name] = agent
-    
+
     def get_agent(self, name: str) -> Optional[NHAAgent]:
         """Get agent by name"""
         return self.agents.get(name)
-    
+
     def get_agents_by_category(self, category: str) -> List[NHAAgent]:
         """Get all agents in a category"""
         return [agent for agent in self.agents.values() if agent.category == category]
-    
+
     def get_active_agents(self) -> List[NHAAgent]:
         """Get all active agents"""
         return [agent for agent in self.agents.values() if agent.status == "active"]
-    
+
     def update_agent(self, name: str, **kwargs) -> bool:
         """Update agent properties"""
         try:
             if name not in self.agents:
                 self.logger.error(f"Agent {name} not found")
                 return False
-            
+
             agent = self.agents[name]
             for key, value in kwargs.items():
                 if hasattr(agent, key):
                     setattr(agent, key, value)
-            
+
             agent.last_updated = datetime.now().isoformat()
             self.logger.info(f"Updated agent {name}")
             return True
-            
+
         except Exception as e:
             self.logger.error(f"Failed to update agent {name}: {e}")
             return False
-    
+
     def export_registry(self, filename: str = "nha_registry.json") -> bool:
         """Export registry to JSON file"""
         try:
             registry_data = {
                 "timestamp": datetime.now().isoformat(),
                 "total_agents": len(self.agents),
-                "agents": {name: asdict(agent) for name, agent in self.agents.items()}
+                "agents": {name: asdict(agent) for name, agent in self.agents.items()},
             }
-            
+
             os.makedirs("data/nha", exist_ok=True)
             with open(f"data/nha/{filename}", "w", encoding="utf-8") as f:
                 json.dump(registry_data, f, indent=2, ensure_ascii=False)
-            
+
             self.logger.info(f"Exported registry to data/nha/{filename}")
             return True
-            
+
         except Exception as e:
             self.logger.error(f"Failed to export registry: {e}")
             return False
-    
+
     def sync_with_gcloud(self) -> bool:
         """Sync agent permissions with Google Cloud IAM"""
         try:
             self.logger.info("Syncing NHA registry with Google Cloud IAM")
-            
+
             for agent_name, agent in self.agents.items():
                 if agent.gcloud_project and agent.service_account:
                     self._sync_agent_permissions(agent)
-            
+
             self.logger.info("Successfully synced NHA registry with Google Cloud")
             return True
-            
+
         except Exception as e:
             self.logger.error(f"Failed to sync with Google Cloud: {e}")
             return False
-    
+
     def _sync_agent_permissions(self, agent: NHAAgent):
         """Sync individual agent permissions with Google Cloud"""
         try:
             if not agent.service_account:
                 # Create service account if it doesn't exist
                 service_account_email = f"{agent.name.lower()}@{agent.gcloud_project}.iam.gserviceaccount.com"
-                
+
                 cmd = [
-                    "gcloud", "iam", "service-accounts", "create", agent.name.lower(),
-                    "--project", agent.gcloud_project,
-                    "--display-name", f"NHA Agent: {agent.name}",
-                    "--description", agent.description
+                    "gcloud",
+                    "iam",
+                    "service-accounts",
+                    "create",
+                    agent.name.lower(),
+                    "--project",
+                    agent.gcloud_project,
+                    "--display-name",
+                    f"NHA Agent: {agent.name}",
+                    "--description",
+                    agent.description,
                 ]
-                
+
                 result = subprocess.run(cmd, capture_output=True, text=True)
                 if result.returncode != 0:
-                    self.logger.warning(f"Service account {agent.name} may already exist")
-                
+                    self.logger.warning(
+                        f"Service account {agent.name} may already exist"
+                    )
+
                 agent.service_account = service_account_email
-            
+
             # Apply IAM permissions
             for permission in agent.permissions:
                 cmd = [
-                    "gcloud", "projects", "add-iam-policy-binding", agent.gcloud_project,
-                    "--member", f"serviceAccount:{agent.service_account}",
-                    "--role", permission
+                    "gcloud",
+                    "projects",
+                    "add-iam-policy-binding",
+                    agent.gcloud_project,
+                    "--member",
+                    f"serviceAccount:{agent.service_account}",
+                    "--role",
+                    permission,
                 ]
-                
+
                 result = subprocess.run(cmd, capture_output=True, text=True)
                 if result.returncode == 0:
                     self.logger.info(f"Applied permission {permission} to {agent.name}")
                 else:
-                    self.logger.warning(f"Failed to apply permission {permission} to {agent.name}")
-            
+                    self.logger.warning(
+                        f"Failed to apply permission {permission} to {agent.name}"
+                    )
+
         except Exception as e:
             self.logger.error(f"Failed to sync permissions for {agent.name}: {e}")
-    
+
     def generate_report(self) -> str:
         """Generate NHA registry report"""
         try:
@@ -613,56 +717,58 @@ Generated: {datetime.now().isoformat()}
 ## Agent Categories
 
 """
-            
+
             categories = {}
             for agent in self.agents.values():
                 if agent.category not in categories:
                     categories[agent.category] = []
                 categories[agent.category].append(agent)
-            
+
             for category, agents in categories.items():
                 report += f"### {category.replace('_', ' ').title()}\n"
                 report += f"**Count**: {len(agents)}\n\n"
-                
+
                 for agent in agents:
                     report += f"- **{agent.name}**: {agent.description}\n"
                     report += f"  - Status: {agent.status}\n"
                     report += f"  - Responsible Bot: {agent.responsible_bot}\n"
                     report += f"  - GCloud Project: {agent.gcloud_project or 'N/A'}\n"
                     report += f"  - Permissions: {', '.join(agent.permissions) if agent.permissions else 'None'}\n\n"
-            
+
             return report
-            
+
         except Exception as e:
             self.logger.error(f"Failed to generate report: {e}")
             return f"# NHA Registry Report\n\nError generating report: {e}"
+
 
 def main():
     """Main function for NHA registry management"""
     try:
         # Initialize registry
         registry = NHARegistry()
-        
+
         # Export registry
         registry.export_registry()
-        
+
         # Generate report
         report = registry.generate_report()
-        
+
         # Save report
         os.makedirs("reports", exist_ok=True)
         with open("reports/nha_registry_report.md", "w", encoding="utf-8") as f:
             f.write(report)
-        
+
         print("NHA Registry initialized successfully!")
         print(f"Total agents: {len(registry.agents)}")
         print("Report saved to: reports/nha_registry_report.md")
-        
+
         return registry
-        
+
     except Exception as e:
         print(f"Failed to initialize NHA registry: {e}")
         return None
+
 
 if __name__ == "__main__":
     main()

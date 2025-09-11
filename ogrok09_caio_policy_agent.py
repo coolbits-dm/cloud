@@ -5,9 +5,8 @@ Policy Development Agent for AI Framework
 """
 
 import json
-import time
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class oGrok09CAIO:
@@ -278,9 +277,9 @@ def main():
     results = caio.start_ai_policy_development()
 
     print("\n🎯 CAIO AI POLICY DEVELOPMENT SUMMARY:")
-    print(f"📊 AI Analysis: Complete")
-    print(f"🏗️ AI Policy Framework: Designed")
-    print(f"📋 AI Implementation Plan: Generated")
+    print("📊 AI Analysis: Complete")
+    print("🏗️ AI Policy Framework: Designed")
+    print("📋 AI Implementation Plan: Generated")
     print(f"⏱️ Timeline: {results['ai_implementation_plan']['estimated_timeline']}")
     print(
         f"💰 Estimated Cost: {results['ai_implementation_plan']['estimated_cost']['total_monthly']}"

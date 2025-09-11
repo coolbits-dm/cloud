@@ -4,7 +4,6 @@ oGeminiCLI - ChatGPT Integration Deployment Prompt
 Complete console message for deploying ChatGPT integration to Google Cloud
 """
 
-import json
 from datetime import datetime
 
 
@@ -24,7 +23,7 @@ def generate_gemini_cli_chatgpt_prompt():
 
 Company: COOL BITS SRL
 CEO: Andrei
-Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Date: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 Project: coolbits-ai
 Region: europe-west3
 
@@ -178,7 +177,7 @@ Policy Division (oGrok08 CISO + oGrok09 CAIO) responsible for access control.
 
 🤖 oGeminiCLI - Execute this deployment to Google Cloud for ChatGPT integration.
 
-Company: COOL BITS SRL | CEO: Andrei | Date: {datetime.now().strftime('%Y-%m-%d')}
+Company: COOL BITS SRL | CEO: Andrei | Date: {datetime.now().strftime("%Y-%m-%d")}
 """
 
     return prompt

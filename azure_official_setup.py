@@ -4,11 +4,8 @@ Azure OpenAI Official Setup for COOL BITS SRL
 Configuration for official Microsoft Azure account: andrei@coolbits.ro
 """
 
-import os
-import json
 import logging
 from datetime import datetime
-from typing import Dict, Any, Optional
 
 # Configure logging
 logging.basicConfig(
@@ -81,14 +78,14 @@ az account set --subscription "Free Trial"  # or your specific subscription name
 
 # Create resource group
 echo "🏗️ Creating resource group..."
-az group create --name {self.azure_official_config['resource_group']} --location "{self.azure_official_config['location']}"
+az group create --name {self.azure_official_config["resource_group"]} --location "{self.azure_official_config["location"]}"
 
 # Create Azure OpenAI resource
 echo "🤖 Creating Azure OpenAI resource..."
 az cognitiveservices account create \\
-    --name {self.azure_official_config['openai_resource']} \\
-    --resource-group {self.azure_official_config['resource_group']} \\
-    --location "{self.azure_official_config['location']}" \\
+    --name {self.azure_official_config["openai_resource"]} \\
+    --resource-group {self.azure_official_config["resource_group"]} \\
+    --location "{self.azure_official_config["location"]}" \\
     --kind OpenAI \\
     --sku S0 \\
     --yes
@@ -96,13 +93,13 @@ az cognitiveservices account create \\
 # Get API key
 echo "🔑 Retrieving API key..."
 API_KEY=$(az cognitiveservices account keys list \\
-    --name {self.azure_official_config['openai_resource']} \\
-    --resource-group {self.azure_official_config['resource_group']} \\
+    --name {self.azure_official_config["openai_resource"]} \\
+    --resource-group {self.azure_official_config["resource_group"]} \\
     --query key1 -o tsv)
 
 echo "✅ Azure OpenAI resource created successfully!"
 echo "🔑 API Key: $API_KEY"
-echo "🌐 Endpoint: {self.azure_official_config['openai_endpoint']}"
+echo "🌐 Endpoint: {self.azure_official_config["openai_endpoint"]}"
 
 # Save configuration
 echo "💾 Saving configuration..."
@@ -113,12 +110,12 @@ cat > azure_official_config.json << EOF
     "official_email": "{self.official_email}",
     "project_email": "{self.project_email}",
     "subscription_id": "$(az account show --query id -o tsv)",
-    "resource_group": "{self.azure_official_config['resource_group']}",
-    "openai_resource": "{self.azure_official_config['openai_resource']}",
+    "resource_group": "{self.azure_official_config["resource_group"]}",
+    "openai_resource": "{self.azure_official_config["openai_resource"]}",
     "api_key": "$API_KEY",
-    "endpoint": "{self.azure_official_config['openai_endpoint']}",
-    "deployment_name": "{self.azure_official_config['deployment_name']}",
-    "model": "{self.azure_official_config['model']}",
+    "endpoint": "{self.azure_official_config["openai_endpoint"]}",
+    "deployment_name": "{self.azure_official_config["deployment_name"]}",
+    "model": "{self.azure_official_config["model"]}",
     "setup_date": "{datetime.now().isoformat()}"
 }}
 EOF
@@ -164,24 +161,24 @@ Set-AzContext -Subscription "Free Trial"  # or your specific subscription name
 
 # Create resource group
 Write-Host "🏗️ Creating resource group..." -ForegroundColor Yellow
-New-AzResourceGroup -Name "{self.azure_official_config['resource_group']}" -Location "{self.azure_official_config['location']}"
+New-AzResourceGroup -Name "{self.azure_official_config["resource_group"]}" -Location "{self.azure_official_config["location"]}"
 
 # Create Azure OpenAI resource
 Write-Host "🤖 Creating Azure OpenAI resource..." -ForegroundColor Yellow
 New-AzCognitiveServicesAccount `
-    -Name "{self.azure_official_config['openai_resource']}" `
-    -ResourceGroupName "{self.azure_official_config['resource_group']}" `
-    -Location "{self.azure_official_config['location']}" `
+    -Name "{self.azure_official_config["openai_resource"]}" `
+    -ResourceGroupName "{self.azure_official_config["resource_group"]}" `
+    -Location "{self.azure_official_config["location"]}" `
     -Kind "OpenAI" `
     -SkuName "S0"
 
 # Get API key
 Write-Host "🔑 Retrieving API key..." -ForegroundColor Yellow
-$apiKey = (Get-AzCognitiveServicesAccountKey -Name "{self.azure_official_config['openai_resource']}" -ResourceGroupName "{self.azure_official_config['resource_group']}").Key1
+$apiKey = (Get-AzCognitiveServicesAccountKey -Name "{self.azure_official_config["openai_resource"]}" -ResourceGroupName "{self.azure_official_config["resource_group"]}").Key1
 
 Write-Host "✅ Azure OpenAI resource created successfully!" -ForegroundColor Green
 Write-Host "🔑 API Key: $apiKey" -ForegroundColor Cyan
-Write-Host "🌐 Endpoint: {self.azure_official_config['openai_endpoint']}" -ForegroundColor Cyan
+Write-Host "🌐 Endpoint: {self.azure_official_config["openai_endpoint"]}" -ForegroundColor Cyan
 
 # Save configuration
 Write-Host "💾 Saving configuration..." -ForegroundColor Yellow
@@ -191,12 +188,12 @@ $config = @{{
     official_email = "{self.official_email}"
     project_email = "{self.project_email}"
     subscription_id = (Get-AzContext).Subscription.Id
-    resource_group = "{self.azure_official_config['resource_group']}"
-    openai_resource = "{self.azure_official_config['openai_resource']}"
+    resource_group = "{self.azure_official_config["resource_group"]}"
+    openai_resource = "{self.azure_official_config["openai_resource"]}"
     api_key = $apiKey
-    endpoint = "{self.azure_official_config['openai_endpoint']}"
-    deployment_name = "{self.azure_official_config['deployment_name']}"
-    model = "{self.azure_official_config['model']}"
+    endpoint = "{self.azure_official_config["openai_endpoint"]}"
+    deployment_name = "{self.azure_official_config["deployment_name"]}"
+    model = "{self.azure_official_config["model"]}"
     setup_date = "{datetime.now().isoformat()}"
 }}
 
@@ -239,17 +236,17 @@ This guide explains how to integrate Azure OpenAI with your Chrome session using
 2. Click "Create" to create a new Azure OpenAI resource
 3. Fill in the details:
    - **Subscription**: Your free tier subscription
-   - **Resource Group**: {self.azure_official_config['resource_group']}
-   - **Region**: {self.azure_official_config['location']}
-   - **Name**: {self.azure_official_config['openai_resource']}
+   - **Resource Group**: {self.azure_official_config["resource_group"]}
+   - **Region**: {self.azure_official_config["location"]}
+   - **Name**: {self.azure_official_config["openai_resource"]}
    - **Pricing Tier**: Free (F0) or Standard (S0)
 
 ### 3. Model Deployment
 1. Go to Azure OpenAI Studio: https://oai.azure.com
 2. Select your resource
 3. Deploy a model:
-   - **Model**: {self.azure_official_config['model']}
-   - **Deployment Name**: {self.azure_official_config['deployment_name']}
+   - **Model**: {self.azure_official_config["model"]}
+   - **Deployment Name**: {self.azure_official_config["deployment_name"]}
    - **Version**: Latest
 
 ### 4. API Key Retrieval
@@ -262,9 +259,9 @@ This guide explains how to integrate Azure OpenAI with your Chrome session using
 Update your `.env` file with the official credentials:
 ```
 AZURE_OPENAI_API_KEY=your_actual_api_key_from_azure
-AZURE_OPENAI_ENDPOINT=https://{self.azure_official_config['openai_resource']}.openai.azure.com/
-AZURE_OPENAI_DEPLOYMENT_NAME={self.azure_official_config['deployment_name']}
-AZURE_OPENAI_API_VERSION={self.azure_official_config['api_version']}
+AZURE_OPENAI_ENDPOINT=https://{self.azure_official_config["openai_resource"]}.openai.azure.com/
+AZURE_OPENAI_DEPLOYMENT_NAME={self.azure_official_config["deployment_name"]}
+AZURE_OPENAI_API_VERSION={self.azure_official_config["api_version"]}
 ```
 
 ## Chrome Extensions (Optional)
@@ -385,7 +382,7 @@ class CoolBitsOfficialAzureOpenAI:
 
     def generate_code(self, prompt: str, language: str = "python"):
         """Generate code using official Azure OpenAI"""
-        system_prompt = f"""You are a senior software engineer for {self.company}, specializing in {{language}} development for {', '.join(self.project_domains)} projects.
+        system_prompt = f"""You are a senior software engineer for {self.company}, specializing in {{language}} development for {", ".join(self.project_domains)} projects.
         
         Official Microsoft Azure account: {self.official_email}
         Project email: {self.project_email}
@@ -437,7 +434,7 @@ def main():
     print(f"👤 CEO: {self.ceo}")
     print(f"📧 Official Email: {self.official_email}")
     print(f"🌐 Project Email: {self.project_email}")
-    print(f"🏢 Domains: {', '.join(self.project_domains)}")
+    print(f"🏢 Domains: {", ".join(self.project_domains)}")
     print("=" * 80)
     
     client = CoolBitsOfficialAzureOpenAI()

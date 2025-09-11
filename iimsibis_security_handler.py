@@ -13,7 +13,6 @@ Classification: Internal Secret - CoolBits.ai Members Only
 
 import json
 import subprocess
-import sys
 from datetime import datetime
 import os
 

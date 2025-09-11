@@ -5,9 +5,8 @@ Policy Development Agent for Security Framework
 """
 
 import json
-import time
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class oGrok08CISO:
@@ -277,9 +276,9 @@ def main():
     results = ciso.start_policy_development()
 
     print("\n🎯 CISO POLICY DEVELOPMENT SUMMARY:")
-    print(f"📊 Security Analysis: Complete")
-    print(f"🏗️ Policy Framework: Designed")
-    print(f"📋 Implementation Plan: Generated")
+    print("📊 Security Analysis: Complete")
+    print("🏗️ Policy Framework: Designed")
+    print("📋 Implementation Plan: Generated")
     print(f"⏱️ Timeline: {results['implementation_plan']['estimated_timeline']}")
     print(
         f"💰 Estimated Cost: {results['implementation_plan']['estimated_cost']['total_monthly']}"

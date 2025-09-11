@@ -7,8 +7,6 @@ permissions:
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 env:
@@ -47,10 +45,20 @@ jobs:
         version: 'latest'
     
     - name: Get gcloud version
+      if: ${{ github.event_name == 'push' && env.CB_BILLING_MODE == 'prod' }}
       id: gcloud-version
+      shell: bash
       run: |
-        VERSION=$(gcloud version --format="value(Google Cloud SDK)")
-        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        set -euo pipefail
+        if ! command -v gcloud >/dev/null 2>&1; then
+          echo "version=not-installed" >> "$GITHUB_OUTPUT"
+          exit 0
+        fi
+        VERSION="$(gcloud info --format='value(installation.sdk_version)' || true)"
+        if [ -z "${VERSION:-}" ]; then
+          VERSION="$(gcloud version | head -n1 | sed -E 's/.*Google Cloud SDK ([0-9.]+).*/\1/' || echo unknown)"
+        fi
+        echo "version=$VERSION" >> "$GITHUB_OUTPUT"
         echo "✅ gcloud version: $VERSION"
     
     - name: Setup Cosign
@@ -275,6 +283,7 @@ jobs:
 
   # Job 3: Generate Proof Pack
   proof-pack-generation:
+    if: ${{ github.event_name == 'push' && env.CB_BILLING_MODE == 'prod' }}
     runs-on: ubuntu-latest
     name: Generate & Sign Proof Pack
     needs: [toolchain-setup, milestone-verification]

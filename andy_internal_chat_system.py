@@ -5,21 +5,12 @@ Andy Internal Chat System
 SC COOL BITS SRL - Internal chat system with RAG and Vertex AI compatibility
 """
 
-import os
-import sys
-import json
-import asyncio
-import time
 from datetime import datetime
-from typing import Dict, List, Any, Optional, Union
-from pathlib import Path
+from typing import Dict, List, Any, Optional
 import uuid
-import hashlib
-import base64
 
 # Import our internal systems
-from coolbits_secrets_manager import get_andy_keys, get_secret, set_secret
-from andy_core_engine import andy_core_engine, process_andy_request
+from andy_core_engine import process_andy_request
 
 
 class AndyChatMessage:

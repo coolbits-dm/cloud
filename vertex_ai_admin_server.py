@@ -7,14 +7,12 @@ Author: oCopilot (oCursor)
 Date: September 6, 2025
 """
 
-import os
-import json
 import logging
 from datetime import datetime
 from typing import Dict, Any
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import uvicorn

@@ -7,19 +7,15 @@ Author: oCopilot (oCursor)
 Date: September 6, 2025
 """
 
-import os
 import json
 import logging
-import asyncio
 import sqlite3
-from typing import Dict, List, Optional, Any
+from typing import Dict, Any
 from datetime import datetime
 import uuid
-import re
 
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
 from pydantic import BaseModel
 import uvicorn
 

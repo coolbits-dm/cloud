@@ -5,14 +5,7 @@ CoolBits.ai Complete Dashboard Server
 SC COOL BITS SRL - All Services & Agents Dashboard
 """
 
-import os
-import sys
-import json
-import subprocess
-import webbrowser
-import time
 from datetime import datetime
-from typing import Dict, List, Any
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
 import uvicorn
@@ -254,7 +247,7 @@ class CoolBitsCompleteDashboard:
 
     def _get_dashboard_html(self) -> str:
         """Generate complete dashboard HTML"""
-        return f"""
+        return """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -262,20 +255,20 @@ class CoolBitsCompleteDashboard:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CoolBits.ai Complete Dashboard</title>
     <style>
-        * {{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }}
+        }
         
-        body {{
+        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             color: #333;
-        }}
+        }
         
-        .header {{
+        .header {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             padding: 20px;
@@ -283,23 +276,23 @@ class CoolBitsCompleteDashboard:
             position: sticky;
             top: 0;
             z-index: 100;
-        }}
+        }
         
-        .header-content {{
+        .header-content {
             max-width: 1400px;
             margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }}
+        }
         
-        .logo {{
+        .logo {
             display: flex;
             align-items: center;
             gap: 15px;
-        }}
+        }
         
-        .logo-icon {{
+        .logo-icon {
             width: 50px;
             height: 50px;
             background: linear-gradient(45deg, #667eea, #764ba2);
@@ -310,26 +303,26 @@ class CoolBitsCompleteDashboard:
             color: white;
             font-size: 24px;
             font-weight: bold;
-        }}
+        }
         
-        .logo-text h1 {{
+        .logo-text h1 {
             font-size: 28px;
             color: #333;
             margin-bottom: 5px;
-        }}
+        }
         
-        .logo-text p {{
+        .logo-text p {
             color: #666;
             font-size: 14px;
-        }}
+        }
         
-        .status-bar {{
+        .status-bar {
             display: flex;
             gap: 20px;
             align-items: center;
-        }}
+        }
         
-        .status-item {{
+        .status-item {
             display: flex;
             align-items: center;
             gap: 8px;
@@ -338,33 +331,33 @@ class CoolBitsCompleteDashboard:
             border-radius: 20px;
             font-size: 14px;
             font-weight: 500;
-        }}
+        }
         
-        .status-dot {{
+        .status-dot {
             width: 8px;
             height: 8px;
             background: #4CAF50;
             border-radius: 50%;
             animation: pulse 2s infinite;
-        }}
+        }
         
-        @keyframes pulse {{
-            0% {{ opacity: 1; }}
-            50% {{ opacity: 0.5; }}
-            100% {{ opacity: 1; }}
-        }}
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
         
-        .container {{
+        .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 30px 20px;
-        }}
+        }
         
-        .section {{
+        .section {
             margin-bottom: 40px;
-        }}
+        }
         
-        .section-title {{
+        .section-title {
             font-size: 24px;
             font-weight: 600;
             color: white;
@@ -372,19 +365,19 @@ class CoolBitsCompleteDashboard:
             display: flex;
             align-items: center;
             gap: 10px;
-        }}
+        }
         
-        .section-icon {{
+        .section-icon {
             font-size: 28px;
-        }}
+        }
         
-        .services-grid {{
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 20px;
-        }}
+        }
         
-        .service-card {{
+        .service-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 16px;
@@ -394,14 +387,14 @@ class CoolBitsCompleteDashboard:
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }}
+        }
         
-        .service-card:hover {{
+        .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-        }}
+        }
         
-        .service-card::before {{
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -409,89 +402,89 @@ class CoolBitsCompleteDashboard:
             right: 0;
             height: 4px;
             background: linear-gradient(90deg, #667eea, #764ba2);
-        }}
+        }
         
-        .service-header {{
+        .service-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 16px;
-        }}
+        }
         
-        .service-icon {{
+        .service-icon {
             font-size: 32px;
             margin-right: 12px;
-        }}
+        }
         
-        .service-title {{
+        .service-title {
             font-size: 18px;
             font-weight: 600;
             color: #333;
             flex: 1;
-        }}
+        }
         
-        .service-status {{
+        .service-status {
             padding: 4px 12px;
             border-radius: 12px;
             font-size: 12px;
             font-weight: 500;
             text-transform: uppercase;
-        }}
+        }
         
-        .status-active {{
+        .status-active {
             background: #E8F5E8;
             color: #2E7D32;
-        }}
+        }
         
-        .status-ready {{
+        .status-ready {
             background: #FFF3E0;
             color: #F57C00;
-        }}
+        }
         
-        .status-planning {{
+        .status-planning {
             background: #E3F2FD;
             color: #1976D2;
-        }}
+        }
         
-        .service-description {{
+        .service-description {
             color: #666;
             font-size: 14px;
             margin-bottom: 16px;
             line-height: 1.5;
-        }}
+        }
         
-        .service-details {{
+        .service-details {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-bottom: 16px;
-        }}
+        }
         
-        .detail-item {{
+        .detail-item {
             display: flex;
             flex-direction: column;
             gap: 4px;
-        }}
+        }
         
-        .detail-label {{
+        .detail-label {
             font-size: 12px;
             color: #999;
             font-weight: 500;
             text-transform: uppercase;
-        }}
+        }
         
-        .detail-value {{
+        .detail-value {
             font-size: 14px;
             color: #333;
             font-weight: 500;
-        }}
+        }
         
-        .service-actions {{
+        .service-actions {
             display: flex;
             gap: 8px;
-        }}
+        }
         
-        .btn {{
+        .btn {
             padding: 8px 16px;
             border: none;
             border-radius: 8px;
@@ -503,84 +496,84 @@ class CoolBitsCompleteDashboard:
             display: inline-flex;
             align-items: center;
             gap: 6px;
-        }}
+        }
         
-        .btn-primary {{
+        .btn-primary {
             background: linear-gradient(45deg, #667eea, #764ba2);
             color: white;
-        }}
+        }
         
-        .btn-primary:hover {{
+        .btn-primary:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-        }}
+        }
         
-        .btn-secondary {{
+        .btn-secondary {
             background: #f5f5f5;
             color: #666;
             border: 1px solid #ddd;
-        }}
+        }
         
-        .btn-secondary:hover {{
+        .btn-secondary:hover {
             background: #e9e9e9;
-        }}
+        }
         
-        .btn-success {{
+        .btn-success {
             background: #4CAF50;
             color: white;
-        }}
+        }
         
-        .btn-danger {{
+        .btn-danger {
             background: #f44336;
             color: white;
-        }}
+        }
         
-        .technologies {{
+        .technologies {
             margin-top: 12px;
-        }}
+        }
         
-        .tech-tags {{
+        .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-        }}
+        }
         
-        .tech-tag {{
+        .tech-tag {
             background: rgba(102, 126, 234, 0.1);
             color: #667eea;
             padding: 4px 8px;
             border-radius: 6px;
             font-size: 11px;
             font-weight: 500;
-        }}
+        }
         
-        .api-keys {{
+        .api-keys {
             margin-top: 12px;
-        }}
+        }
         
-        .api-key-tags {{
+        .api-key-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-        }}
+        }
         
-        .api-key-tag {{
+        .api-key-tag {
             background: rgba(118, 75, 162, 0.1);
             color: #764ba2;
             padding: 4px 8px;
             border-radius: 6px;
             font-size: 11px;
             font-weight: 500;
-        }}
+        }
         
-        .footer {{
+        .footer {
             text-align: center;
             padding: 30px;
             color: rgba(255, 255, 255, 0.8);
             font-size: 14px;
-        }}
+        }
         
-        .refresh-btn {{
+        .refresh-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
@@ -594,28 +587,28 @@ class CoolBitsCompleteDashboard:
             cursor: pointer;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
-        }}
+        }
         
-        .refresh-btn:hover {{
+        .refresh-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
-        }}
+        }
         
-        @media (max-width: 768px) {{
-            .services-grid {{
+        @media (max-width: 768px) {
+            .services-grid {
                 grid-template-columns: 1fr;
-            }}
+            }
             
-            .header-content {{
+            .header-content {
                 flex-direction: column;
                 gap: 20px;
-            }}
+            }
             
-            .status-bar {{
+            .status-bar {
                 flex-wrap: wrap;
                 justify-content: center;
-            }}
-        }}
+            }
+        }
     </style>
 </head>
 <body>
@@ -1009,86 +1002,86 @@ class CoolBitsCompleteDashboard:
     </div>
 
     <script>
-        async function startService(serviceName) {{
-            try {{
-                const response = await fetch(`/api/start_service/${{serviceName}}`, {{
+        async function startService(serviceName) {
+            try {
+                const response = await fetch(`/api/start_service/${serviceName}`, {
                     method: 'POST',
-                    headers: {{
+                    headers: {
                         'Content-Type': 'application/json'
-                    }}
-                }});
+                    }
+                });
                 
-                if (response.ok) {{
+                if (response.ok) {
                     const result = await response.json();
-                    alert(`Service ${{serviceName}} is starting on port ${{result.port}}`);
-                    setTimeout(() => {{
+                    alert(`Service ${serviceName} is starting on port ${result.port}`);
+                    setTimeout(() => {
                         location.reload();
-                    }}, 2000);
-                }} else {{
+                    }, 2000);
+                } else {
                     alert('Failed to start service');
-                }}
-            }} catch (error) {{
+                }
+            } catch (error) {
                 console.error('Error starting service:', error);
                 alert('Error starting service');
-            }}
-        }}
+            }
+        }
 
-        async function stopService(serviceName) {{
-            try {{
-                const response = await fetch(`/api/stop_service/${{serviceName}}`, {{
+        async function stopService(serviceName) {
+            try {
+                const response = await fetch(`/api/stop_service/${serviceName}`, {
                     method: 'POST',
-                    headers: {{
+                    headers: {
                         'Content-Type': 'application/json'
-                    }}
-                }});
+                    }
+                });
                 
-                if (response.ok) {{
+                if (response.ok) {
                     const result = await response.json();
-                    alert(`Service ${{serviceName}} is stopping`);
-                    setTimeout(() => {{
+                    alert(`Service ${serviceName} is stopping`);
+                    setTimeout(() => {
                         location.reload();
-                    }}, 2000);
-                }} else {{
+                    }, 2000);
+                } else {
                     alert('Failed to stop service');
-                }}
-            }} catch (error) {{
+                }
+            } catch (error) {
                 console.error('Error stopping service:', error);
                 alert('Error stopping service');
-            }}
-        }}
+            }
+        }
 
-        async function refreshService(serviceName) {{
-            try {{
+        async function refreshService(serviceName) {
+            try {
                 const response = await fetch(`/api/services`);
-                if (response.ok) {{
+                if (response.ok) {
                     const services = await response.json();
                     console.log('Services refreshed:', services);
-                    alert(`Service ${{serviceName}} status refreshed`);
-                }}
-            }} catch (error) {{
+                    alert(`Service ${serviceName} status refreshed`);
+                }
+            } catch (error) {
                 console.error('Error refreshing service:', error);
-            }}
-        }}
+            }
+        }
 
-        function refreshAll() {{
+        function refreshAll() {
             location.reload();
-        }}
+        }
 
-        function setupCBLM() {{
+        function setupCBLM() {
             alert('cbLM.ai setup will be initiated. This will create the complete language model platform structure.');
-        }}
+        }
 
         // Auto-refresh every 30 seconds
-        setInterval(() => {{
+        setInterval(() => {
             fetch('/api/status')
                 .then(response => response.json())
-                .then(data => {{
+                .then(data => {
                     console.log('Dashboard status updated:', data);
-                }})
-                .catch(error => {{
+                })
+                .catch(error => {
                     console.error('Error updating status:', error);
-                }});
-        }}, 30000);
+                });
+        }, 30000);
     </script>
 </body>
 </html>

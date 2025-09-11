@@ -5,7 +5,6 @@
 Complete email system integration for pending emails
 """
 
-import os
 import sys
 import json
 import logging
@@ -170,7 +169,7 @@ class oOutlookVertexIntegration:
 # CEO: {self.ceo}
 # AI Assistant: {self.ai_assistant}
 # Email: {email}
-# Role: {config['role']}
+# Role: {config["role"]}
 # Date: {datetime.now().isoformat()}
 # Classification: Internal Secret - CoolBits.ai Members Only
 -----END CERTIFICATE-----"""
@@ -199,7 +198,7 @@ class oOutlookVertexIntegration:
             signature = f"""
 ---
 COOL BITS SRL
-{config['role']}: {email}
+{config["role"]}: {email}
 CEO: {self.ceo}
 AI Assistant: {self.ai_assistant}
 

@@ -11,7 +11,6 @@ from fastapi.responses import HTMLResponse
 from datetime import datetime
 import subprocess
 import psutil
-import json
 
 app = FastAPI(title="CoolBits.ai System Console", version="1.0.0")
 
@@ -190,26 +189,26 @@ async def root():
                 <h3>🎮 NVIDIA GPU Status</h3>
                 <div class="status-item">
                     <span class="status-label">Name:</span>
-                    <span class="status-value">{gpu_info.get('name', 'N/A')}</span>
+                    <span class="status-value">{gpu_info.get("name", "N/A")}</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Memory:</span>
-                    <span class="status-value">{gpu_info.get('memory_used', 0)}MB / {gpu_info.get('memory_total', 0)}MB</span>
+                    <span class="status-value">{gpu_info.get("memory_used", 0)}MB / {gpu_info.get("memory_total", 0)}MB</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Utilization:</span>
-                    <span class="status-value">{gpu_info.get('utilization', 0)}%</span>
+                    <span class="status-value">{gpu_info.get("utilization", 0)}%</span>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress-fill gpu-progress" style="width: {gpu_info.get('utilization', 0)}%"></div>
+                    <div class="progress-fill gpu-progress" style="width: {gpu_info.get("utilization", 0)}%"></div>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Temperature:</span>
-                    <span class="status-value">{gpu_info.get('temperature', 0)}°C</span>
+                    <span class="status-value">{gpu_info.get("temperature", 0)}°C</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Power Draw:</span>
-                    <span class="status-value">{gpu_info.get('power_draw', 0):.1f}W</span>
+                    <span class="status-value">{gpu_info.get("power_draw", 0):.1f}W</span>
                 </div>
             </div>
             
@@ -217,18 +216,18 @@ async def root():
                 <h3>💻 CPU Status</h3>
                 <div class="status-item">
                     <span class="status-label">Utilization:</span>
-                    <span class="status-value">{cpu_info.get('utilization', 0):.1f}%</span>
+                    <span class="status-value">{cpu_info.get("utilization", 0):.1f}%</span>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress-fill cpu-progress" style="width: {cpu_info.get('utilization', 0)}%"></div>
+                    <div class="progress-fill cpu-progress" style="width: {cpu_info.get("utilization", 0)}%"></div>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Cores:</span>
-                    <span class="status-value">{cpu_info.get('cores', 0)}</span>
+                    <span class="status-value">{cpu_info.get("cores", 0)}</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Frequency:</span>
-                    <span class="status-value">{cpu_info.get('frequency', 0):.0f}MHz</span>
+                    <span class="status-value">{cpu_info.get("frequency", 0):.0f}MHz</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Processor:</span>
@@ -240,28 +239,28 @@ async def root():
                 <h3>🧠 Memory Status</h3>
                 <div class="status-item">
                     <span class="status-label">Total:</span>
-                    <span class="status-value">{memory_info.get('total', 0)}GB</span>
+                    <span class="status-value">{memory_info.get("total", 0)}GB</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Used:</span>
-                    <span class="status-value">{memory_info.get('used', 0)}GB</span>
+                    <span class="status-value">{memory_info.get("used", 0)}GB</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Available:</span>
-                    <span class="status-value">{memory_info.get('available', 0)}GB</span>
+                    <span class="status-value">{memory_info.get("available", 0)}GB</span>
                 </div>
                 <div class="status-item">
                     <span class="status-label">Utilization:</span>
-                    <span class="status-value">{memory_info.get('utilization', 0):.1f}%</span>
+                    <span class="status-value">{memory_info.get("utilization", 0):.1f}%</span>
                 </div>
                 <div class="progress-bar">
-                    <div class="progress-fill memory-progress" style="width: {memory_info.get('utilization', 0)}%"></div>
+                    <div class="progress-fill memory-progress" style="width: {memory_info.get("utilization", 0)}%"></div>
                 </div>
             </div>
         </div>
         
         <div class="timestamp">
-            <p>🕒 Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+            <p>🕒 Last Updated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</p>
             <p>🚀 System Ready for AI Processing with CPU + GPU</p>
         </div>
     </div>

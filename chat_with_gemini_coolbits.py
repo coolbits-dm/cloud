@@ -9,10 +9,9 @@ import sys
 import os
 import json
 import logging
-import requests
 import time
 from datetime import datetime
-from typing import Optional, Dict, Any
+from typing import Optional
 
 # Configure logging
 logging.basicConfig(
@@ -154,9 +153,9 @@ class CoolBitsGeminiChat:
         elif subcommand == "status":
             return f"""
 📊 CoolBits.ai Status:
-   Vertex AI: {'✅ Active' if self.chat_session else '❌ Inactive'}
+   Vertex AI: {"✅ Active" if self.chat_session else "❌ Inactive"}
    Model: {self.model_name}
-   Chat Session: {'✅ Active' if self.chat_session else '❌ Not started'}
+   Chat Session: {"✅ Active" if self.chat_session else "❌ Not started"}
    API Integration: ✅ Ready
 """
 
@@ -205,8 +204,8 @@ class CoolBitsGeminiChat:
    Project: {self.project_id}
    Region: {self.region}
    Model: {self.model_name}
-   Chat Session: {'✅ Active' if self.chat_session else '❌ Not started'}
-   Vertex AI: {'✅ Available' if VERTEX_AI_AVAILABLE else '❌ Not installed'}
+   Chat Session: {"✅ Active" if self.chat_session else "❌ Not started"}
+   Vertex AI: {"✅ Available" if VERTEX_AI_AVAILABLE else "❌ Not installed"}
 """
 
         else:
@@ -239,11 +238,11 @@ class CoolBitsGeminiChat:
         while True:
             try:
                 # Non-interactive mode check
-                if os.getenv('CI') == '1' or os.getenv('NO_COLOR') == '1':
+                if os.getenv("CI") == "1" or os.getenv("NO_COLOR") == "1":
                     print("🤖 Non-interactive mode: Chat session running in background")
                     time.sleep(60)  # Sleep for 1 minute then check again
                     continue
-                    
+
                 # Get user input
                 user_input = input("\n👤 You: ").strip()
 

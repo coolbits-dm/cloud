@@ -7,7 +7,7 @@ Author: oCopilot (oCursor)
 Date: September 6, 2025
 """
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware

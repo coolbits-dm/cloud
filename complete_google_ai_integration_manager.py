@@ -5,12 +5,10 @@
 Comprehensive integration of all Google services and AI platforms for CoolBits.ai
 """
 
-import os
 import sys
 import json
 import logging
 from datetime import datetime
-from typing import Dict, List, Any, Optional
 
 # Configure logging
 logging.basicConfig(

@@ -5,10 +5,8 @@ Applies Policy Division decisions to Google Cloud infrastructure
 """
 
 import json
-import subprocess
-import time
 from datetime import datetime
-from typing import Dict, List, Any
+from typing import Dict, Any
 
 
 class GoogleCloudIAMPolicyIntegration:
@@ -436,7 +434,7 @@ class GoogleCloudIAMPolicyIntegration:
                     "enable_alerting": True,
                     "enable_dashboards": True,
                 },
-                "gcloud_command": f"gcloud monitoring dashboards create --config-from-file=policy_monitoring_dashboard.json",
+                "gcloud_command": "gcloud monitoring dashboards create --config-from-file=policy_monitoring_dashboard.json",
             },
             "secret_manager": {
                 "description": "Secure API key management",
@@ -445,7 +443,7 @@ class GoogleCloudIAMPolicyIntegration:
                     "enable_access_control": True,
                     "enable_audit_logs": True,
                 },
-                "gcloud_command": f"gcloud secrets create coolbits-api-keys --replication-policy='automatic'",
+                "gcloud_command": "gcloud secrets create coolbits-api-keys --replication-policy='automatic'",
             },
         }
 

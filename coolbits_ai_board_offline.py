@@ -7,11 +7,9 @@ Local Development: oCursor
 """
 
 import asyncio
-import json
 import logging
 from datetime import datetime
-from typing import Dict, List, Optional, Any
-import aiohttp
+from typing import Dict, Any
 from aiohttp import web
 import socketio
 from aiohttp_cors import setup as cors_setup, ResourceOptions

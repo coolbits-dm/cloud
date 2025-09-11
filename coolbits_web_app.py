@@ -1,6 +1,6 @@
 import streamlit as st
 from app.core.db import SessionLocal
-from app.models.models import User, Role
+from app.models.models import User
 from app.ui.menu import ACLMenu
 from app.ui.panels import render_current_panel
 from datetime import datetime
