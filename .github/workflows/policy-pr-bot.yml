@@ -7,6 +7,12 @@ concurrency:
 on:
   pull_request:
     types: [opened, synchronize, labeled]
+    paths-ignore:
+      - 'panel/**'
+      - 'artifacts/**'
+      - 'report/**'
+      - '**/*.md'
+      - '**/*.MD'
   workflow_dispatch:
 
 env:

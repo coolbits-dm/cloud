@@ -14,8 +14,20 @@ concurrency:
 on:
   pull_request:
     branches: [ main ]
+    paths-ignore:
+      - 'panel/**'
+      - 'artifacts/**'
+      - 'report/**'
+      - '**/*.md'
+      - '**/*.MD'
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'panel/**'
+      - 'artifacts/**'
+      - 'report/**'
+      - '**/*.md'
+      - '**/*.MD'
 
 env:
   CB_BILLING_MODE: dev

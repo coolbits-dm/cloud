@@ -11,6 +11,12 @@ concurrency:
 on:
   push:
     branches: [ main ]
+    paths-ignore:
+      - 'panel/**'
+      - 'artifacts/**'
+      - 'report/**'
+      - '**/*.md'
+      - '**/*.MD'
   workflow_dispatch:
 
 env:
