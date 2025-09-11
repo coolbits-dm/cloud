@@ -34,7 +34,7 @@ jobs:
         fetch-depth: 0
     
     - name: Authenticate to Google Cloud
-      if: ${{ github.event_name != 'pull_request' && github.env.CB_BILLING_MODE == 'prod' }}
+      if: ${{ github.event_name != 'pull_request' && env.CB_BILLING_MODE == 'prod' }}
       uses: google-github-actions/auth@v2
       with:
         credentials_json: ${{ secrets.GCP_SA_KEY }}
