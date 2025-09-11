@@ -21,15 +21,15 @@ def validate_schema():
         
         # Validate
         jsonschema.validate(agents_data, schema)
-        print("✅ Schema validation passed")
+        print("[SUCCESS] Schema validation passed")
         return True
         
     except jsonschema.ValidationError as e:
-        print(f"❌ Schema validation failed: {e.message}")
+        print(f"[ERROR] Schema validation failed: {e.message}")
         print(f"   Path: {' -> '.join(str(p) for p in e.absolute_path)}")
         return False
     except Exception as e:
-        print(f"❌ Schema validation error: {e}")
+        print(f"[ERROR] Schema validation error: {e}")
         return False
 
 def validate_business_rules():
@@ -39,16 +39,16 @@ def validate_business_rules():
         errors = validate_registry(reg)
         
         if errors:
-            print("❌ Business rule validation failed:")
+            print("[ERROR] Business rule validation failed:")
             for error in errors:
                 print(f"   - {error}")
             return False
         
-        print("✅ Business rule validation passed")
+        print("[SUCCESS] Business rule validation passed")
         return True
         
     except Exception as e:
-        print(f"❌ Business rule validation error: {e}")
+        print(f"[ERROR] Business rule validation error: {e}")
         return False
 
 def validate_required_tags():
@@ -67,16 +67,16 @@ def validate_required_tags():
                     errors.append(f"NHA {nha.name} missing required tag: {required_tag}")
         
         if errors:
-            print("❌ Required tags validation failed:")
+            print("[ERROR] Required tags validation failed:")
             for error in errors:
                 print(f"   - {error}")
             return False
         
-        print("✅ Required tags validation passed")
+        print("[SUCCESS] Required tags validation passed")
         return True
         
     except Exception as e:
-        print(f"❌ Required tags validation error: {e}")
+        print(f"[ERROR] Required tags validation error: {e}")
         return False
 
 def validate_unique_constraints():
@@ -88,21 +88,21 @@ def validate_unique_constraints():
         ids = [nha.id for nha in reg.nhas]
         if len(ids) != len(set(ids)):
             duplicates = [id for id in ids if ids.count(id) > 1]
-            print(f"❌ Duplicate IDs found: {duplicates}")
+            print(f"[ERROR] Duplicate IDs found: {duplicates}")
             return False
         
         # Check for duplicate names
         names = [nha.name for nha in reg.nhas]
         if len(names) != len(set(names)):
             duplicates = [name for name in names if names.count(name) > 1]
-            print(f"❌ Duplicate names found: {duplicates}")
+            print(f"[ERROR] Duplicate names found: {duplicates}")
             return False
         
-        print("✅ Uniqueness validation passed")
+        print("[SUCCESS] Uniqueness validation passed")
         return True
         
     except Exception as e:
-        print(f"❌ Uniqueness validation error: {e}")
+        print(f"[ERROR] Uniqueness validation error: {e}")
         return False
 
 def validate_secrets_format():
@@ -119,16 +119,16 @@ def validate_secrets_format():
                     errors.append(f"NHA {nha.name} has invalid secret format: {secret}")
         
         if errors:
-            print("❌ Secret format validation failed:")
+            print("[ERROR] Secret format validation failed:")
             for error in errors:
                 print(f"   - {error}")
             return False
         
-        print("✅ Secret format validation passed")
+        print("[SUCCESS] Secret format validation passed")
         return True
         
     except Exception as e:
-        print(f"❌ Secret format validation error: {e}")
+        print(f"[ERROR] Secret format validation error: {e}")
         return False
 
 def validate_permissions_format():
@@ -143,16 +143,16 @@ def validate_permissions_format():
                     errors.append(f"NHA {nha.name} has invalid permission format: {permission}")
         
         if errors:
-            print("❌ Permission format validation failed:")
+            print("[ERROR] Permission format validation failed:")
             for error in errors:
                 print(f"   - {error}")
             return False
         
-        print("✅ Permission format validation passed")
+        print("[SUCCESS] Permission format validation passed")
         return True
         
     except Exception as e:
-        print(f"❌ Permission format validation error: {e}")
+        print(f"[ERROR] Permission format validation error: {e}")
         return False
 
 def validate_channels_required():
@@ -166,21 +166,21 @@ def validate_channels_required():
                 errors.append(f"NHA {nha.name} has no channels defined")
         
         if errors:
-            print("❌ Channels validation failed:")
+            print("[ERROR] Channels validation failed:")
             for error in errors:
                 print(f"   - {error}")
             return False
         
-        print("✅ Channels validation passed")
+        print("[SUCCESS] Channels validation passed")
         return True
         
     except Exception as e:
-        print(f"❌ Channels validation error: {e}")
+        print(f"[ERROR] Channels validation error: {e}")
         return False
 
 def main():
     """Run all validation checks"""
-    print("🔍 NHA Registry Validation")
+    print("[VALIDATE] NHA Registry Validation")
     print("=" * 50)
     
     validations = [
@@ -196,16 +196,16 @@ def main():
     all_passed = True
     
     for name, validation_func in validations:
-        print(f"\n📋 {name} Validation:")
+        print(f"\n[CHECK] {name} Validation:")
         if not validation_func():
             all_passed = False
     
     print("\n" + "=" * 50)
     if all_passed:
-        print("✅ All validations passed! Registry is valid.")
+        print("[SUCCESS] All validations passed! Registry is valid.")
         return True
     else:
-        print("❌ Some validations failed. Please fix the issues above.")
+        print("[ERROR] Some validations failed. Please fix the issues above.")
         return False
 
 if __name__ == "__main__":

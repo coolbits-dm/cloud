@@ -35,14 +35,14 @@ def create_service_account(nha_id, project_id, dry_run=False):
     
     success, output = run_gcloud_command(cmd, dry_run)
     if success:
-        print(f"✅ Service account created: {sa_email}")
+        print(f"[SUCCESS] Service account created: {sa_email}")
         return sa_email
     else:
         if "already exists" in output:
             print(f"ℹ️  Service account already exists: {sa_email}")
             return sa_email
         else:
-            print(f"❌ Failed to create service account: {output}")
+            print(f"[ERROR] Failed to create service account: {output}")
             return None
 
 def apply_iam_permissions(sa_email, permissions, project_id, dry_run=False):
@@ -60,16 +60,16 @@ def apply_iam_permissions(sa_email, permissions, project_id, dry_run=False):
         success, output = run_gcloud_command(cmd, dry_run)
         if success:
             applied_permissions.append(permission)
-            print(f"✅ Applied permission: {permission}")
+            print(f"[SUCCESS] Applied permission: {permission}")
         else:
             failed_permissions.append(permission)
-            print(f"❌ Failed to apply permission {permission}: {output}")
+            print(f"[ERROR] Failed to apply permission {permission}: {output}")
     
     return applied_permissions, failed_permissions
 
 def sync_nha_with_gcp(nha, project_id, dry_run=False):
     """Sync individual NHA with Google Cloud"""
-    print(f"\n🔄 Syncing NHA: {nha.name} ({nha.id})")
+    print(f"\n[SYNC] Syncing NHA: {nha.name} ({nha.id})")
     
     # Create service account
     sa_email = create_service_account(nha.id, project_id, dry_run)
@@ -84,7 +84,7 @@ def sync_nha_with_gcp(nha, project_id, dry_run=False):
             print(f"⚠️  Some permissions failed for {nha.name}: {failed}")
             return False
         else:
-            print(f"✅ All permissions applied for {nha.name}")
+            print(f"[SUCCESS] All permissions applied for {nha.name}")
     
     return True
 
@@ -109,19 +109,19 @@ def validate_iam_policies():
                         errors.append(f"NHA {nha.name} has unauthorized permission {permission} for category {category}")
         
         if errors:
-            print("❌ IAM policy validation failed:")
+            print("[ERROR] IAM policy validation failed:")
             for error in errors:
                 print(f"   - {error}")
             return False
         
-        print("✅ IAM policy validation passed")
+        print("[SUCCESS] IAM policy validation passed")
         return True
         
     except FileNotFoundError:
         print("⚠️  IAM minimum policies file not found - skipping validation")
         return True
     except Exception as e:
-        print(f"❌ IAM policy validation error: {e}")
+        print(f"[ERROR] IAM policy validation error: {e}")
         return False
 
 def generate_sync_report(sync_results, dry_run=False):
@@ -158,10 +158,10 @@ def main():
         sys.exit(0 if success else 1)
     
     if not args.dry_run and not args.apply:
-        print("❌ Please specify either --dry-run or --apply")
+        print("[ERROR] Please specify either --dry-run or --apply")
         sys.exit(1)
     
-    print("🔄 NHA Registry Google Cloud Synchronization")
+    print("[SYNC] NHA Registry Google Cloud Synchronization")
     print("=" * 60)
     print(f"Project: {args.project}")
     print(f"Mode: {'DRY RUN' if args.dry_run else 'APPLY'}")
@@ -173,7 +173,7 @@ def main():
         
         # Validate IAM policies first
         if not validate_iam_policies():
-            print("❌ IAM policy validation failed - aborting sync")
+            print("[ERROR] IAM policy validation failed - aborting sync")
             sys.exit(1)
         
         # Sync each NHA
@@ -195,7 +195,7 @@ def main():
         print(f"   Failed: {report['failed']}")
         
         if report['failed'] > 0:
-            print("\n❌ Some synchronizations failed:")
+            print("\n[ERROR] Some synchronizations failed:")
             for nha_id, success in sync_results.items():
                 if not success:
                     print(f"   - {nha_id}")
@@ -207,7 +207,7 @@ def main():
         sys.exit(0 if success else 1)
         
     except Exception as e:
-        print(f"❌ Synchronization error: {e}")
+        print(f"[ERROR] Synchronization error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":
