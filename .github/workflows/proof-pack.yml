@@ -21,7 +21,7 @@ jobs:
     if: ${{ env.CB_BILLING_MODE != 'prod' }}
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Dev mode → Proof Pack SKIPPED (noop success)."
+      - run: echo "Dev mode → Proof Pack NOOP."
 
   # Job 1: Toolchain Setup
   toolchain-setup:
