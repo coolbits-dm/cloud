@@ -4,3 +4,4 @@
 {"ts": "2025-09-11T16:40:58+0300", "milestone": "M16", "commit_sha": "ca27a7bf5", "overall": "HEALTHY"}
 {"ts": "2025-09-11T17:52:06+0300", "milestone": "M16", "commit_sha": "ca27a7bf5", "overall": "HEALTHY"}
 {"ts": "2025-09-11T18:20:44+0300", "milestone": "M16", "commit_sha": null, "overall": "HEALTHY"}
+{"note":"Gate: M17 open (verify-only, dev artifacts)","milestone":"M17","sha":"662343baeffcf6dd8e509dc8fe0a9c8663c7b96c","ts":"2025-09-11T15:31:10.1594898Z"}
