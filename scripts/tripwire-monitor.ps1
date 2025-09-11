@@ -167,7 +167,7 @@ class TripwireMonitor {
             }
             
             # Check for backup lifecycle configuration
-            $lifecycleConfig = Join-Path $backupDir "lifecycle.yaml"
+            $lifecycleConfig = Join-Path $this.BasePath "cost\lifecycle\lifecycle.json"
             if (-not (Test-Path $lifecycleConfig)) {
                 $this.Alerts += @{
                     type = "critical"
@@ -189,6 +189,8 @@ class TripwireMonitor {
         try {
             $registryPath = Join-Path $this.BasePath "cblm\opipe\nha\out\registry.json"
             $signaturePath = Join-Path $this.BasePath "cblm\opipe\nha\out\registry.json.sig"
+            $certPath = Join-Path $this.BasePath "cblm\opipe\nha\out\registry.json.cert"
+            $sha256Path = Join-Path $this.BasePath "cblm\opipe\nha\out\registry.json.sha256"
             
             if (-not (Test-Path $registryPath)) {
                 $this.Alerts += @{
@@ -200,15 +202,20 @@ class TripwireMonitor {
                 return
             }
             
-            if (-not (Test-Path $signaturePath)) {
+            $missingFiles = @()
+            if (-not (Test-Path $signaturePath)) { $missingFiles += "signature" }
+            if (-not (Test-Path $certPath)) { $missingFiles += "certificate" }
+            if (-not (Test-Path $sha256Path)) { $missingFiles += "sha256" }
+            
+            if ($missingFiles.Count -gt 0) {
                 $this.Alerts += @{
                     type = "critical"
-                    message = "Registry signature missing"
+                    message = "Registry signature incomplete: missing $($missingFiles -join ', ')"
                     action = "Total blockage (fail-closed)"
                     validation = "Registry file signed"
                 }
             } else {
-                Write-Host "  ✅ Registry signature found" -ForegroundColor Green
+                Write-Host "  ✅ Registry signature complete" -ForegroundColor Green
             }
         } catch {
             Write-Host "  ❌ Error checking registry signature: $($_.Exception.Message)" -ForegroundColor Red

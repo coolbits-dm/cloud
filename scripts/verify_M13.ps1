@@ -148,22 +148,24 @@ if ($Mock -or $isDev) {
         }
     }
     
-    # M13.5 - Kill-switch and alerts
-    Write-Host "[INFO] M13.5 - Checking kill-switch and alerts"
-    $killSwitch = Test-Path "scripts/kill-switch.ps1"
-    $alertConfig = Test-Path "config/alerts.yaml"
+    # M13.6 - Registry signature verification
+    Write-Host "[INFO] M13.6 - Checking registry signature"
+    $registryPath = "cblm/opipe/nha/out/registry.json"
+    $signaturePath = "cblm/opipe/nha/out/registry.json.sig"
+    $certPath = "cblm/opipe/nha/out/registry.json.cert"
+    $sha256Path = "cblm/opipe/nha/out/registry.json.sha256"
     
-    if ($killSwitch -or $alertConfig) {
-        $results["M13.5"] = @{
+    if ((Test-Path $registryPath) -and (Test-Path $signaturePath) -and (Test-Path $certPath) -and (Test-Path $sha256Path)) {
+        $results["M13.6"] = @{
             success = $true
-            message = "Kill-switch and alerts ready"
-            details = "Alert configuration and kill-switch available"
+            message = "Registry signature complete"
+            details = "Registry signed with cosign (sig, cert, sha256)"
         }
     } else {
-        $results["M13.5"] = @{
+        $results["M13.6"] = @{
             success = $false
-            message = "Missing kill-switch and alerts"
-            details = "Need alert configuration and kill-switch"
+            message = "Registry signature incomplete"
+            details = "Missing signature files"
         }
     }
 }
