@@ -59,8 +59,7 @@ jobs:
       with:
         version: 'latest'
     
-    - name: Get gcloud version
-      if: ${{ github.event_name == 'push' && env.CB_BILLING_MODE == 'prod' }}
+    - name: Get gcloud version (robust)
       id: gcloud-version
       shell: bash
       run: |
