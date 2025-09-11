@@ -1,0 +1,1124 @@
+# CoolBits.ai Configuration - YAML Format
+# CEO: Andrei - andrei@coolbits.ro
+# Managed by: oCursor (Local Development)
+# Version: 1.0.0
+# Last Updated: 2025-01-07T16:32:43Z
+
+coolbits_ai:
+  version: "1.0.0"
+  ceo: "Andrei - andrei@coolbits.ro"
+  managed_by: "oCursor (Local Development)"
+  last_updated: "2025-01-07T16:32:43Z"
+  total_roles: 67
+  total_panels: 6
+  total_bits: 5
+  cbt_total_supply: 1000000
+
+  organizational_structure:
+    executive:
+      category: "Executive"
+      roles:
+        - id: "ceo"
+          name: "CEO"
+          email: "ceo@coolbits.ai"
+          agent: "oCopilot (Microsoft Integration)"
+          access_level: "GOD_MODE"
+          status: "ACTIVE"
+          permissions:
+            - "system_control"
+            - "god_mode_access"
+            - "all_permissions"
+          cbt_allocation: 100000
+
+        - id: "cso"
+          name: "CSO"
+          email: "cso@coolbits.ai"
+          agent: "Strategy AI"
+          access_level: "EXECUTIVE"
+          status: "ACTIVE"
+          permissions:
+            - "strategy_planning"
+            - "executive_decisions"
+            - "board_access"
+          cbt_allocation: 50000
+
+        - id: "board"
+          name: "Board"
+          email: "board@coolbits.ai"
+          agent: "Board AI"
+          access_level: "BOARD_LEVEL"
+          status: "ACTIVE"
+          permissions:
+            - "board_decisions"
+            - "governance"
+            - "oversight"
+          cbt_allocation: 50000
+
+    technology:
+      category: "Technology"
+      roles:
+        - id: "cto"
+          name: "CTO"
+          email: "cto@coolbits.ai"
+          agent: "Technology AI"
+          access_level: "TECHNOLOGY_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "tech_strategy"
+            - "architecture_decisions"
+            - "team_leadership"
+          cbt_allocation: 75000
+
+        - id: "backend_engineering"
+          name: "Backend Engineering"
+          email: "backend@coolbits.ai"
+          agent: "Backend AI"
+          access_level: "ENGINEERING"
+          status: "ACTIVE"
+          permissions:
+            - "backend_development"
+            - "api_design"
+            - "database_management"
+          cbt_allocation: 40000
+
+        - id: "frontend_engineering"
+          name: "Frontend Engineering"
+          email: "frontend@coolbits.ai"
+          agent: "Frontend AI"
+          access_level: "ENGINEERING"
+          status: "ACTIVE"
+          permissions:
+            - "frontend_development"
+            - "ui_ux_implementation"
+            - "user_interface"
+          cbt_allocation: 40000
+
+        - id: "mobile_engineering"
+          name: "Mobile Engineering"
+          email: "mobile@coolbits.ai"
+          agent: "Mobile AI"
+          access_level: "ENGINEERING"
+          status: "ACTIVE"
+          permissions:
+            - "mobile_development"
+            - "app_architecture"
+            - "mobile_optimization"
+          cbt_allocation: 40000
+
+        - id: "platform_engineering"
+          name: "Platform Engineering"
+          email: "platform@coolbits.ai"
+          agent: "Platform AI"
+          access_level: "ENGINEERING"
+          status: "ACTIVE"
+          permissions:
+            - "platform_development"
+            - "infrastructure"
+            - "scalability"
+          cbt_allocation: 40000
+
+        - id: "architecture"
+          name: "Architecture"
+          email: "architecture@coolbits.ai"
+          agent: "Architecture AI"
+          access_level: "ARCHITECTURE"
+          status: "ACTIVE"
+          permissions:
+            - "system_architecture"
+            - "design_patterns"
+            - "technical_decisions"
+          cbt_allocation: 50000
+
+        - id: "devops_sre"
+          name: "DevOps/SRE"
+          email: "devops@coolbits.ai"
+          agent: "DevOps AI"
+          access_level: "OPERATIONS"
+          status: "ACTIVE"
+          permissions:
+            - "deployment"
+            - "monitoring"
+            - "reliability"
+            - "automation"
+          cbt_allocation: 45000
+
+        - id: "qa_quality"
+          name: "QA/Quality"
+          email: "qa@coolbits.ai"
+          agent: "QA AI"
+          access_level: "QUALITY"
+          status: "ACTIVE"
+          permissions:
+            - "testing"
+            - "quality_assurance"
+            - "bug_tracking"
+          cbt_allocation: 35000
+
+        - id: "research_rnd"
+          name: "R&D"
+          email: "rnd@coolbits.ai"
+          agent: "R&D AI"
+          access_level: "RESEARCH"
+          status: "ACTIVE"
+          permissions:
+            - "research"
+            - "innovation"
+            - "prototyping"
+            - "experimentation"
+          cbt_allocation: 60000
+
+    product:
+      category: "Product"
+      roles:
+        - id: "cpo"
+          name: "CPO"
+          email: "cpo@coolbits.ai"
+          agent: "Product AI"
+          access_level: "PRODUCT_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "product_strategy"
+            - "roadmap_planning"
+            - "product_vision"
+          cbt_allocation: 70000
+
+        - id: "product_management"
+          name: "Product Management"
+          email: "pm@coolbits.ai"
+          agent: "PM AI"
+          access_level: "PRODUCT_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "product_planning"
+            - "feature_definition"
+            - "stakeholder_management"
+          cbt_allocation: 50000
+
+        - id: "product_ops"
+          name: "Product Ops"
+          email: "productops@coolbits.ai"
+          agent: "ProductOps AI"
+          access_level: "PRODUCT_OPERATIONS"
+          status: "ACTIVE"
+          permissions:
+            - "product_operations"
+            - "process_optimization"
+            - "analytics"
+          cbt_allocation: 40000
+
+        - id: "design_ux"
+          name: "Design/UX"
+          email: "design@coolbits.ai"
+          agent: "Design AI"
+          access_level: "DESIGN"
+          status: "ACTIVE"
+          permissions:
+            - "user_experience"
+            - "visual_design"
+            - "interaction_design"
+          cbt_allocation: 45000
+
+        - id: "ux_research"
+          name: "UX Research"
+          email: "ux@coolbits.ai"
+          agent: "UX AI"
+          access_level: "RESEARCH"
+          status: "ACTIVE"
+          permissions:
+            - "user_research"
+            - "usability_testing"
+            - "user_insights"
+          cbt_allocation: 40000
+
+        - id: "docs"
+          name: "Documentation"
+          email: "docs@coolbits.ai"
+          agent: "Docs AI"
+          access_level: "DOCUMENTATION"
+          status: "ACTIVE"
+          permissions:
+            - "technical_writing"
+            - "documentation"
+            - "knowledge_management"
+          cbt_allocation: 30000
+
+    data:
+      category: "Data"
+      roles:
+        - id: "cdo"
+          name: "CDO"
+          email: "cdo@coolbits.ai"
+          agent: "Data AI"
+          access_level: "DATA_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "data_strategy"
+            - "data_governance"
+            - "data_architecture"
+          cbt_allocation: 65000
+
+        - id: "data_engineering"
+          name: "Data Engineering"
+          email: "dataeng@coolbits.ai"
+          agent: "DataEng AI"
+          access_level: "DATA_ENGINEERING"
+          status: "ACTIVE"
+          permissions:
+            - "data_pipelines"
+            - "etl_processes"
+            - "data_infrastructure"
+          cbt_allocation: 50000
+
+        - id: "analytics_bi"
+          name: "Analytics/BI"
+          email: "analytics@coolbits.ai"
+          agent: "Analytics AI"
+          access_level: "ANALYTICS"
+          status: "ACTIVE"
+          permissions:
+            - "business_intelligence"
+            - "data_analysis"
+            - "reporting"
+          cbt_allocation: 45000
+
+        - id: "ml_ai"
+          name: "ML/AI"
+          email: "ml@coolbits.ai"
+          agent: "ML AI"
+          access_level: "ML_AI"
+          status: "ACTIVE"
+          permissions:
+            - "machine_learning"
+            - "ai_models"
+            - "predictive_analytics"
+          cbt_allocation: 60000
+
+    security:
+      category: "Security"
+      roles:
+        - id: "ciso"
+          name: "CISO"
+          email: "ciso@coolbits.ai"
+          agent: "Security AI"
+          access_level: "SECURITY_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "security_strategy"
+            - "risk_management"
+            - "compliance"
+          cbt_allocation: 70000
+
+        - id: "appsec"
+          name: "AppSec"
+          email: "appsec@coolbits.ai"
+          agent: "AppSec AI"
+          access_level: "APPLICATION_SECURITY"
+          status: "ACTIVE"
+          permissions:
+            - "application_security"
+            - "code_review"
+            - "security_testing"
+          cbt_allocation: 50000
+
+        - id: "secops"
+          name: "SecOps"
+          email: "secops@coolbits.ai"
+          agent: "SecOps AI"
+          access_level: "SECURITY_OPERATIONS"
+          status: "ACTIVE"
+          permissions:
+            - "security_operations"
+            - "incident_response"
+            - "monitoring"
+          cbt_allocation: 50000
+
+        - id: "grc"
+          name: "GRC"
+          email: "grc@coolbits.ai"
+          agent: "GRC AI"
+          access_level: "GOVERNANCE"
+          status: "ACTIVE"
+          permissions:
+            - "governance"
+            - "risk_management"
+            - "compliance"
+          cbt_allocation: 45000
+
+        - id: "compliance"
+          name: "Compliance"
+          email: "compliance@coolbits.ai"
+          agent: "Compliance AI"
+          access_level: "COMPLIANCE"
+          status: "ACTIVE"
+          permissions:
+            - "regulatory_compliance"
+            - "audit_management"
+            - "policy_enforcement"
+          cbt_allocation: 40000
+
+    it:
+      category: "IT"
+      roles:
+        - id: "cio"
+          name: "CIO"
+          email: "cio@coolbits.ai"
+          agent: "IT AI"
+          access_level: "IT_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "it_strategy"
+            - "technology_planning"
+            - "it_governance"
+          cbt_allocation: 65000
+
+        - id: "helpdesk"
+          name: "Helpdesk"
+          email: "helpdesk@coolbits.ai"
+          agent: "Helpdesk AI"
+          access_level: "IT_SUPPORT"
+          status: "ACTIVE"
+          permissions:
+            - "user_support"
+            - "troubleshooting"
+            - "incident_management"
+          cbt_allocation: 30000
+
+        - id: "identity_access"
+          name: "Identity/Access"
+          email: "iam@coolbits.ai"
+          agent: "IAM AI"
+          access_level: "IDENTITY_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "identity_management"
+            - "access_control"
+            - "authentication"
+          cbt_allocation: 45000
+
+        - id: "networking"
+          name: "Networking"
+          email: "networking@coolbits.ai"
+          agent: "Network AI"
+          access_level: "NETWORK_ADMIN"
+          status: "ACTIVE"
+          permissions:
+            - "network_administration"
+            - "infrastructure"
+            - "connectivity"
+          cbt_allocation: 40000
+
+        - id: "endpoint_management"
+          name: "Endpoint Management"
+          email: "endpoint@coolbits.ai"
+          agent: "Endpoint AI"
+          access_level: "ENDPOINT_ADMIN"
+          status: "ACTIVE"
+          permissions:
+            - "device_management"
+            - "endpoint_security"
+            - "asset_management"
+          cbt_allocation: 35000
+
+    operations:
+      category: "Operations"
+      roles:
+        - id: "coo"
+          name: "COO"
+          email: "coo@coolbits.ai"
+          agent: "Operations AI"
+          access_level: "OPERATIONS_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "operations_strategy"
+            - "process_optimization"
+            - "operational_excellence"
+          cbt_allocation: 70000
+
+        - id: "pmo"
+          name: "PMO"
+          email: "pmo@coolbits.ai"
+          agent: "PMO AI"
+          access_level: "PROGRAM_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "program_management"
+            - "project_coordination"
+            - "resource_planning"
+          cbt_allocation: 50000
+
+        - id: "procurement"
+          name: "Procurement"
+          email: "procurement@coolbits.ai"
+          agent: "Procurement AI"
+          access_level: "PROCUREMENT"
+          status: "ACTIVE"
+          permissions:
+            - "vendor_management"
+            - "contract_negotiation"
+            - "cost_optimization"
+          cbt_allocation: 40000
+
+        - id: "facilities"
+          name: "Facilities"
+          email: "facilities@coolbits.ai"
+          agent: "Facilities AI"
+          access_level: "FACILITIES_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "facility_management"
+            - "space_planning"
+            - "maintenance"
+          cbt_allocation: 35000
+
+        - id: "logistics"
+          name: "Logistics"
+          email: "logistics@coolbits.ai"
+          agent: "Logistics AI"
+          access_level: "LOGISTICS"
+          status: "ACTIVE"
+          permissions:
+            - "supply_chain"
+            - "inventory_management"
+            - "distribution"
+          cbt_allocation: 40000
+
+    finance:
+      category: "Finance"
+      roles:
+        - id: "cfo"
+          name: "CFO"
+          email: "cfo@coolbits.ai"
+          agent: "Finance AI"
+          access_level: "FINANCE_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "financial_strategy"
+            - "budget_planning"
+            - "financial_governance"
+          cbt_allocation: 70000
+
+        - id: "accounting"
+          name: "Accounting"
+          email: "accounting@coolbits.ai"
+          agent: "Accounting AI"
+          access_level: "ACCOUNTING"
+          status: "ACTIVE"
+          permissions:
+            - "financial_reporting"
+            - "bookkeeping"
+            - "audit_preparation"
+          cbt_allocation: 40000
+
+        - id: "fpa"
+          name: "FPA"
+          email: "fpa@coolbits.ai"
+          agent: "FPA AI"
+          access_level: "FINANCIAL_PLANNING"
+          status: "ACTIVE"
+          permissions:
+            - "financial_planning"
+            - "budgeting"
+            - "forecasting"
+          cbt_allocation: 50000
+
+        - id: "treasury"
+          name: "Treasury"
+          email: "treasury@coolbits.ai"
+          agent: "Treasury AI"
+          access_level: "TREASURY"
+          status: "ACTIVE"
+          permissions:
+            - "cash_management"
+            - "investment_strategy"
+            - "risk_management"
+          cbt_allocation: 45000
+
+        - id: "payroll"
+          name: "Payroll"
+          email: "payroll@coolbits.ai"
+          agent: "Payroll AI"
+          access_level: "PAYROLL"
+          status: "ACTIVE"
+          permissions:
+            - "payroll_processing"
+            - "benefits_administration"
+            - "compliance"
+          cbt_allocation: 35000
+
+    people:
+      category: "People"
+      roles:
+        - id: "chro"
+          name: "CHRO"
+          email: "chro@coolbits.ai"
+          agent: "HR AI"
+          access_level: "HR_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "hr_strategy"
+            - "talent_management"
+            - "organizational_development"
+          cbt_allocation: 65000
+
+        - id: "recruiting"
+          name: "Recruiting"
+          email: "recruiting@coolbits.ai"
+          agent: "Recruiting AI"
+          access_level: "TALENT_ACQUISITION"
+          status: "ACTIVE"
+          permissions:
+            - "talent_acquisition"
+            - "recruitment"
+            - "candidate_management"
+          cbt_allocation: 45000
+
+        - id: "people_ops"
+          name: "People Ops"
+          email: "peopleops@coolbits.ai"
+          agent: "PeopleOps AI"
+          access_level: "PEOPLE_OPERATIONS"
+          status: "ACTIVE"
+          permissions:
+            - "people_operations"
+            - "employee_experience"
+            - "hr_analytics"
+          cbt_allocation: 40000
+
+        - id: "learning_development"
+          name: "L&D"
+          email: "ld@coolbits.ai"
+          agent: "L&D AI"
+          access_level: "LEARNING_DEVELOPMENT"
+          status: "ACTIVE"
+          permissions:
+            - "learning_programs"
+            - "skill_development"
+            - "training_management"
+          cbt_allocation: 40000
+
+        - id: "comp_benefits"
+          name: "Comp/Benefits"
+          email: "comp@coolbits.ai"
+          agent: "Comp AI"
+          access_level: "COMPENSATION"
+          status: "ACTIVE"
+          permissions:
+            - "compensation_planning"
+            - "benefits_management"
+            - "total_rewards"
+          cbt_allocation: 40000
+
+    revenue:
+      category: "Revenue"
+      roles:
+        - id: "cro"
+          name: "CRO"
+          email: "cro@coolbits.ai"
+          agent: "Revenue AI"
+          access_level: "REVENUE_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "revenue_strategy"
+            - "sales_leadership"
+            - "customer_growth"
+          cbt_allocation: 70000
+
+        - id: "sales"
+          name: "Sales"
+          email: "sales@coolbits.ai"
+          agent: "Sales AI"
+          access_level: "SALES"
+          status: "ACTIVE"
+          permissions:
+            - "sales_management"
+            - "customer_acquisition"
+            - "revenue_generation"
+          cbt_allocation: 50000
+
+        - id: "sales_ops"
+          name: "Sales Ops"
+          email: "salesops@coolbits.ai"
+          agent: "SalesOps AI"
+          access_level: "SALES_OPERATIONS"
+          status: "ACTIVE"
+          permissions:
+            - "sales_operations"
+            - "process_optimization"
+            - "sales_analytics"
+          cbt_allocation: 45000
+
+        - id: "partnerships"
+          name: "Partnerships"
+          email: "partnerships@coolbits.ai"
+          agent: "Partnerships AI"
+          access_level: "PARTNERSHIP_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "partnership_development"
+            - "channel_management"
+            - "strategic_alliances"
+          cbt_allocation: 50000
+
+        - id: "customer_success"
+          name: "Customer Success"
+          email: "cs@coolbits.ai"
+          agent: "CS AI"
+          access_level: "CUSTOMER_SUCCESS"
+          status: "ACTIVE"
+          permissions:
+            - "customer_retention"
+            - "success_management"
+            - "account_growth"
+          cbt_allocation: 50000
+
+    marketing:
+      category: "Marketing"
+      roles:
+        - id: "cmo"
+          name: "CMO"
+          email: "cmo@coolbits.ai"
+          agent: "Marketing AI"
+          access_level: "MARKETING_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "marketing_strategy"
+            - "brand_management"
+            - "market_expansion"
+          cbt_allocation: 65000
+
+        - id: "brand"
+          name: "Brand"
+          email: "brand@coolbits.ai"
+          agent: "Brand AI"
+          access_level: "BRAND_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "brand_strategy"
+            - "brand_identity"
+            - "brand_communications"
+          cbt_allocation: 45000
+
+        - id: "performance_growth"
+          name: "Performance/Growth"
+          email: "growth@coolbits.ai"
+          agent: "Growth AI"
+          access_level: "PERFORMANCE_MARKETING"
+          status: "ACTIVE"
+          permissions:
+            - "performance_marketing"
+            - "growth_hacking"
+            - "conversion_optimization"
+          cbt_allocation: 50000
+
+        - id: "content"
+          name: "Content"
+          email: "content@coolbits.ai"
+          agent: "Content AI"
+          access_level: "CONTENT_MARKETING"
+          status: "ACTIVE"
+          permissions:
+            - "content_strategy"
+            - "content_creation"
+            - "content_distribution"
+          cbt_allocation: 40000
+
+        - id: "pr_comms"
+          name: "PR/Comms"
+          email: "pr@coolbits.ai"
+          agent: "PR AI"
+          access_level: "PUBLIC_RELATIONS"
+          status: "ACTIVE"
+          permissions:
+            - "public_relations"
+            - "media_relations"
+            - "crisis_communications"
+          cbt_allocation: 40000
+
+        - id: "events"
+          name: "Events"
+          email: "events@coolbits.ai"
+          agent: "Events AI"
+          access_level: "EVENTS_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "event_planning"
+            - "event_management"
+            - "event_marketing"
+          cbt_allocation: 35000
+
+    legal:
+      category: "Legal"
+      roles:
+        - id: "clo_gc"
+          name: "CLO/GC"
+          email: "legal@coolbits.ai"
+          agent: "Legal AI"
+          access_level: "LEGAL_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "legal_strategy"
+            - "legal_governance"
+            - "risk_management"
+          cbt_allocation: 65000
+
+        - id: "contracts"
+          name: "Contracts"
+          email: "contracts@coolbits.ai"
+          agent: "Contracts AI"
+          access_level: "CONTRACT_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "contract_management"
+            - "legal_documentation"
+            - "negotiation"
+          cbt_allocation: 45000
+
+        - id: "privacy"
+          name: "Privacy"
+          email: "privacy@coolbits.ai"
+          agent: "Privacy AI"
+          access_level: "PRIVACY_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "privacy_compliance"
+            - "data_protection"
+            - "gdpr_management"
+          cbt_allocation: 40000
+
+        - id: "ip"
+          name: "IP"
+          email: "ip@coolbits.ai"
+          agent: "IP AI"
+          access_level: "INTELLECTUAL_PROPERTY"
+          status: "ACTIVE"
+          permissions:
+            - "ip_protection"
+            - "patent_management"
+            - "trademark_management"
+          cbt_allocation: 40000
+
+        - id: "regulatory"
+          name: "Regulatory"
+          email: "regulatory@coolbits.ai"
+          agent: "Regulatory AI"
+          access_level: "REGULATORY_AFFAIRS"
+          status: "ACTIVE"
+          permissions:
+            - "regulatory_compliance"
+            - "policy_management"
+            - "regulatory_monitoring"
+          cbt_allocation: 40000
+
+    customer:
+      category: "Customer"
+      roles:
+        - id: "cco"
+          name: "CCO"
+          email: "cco@coolbits.ai"
+          agent: "Customer AI"
+          access_level: "CUSTOMER_LEAD"
+          status: "ACTIVE"
+          permissions:
+            - "customer_strategy"
+            - "customer_experience"
+            - "customer_advocacy"
+          cbt_allocation: 60000
+
+        - id: "support"
+          name: "Support"
+          email: "support@coolbits.ai"
+          agent: "Support AI"
+          access_level: "CUSTOMER_SUPPORT"
+          status: "ACTIVE"
+          permissions:
+            - "customer_support"
+            - "ticket_management"
+            - "issue_resolution"
+          cbt_allocation: 35000
+
+        - id: "training"
+          name: "Training"
+          email: "training@coolbits.ai"
+          agent: "Training AI"
+          access_level: "CUSTOMER_TRAINING"
+          status: "ACTIVE"
+          permissions:
+            - "customer_training"
+            - "education_programs"
+            - "knowledge_transfer"
+          cbt_allocation: 35000
+
+        - id: "community"
+          name: "Community"
+          email: "community@coolbits.ai"
+          agent: "Community AI"
+          access_level: "COMMUNITY_MANAGEMENT"
+          status: "ACTIVE"
+          permissions:
+            - "community_management"
+            - "user_engagement"
+            - "community_building"
+          cbt_allocation: 35000
+
+  panel_system:
+    user:
+      name: "User Panel"
+      description: "General user dashboard"
+      access_level: "USER"
+      features:
+        - "basic_ai_chat"
+        - "personal_dashboard"
+        - "user_settings"
+      status: "ACTIVE"
+      cbt_allocation: 200000
+
+    business:
+      name: "Business Panel"
+      description: "Business management dashboard"
+      access_level: "BUSINESS"
+      features:
+        - "business_ai_council"
+        - "multi_business_select"
+        - "business_analytics"
+      status: "ACTIVE"
+      cbt_allocation: 200000
+
+    agency:
+      name: "Agency Panel"
+      description: "Digital marketing agency panel with MCC connects"
+      access_level: "AGENCY"
+      features:
+        - "mcc_connects"
+        - "agency_tools"
+        - "client_management"
+      status: "ACTIVE"
+      cbt_allocation: 150000
+
+    dev:
+      name: "Developer Panel"
+      description: "Developer panel with all developer tools"
+      access_level: "DEVELOPER"
+      features:
+        - "cursor_integration"
+        - "google_cloud"
+        - "github"
+        - "api_tools"
+      status: "ACTIVE"
+      cbt_allocation: 100000
+
+    admin:
+      name: "Admin Panel"
+      description: "User admin panel"
+      access_level: "ADMIN"
+      features:
+        - "user_management"
+        - "system_settings"
+        - "admin_tools"
+      status: "ACTIVE"
+      cbt_allocation: 50000
+
+    andrei:
+      name: "Andrei God Mode"
+      description: "CEO God mode panel with dedicated API keys"
+      access_level: "GOD_MODE"
+      features:
+        - "full_access"
+        - "dedicated_openai"
+        - "dedicated_grok"
+        - "system_control"
+      status: "ACTIVE"
+      cbt_allocation: 100000
+
+  bits_framework:
+    c-bit:
+      name: "Cool Bits (Admin Bits)"
+      description: "Secret internal CEO level bits"
+      access_level: "CEO_ONLY"
+      features:
+        - "system_control"
+        - "god_mode_access"
+        - "all_permissions"
+      status: "ACTIVE"
+      cbt_allocation: 100000
+
+    u-bit:
+      name: "User Bits"
+      description: "User level bits and permissions"
+      access_level: "USER"
+      features:
+        - "personal_ai"
+        - "user_dashboard"
+        - "basic_features"
+      status: "ACTIVE"
+      cbt_allocation: 200000
+
+    b-bit:
+      name: "Business Bits"
+      description: "Business level bits and permissions"
+      access_level: "BUSINESS"
+      features:
+        - "business_ai_council"
+        - "multi_business"
+        - "business_analytics"
+      status: "ACTIVE"
+      cbt_allocation: 200000
+
+    a-bit:
+      name: "Agency Bits"
+      description: "Agency level bits and permissions"
+      access_level: "AGENCY"
+      features:
+        - "mcc_connects"
+        - "agency_tools"
+        - "client_management"
+      status: "ACTIVE"
+      cbt_allocation: 150000
+
+    d-bit:
+      name: "Developer Bits"
+      description: "Developer level bits and permissions"
+      access_level: "DEVELOPER"
+      features:
+        - "dev_tools"
+        - "api_access"
+        - "integration_tools"
+      status: "ACTIVE"
+      cbt_allocation: 100000
+
+  cbt_economy:
+    total_supply: 1000000
+    circulating: 750000
+    reserved: 250000
+    allocation:
+      c-bit: 100000
+      u-bit: 200000
+      b-bit: 200000
+      a-bit: 150000
+      d-bit: 100000
+    transactions: []
+    status: "ACTIVE"
+
+  api_endpoints:
+    base_url: "http://localhost:8082"
+    endpoints:
+      health:
+        method: "GET"
+        path: "/health"
+        description: "Health check and system status"
+      organization:
+        method: "GET"
+        path: "/organization"
+        description: "Complete organizational structure"
+      roles:
+        method: "GET"
+        path: "/roles"
+        description: "All roles in the organization"
+      roles_by_category:
+        method: "GET"
+        path: "/roles/{category}"
+        description: "Roles filtered by category"
+      panels:
+        method: "GET"
+        path: "/panels"
+        description: "All panels in the system"
+      panel_details:
+        method: "GET"
+        path: "/panels/{panel_name}"
+        description: "Specific panel details"
+      bits:
+        method: "GET"
+        path: "/bits"
+        description: "Bits framework information"
+      bit_details:
+        method: "GET"
+        path: "/bits/{bit_type}"
+        description: "Specific bit type details"
+      cbt:
+        method: "GET"
+        path: "/cbt"
+        description: "cbT economy status"
+      board:
+        method: "GET"
+        path: "/board"
+        description: "AI Board status"
+      board_command:
+        method: "POST"
+        path: "/board/command"
+        description: "Execute AI Board command"
+      cbt_transfer:
+        method: "POST"
+        path: "/cbt/transfer"
+        description: "Transfer cbT tokens"
+
+  security:
+    rbac_enabled: true
+    access_levels:
+      - "GOD_MODE"
+      - "CEO_ONLY"
+      - "EXECUTIVE"
+      - "BOARD_LEVEL"
+      - "TECHNOLOGY_LEAD"
+      - "PRODUCT_LEAD"
+      - "DATA_LEAD"
+      - "SECURITY_LEAD"
+      - "IT_LEAD"
+      - "OPERATIONS_LEAD"
+      - "FINANCE_LEAD"
+      - "HR_LEAD"
+      - "REVENUE_LEAD"
+      - "MARKETING_LEAD"
+      - "LEGAL_LEAD"
+      - "CUSTOMER_LEAD"
+      - "ENGINEERING"
+      - "ARCHITECTURE"
+      - "OPERATIONS"
+      - "QUALITY"
+      - "RESEARCH"
+      - "PRODUCT_MANAGEMENT"
+      - "PRODUCT_OPERATIONS"
+      - "DESIGN"
+      - "DOCUMENTATION"
+      - "DATA_ENGINEERING"
+      - "ANALYTICS"
+      - "ML_AI"
+      - "APPLICATION_SECURITY"
+      - "SECURITY_OPERATIONS"
+      - "GOVERNANCE"
+      - "COMPLIANCE"
+      - "IT_SUPPORT"
+      - "IDENTITY_MANAGEMENT"
+      - "NETWORK_ADMIN"
+      - "ENDPOINT_ADMIN"
+      - "PROGRAM_MANAGEMENT"
+      - "PROCUREMENT"
+      - "FACILITIES_MANAGEMENT"
+      - "LOGISTICS"
+      - "ACCOUNTING"
+      - "FINANCIAL_PLANNING"
+      - "TREASURY"
+      - "PAYROLL"
+      - "TALENT_ACQUISITION"
+      - "PEOPLE_OPERATIONS"
+      - "LEARNING_DEVELOPMENT"
+      - "COMPENSATION"
+      - "SALES"
+      - "SALES_OPERATIONS"
+      - "PARTNERSHIP_MANAGEMENT"
+      - "CUSTOMER_SUCCESS"
+      - "BRAND_MANAGEMENT"
+      - "PERFORMANCE_MARKETING"
+      - "CONTENT_MARKETING"
+      - "PUBLIC_RELATIONS"
+      - "EVENTS_MANAGEMENT"
+      - "CONTRACT_MANAGEMENT"
+      - "PRIVACY_MANAGEMENT"
+      - "INTELLECTUAL_PROPERTY"
+      - "REGULATORY_AFFAIRS"
+      - "CUSTOMER_SUPPORT"
+      - "CUSTOMER_TRAINING"
+      - "COMMUNITY_MANAGEMENT"
+      - "USER"
+      - "BUSINESS"
+      - "AGENCY"
+      - "DEVELOPER"
+      - "ADMIN"

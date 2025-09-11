@@ -1,0 +1,29 @@
+api_config:
+  authentication: configured_via_secrets
+  endpoints: &id001
+  - x.ai
+entity:
+  api_endpoints: *id001
+  capabilities:
+  - grok_api
+  - ai_models
+  - reasoning
+  classification: Internal Secret - CoolBits.ai Members Only
+  integration_status: active
+  name: xAI Platform
+  provider: xAI
+  role: xAI API Integration
+integration:
+  cbLM_integration: true
+  last_updated: '2025-09-07T07:15:25.561578'
+  status: active
+policy:
+  classification: Internal Secret - CoolBits.ai Members Only
+  policy_division:
+    caio: oGrok09
+    ciso: oGrok08
+    policy_systems:
+    - coolbits.ai/policy
+    - coolbits.ai/policy-manager
+    - cblm.ai/policy
+    - cblm.ai/policy-manager

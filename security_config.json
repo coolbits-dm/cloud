@@ -1,0 +1,21 @@
+{
+  "certificate_management": {
+    "provider": "DigiSign Qualified CA Class 3 2017",
+    "subject": "BOUREANU ANDREI-CIPRIAN",
+    "thumbprint": "AD61CB7BF502EBF90B75898D51F4327A833670E5",
+    "status": "EXPIRED - RENEWAL REQUIRED",
+    "expiry_days": -94,
+    "manager": "@oSafeNet"
+  },
+  "efs_encryption": {
+    "certificate": "A187 7E74 E971 3C0B 6079 D6E0 07E1 604A A6F2 1119",
+    "access": "ANDREI\\andre",
+    "status": "ACTIVE"
+  },
+  "authentication": {
+    "hmac_enabled": true,
+    "rate_limiting": "60 RPS, 120 burst",
+    "audit_logging": true,
+    "zero_trust": true
+  }
+}

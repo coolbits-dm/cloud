@@ -1,0 +1,30 @@
+{
+  "agent_info": {
+    "name": "Frontend Development Agent",
+    "icon": "\ud83c\udfa8",
+    "port": 3001,
+    "technologies": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "responsibilities": [
+      "UI/UX Development",
+      "Component Architecture",
+      "State Management",
+      "Responsive Design",
+      "Performance Optimization"
+    ],
+    "api_keys": {
+      "openai": "ogpt01-frontend",
+      "xai": "ogrok01-frontend"
+    },
+    "description": "Specialized agent for frontend development and UI/UX"
+  },
+  "company": "SC COOL BITS SRL",
+  "ceo": "Andrei",
+  "ai_assistant": "Cursor AI Assistant",
+  "contract_date": "2025-09-06",
+  "created_at": "2025-09-07T01:55:02.321723"
+}

@@ -1,0 +1,56 @@
+# CoolBits.ai SLO Gate Integration
+# ===============================
+
+# Add to GitHub Actions workflow for canary promotion
+- name: Check SLO compliance before promotion
+  run: |
+    echo "🔍 Checking SLO compliance for canary promotion..."
+    python scripts/check_slo.py \
+      --service coolbits-frontend \
+      --window 30 \
+      --p95 400 \
+      --error-rate 1.0
+    
+    if [ $? -ne 0 ]; then
+      echo "❌ SLO check failed - blocking promotion"
+      exit 1
+    fi
+    
+    echo "✅ SLO check passed - proceeding with promotion"
+
+# Add to deployment script
+- name: Verify SLO compliance
+  run: |
+    # Wait for service to stabilize
+    sleep 300
+    
+    # Check SLOs
+    python scripts/check_slo.py \
+      --service coolbits-frontend \
+      --window 15 \
+      --p95 400 \
+      --error-rate 1.0
+    
+    if [ $? -ne 0 ]; then
+      echo "❌ SLO check failed - initiating rollback"
+      # Rollback logic here
+      exit 1
+    fi
+
+# Add to monitoring dashboard
+- name: Create SLO monitoring
+  run: |
+    # Create SLO policies
+    gcloud alpha monitoring slo create \
+      --display-name="CoolBits Availability SLO" \
+      --goal=0.999 \
+      --rolling-period=30d \
+      --service-filter='service="coolbits-frontend"' \
+      --slo-filter='metric.type="monitoring.googleapis.com/uptime_check/check_passed"'
+    
+    gcloud alpha monitoring slo create \
+      --display-name="CoolBits Latency SLO" \
+      --goal=0.95 \
+      --rolling-period=30d \
+      --service-filter='service="coolbits-frontend"' \
+      --slo-filter='metric.type="run.googleapis.com/request_latencies" AND metric.label."response_code_class"="2xx"'

@@ -1,0 +1,50 @@
+{
+  "company_info": {
+    "name": "COOL BITS SRL",
+    "ceo": "Andrei",
+    "domains": [
+      "coolbits.ai",
+      "cblm.ai"
+    ],
+    "config_date": "2025-09-07T13:45:14.302747"
+  },
+  "azure_openai": {
+    "enabled": true,
+    "base_url": "coolbits-ai.openai.azure.com",
+    "deployment_name": "gpt-4o",
+    "api_key": "",
+    "api_version": "2024-02-15-preview",
+    "model": "gpt-4o",
+    "max_tokens": 4000,
+    "temperature": 0.7,
+    "top_p": 1.0,
+    "frequency_penalty": 0.0,
+    "presence_penalty": 0.0
+  },
+  "aws_bedrock": {
+    "enabled": false,
+    "access_key_id": "",
+    "secret_access_key": "",
+    "region": "us-east-1",
+    "test_model": "us.anthropic.claude-3-5-sonnet"
+  },
+  "integration_endpoints": {
+    "coolbits_ai": "https://api.coolbits.ai/v1/openai",
+    "cblm_ai": "https://api.cblm.ai/v1/openai",
+    "vertex_ai": "https://api.coolbits.ai/v1/vertex-ai"
+  },
+  "usage_scenarios": {
+    "coolbits_ai": [
+      "Code generation and analysis",
+      "Document processing",
+      "API integration",
+      "Business logic automation"
+    ],
+    "cblm_ai": [
+      "Language model training",
+      "Text processing",
+      "Content generation",
+      "AI model optimization"
+    ]
+  }
+}

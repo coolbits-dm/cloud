@@ -1,0 +1,35 @@
+{
+  "company": "COOL BITS SRL",
+  "ceo": "Andrei",
+  "machine": "Windows 11",
+  "report_date": "2025-09-07T14:02:26.211846",
+  "report_to": "@GeminiCLI",
+  "report_from": "@oPython",
+  "service_status": {
+    "Andy Service": {
+      "port": 8101,
+      "status": "Inactive",
+      "details": "Port 8101 is not listening or not accessible"
+    },
+    "Kim Service / Main Console": {
+      "port": 8102,
+      "status": "Inactive",
+      "details": "Port 8102 is not listening or not accessible"
+    }
+  },
+  "gpu_status": {
+    "nvidia_smi": "Available",
+    "gpu_model": "|   0  NVIDIA GeForce RTX 2060      WDDM  |   00000000:07:00.0  On |                  N/A |",
+    "cuda": "Available",
+    "cuda_version": "12.1",
+    "gpu_count": 1
+  },
+  "api_keys_prepared": 6,
+  "sync_script_created": true,
+  "recommendations": [
+    "Update local_secrets_template.json with actual API keys",
+    "Run .sync_secrets.ps1 to sync keys to Google Secret Manager",
+    "Verify service ports are properly configured",
+    "Ensure NVIDIA drivers are up to date for CUDA operations"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "timestamp": "2025-09-10T19:59:54.683861",
+  "week": "2025-W36",
+  "tests": {
+    "CI_Linting": {
+      "status": "FAIL",
+      "details": "Formatting issues: ",
+      "timestamp": "2025-09-10T19:59:57.259927"
+    },
+    "CI_TypeCheck": {
+      "status": "FAIL",
+      "details": "Type errors: mypy.ini: Source contains parsing errors: 'mypy.ini'\n\t[line 27]: ')\\n'\n",
+      "timestamp": "2025-09-10T19:59:57.913662"
+    },
+    "CI_UnitTests": {
+      "status": "FAIL",
+      "details": "Test failures: ============================= test session starts =============================\nplatform win32 -- Py",
+      "timestamp": "2025-09-10T19:59:59.958185"
+    },
+    "Canary_Deployment": {
+      "status": "PASS",
+      "details": "Canary deployment methods available",
+      "timestamp": "2025-09-10T19:59:59.970296"
+    },
+    "Canary_Rollback": {
+      "status": "PASS",
+      "details": "Rollback methods available",
+      "timestamp": "2025-09-10T19:59:59.972292"
+    },
+    "RBAC_Permissions": {
+      "status": "PASS",
+      "details": "Role-based permissions working",
+      "timestamp": "2025-09-10T20:00:00.054557"
+    },
+    "HMAC_Signatures": {
+      "status": "PASS",
+      "details": "HMAC signature generation/verification working",
+      "timestamp": "2025-09-10T20:00:00.054557"
+    },
+    "JWT_Tokens": {
+      "status": "PASS",
+      "details": "JWT token generation/verification working",
+      "timestamp": "2025-09-10T20:00:00.055089"
+    },
+    "HMAC_KeyGeneration": {
+      "status": "PASS",
+      "details": "Key generated: 51676cfa45684735",
+      "timestamp": "2025-09-10T20:00:00.067348"
+    },
+    "HMAC_KeyValidation": {
+      "status": "PASS",
+      "details": "Key validation working",
+      "timestamp": "2025-09-10T20:00:00.067348"
+    },
+    "HMAC_KeyRevocation": {
+      "status": "PASS",
+      "details": "Key revocation working",
+      "timestamp": "2025-09-10T20:00:00.068856"
+    },
+    "HMAC_KeyCleanup": {
+      "status": "PASS",
+      "details": "Cleaned up 0 expired keys",
+      "timestamp": "2025-09-10T20:00:00.068856"
+    },
+    "Uptime_Monitoring": {
+      "status": "ERROR",
+      "details": "Uptime monitoring test failed: HTTPConnectionPool(host='localhost', port=8501): Max retries exceeded with url: /api/health (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x0000023ECBB9E710>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))",
+      "timestamp": "2025-09-10T20:00:04.145820"
+    },
+    "Dashboard_API_Connectivity": {
+      "status": "FAIL",
+      "details": "Only 0/3 endpoints responding",
+      "timestamp": "2025-09-10T20:00:16.330034"
+    }
+  },
+  "overall_status": "CRITICAL"
+}

@@ -1,0 +1,41 @@
+# CoolBits.ai Daily Chaos Experiments
+# Light injections for daily resilience testing
+
+schedule:
+  name: "daily_chaos"
+  description: "Daily chaos experiments with light injections"
+  frequency: "daily"
+  time: "02:00"
+  timezone: "Europe/Bucharest"
+
+experiments:
+  - scenario: "network_latency"
+    config:
+      latency_ms: 200
+      jitter_ms: 50
+      duration_s: 120
+    slo:
+      p95_ms: 400
+      error_rate: 0.01
+    safety:
+      max_latency_ms: 1000
+      kill_switch_s: 120
+
+  - scenario: "cpu_spike"
+    config:
+      cpu_intensity: 0.3
+      duration_s: 60
+      load_threshold: 2.0
+    slo:
+      p95_ms: 400
+      error_rate: 0.01
+    safety:
+      max_cpu_percent: 70
+      kill_switch_s: 60
+
+guardrails:
+  blast_radius: "staging_only"
+  error_budget_threshold: 0.3
+  max_concurrent_experiments: 1
+  auto_heal_enabled: true
+  rollback_timeout_s: 300

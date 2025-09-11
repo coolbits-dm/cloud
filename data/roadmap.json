@@ -1,0 +1,120 @@
+{
+  "version": "2025-09-10",
+  "milestones": [
+    {
+      "id": "M1",
+      "title": "Stabilitate beton",
+      "tasks": [
+        {
+          "id": "M1-T1",
+          "title": "Server HTTP robust + retry",
+          "owner": "oRunner",
+          "status": "done",
+          "notes": ""
+        },
+        {
+          "id": "M1-T2",
+          "title": "Rate limiting + timeouts + audit",
+          "owner": "oRunner",
+          "status": "done",
+          "notes": ""
+        },
+        {
+          "id": "M1-T3",
+          "title": "Smoke tests + baseline perf",
+          "owner": "oRunner",
+          "status": "done",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "id": "M2",
+      "title": "Mock→Real integrare execuții",
+      "tasks": [
+        {
+          "id": "M2-T1",
+          "title": "GPU real (nvidia-smi)",
+          "owner": "oRunner",
+          "status": "done",
+          "notes": "nvidia-smi wired with real CSV parsing"
+        },
+        {
+          "id": "M2-T2",
+          "title": "Cursor real (launch proiect)",
+          "owner": "oRunner",
+          "status": "done",
+          "notes": "Cursor.exe launch with path detection"
+        },
+        {
+          "id": "M2-T3",
+          "title": "GCloud real (auth, run describe)",
+          "owner": "oRunner",
+          "status": "done",
+          "notes": "gcloud auth + run services integration"
+        },
+        {
+          "id": "M2-T4",
+          "title": "RAG real (bridge 8765)",
+          "owner": "oRunner",
+          "status": "done",
+          "notes": "RAG bridge HTTP calls to localhost:8765"
+        }
+      ]
+    },
+    {
+      "id": "M3",
+      "title": "Paritate cloud & CI gates",
+      "tasks": [
+        {
+          "id": "M3-T1",
+          "title": "Health cu commitSha/buildTime/node",
+          "owner": "oPyGPT03",
+          "status": "done",
+          "notes": "Health endpoint with commitSha/buildTime/node implemented"
+        },
+        {
+          "id": "M3-T2",
+          "title": "CI: lint/typecheck/test/e2e + docker",
+          "owner": "oPyGPT03",
+          "status": "done",
+          "notes": "CI: lint/typecheck/test/e2e + docker implemented"
+        },
+        {
+          "id": "M3-T3",
+          "title": "Staging canary + rollback script",
+          "owner": "oPyGPT03",
+          "status": "done",
+          "notes": "Staging canary + rollback script implemented"
+        }
+      ]
+    },
+    {
+      "id": "M4",
+      "title": "Hardening & UX",
+      "tasks": [
+        {
+          "id": "M4-T1",
+          "title": "RBAC + HMAC pentru POST sensibile",
+          "owner": "oPyGPT03",
+          "status": "done",
+          "notes": "RBAC + HMAC pentru POST sensibile implemented"
+        },
+        {
+          "id": "M4-T2",
+          "title": "Uptime checks + alerte p95/5xx",
+          "owner": "oPyGPT03",
+          "status": "done",
+          "notes": "Uptime checks + alerte p95/5xx implemented"
+        },
+        {
+          "id": "M4-T3",
+          "title": "UI: status live, port din .runtime.json",
+          "owner": "oRunner",
+          "status": "done",
+          "notes": "UI connected to real data from /api/health and .runtime.json"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "generated_at": "2025-09-11T06:00:30Z",
+  "source_file": "reports/policy_collect_last_24h.json",
+  "analysis_window": "2025-09-11T06:00:30Z",
+  "total_violations": 2,
+  "total_gaps": 2,
+  "gaps_by_priority": {
+    "high": 2,
+    "medium": 0,
+    "low": 0
+  },
+  "gaps_by_type": {
+    "unknown_agent": 1,
+    "permission_gap": 1
+  },
+  "all_gaps": [
+    {
+      "type": "unknown_agent",
+      "agent_id": "nha:unknown",
+      "violation_count": 1,
+      "rationale": "Unknown agent has 1 violations - check agent configuration",
+      "priority": "high",
+      "recommendation": "Verify agent ID configuration and registry entries"
+    },
+    {
+      "type": "permission_gap",
+      "reason": "permission_not_allowed",
+      "violation_count": 1,
+      "rationale": "Permission denied 1 times - check IAM policies",
+      "priority": "high",
+      "recommendation": "Review and update IAM permissions in registry"
+    }
+  ],
+  "high_priority_gaps": [
+    {
+      "type": "unknown_agent",
+      "agent_id": "nha:unknown",
+      "violation_count": 1,
+      "rationale": "Unknown agent has 1 violations - check agent configuration",
+      "priority": "high",
+      "recommendation": "Verify agent ID configuration and registry entries"
+    },
+    {
+      "type": "permission_gap",
+      "reason": "permission_not_allowed",
+      "violation_count": 1,
+      "rationale": "Permission denied 1 times - check IAM policies",
+      "priority": "high",
+      "recommendation": "Review and update IAM permissions in registry"
+    }
+  ],
+  "medium_priority_gaps": [],
+  "low_priority_gaps": []
+}

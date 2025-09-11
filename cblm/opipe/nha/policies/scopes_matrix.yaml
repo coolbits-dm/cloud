@@ -1,0 +1,235 @@
+# CoolBits.ai NHA Registry - Scopes Matrix
+# Maps capability scopes to IAM/ACL permissions
+
+# Read scopes
+read:all:
+  - "storage.objectViewer"
+  - "logging.logWriter"
+  - "monitoring.viewer"
+
+read:code:
+  - "source.repos.read"
+  - "storage.objectViewer"
+
+read:logs:
+  - "logging.logWriter"
+
+read:metrics:
+  - "monitoring.viewer"
+
+read:data:
+  - "storage.objectViewer"
+  - "bigquery.dataViewer"
+
+read:secrets:
+  - "secretmanager.secretAccessor"
+
+read:admin:
+  - "run.admin"
+  - "storage.objectAdmin"
+
+# Write scopes
+write:all:
+  - "storage.objectCreator"
+  - "logging.logWriter"
+  - "run.invoker"
+
+write:logs:
+  - "logging.logWriter"
+
+write:api:
+  - "run.invoker"
+
+write:ui:
+  - "run.invoker"
+
+write:exports:
+  - "storage.objectCreator"
+
+write:embeddings:
+  - "storage.objectCreator"
+  - "aiplatform.user"
+
+write:vectors:
+  - "storage.objectCreator"
+  - "aiplatform.user"
+
+write:reports:
+  - "storage.objectCreator"
+
+write:alerts:
+  - "monitoring.writer"
+
+write:auth:
+  - "run.invoker"
+
+write:gates:
+  - "run.invoker"
+
+write:response:
+  - "run.invoker"
+  - "logging.logWriter"
+
+write:signatures:
+  - "storage.objectCreator"
+  - "kms.cryptoKeyDecrypter"
+
+write:backups:
+  - "storage.objectCreator"
+
+write:data:
+  - "storage.objectCreator"
+
+write:results:
+  - "storage.objectCreator"
+
+write:violations:
+  - "storage.objectCreator"
+
+write:research:
+  - "storage.objectCreator"
+
+write:sync:
+  - "storage.objectCreator"
+
+# Execute scopes
+execute:commands:
+  - "run.invoker"
+
+execute:workflows:
+  - "run.invoker"
+
+execute:tests:
+  - "run.invoker"
+
+execute:chaos:
+  - "run.invoker"
+
+execute:recovery:
+  - "run.invoker"
+  - "storage.objectViewer"
+
+# Manage scopes
+manage:users:
+  - "run.admin"
+
+manage:registry:
+  - "run.invoker"
+  - "storage.objectViewer"
+
+manage:tokens:
+  - "run.invoker"
+
+manage:endpoints:
+  - "aiplatform.deploymentManager"
+
+manage:dashboards:
+  - "monitoring.writer"
+
+manage:retention:
+  - "storage.objectAdmin"
+
+manage:containment:
+  - "run.invoker"
+  - "logging.logWriter"
+
+manage:budgets:
+  - "billing.accounts.getSpendingInformation"
+
+manage:tags:
+  - "source.repos.read"
+
+manage:releases:
+  - "run.invoker"
+  - "storage.objectViewer"
+
+manage:milestones:
+  - "storage.objectCreator"
+
+manage:schedules:
+  - "run.invoker"
+
+# Process scopes
+process:vectors:
+  - "aiplatform.user"
+
+process:content:
+  - "aiplatform.user"
+  - "storage.objectViewer"
+
+# Serve scopes
+serve:static:
+  - "run.invoker"
+
+# Route scopes
+route:agents:
+  - "run.invoker"
+
+route:requests:
+  - "run.invoker"
+
+# Proxy scopes
+proxy:requests:
+  - "run.invoker"
+
+# Stream scopes
+stream:chat:
+  - "run.invoker"
+
+# Search scopes
+search:vectors:
+  - "storage.objectViewer"
+  - "aiplatform.user"
+
+search:similarity:
+  - "storage.objectViewer"
+  - "aiplatform.user"
+
+# Scan scopes
+scan:secrets:
+  - "run.invoker"
+
+scan:vulnerabilities:
+  - "run.invoker"
+
+# Enforce scopes
+enforce:rbac:
+  - "run.invoker"
+
+enforce:slo:
+  - "run.invoker"
+  - "monitoring.viewer"
+
+# Review scopes
+review:pr:
+  - "source.repos.read"
+
+# Diagnose scopes
+diagnose:issues:
+  - "run.invoker"
+  - "logging.logWriter"
+
+# Monitor scopes
+monitor:services:
+  - "monitoring.viewer"
+  - "monitoring.writer"
+
+# Query scopes
+query:sql:
+  - "bigquery.jobUser"
+
+# Verify scopes
+verify:cosign:
+  - "kms.cryptoKeyDecrypter"
+  - "storage.objectViewer"
+
+# Sync scopes
+sync:keys:
+  - "secretmanager.secretAccessor"
+  - "secretmanager.secretVersionManager"
+
+# Restore scopes
+restore:systems:
+  - "run.invoker"
+  - "storage.objectViewer"
+  - "storage.objectCreator"

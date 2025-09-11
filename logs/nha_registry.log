@@ -1,0 +1,5 @@
+2025-09-11 08:19:54,871 - __main__ - INFO - Loaded 41 NHA agents into registry
+2025-09-11 08:19:54,875 - __main__ - INFO - Exported registry to data/nha/nha_registry.json
+2025-09-11 08:19:58,930 - cblm.opipe.nha - INFO - Loaded 41 NHA agents into registry
+2025-09-11 08:19:58,930 - cblm.opipe.nha - INFO - Syncing NHA registry with Google Cloud IAM
+2025-09-11 08:19:58,930 - cblm.opipe.nha - INFO - Successfully synced NHA registry with Google Cloud

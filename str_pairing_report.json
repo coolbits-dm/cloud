@@ -1,0 +1,71 @@
+{
+  "company": "SC COOL BITS SRL",
+  "ceo": "Andrei",
+  "ai_assistant": "oCursor AI Assistant",
+  "contract_date": "2025-09-06",
+  "pairing_date": "2025-09-07T16:18:12.197140",
+  "file_paths": {
+    "source": {
+      "path": "F:\\CB\\Societate\\andrei\\str\\str-bk.py",
+      "description": "Source backup file",
+      "status": "primary"
+    },
+    "andrei_panel": {
+      "path": "C:\\Users\\andre\\Desktop\\coolbits\\panels\\andrei-panel\\str.py",
+      "description": "Andrei Panel str.py",
+      "status": "target"
+    },
+    "andrei_app": {
+      "path": "C:\\Users\\andre\\Desktop\\coolbits\\app\\andrei\\secure\\str.py",
+      "description": "Andrei App secure str.py",
+      "status": "target"
+    },
+    "root_redirector": {
+      "path": "C:\\Users\\andre\\Desktop\\coolbits\\str.py",
+      "description": "Root redirector str.py",
+      "status": "redirector"
+    }
+  },
+  "pairing_config": {
+    "sync_enabled": true,
+    "backup_enabled": true,
+    "auto_sync": false,
+    "conflict_resolution": "source_wins",
+    "last_sync": "2025-09-07T16:18:12.197140"
+  },
+  "access_status": {
+    "source": {
+      "path": "F:\\CB\\Societate\\andrei\\str\\str-bk.py",
+      "exists": true,
+      "size": 126311,
+      "modified": "2025-09-07T16:16:27.204470",
+      "accessible": true,
+      "status": "OK"
+    },
+    "andrei_panel": {
+      "path": "C:\\Users\\andre\\Desktop\\coolbits\\panels\\andrei-panel\\str.py",
+      "exists": true,
+      "size": 126311,
+      "modified": "2025-09-07T16:16:27.204470",
+      "accessible": true,
+      "status": "OK"
+    },
+    "andrei_app": {
+      "path": "C:\\Users\\andre\\Desktop\\coolbits\\app\\andrei\\secure\\str.py",
+      "exists": true,
+      "size": 126311,
+      "modified": "2025-09-07T16:16:27.204470",
+      "accessible": true,
+      "status": "OK"
+    },
+    "root_redirector": {
+      "path": "C:\\Users\\andre\\Desktop\\coolbits\\str.py",
+      "exists": true,
+      "size": 806,
+      "modified": "2025-09-07T15:59:24.454675",
+      "accessible": true,
+      "status": "OK"
+    }
+  },
+  "pairing_status": "configured"
+}

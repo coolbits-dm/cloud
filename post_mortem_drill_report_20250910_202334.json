@@ -1,0 +1,34 @@
+{
+  "drill_date": "2025-09-10T20:23:34.011142",
+  "total_scenarios": 5,
+  "successful_scenarios": 5,
+  "success_rate": 100.0,
+  "scenarios": {
+    "high_error_rate": {
+      "success": true,
+      "duration_seconds": 16.006653785705566,
+      "timestamp": "2025-09-10T20:22:51.986267"
+    },
+    "response_time_degradation": {
+      "success": true,
+      "duration_seconds": 12.003628492355347,
+      "timestamp": "2025-09-10T20:23:05.990540"
+    },
+    "secret_compromise": {
+      "success": true,
+      "duration_seconds": 3.0117790699005127,
+      "timestamp": "2025-09-10T20:23:11.002715"
+    },
+    "database_connection_loss": {
+      "success": true,
+      "duration_seconds": 5.00273871421814,
+      "timestamp": "2025-09-10T20:23:18.006855"
+    },
+    "memory_leak": {
+      "success": true,
+      "duration_seconds": 12.003417253494263,
+      "timestamp": "2025-09-10T20:23:32.010859"
+    }
+  },
+  "recommendations": []
+}

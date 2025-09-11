@@ -1,0 +1,74 @@
+{
+  "keys": {
+    "cb401cb643e9f67a": {
+      "name": "admin-key",
+      "description": "Administrator HMAC key for sensitive operations",
+      "key_id": "cb401cb643e9f67a",
+      "key_b64": "06RT2ax9M/B1u2S7a02zxzxLGW0jpE//y17xBgh0pyM=",
+      "created_at": "2025-09-10T19:35:13.157026",
+      "expires_at": null,
+      "is_active": false,
+      "usage_count": 1,
+      "last_used": "2025-09-10T19:49:24.360184",
+      "revoked_at": "2025-09-10T20:11:19.221939"
+    },
+    "76eb6076c993dd01": {
+      "name": "rotation-test-key",
+      "description": "Key for testing rotation functionality",
+      "key_id": "76eb6076c993dd01",
+      "key_b64": "Dm6PvMKXBbcepxitNOogPIfLtmRqx91gT+msT8Ysh5Q=",
+      "created_at": "2025-09-10T19:49:24.371363",
+      "expires_at": "2025-09-11T19:49:24.371363",
+      "is_active": true,
+      "usage_count": 0,
+      "last_used": null
+    },
+    "9760adc7d168e7bf": {
+      "name": "weekly-test-1757523471",
+      "description": "Weekly validation test key",
+      "key_id": "9760adc7d168e7bf",
+      "key_b64": "yhglH7GdAkjbUfFGhYB0J8Uu1/Vp6ZLu5LBeSG95/SE=",
+      "created_at": "2025-09-10T19:57:51.777992",
+      "expires_at": "2025-09-11T19:57:51.777992",
+      "is_active": false,
+      "usage_count": 0,
+      "last_used": null,
+      "revoked_at": "2025-09-10T19:57:51.779994"
+    },
+    "51676cfa45684735": {
+      "name": "weekly-test-1757523600",
+      "description": "Weekly validation test key",
+      "key_id": "51676cfa45684735",
+      "key_b64": "TfibI9wIejd3aVGWukhG51rMvzOY2IXStCS61XaCHls=",
+      "created_at": "2025-09-10T20:00:00.066347",
+      "expires_at": "2025-09-11T20:00:00.066347",
+      "is_active": false,
+      "usage_count": 0,
+      "last_used": null,
+      "revoked_at": "2025-09-10T20:00:00.067348"
+    },
+    "d9df7af871fae89a": {
+      "name": "emergency-rotation-2025-09-10",
+      "description": "Emergency rotation due to key exposure in chat",
+      "key_id": "d9df7af871fae89a",
+      "key_b64": "NNcfzrcUHW48KsqyEjKi09I9QzP/RuYC/LGOvWPlTeY=",
+      "created_at": "2025-09-10T20:11:14.933989",
+      "expires_at": "2025-10-10T20:11:14.933989",
+      "is_active": true,
+      "usage_count": 0,
+      "last_used": null
+    },
+    "f8f5c852f8d21d2a": {
+      "name": "emergency-rotation-2025-09-10",
+      "description": "Emergency rotation due to key exposure in chat",
+      "key_id": "f8f5c852f8d21d2a",
+      "key_b64": "SuAnr9Mhv3xx/Jl/HuIqoj88Nhg+q15NKR/r/Ym3MUs=",
+      "created_at": "2025-09-10T20:11:19.220814",
+      "expires_at": "2025-10-10T20:11:19.220814",
+      "is_active": true,
+      "usage_count": 0,
+      "last_used": null
+    }
+  },
+  "last_updated": "2025-09-10T20:11:19.221939"
+}

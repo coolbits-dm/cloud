@@ -1,0 +1,223 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User model with NextAuth integration
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Onboarding data
+  phone         String?
+  industry      String?
+  role          String?
+  accountType   AccountType @default(PERSONAL)
+  
+  // Business relationships
+  businesses    Business[]
+  
+  // AI conversations
+  conversations Conversation[]
+  
+  // NextAuth accounts and sessions
+  accounts      Account[]
+  sessions      Session[]
+}
+
+// NextAuth models
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// Business model
+model Business {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  industry    String?
+  website     String?
+  logo        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relationships
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // AI agents for this business
+  aiAgents    AIAgent[]
+  
+  // Business conversations
+  conversations Conversation[]
+}
+
+// AI Agent model
+model AIAgent {
+  id          String   @id @default(cuid())
+  name        String
+  role        String   // CEO, CTO, CMO, etc.
+  provider    AIProvider
+  businessId  String
+  business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  
+  // Agent configuration
+  systemPrompt String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Conversations
+  conversations Conversation[]
+}
+
+// Conversation model
+model Conversation {
+  id        String   @id @default(cuid())
+  title     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relationships
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  businessId String?
+  business   Business? @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  
+  aiAgentId String?
+  aiAgent   AIAgent? @relation(fields: [aiAgentId], references: [id], onDelete: Cascade)
+  
+  // Messages
+  messages  Message[]
+}
+
+// Message model
+model Message {
+  id             String   @id @default(cuid())
+  content        String
+  role           MessageRole
+  model          String?  // gpt-4, grok-2-mini, etc.
+  tokens         Int?
+  cost           Float?
+  createdAt      DateTime @default(now())
+  
+  // Relationships
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}
+
+// Industry templates
+model IndustryTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  category    String?
+  marketingStrategies String[] // JSON array of strategies
+  caseStudies String[] // JSON array of case studies
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Legacy models (for backward compatibility)
+model Lead {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  company   String?
+  phone     String?
+  message   String?
+  source    String   @default("website")
+  status    String   @default("new")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("leads")
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  sessionId String
+  role      String   // "user" | "assistant"
+  content   String
+  model     String   // "jean" | "gelu"
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@map("chat_messages")
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  action    String
+  resource  String
+  userId    String?
+  ipAddress String?
+  userAgent String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+
+  @@map("audit_logs")
+}
+
+// Enums
+enum AccountType {
+  PERSONAL
+  BUSINESS
+  AGENCY
+}
+
+enum AIProvider {
+  OPENAI
+  XAI
+  GEMINI
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}

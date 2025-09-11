@@ -1,0 +1,39 @@
+{
+  "uptime_checks": [
+    {
+      "name": "CoolBits.ai Main",
+      "url": "http://localhost:8501/_stcore/health",
+      "method": "GET",
+      "headers": {},
+      "timeout": 10,
+      "expected_status": 200,
+      "expected_content": null,
+      "check_interval": 30,
+      "enabled": true
+    },
+    {
+      "name": "Admin Console",
+      "url": "http://localhost:8501/admin",
+      "method": "GET",
+      "headers": {},
+      "timeout": 10,
+      "expected_status": 200,
+      "expected_content": null,
+      "check_interval": 60,
+      "enabled": true
+    },
+    {
+      "name": "API Health",
+      "url": "http://localhost:8501/api/health",
+      "method": "GET",
+      "headers": {},
+      "timeout": 10,
+      "expected_status": 200,
+      "expected_content": null,
+      "check_interval": 30,
+      "enabled": true
+    }
+  ],
+  "metric_thresholds": [
+    {
+      "metric_type": 

@@ -1,0 +1,20 @@
+# CoolBits.ai Chaos Engineering - CPU Spike Scenario
+name: cpu_spike
+description: "Inject CPU pressure to test performance under load"
+targets:
+  - service: coolbits-frontend
+    cpu_intensity: 0.8
+    duration_s: 120
+    load_threshold: 4.0
+slo:
+  p95_ms: 400
+  error_rate: 0.01
+  availability: 0.99
+rollback:
+  action: canary_rollback
+  window_s: 300
+  trigger_threshold: 0.05
+safety:
+  max_cpu_percent: 90
+  kill_switch_s: 120
+  blast_radius: staging_only

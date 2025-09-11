@@ -1,0 +1,30 @@
+{
+  "agent_info": {
+    "name": "DevOps Automation Agent",
+    "icon": "\ud83d\ude80",
+    "port": 8083,
+    "technologies": [
+      "Docker",
+      "GitHub Actions",
+      "Windows 11",
+      "PowerShell"
+    ],
+    "responsibilities": [
+      "Deployment Automation",
+      "Infrastructure Management",
+      "CI/CD Pipelines",
+      "Monitoring & Logging",
+      "Security Hardening"
+    ],
+    "api_keys": {
+      "openai": "ogpt03-devops",
+      "xai": "ogrok03-devops"
+    },
+    "description": "Specialized agent for DevOps and infrastructure automation"
+  },
+  "company": "SC COOL BITS SRL",
+  "ceo": "Andrei",
+  "ai_assistant": "Cursor AI Assistant",
+  "contract_date": "2025-09-06",
+  "created_at": "2025-09-07T01:55:02.324784"
+}

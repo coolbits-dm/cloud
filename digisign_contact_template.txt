@@ -1,0 +1,41 @@
+
+DIGISIGN SUPPORT REQUEST - URGENT CERTIFICATE RENEWAL
+
+Company: COOL BITS SRL
+CEO: BOUREANU ANDREI-CIPRIAN
+Certificate Manager: @oSafeNet
+
+CERTIFICATE DETAILS:
+- Issuer: DigiSign Qualified CA Class 3 2017
+- Subject: BOUREANU ANDREI-CIPRIAN
+- Thumbprint: AD61CB7BF502EBF90B75898D51F4327A833670E5
+- Status: EXPIRED (94 days overdue)
+
+REQUEST:
+We need immediate renewal of our qualified digital certificate for:
+- Digital signature operations
+- Authentication purposes
+- Email encryption
+
+PLAN REQUIREMENT:
+- Basic certificate sufficient (no Pro plan needed)
+- SafeNet Authentication Client driver required
+- Standard processing timeline acceptable
+
+CONTACT INFORMATION:
+- Email: andrei@coolbits.ro
+- Company: COOL BITS SRL
+- Certificate Manager: @oSafeNet
+
+Please provide:
+1. Current pricing for basic certificate renewal
+2. Required documentation list
+3. Processing timeline
+4. Installation instructions for SafeNet driver
+
+URGENT: Certificate expired 94 days ago - immediate action required.
+
+Thank you for your assistance.
+
+Best regards,
+Andrei - CEO, COOL BITS SRL

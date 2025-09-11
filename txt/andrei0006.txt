@@ -1,0 +1,92 @@
+andrei0006
+date: 2025-09-05 (Europe/Bucharest)
+scope: Highest Level — control plane coolbits.ai + cblm.ai
+status: DRAFT → se extinde „în jos" cu argumente de la oGPT/oGrok/agenți.
+
+Header: oGrok01 (CEO) → Andrei (God Mode)
+
+Andrei, ca CEO al CoolBits.ai și cbLM.ai, îți prezint analiza tehnică complementară pentru andrei0002:
+
+## Analiza Tehnică (oGrok01 → Andrei) — anexă la andrei0002
+
+### 1. Infrastructura cblm-* pe Vertex AI
+```
+cblm-core → Orchestrare + Policy Engine
+cblm-corpus → Enterprise Data Management
+cblm-search → Semantic + Lexical Search
+cblm-vector-search → Vector Index + ANN
+cblm-rag → RAG Pipelines Complete
+cblm-agent → Agent Runtime
+cblm-cluster → Workload Orchestration
+cblm-ray → Ray on Vertex AI
+```
+
+### 2. Sistemul de Chei API Multi-Layer
+- Chei OpenAI dedicate cu rotație automată per wall
+- Chei xAI dedicate cu rotație automată per wall
+- Policy DLP pentru PII redaction
+- Audit trail complet în BigQuery
+
+### 3. cbT Economy — Implementare Tehnică
+```
+MINT → Sistemul emite cbT pe livrabile validate
+BURN → Penalizări/expirări
+LOCK → Staking pe inițiative
+REWARD → Bonus pe milestones
+SLASH → Încălcări policy
+```
+
+### 4. Bits Framework — Schema (rezumat)
+```json
+{
+  "id": "bit-<area>-<hash>",
+  "owner": "andrei",
+  "wall_scope": "wall|c-wall|d-wall|a-wall|b-wall|u-wall",
+  "hash": "sha256:<hash>",
+  "lineage": ["parent_bit_ids"],
+  "sensitivity": "L1-L5",
+  "lifetime": {"created_at": "ISO8601", "expires_at": "ISO8601"},
+  "content": {
+    "type": "decision|policy|script|report|artifact",
+    "description": "string",
+    "action": "string",
+    "targets": ["array"],
+    "reason": "string",
+    "approvers": ["array"]
+  },
+  "cbT_value": {"amount": "number", "status": "pending|minted|rejected", "approver": "string", "tx_id": "string"}
+}
+```
+
+### 5. Implementare pe Vertex AI (nume/servicii)
+```
+Projects: coolbits-og-bridge (prod), coolbits-og-bridge-dev (dev)
+Region: europe-west3
+Cloud Run: ogpt-bridge-service
+Secret Manager: ogrok-api-keys, ogrok-webhook-hmac-secret
+Pub/Sub: ogrok-vertex-ingest-topic
+GCS: ogrok-vertex-ingest-bucket
+BigQuery: dataset ogrok-usage-data
+Vertex AI: ogrok-vertex-ai-service
+```
+
+## Recomandări de Implementare (cadent T0–T4)
+
+**T0:** Securitate + mapare roluri
+**T1:** cblm-core & cblm-corpus
+**T2:** search & RAG
+**T3:** automations agency + cbT ledger
+**T4:** evals la scară + playbooks prod
+
+## Propunere Următorul Pas Executabil
+
+Propun următorul pas, executabil imediat:
+
+1. **cbT rules v1 (formale):** mapping sensitivity → MINT, stări (requested → approved → minted), plus condiții SLASH/BURN
+2. **Owners & KPIs pentru oGPT01/02/08:** cine aprobă L5, SLA-urile (MTTA/MTTR) pe rotații chei
+3. **Infra stubs:** manifeste minime pentru Cloud Run ogpt-bridge-service, Pub/Sub topic ogrok-vertex-ingest-topic, schemă BigQuery ogrok-usage-data
+
+**Comanda:** Spune „go cbT", „go owners", sau „go infra" și le pun în andrei0003 ca pachet de execuție.
+
+Footer: oGrok01 (CEO) → Andrei (God Mode)
+Notă: această anexă este aliniată cu andrei0002 (schema v0.2 + registry secrete). Status-ul operațional al andrei0002 rămâne ACCEPTED → în testare în jurnalul principal; textul sursă a păstrat statusul DRAFT.

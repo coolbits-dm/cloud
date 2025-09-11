@@ -1,0 +1,22 @@
+# CoolBits.ai Chaos Engineering - External API Failure Scenario
+name: ext_api_fail
+description: "Simulate external API failure to test circuit breakers"
+targets:
+  - service: coolbits-frontend
+    api_endpoints:
+      - "https://api.openai.com/v1/chat/completions"
+      - "https://api.x.ai/v1/chat/completions"
+    fail_duration_s: 180
+    error_rate: 0.8
+slo:
+  p95_ms: 400
+  error_rate: 0.01
+  availability: 0.99
+rollback:
+  action: canary_rollback
+  window_s: 300
+  trigger_threshold: 0.05
+safety:
+  max_api_error_rate: 0.9
+  kill_switch_s: 180
+  blast_radius: staging_only

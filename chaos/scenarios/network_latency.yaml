@@ -1,0 +1,21 @@
+# CoolBits.ai Chaos Engineering - Network Latency Scenario
+name: network_latency
+description: "Inject network latency to test application resilience"
+targets:
+  - service: coolbits-frontend
+    latency_ms: 600
+    jitter_ms: 120
+    duration_s: 180
+    port: 8501
+slo:
+  p95_ms: 400
+  error_rate: 0.01
+  availability: 0.99
+rollback:
+  action: canary_rollback
+  window_s: 300
+  trigger_threshold: 0.05  # 5% error rate
+safety:
+  max_latency_ms: 2000
+  kill_switch_s: 120  # Kill after 2 minutes if SLO violated
+  blast_radius: staging_only

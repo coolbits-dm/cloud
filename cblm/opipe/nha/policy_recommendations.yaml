@@ -1,0 +1,15 @@
+policy_recommendations:
+  agents:
+  - id: unknown
+    recommendations:
+    - action: investigate_agent
+      priority: high
+      rationale: Unknown agent has 1 violations - check agent configuration
+      violation_count: 1
+  generated_at: '2025-09-11T06:00:31Z'
+  summary:
+    agent_recommendations: 1
+    permission_recommendations: 0
+    scope_recommendations: 0
+    secret_recommendations: 0
+  total_recommendations: 1

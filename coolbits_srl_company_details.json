@@ -1,0 +1,26 @@
+{
+  "company_name": "COOL BITS SRL",
+  "registration_number": "J40/1234/2024",
+  "tax_id": "RO12345678",
+  "address": "Romania",
+  "ceo": "Andrei",
+  "cto": "Bogdan",
+  "email_primary": "coolbits.dm@gmail.com",
+  "email_ceo": "andrei@coolbits.ro",
+  "email_cto": "bogdan.boureanu@gmail.com",
+  "project_id": "coolbits-ai",
+  "project_number": "271190369805",
+  "region": "europe-west3",
+  "certificates": {
+    "ssl_certificate": "coolbits-ai-ssl-cert",
+    "api_certificate": "coolbits-ai-api-cert",
+    "vertex_ai_certificate": "coolbits-ai-vertex-cert"
+  },
+  "infrastructure": {
+    "local_os": "Windows 11",
+    "gpu": "NVIDIA RTX 2060",
+    "cuda_version": "12.6",
+    "storage_type": "NVMe SSD",
+    "cpu_architecture": "x64"
+  }
+}

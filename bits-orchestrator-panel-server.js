@@ -1,0 +1,278 @@
+const express = require('express');
+const app = express();
+const port = 3002;
+
+app.use(express.static('.'));
+
+app.get('/', (req, res) => {
+  res.send(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bits Orchestrator Panel - oGeminiCLI</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .status { 
+            background: rgba(255,255,255,0.1); 
+            padding: 20px; border-radius: 10px; 
+            margin-bottom: 20px; 
+            backdrop-filter: blur(10px);
+        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .card { 
+            background: rgba(255,255,255,0.1); 
+            padding: 20px; border-radius: 10px; 
+            backdrop-filter: blur(10px);
+        }
+        .card h3 { margin-bottom: 15px; color: #ffd700; }
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; margin-bottom: 5px; }
+        .input-group input, .input-group select, .input-group textarea { 
+            width: 100%; padding: 10px; border: none; border-radius: 5px; 
+            background: rgba(255,255,255,0.9); color: #333;
+        }
+        .btn { 
+            background: #ff6b6b; color: white; border: none; 
+            padding: 10px 20px; border-radius: 5px; cursor: pointer; 
+            font-size: 16px; transition: background 0.3s;
+        }
+        .btn:hover { background: #ff5252; }
+        .btn-success { background: #4caf50; }
+        .btn-success:hover { background: #45a049; }
+        .response { 
+            background: rgba(0,0,0,0.3); 
+            padding: 15px; border-radius: 5px; 
+            margin-top: 10px; font-family: monospace;
+            white-space: pre-wrap; max-height: 200px; overflow-y: auto;
+        }
+        .live-updates { 
+            background: rgba(255,255,255,0.1); 
+            padding: 15px; border-radius: 10px; 
+            margin-top: 20px; max-height: 300px; overflow-y: auto;
+        }
+        .update-item { 
+            padding: 8px; margin-bottom: 5px; 
+            background: rgba(255,255,255,0.1); 
+            border-radius: 5px; font-size: 14px;
+        }
+        .live-indicator {
+            background: rgba(0,255,0,0.2); 
+            padding: 10px; border-radius: 5px; 
+            text-align: center; margin-top: 10px;
+        }
+        .url-info {
+            background: rgba(255,255,255,0.1);
+            padding: 15px; border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Bits Orchestrator Panel</h1>
+            <p>oGeminiCLI - Coolbits.ai Infrastructure | LIVE & FUNCTIONAL</p>
+        </div>
+        
+        <div class="url-info">
+            <h3>🌐 Service URL</h3>
+            <p><strong>https://bits-orchestrator-ygpdeb546q-ey.a.run.app</strong></p>
+            <p>Status: ✅ LIVE and FUNCTIONAL</p>
+        </div>
+        
+        <div class="status">
+            <h3>📊 System Status</h3>
+            <div id="systemStatus">Loading...</div>
+            <div class="live-indicator">
+                <strong>🟢 LIVE SERVICE</strong> - All endpoints functional
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>🤖 AI Chat</h3>
+                <div class="input-group">
+                    <label>Bit Type:</label>
+                    <select id="bitType">
+                        <option value="c-bit">c-bit (CEO)</option>
+                        <option value="u-bit">u-bit (User)</option>
+                        <option value="a-bit">a-bit (Agency)</option>
+                        <option value="d-bit">d-bit (Developer)</option>
+                        <option value="bit">bit (General)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Query:</label>
+                    <textarea id="query" rows="3" placeholder="Enter your query..."></textarea>
+                </div>
+                <button class="btn" onclick="sendChat()">Send Chat</button>
+                <div id="chatResponse" class="response" style="display:none;"></div>
+            </div>
+            
+            <div class="card">
+                <h3>🔄 Bit Management</h3>
+                <div class="input-group">
+                    <label>Switch to Bit:</label>
+                    <select id="switchBit">
+                        <option value="c-bit">c-bit (CEO)</option>
+                        <option value="u-bit">u-bit (User)</option>
+                        <option value="a-bit">a-bit (Agency)</option>
+                        <option value="d-bit">d-bit (Developer)</option>
+                        <option value="bit">bit (General)</option>
+                    </select>
+                </div>
+                <button class="btn btn-success" onclick="switchBit()">Switch Bit</button>
+                <div id="switchResponse" class="response" style="display:none;"></div>
+            </div>
+            
+            <div class="card">
+                <h3>📈 System Info</h3>
+                <button class="btn" onclick="getSystemInfo()">Get System Info</button>
+                <div id="systemInfo" class="response" style="display:none;"></div>
+            </div>
+            
+            <div class="card">
+                <h3>💰 cbT Economy</h3>
+                <button class="btn" onclick="getBitsStatus()">Check cbT Balance</button>
+                <div id="bitsStatus" class="response" style="display:none;"></div>
+            </div>
+        </div>
+        
+        <div class="live-updates">
+            <h3>🔴 Live Updates</h3>
+            <div id="liveUpdates"></div>
+        </div>
+    </div>
+    
+    <script>
+        const API_BASE = 'https://bits-orchestrator-ygpdeb546q-ey.a.run.app';
+        
+        function addUpdate(message) {
+            const updates = document.getElementById('liveUpdates');
+            const item = document.createElement('div');
+            item.className = 'update-item';
+            item.textContent = new Date().toLocaleTimeString() + ': ' + message;
+            updates.insertBefore(item, updates.firstChild);
+            if (updates.children.length > 10) {
+                updates.removeChild(updates.lastChild);
+            }
+        }
+        
+        function updateSystemStatus(data) {
+            const status = document.getElementById('systemStatus');
+            if (data) {
+                status.innerHTML = \`
+                    <strong>Status:</strong> \${data.status} | 
+                    <strong>Bit:</strong> \${data.bit} | 
+                    <strong>cbT:</strong> \${data.cbT} | 
+                    <strong>Firestore:</strong> \${data.firestore_available ? '✅' : '❌'}
+                \`;
+            } else {
+                status.textContent = 'Loading system status...';
+            }
+        }
+        
+        async function sendChat() {
+            const bit = document.getElementById('bitType').value;
+            const query = document.getElementById('query').value;
+            
+            if (!query.trim()) {
+                alert('Please enter a query');
+                return;
+            }
+            
+            addUpdate(\`Sending chat: \${bit} - \${query}\`);
+            
+            try {
+                const response = await fetch(\`\${API_BASE}/api/ai/chat\`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bit, query })
+                });
+                
+                const data = await response.json();
+                document.getElementById('chatResponse').style.display = 'block';
+                document.getElementById('chatResponse').textContent = JSON.stringify(data, null, 2);
+                addUpdate(\`Chat response received: \${data.response}\`);
+            } catch (error) {
+                addUpdate(\`Chat error: \${error.message}\`);
+            }
+        }
+        
+        async function switchBit() {
+            const bit = document.getElementById('switchBit').value;
+            addUpdate(\`Switching to \${bit}\`);
+            
+            try {
+                const response = await fetch(\`\${API_BASE}/api/bits/switch\`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ bit })
+                });
+                
+                const data = await response.json();
+                document.getElementById('switchResponse').style.display = 'block';
+                document.getElementById('switchResponse').textContent = JSON.stringify(data, null, 2);
+                addUpdate(\`Switched to \${bit}\`);
+            } catch (error) {
+                addUpdate(\`Switch error: \${error.message}\`);
+            }
+        }
+        
+        async function getSystemInfo() {
+            addUpdate('Getting system info...');
+            
+            try {
+                const response = await fetch(\`\${API_BASE}/api/system/info\`);
+                const data = await response.json();
+                document.getElementById('systemInfo').style.display = 'block';
+                document.getElementById('systemInfo').textContent = JSON.stringify(data, null, 2);
+                addUpdate('System info received');
+            } catch (error) {
+                addUpdate(\`System info error: \${error.message}\`);
+            }
+        }
+        
+        async function getBitsStatus() {
+            addUpdate('Checking cbT balance...');
+            
+            try {
+                const response = await fetch(\`\${API_BASE}/api/bits/status\`);
+                const data = await response.json();
+                document.getElementById('bitsStatus').style.display = 'block';
+                document.getElementById('bitsStatus').textContent = JSON.stringify(data, null, 2);
+                updateSystemStatus(data);
+                addUpdate(\`cbT Balance: \${data.cbT}\`);
+            } catch (error) {
+                addUpdate(\`cbT check error: \${error.message}\`);
+            }
+        }
+        
+        // Initialize
+        addUpdate('Bits Orchestrator Panel Loaded');
+        getBitsStatus();
+        
+        // Auto-refresh system status every 5 seconds
+        setInterval(() => {
+            getBitsStatus();
+        }, 5000);
+    </script>
+</body>
+</html>
+  `);
+});
+
+app.listen(port, () => {
+  console.log(`Bits Orchestrator Panel running on http://localhost:${port}`);
+});

@@ -1,0 +1,53 @@
+# CoolBits.ai Weekly Chaos Experiments
+# Mix of 2-3 injections including DB fail and ext API fail
+
+schedule:
+  name: "weekly_chaos"
+  description: "Weekly chaos experiments with mixed injections"
+  frequency: "weekly"
+  day: "sunday"
+  time: "03:00"
+  timezone: "Europe/Bucharest"
+
+experiments:
+  - scenario: "network_latency"
+    config:
+      latency_ms: 400
+      jitter_ms: 100
+      duration_s: 180
+    slo:
+      p95_ms: 400
+      error_rate: 0.01
+    safety:
+      max_latency_ms: 1500
+      kill_switch_s: 180
+
+  - scenario: "db_fail"
+    config:
+      fail_duration_s: 120
+      recovery_timeout_s: 240
+    slo:
+      p95_ms: 400
+      error_rate: 0.01
+    safety:
+      max_downtime_s: 240
+      kill_switch_s: 120
+
+  - scenario: "ext_api_fail"
+    config:
+      fail_duration_s: 150
+      error_rate: 0.6
+    slo:
+      p95_ms: 400
+      error_rate: 0.01
+    safety:
+      max_api_error_rate: 0.8
+      kill_switch_s: 150
+
+guardrails:
+  blast_radius: "staging_only"
+  error_budget_threshold: 0.2
+  max_concurrent_experiments: 2
+  auto_heal_enabled: true
+  rollback_timeout_s: 300
+  wait_between_experiments_s: 300

@@ -1,0 +1,77 @@
+{
+  "company": "SC COOL BITS SRL",
+  "ceo": "Andrei",
+  "ai_assistant": "Cursor AI Assistant",
+  "contract_date": "2025-09-06",
+  "protocol_date": "2025-09-07T10:28:45.554685",
+  "iimsibis_protocol": {
+    "name": "IIMSIBIS",
+    "full_name": "IIMSIBIS Secret AI Protocol",
+    "type": "AI-Only Protocol",
+    "classification": "Top Secret - AI Agents Only",
+    "version": "1.0.0",
+    "status": "Active",
+    "created_date": "2025-09-07T10:28:45.549517",
+    "company": "SC COOL BITS SRL",
+    "ceo": "Andrei"
+  },
+  "google_cloud_config": {
+    "project_id": "coolbits-ai",
+    "secret_name": "iimsibis-protocol-secret",
+    "secret_value": "IIMSIBIS",
+    "description": "IIMSIBIS Secret AI Protocol - AI-Only Protocol",
+    "labels": {
+      "protocol": "iimsibis",
+      "type": "ai-only",
+      "classification": "top-secret",
+      "company": "coolbits-srl"
+    }
+  },
+  "agent_integration": {
+    "opipe": {
+      "status": "integrated",
+      "capabilities": [
+        "protocol_communication",
+        "secret_management"
+      ],
+      "access_level": "full"
+    },
+    "cblm": {
+      "status": "integrated",
+      "capabilities": [
+        "ai_protocol_processing",
+        "secret_validation"
+      ],
+      "access_level": "full"
+    },
+    "opython": {
+      "status": "notified",
+      "capabilities": [
+        "secret_processing",
+        "protocol_execution"
+      ],
+      "access_level": "full"
+    },
+    "ocursor": {
+      "status": "notified",
+      "capabilities": [
+        "development_integration",
+        "secret_management"
+      ],
+      "access_level": "full"
+    },
+    "ogeminicli": {
+      "status": "notified",
+      "capabilities": [
+        "cloud_integration",
+        "secret_deployment"
+      ],
+      "access_level": "full"
+    }
+  },
+  "deployment_commands": {
+    "create_secret": "echo \"IIMSIBIS\" | gcloud secrets create iimsibis-protocol-secret \\\n    --data-file=- \\\n    --project=coolbits-ai \\\n    --labels=protocol=iimsibis,type=ai-only,classification=top-secret,company=coolbits-srl \\\n    --description=\"IIMSIBIS Secret AI Protocol - AI-Only Protocol\" ",
+    "verify_secret": "gcloud secrets versions access latest \\\n    --secret=iimsibis-protocol-secret \\\n    --project=coolbits-ai "
+  },
+  "protocol_status": "ready_for_deployment"
+}

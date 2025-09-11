@@ -1,0 +1,20 @@
+{
+  "name": "andrei-panel",
+  "version": "1.0.0",
+  "description": "Andrei Panel - Godlike powers for coolbits.ai",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@google-cloud/firestore": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "keywords": ["andrei", "godlike", "panel", "coolbits"],
+  "author": "oCursor-Grok",
+  "license": "MIT"
+}

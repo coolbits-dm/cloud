@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolBits.ai Enhanced Multi-Agent Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem 0;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Left Panel - Select Agents */
+        .agent-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            height: calc(100vh - 200px);
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .category-title {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            margin: 0.5rem 0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            border: 2px solid transparent;
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .category-title:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .category-title:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .agent-list {
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .agent-list.active {
+            display: block;
+        }
+
+        .agent-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin: 0.3rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .agent-item:hover {
+            background: #e3f2fd;
+            border-color: #3498db;
+            transform: translateX(5px);
+        }
+
+        .agent-item.selected {
+            background: #3498db;
+            color: white;
+            border-color: #2980b9;
+        }
+
+        .agent-info {
+            flex: 1;
+        }
+
+        .agent-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .agent-role {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 0.2rem;
+        }
+
+        .agent-item.selected .agent-role {
+            color: #e0e0e0;
+        }
+
+        .agent-provider {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .provider-openai { 
+            background: #10a37f; 
+            color: white; 
+        }
+
+        .provider-xai { 
+            background: #ff6b35; 
+            color: white; 
+        }
+
+        .agent-provider:hover { 
+            opacity: 0.8; 
+            transform: scale(1.05); 
+        }
+
+        /* Select All Section */
+        .select-all-section {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .select-all-btn, .clear-all-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .select-all-btn {
+            background: #27ae60;
+            color: white;
+        }
+
+        .select-all-btn:hover {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+
+        .clear-all-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .clear-all-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        
+        /* Send Team Button - Hidden by default, shown on hover */
+        .send-team-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0.3rem 0.6rem;
+            border: 1px solid #27ae60;
+            border-radius: 4px;
+            background: white;
+            color: #27ae60;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .category-title:hover .send-team-btn {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .send-team-btn:hover {
+            background: #27ae60;
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+        
+        /* Tooltip for Send Team button */
+        .send-team-btn::after {
+            content: attr(title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50;
+            color: white;
+            padding: 0.5rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .send-team-btn::before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            border: 5px solid transparent;
+            border-top-color: #2c3e50;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .send-team-btn:hover::after,
+        .send-team-btn:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+
+        /* Center Panel - Chat + Control */
+        .chat-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 200px);
+        }
+
+        .chat-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .active-agents-count {
+            background: #27ae60;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Right Panel - Discussion Control + Live Status Engine */
+        .right-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            height: calc(100vh - 200px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Discussion Control Panel */
+        .discussion-control-panel {
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            padding: 1.5rem;
+            border-radius: 15px 15px 0 0;
+        }
+
+        /* Agent Slots Panel */
+        .agent-slots-panel {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem;
+        }
+
+        .slots-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .slots-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.3rem;
+        }
+
+        .agent-slot {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 0.4rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .agent-slot:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .agent-slot.active {
+            border-color: #27ae60;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .agent-slot.current {
+            border-color: #e74c3c;
+            background: rgba(231, 76, 60, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .slot-number {
+            font-weight: 600;
+            color: #2c3e50;
+            font-size: 0.7rem;
+        }
+
+        .slot-agent-name {
+            font-weight: 600;
+            color: #3498db;
+            margin: 0.2rem 0;
+            font-size: 0.8rem;
+        }
+
+        .slot-provider {
+            font-size: 0.6rem;
+            padding: 0.1rem 0.3rem;
+            border-radius: 3px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .slot-provider.provider-openai {
+            background: #10a37f;
+            color: white;
+        }
+
+        .slot-provider.provider-xai {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .main-prompt-group {
+            margin-bottom: 1rem;
+        }
+
+        .setting-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .main-prompt-group textarea {
+            width: 100%;
+            height: 80px;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            resize: vertical;
+        }
+
+        .settings-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .setting-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .setting-input {
+            padding: 0.6rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .setting-input[type="button"] {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .setting-input[type="button"]:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .setting-input[type="button"]:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Chat Messages */
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: white;
+        }
+
+        .message {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background: #3498db;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .message.agent {
+            background: #ecf0f1;
+            color: #2c3e50;
+            margin-right: auto;
+        }
+
+        .message.system {
+            background: #f39c12;
+            color: white;
+            margin: 0 auto;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .message-header {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .message-content {
+            line-height: 1.5;
+        }
+
+        .message-timestamp {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            margin-top: 0.5rem;
+        }
+
+        /* Right Panel - Live Status Engine */
+        /* Live Status Panel */
+        .live-status-panel {
+            flex: 1;
+            padding: 1.5rem;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .status-info {
+            margin-bottom: 1rem;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+        }
+
+        .status-label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .status-value {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .countdown-bar {
+            background: #e9ecef;
+            border-radius: 10px;
+            height: 20px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .countdown-progress {
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            height: 100%;
+            width: 0%;
+            transition: width 1s ease;
+            border-radius: 10px;
+        }
+
+        .next-agent-info {
+            background: #e3f2fd;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+            color: #1976d2;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .pause-btn {
+            background: #f39c12;
+            color: white;
+        }
+
+        .resume-btn {
+            background: #27ae60;
+            color: white;
+        }
+
+        .stop-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .rag-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .rag-btn {
+            width: 100%;
+            padding: 0.7rem;
+            background: #9b59b6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .rag-btn:hover {
+            background: #8e44ad;
+            transform: translateY(-2px);
+        }
+
+        .rag-dialog {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            min-width: 300px;
+        }
+
+        .rag-options {
+            margin: 1rem 0;
+        }
+
+        .rag-options label {
+            display: block;
+            margin: 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .rag-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .save-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .cancel-btn {
+            background: #95a5a6;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+            }
+            
+            .agent-panel,
+            .live-status-panel {
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                gap: 1rem;
+                padding: 1rem;
+            }
+            
+            .settings-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 CoolBits.ai Enhanced Multi-Agent Chat</h1>
+        <p>Select multiple agents and start intelligent discussions with individual API keys</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Left Panel - Select Agents -->
+        <div class="agent-panel">
+            <h2 class="panel-title">👥 Select Agents</h2>
+            
+            <!-- Select All Button -->
+            <div class="select-all-section">
+                <button class="select-all-btn" onclick="selectAllAgents()">
+                    ✅ Select All Agents (20 slots)
+                </button>
+                <button class="clear-all-btn" onclick="clearAllAgents()">
+                    ❌ Clear All
+                </button>
+            </div>
+            
+            <div class="agent-categories">
+                <div class="category-title" onclick="toggleCategory('executive')">
+                    🏢 Executive Team
+                    <button class="send-team-btn" onclick="event.stopPropagation(); selectTeam('executive')" title="Send Executive Team (4 agents) to Chat">
+                        📤 Send Team
+                    </button>
+                </div>
+                <div class="agent-list" id="executive-agents">
+                    <!-- Executive agents will be loaded here -->
+                </div>
+
+                <div class="category-title" onclick="toggleCategory('management')">
+                    📊 Management Team
+                    <button class="send-team-btn" onclick="event.stopPropagation(); selectTeam('management')" title="Send Management Team (4 agents) to Chat">
+                        📤 Send Team
+                    </button>
+                </div>
+                <div class="agent-list" id="management-agents">
+                    <!-- Management agents will be loaded here -->
+                </div>
+
+                <div class="category-title" onclick="toggleCategory('technical')">
+                    💻 Technical Team
+                    <button class="send-team-btn" onclick="event.stopPropagation(); selectTeam('technical')" title="Send Technical Team (4 agents) to Chat">
+                        📤 Send Team
+                    </button>
+                </div>
+                <div class="agent-list" id="technical-agents">
+                    <!-- Technical agents will be loaded here -->
+                </div>
+
+                <div class="category-title" onclick="toggleCategory('creative')">
+                    🎨 Creative Team
+                    <button class="send-team-btn" onclick="event.stopPropagation(); selectTeam('creative')" title="Send Creative Team (4 agents) to Chat">
+                        📤 Send Team
+                    </button>
+                </div>
+                <div class="agent-list" id="creative-agents">
+                    <!-- Creative agents will be loaded here -->
+                </div>
+
+                <div class="category-title" onclick="toggleCategory('business')">
+                    💼 Business Team
+                    <button class="send-team-btn" onclick="event.stopPropagation(); selectTeam('business')" title="Send Business Team (4 agents) to Chat">
+                        📤 Send Team
+                    </button>
+                </div>
+                <div class="agent-list" id="business-agents">
+                    <!-- Business agents will be loaded here -->
+                </div>
+
+                <div class="category-title" onclick="toggleCategory('support')">
+                    🛠️ Support Team
+                    <button class="send-team-btn" onclick="event.stopPropagation(); selectTeam('support')" title="Send Support Team (4 agents) to Chat">
+                        📤 Send Team
+                    </button>
+                </div>
+                <div class="agent-list" id="support-agents">
+                    <!-- Support agents will be loaded here -->
+                </div>
+                
+                <div class="category-title" onclick="toggleCategory('extended')">
+                    🚀 Extended Team
+                    <button class="send-team-btn" onclick="event.stopPropagation(); selectTeam('extended')" title="Send Extended Team (8 agents) to Chat">
+                        📤 Send Team
+                    </button>
+                </div>
+                <div class="agent-list" id="extended-agents">
+                    <!-- Extended agents will be loaded here -->
+                </div>
+                
+                <div class="category-title" onclick="toggleCategory('additional')">
+                    ⭐ Additional Team
+                    <button class="send-team-btn" onclick="event.stopPropagation(); selectTeam('additional')" title="Send Additional Team (8 agents) to Chat">
+                        📤 Send Team
+                    </button>
+                </div>
+                <div class="agent-list" id="additional-agents">
+                    <!-- Additional agents will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Center Panel - Chat Only -->
+        <div class="chat-panel">
+            <div class="chat-header">
+                <h2 class="chat-title">💬 Discussion Wall</h2>
+                <span class="active-agents-count" id="activeAgentsCount">0 agents selected</span>
+            </div>
+
+            <!-- Agent Slots Display -->
+            <div class="agent-slots-panel" id="agentSlotsPanel" style="display: none;">
+                <h3 class="slots-title">🎯 Active Agent Slots</h3>
+                <div class="slots-container" id="slotsContainer">
+                    <!-- Slots will be dynamically generated here -->
+                </div>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <div class="message system">
+                    <div class="message-content">
+                        Welcome to CoolBits.ai Multi-Agent Chat! Select agents from the left panel and start a discussion.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Discussion Control + Live Status Engine -->
+        <div class="right-panel">
+            <!-- Discussion Control Panel - Above Status Engine -->
+            <div class="discussion-control-panel">
+                <h2 class="panel-title">⚙️ Discussion Control</h2>
+                
+                <!-- Main Prompt Group -->
+                <div class="main-prompt-group">
+                    <label class="setting-label">Main Discussion Prompt</label>
+                    <textarea id="mainPrompt" placeholder="Enter the main discussion topic and instructions for the agents...">Salutare tuturor! Eu sunt Andrei, CEO-ul vostru. Aceasta e o sesiune de training in care CEO va conduce discutia si va discuta deschis cu membrii selectati de mine, pe rand...</textarea>
+                </div>
+
+                <!-- Settings Row -->
+                <div class="settings-row">
+                    <div class="setting-group">
+                        <label class="setting-label">Wait Between Messages (seconds)</label>
+                        <input type="number" class="setting-input" id="responseInterval" value="5" min="2" max="60">
+                    </div>
+
+                    <div class="setting-group">
+                        <label class="setting-label">Max Characters per Response</label>
+                        <input type="number" class="setting-input" id="maxCharacters" value="1000" min="100" max="2000">
+                    </div>
+
+                    <div class="setting-group">
+                        <label class="setting-label">Max Discussion Cycles</label>
+                        <input type="number" class="setting-input" id="maxCycles" value="5" min="1" max="20">
+                    </div>
+                </div>
+
+                <!-- Start Discussion Button -->
+                <div class="setting-group">
+                    <button class="setting-input" id="startDiscussionBtn" onclick="startDiscussion()">
+                        🚀 Start Discussion
+                    </button>
+                </div>
+            </div>
+
+            <!-- Live Status Engine Panel -->
+            <div class="live-status-panel" id="liveStatusPanel" style="display: none;">
+                <h2 class="panel-title">🔴 Live Status Engine</h2>
+                
+                <!-- Status Information -->
+                <div class="status-info">
+                    <div class="status-item">
+                        <span class="status-label">Current Agent:</span>
+                        <span class="status-value" id="currentAgent">-</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Next Response In:</span>
+                        <span class="status-value" id="nextResponseTime">-</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Cycle Progress:</span>
+                        <span class="status-value" id="cycleProgress">-</span>
+                    </div>
+                </div>
+                
+                <!-- Countdown Bar -->
+                <div class="countdown-bar">
+                    <div class="countdown-progress" id="countdownProgress" style="width: 0%"></div>
+                </div>
+                
+                <!-- Next Agent Info -->
+                <div class="next-agent-info" id="nextAgentInfo" style="display: none;">
+                    Next: <span id="nextAgentName">-</span>
+                </div>
+                
+                <!-- Control Buttons -->
+                <div class="control-buttons">
+                    <button id="pauseBtn" onclick="pauseDiscussion()" class="control-btn pause-btn">
+                        ⏸️ Pause
+                    </button>
+                    <button id="resumeBtn" onclick="resumeDiscussion()" class="control-btn resume-btn" style="display: none;">
+                        ▶️ Resume
+                    </button>
+                    <button id="stopBtn" onclick="stopDiscussion()" class="control-btn stop-btn">
+                        ⏹️ Stop
+                    </button>
+                </div>
+                
+                <!-- Add to RAG Button -->
+                <div class="rag-section">
+                    <button id="addToRagBtn" onclick="showRagDialog()" class="rag-btn">
+                        💾 Add to RAG
+                    </button>
+                </div>
+                
+                <!-- RAG Dialog (hidden by default) -->
+                <div id="ragDialog" class="rag-dialog" style="display: none;">
+                    <h3>Save Discussion to RAG</h3>
+                    <div class="rag-options">
+                        <label>
+                            <input type="radio" name="ragCategory" value="u-rag" checked>
+                            User RAG
+                        </label>
+                        <label>
+                            <input type="radio" name="ragCategory" value="b-rag">
+                            Business RAG
+                        </label>
+                        <label>
+                            <input type="radio" name="ragCategory" value="a-rag">
+                            Agency RAG
+                        </label>
+                        <label>
+                            <input type="radio" name="ragCategory" value="d-rag">
+                            Development RAG
+                        </label>
+                    </div>
+                    <div class="rag-actions">
+                        <button onclick="saveToRag()" class="save-btn">Save</button>
+                        <button onclick="hideRagDialog()" class="cancel-btn">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let agents = [];
+        let selectedAgents = new Set();
+        let currentSession = null;
+        let ws = null;
+        let isConnected = false;
+
+        // Global variables for live status engine
+        let currentDiscussion = null;
+        let countdownInterval = null;
+        let currentCycle = 0;
+        let currentAgentIndex = 0;
+        let isDiscussionActive = false;
+        let agentSlots = [];
+        let conversationContext = [];
+        let lastMessageTime = null; // Track when last message was sent
+        let messageWaitTimeout = null; // Track the wait timeout
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAgents();
+            initializeWebSocket();
+        });
+
+        // Load agents from the server
+        async function loadAgents() {
+            try {
+                const response = await fetch('/api/agents');
+                const data = await response.json();
+                agents = data.agents;
+                renderAgents();
+            } catch (error) {
+                console.error('Error loading agents:', error);
+            }
+        }
+
+        // Render agents in categories
+        function renderAgents() {
+            const categories = {
+                'executive': ['ceo', 'cto', 'cfo', 'coo'],
+                'management': ['vp_marketing', 'vp_sales', 'vp_hr', 'vp_product'],
+                'technical': ['lead_dev', 'devops_eng', 'data_scientist', 'qa_lead'],
+                'creative': ['creative_dir', 'ui_designer', 'content_mgr', 'social_mgr'],
+                'business': ['business_analyst', 'project_mgr', 'account_mgr', 'sales_eng'],
+                'support': ['customer_success', 'support_lead', 'legal_counsel', 'compliance_mgr'],
+                'extended': ['research_dir', 'security_lead', 'finance_mgr', 'operations_mgr', 'marketing_specialist', 'sales_specialist', 'hr_specialist', 'product_specialist'],
+                'additional': ['innovation_mgr', 'quality_mgr', 'strategy_analyst', 'risk_mgr', 'partnership_mgr', 'growth_mgr', 'sustainability_mgr', 'digital_transformation']
+            };
+
+            Object.keys(categories).forEach(category => {
+                const container = document.getElementById(`${category}-agents`);
+                if (container) {
+                    container.innerHTML = '';
+                    categories[category].forEach(agentId => {
+                        const agent = agents.find(a => a.id === agentId);
+                        if (agent) {
+                            const agentElement = createAgentElement(agent);
+                            container.appendChild(agentElement);
+                        }
+                    });
+                }
+            });
+        }
+
+        // Create agent element
+        function createAgentElement(agent) {
+            const div = document.createElement('div');
+            div.className = 'agent-item';
+            div.id = `agent-${agent.id}`;
+            div.onclick = () => toggleAgentSelection(agent.id);
+            
+            div.innerHTML = `
+                <div class="agent-info">
+                    <div class="agent-name">${agent.name}</div>
+                    <div class="agent-role">${agent.role}</div>
+                </div>
+                <div class="agent-provider ${agent.api_provider === 'openai' ? 'provider-openai' : 'provider-xai'}" 
+                     onclick="event.stopPropagation(); changeAgentProvider('${agent.id}')" 
+                     title="Click to switch between OpenAI and xAI">
+                    ${agent.api_provider.toUpperCase()}
+                </div>
+            `;
+            
+            return div;
+        }
+
+        // Toggle agent selection
+        function toggleAgentSelection(agentId) {
+            const agentElement = document.getElementById(`agent-${agentId}`);
+            
+            if (selectedAgents.has(agentId)) {
+                selectedAgents.delete(agentId);
+                agentElement.classList.remove('selected');
+            } else {
+                if (selectedAgents.size >= 20) {
+                    alert('Maximum 20 agents can be selected');
+                    return;
+                }
+                selectedAgents.add(agentId);
+                agentElement.classList.add('selected');
+            }
+            
+            updateActiveAgentsCount();
+            
+            // Update slots if we have selected agents
+            if (selectedAgents.size > 0) {
+                createAgentSlots();
+            } else {
+                // Hide slots panel if no agents selected
+                document.getElementById('agentSlotsPanel').style.display = 'none';
+            }
+        }
+
+        // Select All Agents function
+        function selectAllAgents() {
+            selectedAgents.clear();
+            
+            // Get all agents from all categories and select first 20
+            const allAgentElements = document.querySelectorAll('.agent-item');
+            const allAgentIds = Array.from(allAgentElements).map(el => el.id.replace('agent-', '')).slice(0, 20);
+            
+            allAgentIds.forEach(agentId => {
+                selectedAgents.add(agentId);
+                const agentElement = document.getElementById(`agent-${agentId}`);
+                if (agentElement) {
+                    agentElement.classList.add('selected');
+                }
+            });
+            
+            updateActiveAgentsCount();
+            
+            // Create slots for selected agents
+            createAgentSlots();
+            
+            addMessageToChat({
+                agent_id: 'system',
+                agent_name: 'System',
+                content: `Selected first 20 agents from complete list for 20-slot discussion`,
+                timestamp: new Date().toISOString(),
+                message_type: 'system_message'
+            });
+        }
+
+        // Clear All Agents function
+        function clearAllAgents() {
+            selectedAgents.forEach(agentId => {
+                const agentElement = document.getElementById(`agent-${agentId}`);
+                if (agentElement) {
+                    agentElement.classList.remove('selected');
+                }
+            });
+            
+            selectedAgents.clear();
+            updateActiveAgentsCount();
+            
+            // Hide slots panel if visible
+            document.getElementById('agentSlotsPanel').style.display = 'none';
+            
+            addMessageToChat({
+                agent_id: 'system',
+                agent_name: 'System',
+                content: 'Cleared all agent selections',
+                timestamp: new Date().toISOString(),
+                message_type: 'system_message'
+            });
+        }
+        
+        // Select Team function
+        function selectTeam(teamCategory) {
+            // Clear current selection
+            selectedAgents.clear();
+            
+            // Get team agents from the category
+            const teamAgents = document.querySelectorAll(`#${teamCategory}-agents .agent-item`);
+            teamAgents.forEach(agentElement => {
+                const agentId = agentElement.id.replace('agent-', '');
+                selectedAgents.add(agentId);
+                agentElement.classList.add('selected');
+            });
+            
+            updateActiveAgentsCount();
+            
+            // Create slots for selected team
+            createAgentSlots();
+            
+            addMessageToChat({
+                agent_id: 'system',
+                agent_name: 'System',
+                content: `Selected ${teamCategory.charAt(0).toUpperCase() + teamCategory.slice(1)} Team (${selectedAgents.size} agents)`,
+                timestamp: new Date().toISOString(),
+                message_type: 'system_message'
+            });
+        }
+
+        // Update active agents count
+        function updateActiveAgentsCount() {
+            const count = selectedAgents.size;
+            document.getElementById('activeAgentsCount').textContent = `${count} agent${count !== 1 ? 's' : ''} selected`;
+        }
+
+        // Toggle category visibility
+        function toggleCategory(category) {
+            const agentList = document.getElementById(`${category}-agents`);
+            if (agentList) {
+                agentList.classList.toggle('active');
+            }
+        }
+
+        // Change agent provider
+        async function changeAgentProvider(agentId) {
+            const agent = agents.find(a => a.id === agentId);
+            if (!agent) return;
+
+            const newProvider = agent.api_provider === 'openai' ? 'xai' : 'openai';
+            
+            try {
+                const response = await fetch(`/api/agents/${agentId}/provider`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ provider: newProvider })
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log(result.message);
+                    agent.api_provider = newProvider;
+                    renderAgents();
+                    
+                    // Update slots if they exist
+                    if (agentSlots.length > 0) {
+                        renderAgentSlots();
+                    }
+                    
+                    addMessageToChat({
+                        agent_id: 'system',
+                        agent_name: 'System',
+                        content: `${agent.name} switched to ${newProvider.toUpperCase()} API`,
+                        timestamp: new Date().toISOString(),
+                        message_type: 'system_message'
+                    });
+                } else {
+                    console.error('Failed to change provider');
+                }
+            } catch (error) {
+                console.error('Error changing provider:', error);
+            }
+        }
+
+        // Start discussion
+        async function startDiscussion() {
+            if (selectedAgents.size === 0) {
+                alert('Please select at least one agent');
+                return;
+            }
+
+            const mainPrompt = document.getElementById('mainPrompt').value.trim();
+            if (!mainPrompt) {
+                alert('Please enter a main discussion prompt');
+                return;
+            }
+
+            try {
+                // Create session
+                const sessionResponse = await fetch('/api/sessions', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        title: `Discussion: ${mainPrompt.substring(0, 50)}...`,
+                        topic: mainPrompt,
+                        active_agents: Array.from(selectedAgents),
+                        settings: {
+                            response_interval: parseInt(document.getElementById('responseInterval').value),
+                            max_characters: parseInt(document.getElementById('maxCharacters').value),
+                            max_cycles: parseInt(document.getElementById('maxCycles').value)
+                        }
+                    })
+                });
+
+                const sessionData = await sessionResponse.json();
+                currentSession = sessionData.session_id;
+                currentDiscussion = sessionData.session_id;
+
+                // Start discussion
+                await fetch(`/api/sessions/${currentSession}/start`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ topic: mainPrompt, user_message: mainPrompt })
+                });
+
+                // Add user message to chat
+                addMessageToChat({
+                    agent_id: 'user',
+                    agent_name: 'Andrei',
+                    content: mainPrompt,
+                    timestamp: new Date().toISOString(),
+                    message_type: 'user_message'
+                });
+
+                // Update UI
+                document.getElementById('startDiscussionBtn').disabled = true;
+                document.getElementById('startDiscussionBtn').textContent = '🔄 Discussion Active';
+                
+                // Activate live status engine
+                isDiscussionActive = true;
+                currentCycle = 1; // Start with cycle 1
+                currentAgentIndex = 0;
+                document.getElementById('liveStatusPanel').style.display = 'block';
+                
+                // Create agent slots
+                createAgentSlots();
+                
+                // Start first agent response immediately (no initial countdown needed)
+                setTimeout(() => {
+                    triggerNextAgentResponse();
+                }, 1000); // Small delay to ensure UI is ready
+
+            } catch (error) {
+                console.error('Error starting discussion:', error);
+                alert('Error starting discussion');
+            }
+        }
+
+        // Create agent slots (1-20)
+        function createAgentSlots() {
+            const selectedAgentIds = Array.from(selectedAgents);
+            agentSlots = [];
+            
+            // Create 20 slots, filling with selected agents
+            for (let i = 0; i < 20; i++) {
+                const agentId = selectedAgentIds[i] || null;
+                const agent = agentId ? agents.find(a => a.id === agentId) : null;
+                
+                const slot = {
+                    slotNumber: i + 1,
+                    agentId: agentId,
+                    agent: agent,
+                    isActive: false,
+                    isCurrent: false
+                };
+                agentSlots.push(slot);
+            }
+            
+            // Render slots
+            renderAgentSlots();
+        }
+
+        // Render agent slots
+        function renderAgentSlots() {
+            const container = document.getElementById('slotsContainer');
+            container.innerHTML = '';
+            
+            agentSlots.forEach(slot => {
+                const slotElement = document.createElement('div');
+                slotElement.className = 'agent-slot';
+                slotElement.id = `slot-${slot.slotNumber}`;
+                
+                if (slot.agent) {
+                    slotElement.innerHTML = `
+                        <div class="slot-number">${slot.slotNumber}</div>
+                        <div class="slot-agent-name">${slot.agent.name}</div>
+                        <div class="slot-provider ${slot.agent.api_provider === 'openai' ? 'provider-openai' : 'provider-xai'}" 
+                             onclick="event.stopPropagation(); changeAgentProvider('${slot.agent.id}')" 
+                             title="Click to switch between OpenAI and xAI">
+                            ${slot.agent.api_provider.toUpperCase()}
+                        </div>
+                    `;
+                } else {
+                    slotElement.innerHTML = `
+                        <div class="slot-number">${slot.slotNumber}</div>
+                        <div class="slot-agent-name">Empty</div>
+                        <div class="slot-provider" style="background: #95a5a6; color: white;">
+                            -
+                        </div>
+                    `;
+                }
+                
+                container.appendChild(slotElement);
+            });
+            
+            // Show slots panel
+            document.getElementById('agentSlotsPanel').style.display = 'block';
+        }
+
+        // Start wait countdown after message is sent
+        function startWaitCountdown() {
+            if (!isDiscussionActive) return;
+            
+            const waitTime = parseInt(document.getElementById('responseInterval').value);
+            let timeLeft = waitTime;
+            
+            console.log(`⏰ Starting wait countdown: ${waitTime} seconds`);
+            
+            function updateWaitCountdown() {
+                document.getElementById('nextResponseTime').textContent = `${timeLeft}s`;
+                const progress = ((waitTime - timeLeft) / waitTime) * 100;
+                document.getElementById('countdownProgress').style.width = `${progress}%`;
+                
+                if (timeLeft <= 0) {
+                    console.log(`⏰ Wait countdown finished. Triggering next agent...`);
+                    clearInterval(countdownInterval);
+                    triggerNextAgentResponse();
+                } else {
+                    timeLeft--;
+                }
+            }
+            
+            // Clear any existing countdown
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+            
+            updateWaitCountdown();
+            countdownInterval = setInterval(updateWaitCountdown, 1000);
+        }
+
+        // Legacy countdown function (kept for compatibility)
+        function startCountdown(interval) {
+            // This is now handled by startWaitCountdown
+            console.log(`⚠️ startCountdown called with interval ${interval} - using new wait system`);
+        }
+
+        // Trigger next agent response
+        function triggerNextAgentResponse() {
+            if (!currentDiscussion || !isDiscussionActive) return;
+            if (agentSlots.length === 0) return;
+            
+            console.log(`🔍 triggerNextAgentResponse called. currentAgentIndex: ${currentAgentIndex}, agentSlots.length: ${agentSlots.length}`);
+            
+            // Find next active slot (with agent) starting from currentAgentIndex + 1
+            let nextSlotIndex = -1;
+            for (let i = currentAgentIndex + 1; i < agentSlots.length; i++) {
+                if (agentSlots[i].agent) {
+                    nextSlotIndex = i;
+                    console.log(`✅ Found next agent at slot ${i}: ${agentSlots[i].agent.name}`);
+                    break;
+                }
+            }
+            
+            // If no agent found from current index, start from beginning (new cycle)
+            if (nextSlotIndex === -1) {
+                console.log(`🔄 Starting new cycle. Looking for first agent...`);
+                for (let i = 0; i < agentSlots.length; i++) {
+                    if (agentSlots[i].agent) {
+                        nextSlotIndex = i;
+                        currentCycle++; // Increment cycle when starting over
+                        console.log(`✅ Found first agent for new cycle at slot ${i}: ${agentSlots[i].agent.name}`);
+                        break;
+                    }
+                }
+            }
+            
+            if (nextSlotIndex === -1) {
+                console.log(`❌ No agents found. Ending discussion.`);
+                endDiscussion();
+                return;
+            }
+            
+            const currentSlot = agentSlots[nextSlotIndex];
+            const agent = currentSlot.agent;
+            if (!agent) return;
+            
+            console.log(`🎯 Next agent to respond: ${agent.name} (Slot ${nextSlotIndex + 1})`);
+            
+            // Update current agent index
+            currentAgentIndex = nextSlotIndex;
+            
+            // Update slot status
+            updateSlotStatus(currentSlot.slotNumber, true);
+            
+            // Update current agent display
+            document.getElementById('currentAgent').textContent = agent.name;
+            
+            // Update next agent info
+            let nextAgentIndex = -1;
+            for (let i = nextSlotIndex + 1; i < agentSlots.length; i++) {
+                if (agentSlots[i].agent) {
+                    nextAgentIndex = i;
+                    break;
+                }
+            }
+            
+            if (nextAgentIndex !== -1) {
+                const nextSlot = agentSlots[nextAgentIndex];
+                document.getElementById('nextAgentName').textContent = nextSlot.agent.name;
+                document.getElementById('nextAgentInfo').style.display = 'block';
+            } else {
+                // If no next agent in current cycle, show first agent of next cycle
+                for (let i = 0; i < agentSlots.length; i++) {
+                    if (agentSlots[i].agent) {
+                        const nextSlot = agentSlots[i];
+                        document.getElementById('nextAgentName').textContent = nextSlot.agent.name;
+                        document.getElementById('nextAgentInfo').style.display = 'block';
+                        break;
+                    }
+                }
+            }
+            
+            // Update cycle progress
+            document.getElementById('cycleProgress').textContent = `Cycle ${currentCycle}/${document.getElementById('maxCycles').value}`;
+            
+            // Check if we've reached max cycles
+            if (currentCycle >= parseInt(document.getElementById('maxCycles').value)) {
+                endDiscussion();
+                return;
+            }
+            
+            // Generate response with full context awareness
+            generateAgentResponseWithContext(agent);
+        }
+
+        // Update slot status
+        function updateSlotStatus(slotNumber, isCurrent = false) {
+            agentSlots.forEach((slot, index) => {
+                const slotElement = document.getElementById(`slot-${slot.slotNumber}`);
+                if (slotElement) {
+                    slotElement.classList.remove('active', 'current');
+                    slot.isActive = false;
+                    slot.isCurrent = false;
+                }
+            });
+            
+            if (slotNumber > 0 && slotNumber <= agentSlots.length) {
+                const slot = agentSlots[slotNumber - 1];
+                const slotElement = document.getElementById(`slot-${slotNumber}`);
+                if (slotElement) {
+                    slotElement.classList.add('active');
+                    if (isCurrent) {
+                        slotElement.classList.add('current');
+                        slot.isCurrent = true;
+                    }
+                    slot.isActive = true;
+                }
+            }
+        }
+
+        // Generate agent response with context
+        async function generateAgentResponseWithContext(agent) {
+            console.log(`🤖 generateAgentResponseWithContext called for agent: ${agent.name}`);
+            
+            // Build context prompt from all previous messages
+            let contextPrompt = "Previous conversation context:\n";
+            conversationContext.forEach(msg => {
+                if (msg.message_type === 'user_message') {
+                    contextPrompt += `User (${msg.agent_name}): ${msg.content}\n`;
+                } else if (msg.message_type === 'agent_message') {
+                    contextPrompt += `${msg.agent_name}: ${msg.content}\n`;
+                }
+            });
+            
+            const mainPrompt = document.getElementById('mainPrompt').value.trim();
+            contextPrompt += `\nCurrent discussion topic: ${mainPrompt}\n`;
+            contextPrompt += `\nYou are ${agent.name} (${agent.role}). Respond to the discussion topic considering all previous messages. Keep your response under ${document.getElementById('maxCharacters').value} characters.`;
+            
+            try {
+                // Make API call to the backend
+                const response = await fetch('/api/generate-response', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        agent_id: agent.id,
+                        prompt: contextPrompt,
+                        max_characters: parseInt(document.getElementById('maxCharacters').value)
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    const message = {
+                        agent_id: agent.id,
+                        agent_name: agent.name,
+                        content: data.response,
+                        timestamp: new Date().toISOString(),
+                        message_type: 'agent_message'
+                    };
+                    
+                    // Add to conversation context
+                    conversationContext.push(message);
+                    
+                    // Add to chat display
+                    addMessageToChat(message);
+                    
+                    console.log(`✅ ${agent.name} responded successfully. Next agent will be triggered after wait period.`);
+                    
+                    // No need to schedule timeout - startWaitCountdown handles this
+                    
+                } else {
+                    throw new Error(`API call failed: ${response.status}`);
+                }
+            } catch (error) {
+                console.error('Error generating response:', error);
+                const errorMessage = {
+                    agent_id: agent.id,
+                    agent_name: agent.name,
+                    content: `I encountered an error while generating my response: ${error.message}`,
+                    timestamp: new Date().toISOString(),
+                    message_type: 'agent_message'
+                };
+                
+                conversationContext.push(errorMessage);
+                addMessageToChat(errorMessage);
+                
+                // Error message will trigger startWaitCountdown automatically
+            }
+        }
+
+        // Add message to chat
+        function addMessageToChat(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            
+            let messageClass = 'agent';
+            if (message.message_type === 'user_message') {
+                messageClass = 'user';
+            } else if (message.message_type === 'system_message') {
+                messageClass = 'system';
+            }
+            
+            messageDiv.className = `message ${messageClass}`;
+            
+            messageDiv.innerHTML = `
+                <div class="message-header">${message.agent_name}</div>
+                <div class="message-content">${message.content}</div>
+                <div class="message-timestamp">${new Date(message.timestamp).toLocaleTimeString()}</div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Track when message was sent (only for agent messages)
+            if (message.message_type === 'agent_message') {
+                lastMessageTime = Date.now();
+                console.log(`📝 Message sent at: ${new Date(lastMessageTime).toLocaleTimeString()}`);
+                
+                // Clear any existing timeout
+                if (messageWaitTimeout) {
+                    clearTimeout(messageWaitTimeout);
+                }
+                
+                // Start wait countdown after message is sent
+                startWaitCountdown();
+            }
+            
+            // Add to conversation context if not already there
+            if (!conversationContext.find(msg => msg.timestamp === message.timestamp)) {
+                conversationContext.push(message);
+            }
+        }
+
+        // End discussion
+        function endDiscussion() {
+            isDiscussionActive = false;
+            
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+            
+            // Reset variables
+            currentCycle = 0;
+            currentAgentIndex = 0;
+            lastMessageTime = null;
+            
+            // Hide live status engine
+            document.getElementById('liveStatusPanel').style.display = 'none';
+            
+            // Re-enable start button
+            document.getElementById('startDiscussionBtn').disabled = false;
+            document.getElementById('startDiscussionBtn').textContent = '🚀 Start Discussion';
+            
+            // Add end message
+            addMessageToChat({
+                agent_id: 'system',
+                agent_name: 'System',
+                content: `Discussion completed after ${currentCycle} cycles.`,
+                timestamp: new Date().toISOString(),
+                message_type: 'system_message'
+            });
+        }
+
+        // Pause/Resume/Stop functions
+        function pauseDiscussion() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+                countdownInterval = null;
+            }
+            
+            // Clear message wait timeout
+            if (messageWaitTimeout) {
+                clearTimeout(messageWaitTimeout);
+                messageWaitTimeout = null;
+            }
+            
+            document.getElementById('pauseBtn').style.display = 'none';
+            document.getElementById('resumeBtn').style.display = 'inline-block';
+            
+            addMessageToChat({
+                agent_id: 'system',
+                agent_name: 'System',
+                content: 'Discussion paused',
+                timestamp: new Date().toISOString(),
+                message_type: 'system_message'
+            });
+        }
+
+        function resumeDiscussion() {
+            document.getElementById('pauseBtn').style.display = 'inline-block';
+            document.getElementById('resumeBtn').style.display = 'none';
+            
+            // Resume discussion by triggering next agent immediately
+            if (isDiscussionActive) {
+                triggerNextAgentResponse();
+            }
+            
+            addMessageToChat({
+                agent_id: 'system',
+                agent_name: 'System',
+                content: 'Discussion resumed',
+                timestamp: new Date().toISOString(),
+                message_type: 'system_message'
+            });
+        }
+
+        function stopDiscussion() {
+            endDiscussion();
+        }
+
+        // RAG functions
+        function showRagDialog() {
+            document.getElementById('ragDialog').style.display = 'block';
+        }
+
+        function hideRagDialog() {
+            document.getElementById('ragDialog').style.display = 'none';
+        }
+
+        function saveToRag() {
+            const selectedCategory = document.querySelector('input[name="ragCategory"]:checked').value;
+            const discussionContent = conversationContext.map(msg => 
+                `${msg.agent_name}: ${msg.content}`
+            ).join('\n\n');
+            
+            // Here you would integrate with your RAG system
+            console.log('Saving to RAG:', selectedCategory, discussionContent);
+            
+            addMessageToChat({
+                agent_id: 'system',
+                agent_name: 'System',
+                content: `Discussion saved to ${selectedCategory}`,
+                timestamp: new Date().toISOString(),
+                message_type: 'system_message'
+            });
+            
+            hideRagDialog();
+        }
+
+        // WebSocket functions
+        function initializeWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsUrl = `${protocol}//${window.location.host}/ws`;
+            
+            ws = new WebSocket(wsUrl);
+            
+            ws.onopen = function() {
+                isConnected = true;
+                console.log('WebSocket connected');
+            };
+            
+            ws.onmessage = function(event) {
+                const data = JSON.parse(event.data);
+                console.log('WebSocket message:', data);
+            };
+            
+            ws.onclose = function() {
+                isConnected = false;
+                console.log('WebSocket disconnected');
+                // Try to reconnect after 3 seconds
+                setTimeout(initializeWebSocket, 3000);
+            };
+            
+            ws.onerror = function(error) {
+                console.error('WebSocket error:', error);
+            };
+        }
+    </script>
+</body>
+</html>
+

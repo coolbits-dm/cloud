@@ -1,0 +1,20 @@
+{
+  "name": "user-panel",
+  "version": "1.0.0",
+  "description": "User Panel - Personal AI agents and u-bit wall for coolbits.ai",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@google-cloud/firestore": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "keywords": ["user", "personal", "panel", "coolbits"],
+  "author": "oCursor-Grok",
+  "license": "MIT"
+}

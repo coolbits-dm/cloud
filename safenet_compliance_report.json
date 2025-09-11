@@ -1,0 +1,20 @@
+{
+  "company_name": "COOL BITS S.R.L.",
+  "company_cui": "42331573",
+  "company_registration": "ROONRC.J22/676/2020",
+  "report_timestamp": "2025-09-07T07:57:06.819518",
+  "certificates": {
+    "total_certificates": 6,
+    "active_certificates": 6,
+    "expired_certificates": 0
+  },
+  "signing_activity": {
+    "total_signatures": 0,
+    "recent_signatures": 0
+  },
+  "security_compliance": {
+    "audit_trail_complete": true,
+    "certificate_management": "compliant",
+    "signing_procedures": "compliant"
+  }
+}

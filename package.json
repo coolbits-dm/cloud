@@ -1,0 +1,55 @@
+{
+  "name": "coolbits-ai",
+  "version": "1.0.0",
+  "description": "CoolBits.ai - AI Platform for COOL BITS SRL",
+  "main": "coolbits_main_dashboard.py",
+  "scripts": {
+    "start": "python coolbits_main_dashboard.py",
+    "bridge": "python coolbits_main_bridge.py",
+    "dev": "python coolbits_main_dashboard.py",
+    "test": "python -m pytest tests/",
+    "lint": "python -m flake8 .",
+    "format": "python -m black .",
+    "health": "python scripts/health_check.py",
+    "release": "python scripts/release.py"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "python": ">=3.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coolbits-ai/coolbits-ai.git"
+  },
+  "keywords": [
+    "ai",
+    "platform",
+    "coolbits",
+    "automation",
+    "dashboard"
+  ],
+  "author": "COOL BITS SRL",
+  "license": "PROPRIETARY",
+  "private": true,
+  "dependencies": {
+    "flask": "^3.0.0",
+    "fastapi": "^0.104.0",
+    "uvicorn": "^0.24.0",
+    "requests": "^2.31.0",
+    "psutil": "^5.9.0"
+  },
+  "devDependencies": {
+    "pytest": "^7.4.0",
+    "flake8": "^6.0.0",
+    "black": "^23.0.0"
+  },
+  "release": {
+    "branches": ["main"],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/git"
+    ]
+  }
+}

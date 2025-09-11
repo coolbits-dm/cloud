@@ -1,0 +1,34 @@
+[
+  {
+    "event_id": "audit-1757221030",
+    "event_type": "AuditEventType.COMPLIANCE_CHECK",
+    "timestamp": "2025-09-07 07:57:10.909787",
+    "user_id": "test_user",
+    "resource_id": "cert_001",
+    "action": "validate_create_certificate",
+    "result": "success",
+    "details": {
+      "violations": [],
+      "operation": "create_certificate"
+    },
+    "ip_address": "127.0.0.1",
+    "user_agent": "SafeNet-System",
+    "compliance_status": "ComplianceStatus.COMPLIANT"
+  },
+  {
+    "event_id": "audit-1757221030",
+    "event_type": "AuditEventType.COMPLIANCE_CHECK",
+    "timestamp": "2025-09-07 07:57:10.912045",
+    "user_id": "test_user",
+    "resource_id": "doc_001",
+    "action": "validate_sign_document",
+    "result": "success",
+    "details": {
+      "violations": [],
+      "operation": "sign_document"
+    },
+    "ip_address": "127.0.0.1",
+    "user_agent": "SafeNet-System",
+    "compliance_status": "ComplianceStatus.COMPLIANT"
+  }
+]

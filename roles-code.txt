@@ -1,0 +1,115 @@
+{
+  "gpt_gemini_status": {
+    "project_id": ["coolbits-og-bridge", "coolbits-og-bridge-dev"],
+    "region": "europe-west3",
+    "bridge_endpoint": "bridge.coolbits.ai/v1",
+    "controllers": ["GptController (OpenAI gpt-4o)", "GrokController (xAI grok-v4-2024-11-20)"],
+    "pubsub_topic": "ogrok-corp-comm",
+    "firestore_collection": "gpt_gemini_logs",
+    "envelope_schema": {
+      "task": "string",
+      "context": "string",
+      "target": "gemini|ogrok"
+    },
+    "secrets": [
+      "xai_api_key_ceo",
+      "openai_api_key_ceo",
+      "bridge_webhook_hmac_ceo",
+      "...",
+      "xai_api_key_community",
+      "openai_api_key_community",
+      "bridge_webhook_hmac_community"
+    ],
+    "iam_roles": [
+      {"member": "user:andrei@coolbits.ai", "role": "roles/secretmanager.secretAccessor"},
+      {"member": "serviceAccount:bridge-runner@coolbits-og-bridge.iam.gserviceaccount.com", "role": "roles/secretmanager.secretAccessor"}
+    ],
+    "role_mapping": {
+      "executive": [
+        {"role": "ceo", "user": "ceo@coolbits.ai", "subdomain": "ceo.roles.coolbits.ai", "key": "xai_api_key_ceo"},
+        {"role": "strategy-office-cso", "user": "cso@coolbits.ai", "subdomain": "cso.roles.coolbits.ai", "key": "xai_api_key_cso"},
+        {"role": "board", "user": "board@coolbits.ai", "subdomain": "board.roles.coolbits.ai", "key": "xai_api_key_board"}
+      ],
+      "technology": [
+        {"role": "cto", "user": "cto@coolbits.ai", "subdomain": "cto.roles.coolbits.ai", "key": "xai_api_key_cto"},
+        {"role": "engineering/backend", "user": "backend@coolbits.ai", "subdomain": "backend.roles.coolbits.ai", "key": "xai_api_key_backend"},
+        {"role": "engineering/frontend", "user": "frontend@coolbits.ai", "subdomain": "frontend.roles.coolbits.ai", "key": "xai_api_key_frontend"},
+        {"role": "engineering/mobile", "user": "mobile@coolbits.ai", "subdomain": "mobile.roles.coolbits.ai", "key": "xai_api_key_mobile"},
+        {"role": "engineering/platform", "user": "platform@coolbits.ai", "subdomain": "platform.roles.coolbits.ai", "key": "xai_api_key_platform"},
+        {"role": "engineering/architecture", "user": "architecture@coolbits.ai", "subdomain": "architecture.roles.coolbits.ai", "key": "xai_api_key_architecture"},
+        {"role": "devops-sre", "user": "devops@coolbits.ai", "subdomain": "devops.roles.coolbits.ai", "key": "xai_api_key_devops"},
+        {"role": "qa-quality", "user": "qa@coolbits.ai", "subdomain": "qa.roles.coolbits.ai", "key": "xai_api_key_qa"},
+        {"role": "research-rnd", "user": "rnd@coolbits.ai", "subdomain": "rnd.roles.coolbits.ai", "key": "xai_api_key_rnd"}
+      ],
+      "product": [
+        {"role": "cpo", "user": "cpo@coolbits.ai", "subdomain": "cpo.roles.coolbits.ai", "key": "xai_api_key_cpo"},
+        {"role": "product-management", "user": "productmgmt@coolbits.ai", "subdomain": "productmgmt.roles.coolbits.ai", "key": "xai_api_key_productmgmt"},
+        {"role": "product-ops", "user": "productops@coolbits.ai", "subdomain": "productops.roles.coolbits.ai", "key": "xai_api_key_productops"},
+        {"role": "design-ux", "user": "uxdesign@coolbits.ai", "subdomain": "uxdesign.roles.coolbits.ai", "key": "xai_api_key_uxdesign"},
+        {"role": "ux-research", "user": "uxresearch@coolbits.ai", "subdomain": "uxresearch.roles.coolbits.ai", "key": "xai_api_key_uxresearch"},
+        {"role": "docs", "user": "docs@coolbits.ai", "subdomain": "docs.roles.coolbits.ai", "key": "xai_api_key_docs"}
+      ],
+      "data": [
+        {"role": "cdo", "user": "cdo@coolbits.ai", "subdomain": "cdo.roles.coolbits.ai", "key": "xai_api_key_cdo"},
+        {"role": "data-engineering", "user": "dataeng@coolbits.ai", "subdomain": "dataeng.roles.coolbits.ai", "key": "xai_api_key_dataeng"},
+        {"role": "analytics-bi", "user": "analytics@coolbits.ai", "subdomain": "analytics.roles.coolbits.ai", "key": "xai_api_key_analytics"},
+        {"role": "ml-ai", "user": "mlai@coolbits.ai", "subdomain": "mlai.roles.coolbits.ai", "key": "xai_api_key_mlai"}
+      ],
+      "security": [
+        {"role": "ciso", "user": "ciso@coolbits.ai", "subdomain": "ciso.roles.coolbits.ai", "key": "xai_api_key_ciso"},
+        {"role": "appsec", "user": "appsec@coolbits.ai", "subdomain": "appsec.roles.coolbits.ai", "key": "xai_api_key_appsec"},
+        {"role": "secops", "user": "secops@coolbits.ai", "subdomain": "secops.roles.coolbits.ai", "key": "xai_api_key_secops"},
+        {"role": "grc", "user": "grc@coolbits.ai", "subdomain": "grc.roles.coolbits.ai", "key": "xai_api_key_grc"},
+        {"role": "compliance", "user": "compliance@coolbits.ai", "subdomain": "compliance.roles.coolbits.ai", "key": "xai_api_key_compliance"}
+      ],
+      "it": [
+        {"role": "cio", "user": "cio@coolbits.ai", "subdomain": "cio.roles.coolbits.ai", "key": "xai_api_key_cio"},
+        {"role": "helpdesk", "user": "helpdesk@coolbits.ai", "subdomain": "helpdesk.roles.coolbits.ai", "key": "xai_api_key_helpdesk"},
+        {"role": "identity-access", "user": "iam@coolbits.ai", "subdomain": "iam.roles.coolbits.ai", "key": "xai_api_key_iam"},
+        {"role": "networking", "user": "networking@coolbits.ai", "subdomain": "networking.roles.coolbits.ai", "key": "xai_api_key_networking"},
+        {"role": "endpoint-management", "user": "endpoint@coolbits.ai", "subdomain": "endpoint.roles.coolbits.ai", "key": "xai_api_key_endpoint"}
+      ],
+      "operations": [
+        {"role": "coo", "user": "coo@coolbits.ai", "subdomain": "coo.roles.coolbits.ai", "key": "xai_api_key_coo"},
+        {"role": "pmo-program-management", "user": "pmo@coolbits.ai", "subdomain": "pmo.roles.coolbits.ai", "key": "xai_api_key_pmo"},
+        {"role": "procurement", "user": "procurement@coolbits.ai", "subdomain": "procurement.roles.coolbits.ai", "key": "xai_api_key_procurement"},
+        {"role": "facilities", "user": "facilities@coolbits.ai", "subdomain": "facilities.roles.coolbits.ai", "key": "xai_api_key_facilities"},
+        {"role": "logistics", "user": "logistics@coolbits.ai", "subdomain": "logistics.roles.coolbits.ai", "key": "xai_api_key_logistics"}
+      ],
+      "finance": [
+        {"role": "cfo", "user": "cfo@coolbits.ai", "subdomain": "cfo.roles.coolbits.ai", "key": "xai_api_key_cfo"},
+        {"role": "accounting", "user": "accounting@coolbits.ai", "subdomain": "accounting.roles.coolbits.ai", "key": "xai_api_key_accounting"},
+        {"role": "fpa", "user": "fpa@coolbits.ai", "subdomain": "fpa.roles.coolbits.ai", "key": "xai_api_key_fpa"},
+        {"role": "treasury", "user": "treasury@coolbits.ai", "subdomain": "treasury.roles.coolbits.ai", "key": "xai_api_key_treasury"},
+        {"role": "payroll", "user": "payroll@coolbits.ai", "subdomain": "payroll.roles.coolbits.ai", "key": "xai_api_key_payroll"}
+      ],
+      "people": [
+        {"role": "chro", "user": "chro@coolbits.ai", "subdomain": "chro.roles.coolbits.ai", "key": "xai_api_key_chro"},
+        {"role": "recruiting-talent", "user": "recruiting@coolbits.ai", "subdomain": "recruiting.roles.coolbits.ai", "key": "xai_api_key_recruiting"},
+        {"role": "people-ops-hr", "user": "peopleops@coolbits.ai", "subdomain": "peopleops.roles.coolbits.ai", "key": "xai_api_key_peopleops"},
+        {"role": "learning-development", "user": "learning@coolbits.ai", "subdomain": "learning.roles.coolbits.ai", "key": "xai_api_key_learning"},
+        {"role": "comp-benefits", "user": "compbenefits@coolbits.ai", "subdomain": "compbenefits.roles.coolbits.ai", "key": "xai_api_key_compbenefits"}
+      ],
+      "revenue": [
+        {"role": "cro", "user": "cro@coolbits.ai", "subdomain": "cro.roles.coolbits.ai", "key": "xai_api_key_cro"},
+        {"role": "sales", "user": "sales@coolbits.ai", "subdomain": "sales.roles.coolbits.ai", "key": "xai_api_key_sales"},
+        {"role": "sales-ops", "user": "salesops@coolbits.ai", "subdomain": "salesops.roles.coolbits.ai", "key": "xai_api_key_salesops"},
+        {"role": "partnerships", "user": "partnerships@coolbits.ai", "subdomain": "partnerships.roles.coolbits.ai", "key": "xai_api_key_partnerships"},
+        {"role": "customer-success", "user": "customersuccess@coolbits.ai", "subdomain": "customersuccess.roles.coolbits.ai", "key": "xai_api_key_customersuccess"}
+      ],
+      "marketing": [
+        {"role": "cmo", "user": "cmo@coolbits.ai", "subdomain": "cmo.roles.coolbits.ai", "key": "xai_api_key_cmo"},
+        {"role": "brand", "user": "brand@coolbits.ai", "subdomain": "brand.roles.coolbits.ai", "key": "xai_api_key_brand"},
+        {"role": "performance-growth", "user": "growth@coolbits.ai", "subdomain": "growth.roles.coolbits.ai", "key": "xai_api_key_growth"},
+        {"role": "content", "user": "content@coolbits.ai", "subdomain": "content.roles.coolbits.ai", "key": "xai_api_key_content"},
+        {"role": "pr-comms", "user": "prcomms@coolbits.ai", "subdomain": "prcomms.roles.coolbits.ai", "key": "xai_api_key_prcomms"},
+        {"role": "events", "user": "events@coolbits.ai", "subdomain": "events.roles.coolbits.ai", "key": "xai_api_key_events"}
+      ],
+      "legal": [
+        {"role": "clo-gc", "user": "clo@coolbits.ai", "subdomain": "clo.roles.coolbits.ai", "key": "xai_api_key_clo"},
+        {"role": "contracts", "user": "contracts@coolbits.ai", "subdomain": "contracts.roles.coolbits.ai", "key": "xai_api_key_contracts"},
+        {"role": "privacy", "user": "privacy@coolbits.ai", "subdomain": "privacy.roles.coolbits.ai", "key": "xai_api_key_privacy"},
+        {"role": "ip", "user": "ip@coolbits.ai", "subdomain": "ip.roles.coolbits.ai", "key": "xai_api_key_ip"},
+        {"role": "regulatory", "user": "regulatory@coolbits.ai", "subdomain": "regulatory.roles.coolbits.ai", "key": "xai_api_key_regulatory"}
+      ],
+      "customer "

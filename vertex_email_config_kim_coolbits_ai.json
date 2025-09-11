@@ -1,0 +1,13 @@
+{
+  "email": "kim@coolbits.ai",
+  "role": "Kim Email",
+  "priority": "medium",
+  "vertex_project": "coolbits-ai",
+  "vertex_region": "europe-west3",
+  "ai_assistant": "@oOutlook",
+  "company": "COOL BITS SRL \ud83c\udfe2 \ud83c\udfe2",
+  "ceo": "Andrei",
+  "created_at": "2025-09-07T09:34:53.353027",
+  "status": "configured",
+  "classification": "Internal Secret - CoolBits.ai Members Only"
+}

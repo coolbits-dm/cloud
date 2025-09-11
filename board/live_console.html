@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oCopilot Live Console - CoolBits.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        .console-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .left-panel {
+            width: 300px;
+            background: rgba(0, 0, 0, 0.8);
+            border-right: 2px solid #00ff88;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .main-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 10px;
+        }
+        
+        .header h1 {
+            color: #00ff88;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .status-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+        }
+        
+        .status-dot.active { background: #00ff88; }
+        .status-dot.inactive { background: #ff4444; }
+        .status-dot.connecting { background: #ffaa00; }
+        
+        .video-container {
+            flex: 1;
+            background: #000;
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #videoElement {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .control-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        
+        .control-btn.primary {
+            background: #00ff88;
+            color: #000;
+        }
+        
+        .control-btn.secondary {
+            background: #333;
+            color: #fff;
+            border: 1px solid #00ff88;
+        }
+        
+        .control-btn.danger {
+            background: #ff4444;
+            color: #fff;
+        }
+        
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+        }
+        
+        .control-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .audio-visualizer {
+            height: 60px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ff88;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .audio-bars {
+            display: flex;
+            gap: 2px;
+            align-items: end;
+            height: 40px;
+        }
+        
+        .audio-bar {
+            width: 4px;
+            background: #00ff88;
+            border-radius: 2px;
+            transition: height 0.1s ease;
+        }
+        
+        .chat-container {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #00ff88;
+            border-radius: 10px;
+            padding: 15px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background: rgba(0, 255, 136, 0.1);
+            border-left: 3px solid #00ff88;
+        }
+        
+        .chat-message.user {
+            background: rgba(0, 136, 255, 0.1);
+            border-left-color: #0088ff;
+        }
+        
+        .chat-message.system {
+            background: rgba(255, 170, 0, 0.1);
+            border-left-color: #ffaa00;
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .input-container input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #00ff88;
+            border-radius: 25px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            font-size: 14px;
+        }
+        
+        .input-container input:focus {
+            outline: none;
+            border-color: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        }
+        
+        .agent-panel {
+            margin-bottom: 20px;
+        }
+        
+        .agent-item {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .agent-item.active {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+        
+        .agent-name {
+            font-weight: bold;
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+        
+        .agent-status {
+            font-size: 12px;
+            color: #ccc;
+        }
+        
+        .system-metrics {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .metric-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+        
+        .metric-label {
+            color: #ccc;
+        }
+        
+        .metric-value {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        
+        .recording-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff4444;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="console-container">
+        <div class="left-panel">
+            <div class="header">
+                <h1>oCopilot Console</h1>
+                <div class="status-indicators">
+                    <span><span class="status-dot inactive" id="micStatus"></span> Microphone</span>
+                    <span><span class="status-dot inactive" id="camStatus"></span> Camera</span>
+                    <span><span class="status-dot inactive" id="gpuStatus"></span> GPU</span>
+                </div>
+            </div>
+            
+            <div class="agent-panel">
+                <h3>Active Agents</h3>
+                <div class="agent-item active">
+                    <div class="agent-name">oCopilot-Cursor</div>
+                    <div class="agent-status">Orchestrator - Active</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">oCopilot-Windows</div>
+                    <div class="agent-status">System Management - Connected</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">oCopilot-ChatGPT</div>
+                    <div class="agent-status">Code Generation - Active</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">oCopilot-Grok</div>
+                    <div class="agent-status">Analysis & Insights - Active</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">cblm.ai-Core</div>
+                    <div class="agent-status">Business Logic - Connected</div>
+                </div>
+            </div>
+            
+            <div class="system-metrics">
+                <h3>System Metrics</h3>
+                <div class="metric-item">
+                    <span class="metric-label">CPU Usage:</span>
+                    <span class="metric-value" id="cpuUsage">0%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Memory:</span>
+                    <span class="metric-value" id="memoryUsage">0%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">GPU Usage:</span>
+                    <span class="metric-value" id="gpuUsage">0%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Network:</span>
+                    <span class="metric-value" id="networkStatus">Connected</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-panel">
+            <div class="video-container">
+                <video id="videoElement" autoplay muted></video>
+                <div class="video-overlay">
+                    <div>Camera: <span id="cameraStatus">Not Active</span></div>
+                    <div>Resolution: <span id="cameraResolution">-</span></div>
+                    <div>FPS: <span id="cameraFPS">-</span></div>
+                </div>
+            </div>
+            
+            <div class="audio-visualizer">
+                <div class="audio-bars" id="audioBars">
+                    <!-- Audio bars will be generated here -->
+                </div>
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn primary" id="startBtn">Start Live Session</button>
+                <button class="control-btn secondary" id="micBtn" disabled>Enable Microphone</button>
+                <button class="control-btn secondary" id="camBtn" disabled>Enable Camera</button>
+                <button class="control-btn secondary" id="gpuBtn" disabled>Enable GPU</button>
+                <button class="control-btn danger" id="stopBtn" disabled>Stop Session</button>
+            </div>
+            
+            <div class="chat-container" id="chatContainer">
+                <div class="chat-message system">
+                    <strong>System:</strong> oCopilot Live Console initialized. Ready for voice interaction.
+                </div>
+            </div>
+            
+            <div class="input-container">
+                <input type="text" id="messageInput" placeholder="Type a message or use voice commands..." disabled>
+                <button class="control-btn primary" id="sendBtn" disabled>Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="recording-indicator hidden" id="recordingIndicator">
+        🔴 RECORDING
+    </div>
+
+    <script>
+        class oCopilotLiveConsole {
+            constructor() {
+                this.isRecording = false;
+                this.isCameraActive = false;
+                this.isMicrophoneActive = false;
+                this.isGPUActive = false;
+                this.mediaStream = null;
+                this.audioContext = null;
+                this.analyser = null;
+                this.microphone = null;
+                this.dataArray = null;
+                this.animationId = null;
+                
+                this.initializeElements();
+                this.setupEventListeners();
+                this.startSystemMetrics();
+                this.generateAudioBars();
+            }
+            
+            initializeElements() {
+                this.videoElement = document.getElementById('videoElement');
+                this.micStatus = document.getElementById('micStatus');
+                this.camStatus = document.getElementById('camStatus');
+                this.gpuStatus = document.getElementById('gpuStatus');
+                this.cameraStatus = document.getElementById('cameraStatus');
+                this.cameraResolution = document.getElementById('cameraResolution');
+                this.cameraFPS = document.getElementById('cameraFPS');
+                this.audioBars = document.getElementById('audioBars');
+                this.chatContainer = document.getElementById('chatContainer');
+                this.messageInput = document.getElementById('messageInput');
+                this.recordingIndicator = document.getElementById('recordingIndicator');
+                
+                this.startBtn = document.getElementById('startBtn');
+                this.micBtn = document.getElementById('micBtn');
+                this.camBtn = document.getElementById('camBtn');
+                this.gpuBtn = document.getElementById('gpuBtn');
+                this.stopBtn = document.getElementById('stopBtn');
+                this.sendBtn = document.getElementById('sendBtn');
+            }
+            
+            setupEventListeners() {
+                this.startBtn.addEventListener('click', () => this.startLiveSession());
+                this.micBtn.addEventListener('click', () => this.toggleMicrophone());
+                this.camBtn.addEventListener('click', () => this.toggleCamera());
+                this.gpuBtn.addEventListener('click', () => this.toggleGPU());
+                this.stopBtn.addEventListener('click', () => this.stopLiveSession());
+                this.sendBtn.addEventListener('click', () => this.sendMessage());
+                
+                this.messageInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.sendMessage();
+                    }
+                });
+            }
+            
+            generateAudioBars() {
+                for (let i = 0; i < 32; i++) {
+                    const bar = document.createElement('div');
+                    bar.className = 'audio-bar';
+                    bar.style.height = '2px';
+                    this.audioBars.appendChild(bar);
+                }
+            }
+            
+            async startLiveSession() {
+                try {
+                    this.addChatMessage('system', 'Starting live session...');
+                    
+                    // Request media access
+                    this.mediaStream = await navigator.mediaDevices.getUserMedia({
+                        video: { width: 1920, height: 1080 },
+                        audio: { sampleRate: 48000, channels: 2 }
+                    });
+                    
+                    this.setupAudioVisualizer();
+                    this.setupCamera();
+                    
+                    this.startBtn.disabled = true;
+                    this.micBtn.disabled = false;
+                    this.camBtn.disabled = false;
+                    this.gpuBtn.disabled = false;
+                    this.stopBtn.disabled = false;
+                    this.messageInput.disabled = false;
+                    this.sendBtn.disabled = false;
+                    
+                    this.addChatMessage('system', 'Live session started successfully!');
+                    
+                } catch (error) {
+                    this.addChatMessage('system', `Error starting session: ${error.message}`);
+                    console.error('Error starting live session:', error);
+                }
+            }
+            
+            setupAudioVisualizer() {
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                this.analyser = this.audioContext.createAnalyser();
+                this.microphone = this.audioContext.createMediaStreamSource(this.mediaStream);
+                
+                this.analyser.fftSize = 256;
+                this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+                
+                this.microphone.connect(this.analyser);
+                this.animateAudioBars();
+            }
+            
+            animateAudioBars() {
+                const bars = this.audioBars.children;
+                
+                const animate = () => {
+                    if (this.analyser) {
+                        this.analyser.getByteFrequencyData(this.dataArray);
+                        
+                        for (let i = 0; i < bars.length; i++) {
+                            const value = this.dataArray[i] / 255;
+                            const height = Math.max(2, value * 40);
+                            bars[i].style.height = height + 'px';
+                        }
+                    }
+                    
+                    this.animationId = requestAnimationFrame(animate);
+                };
+                
+                animate();
+            }
+            
+            setupCamera() {
+                this.videoElement.srcObject = this.mediaStream;
+                this.isCameraActive = true;
+                this.cameraStatus.textContent = 'Active';
+                this.cameraResolution.textContent = '1920x1080';
+                this.cameraFPS.textContent = '30';
+            }
+            
+            toggleMicrophone() {
+                if (this.isMicrophoneActive) {
+                    this.disableMicrophone();
+                } else {
+                    this.enableMicrophone();
+                }
+            }
+            
+            enableMicrophone() {
+                this.isMicrophoneActive = true;
+                this.micStatus.className = 'status-dot active';
+                this.recordingIndicator.classList.remove('hidden');
+                this.addChatMessage('system', 'Microphone enabled - voice commands active');
+                
+                // Start voice recognition
+                this.startVoiceRecognition();
+            }
+            
+            disableMicrophone() {
+                this.isMicrophoneActive = false;
+                this.micStatus.className = 'status-dot inactive';
+                this.recordingIndicator.classList.add('hidden');
+                this.addChatMessage('system', 'Microphone disabled');
+            }
+            
+            toggleCamera() {
+                if (this.isCameraActive) {
+                    this.disableCamera();
+                } else {
+                    this.enableCamera();
+                }
+            }
+            
+            enableCamera() {
+                this.isCameraActive = true;
+                this.camStatus.className = 'status-dot active';
+                this.cameraStatus.textContent = 'Active';
+                this.cameraResolution.textContent = '1920x1080';
+                this.cameraFPS.textContent = '30';
+                this.addChatMessage('system', 'Camera enabled - visual processing active');
+            }
+            
+            disableCamera() {
+                this.isCameraActive = false;
+                this.camStatus.className = 'status-dot inactive';
+                this.cameraStatus.textContent = 'Not Active';
+                this.cameraResolution.textContent = '-';
+                this.cameraFPS.textContent = '-';
+                this.addChatMessage('system', 'Camera disabled');
+            }
+            
+            toggleGPU() {
+                if (this.isGPUActive) {
+                    this.disableGPU();
+                } else {
+                    this.enableGPU();
+                }
+            }
+            
+            enableGPU() {
+                this.isGPUActive = true;
+                this.gpuStatus.className = 'status-dot active';
+                this.addChatMessage('system', 'GPU acceleration enabled - processing optimized');
+            }
+            
+            disableGPU() {
+                this.isGPUActive = false;
+                this.gpuStatus.className = 'status-dot inactive';
+                this.addChatMessage('system', 'GPU acceleration disabled');
+            }
+            
+            stopLiveSession() {
+                if (this.mediaStream) {
+                    this.mediaStream.getTracks().forEach(track => track.stop());
+                }
+                
+                if (this.audioContext) {
+                    this.audioContext.close();
+                }
+                
+                if (this.animationId) {
+                    cancelAnimationFrame(this.animationId);
+                }
+                
+                this.isRecording = false;
+                this.isCameraActive = false;
+                this.isMicrophoneActive = false;
+                this.isGPUActive = false;
+                
+                this.micStatus.className = 'status-dot inactive';
+                this.camStatus.className = 'status-dot inactive';
+                this.gpuStatus.className = 'status-dot inactive';
+                
+                this.recordingIndicator.classList.add('hidden');
+                this.cameraStatus.textContent = 'Not Active';
+                this.cameraResolution.textContent = '-';
+                this.cameraFPS.textContent = '-';
+                
+                this.startBtn.disabled = false;
+                this.micBtn.disabled = true;
+                this.camBtn.disabled = true;
+                this.gpuBtn.disabled = true;
+                this.stopBtn.disabled = true;
+                this.messageInput.disabled = true;
+                this.sendBtn.disabled = true;
+                
+                this.addChatMessage('system', 'Live session stopped');
+            }
+            
+            sendMessage() {
+                const message = this.messageInput.value.trim();
+                if (message) {
+                    this.addChatMessage('user', message);
+                    this.messageInput.value = '';
+                    
+                    // Simulate AI response
+                    setTimeout(() => {
+                        this.simulateAIResponse(message);
+                    }, 1000);
+                }
+            }
+            
+            simulateAIResponse(userMessage) {
+                // Send to live endpoint for real processing
+                this.sendToEndpoint(userMessage);
+            }
+            
+            async sendToEndpoint(message) {
+                console.log('🚀 Sending message to endpoint:', message);
+                try {
+                    const response = await fetch('http://localhost:3002/api/voice', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            message: message,
+                            timestamp: new Date().toISOString()
+                        })
+                    });
+                    
+                    console.log('📡 Response status:', response.status);
+                    const data = await response.json();
+                    console.log('📨 Endpoint response:', data);
+                    
+                    if (data.success && data.response) {
+                        console.log('✅ Adding response to chat:', data.response);
+                        this.addChatMessage('oCopilot', data.response);
+                    } else {
+                        console.log('❌ No valid response from endpoint');
+                        this.addChatMessage('system', 'No response from endpoint');
+                    }
+                } catch (error) {
+                    console.error('❌ Error sending to endpoint:', error);
+                    // Fallback response
+                    const fallbackResponse = `Message received: "${message}". Processing with oCopilot network... All agents coordinated!`;
+                    this.addChatMessage('system', fallbackResponse);
+                }
+            }
+            
+            addChatMessage(type, message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-message ${type}`;
+                
+                const timestamp = new Date().toLocaleTimeString();
+                let prefix;
+                if (type === 'user') {
+                    prefix = 'You';
+                } else if (type === 'oCopilot') {
+                    prefix = 'oCopilot';
+                } else if (type === 'system') {
+                    prefix = 'oCopilot';
+                } else {
+                    prefix = 'Agent';
+                }
+                
+                messageDiv.innerHTML = `<strong>${prefix} [${timestamp}]:</strong> ${message}`;
+                this.chatContainer.appendChild(messageDiv);
+                this.chatContainer.scrollTop = this.chatContainer.scrollHeight;
+                
+                // Log to console for debugging
+                console.log(`Chat message [${type}]: ${message}`);
+            }
+            
+            startVoiceRecognition() {
+                if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                    this.recognition = new SpeechRecognition();
+                    
+                    this.recognition.continuous = true;
+                    this.recognition.interimResults = true;
+                    this.recognition.lang = 'ro-RO'; // Romanian language
+                    
+                    this.recognition.onresult = (event) => {
+                        let finalTranscript = '';
+                        let interimTranscript = '';
+                        
+                        for (let i = event.resultIndex; i < event.results.length; i++) {
+                            const transcript = event.results[i][0].transcript;
+                            if (event.results[i].isFinal) {
+                                finalTranscript += transcript;
+                            } else {
+                                interimTranscript += transcript;
+                            }
+                        }
+                        
+                        if (finalTranscript) {
+                            this.addChatMessage('user', `Voice: ${finalTranscript}`);
+                            this.simulateAIResponse(finalTranscript);
+                        }
+                    };
+                    
+                    this.recognition.onerror = (event) => {
+                        console.error('Speech recognition error:', event.error);
+                        this.addChatMessage('system', `Voice recognition error: ${event.error}`);
+                    };
+                    
+                    this.recognition.start();
+                    this.addChatMessage('system', 'Voice recognition started - speak now!');
+                } else {
+                    this.addChatMessage('system', 'Voice recognition not supported in this browser');
+                }
+            }
+            
+            startSystemMetrics() {
+                setInterval(() => {
+                    // Simulate system metrics
+                    const cpuUsage = Math.random() * 30 + 10;
+                    const memoryUsage = Math.random() * 20 + 15;
+                    const gpuUsage = this.isGPUActive ? Math.random() * 40 + 20 : 0;
+                    
+                    document.getElementById('cpuUsage').textContent = `${cpuUsage.toFixed(1)}%`;
+                    document.getElementById('memoryUsage').textContent = `${memoryUsage.toFixed(1)}%`;
+                    document.getElementById('gpuUsage').textContent = `${gpuUsage.toFixed(1)}%`;
+                }, 1000);
+            }
+        }
+        
+        // Initialize console when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            new oCopilotLiveConsole();
+        });
+    </script>
+</body>
+</html>

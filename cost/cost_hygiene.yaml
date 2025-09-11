@@ -1,0 +1,108 @@
+# CoolBits.ai Cost Hygiene Configuration
+# =====================================
+
+# Log retention policies
+log_retention_policies:
+  # Critical logs (keep longer)
+  critical_logs:
+    retention_days: 90
+    log_types:
+      - "security"
+      - "audit"
+      - "error"
+      - "billing"
+  
+  # Standard logs (medium retention)
+  standard_logs:
+    retention_days: 30
+    log_types:
+      - "application"
+      - "access"
+      - "performance"
+  
+  # Debug logs (short retention)
+  debug_logs:
+    retention_days: 7
+    log_types:
+      - "debug"
+      - "trace"
+      - "development"
+
+# Metrics retention
+metrics_retention:
+  # High-resolution metrics (expensive)
+  high_resolution:
+    retention_days: 7
+    metric_types:
+      - "request_latencies"
+      - "cpu_utilization"
+      - "memory_utilization"
+  
+  # Standard metrics
+  standard:
+    retention_days: 30
+    metric_types:
+      - "request_count"
+      - "error_rate"
+      - "uptime"
+  
+  # Aggregated metrics (cheap)
+  aggregated:
+    retention_days: 365
+    metric_types:
+      - "daily_summary"
+      - "monthly_summary"
+
+# Autoscaling configuration
+autoscaling:
+  frontend:
+    min_instances: 1
+    max_instances: 10
+    target_cpu_utilization: 70
+    target_memory_utilization: 80
+  
+  bridge:
+    min_instances: 0
+    max_instances: 5
+    target_cpu_utilization: 70
+    target_memory_utilization: 80
+  
+  dashboard:
+    min_instances: 0
+    max_instances: 3
+    target_cpu_utilization: 70
+    target_memory_utilization: 80
+
+# Resource limits
+resource_limits:
+  frontend:
+    cpu: "1"
+    memory: "2Gi"
+    max_requests_per_instance: 1000
+  
+  bridge:
+    cpu: "0.5"
+    memory: "1Gi"
+    max_requests_per_instance: 500
+  
+  dashboard:
+    cpu: "0.5"
+    memory: "1Gi"
+    max_requests_per_instance: 500
+
+# Cost optimization
+cost_optimization:
+  # Enable preemptible instances for non-critical workloads
+  preemptible_instances: true
+  
+  # Use committed use discounts for predictable workloads
+  committed_use_discounts: true
+  
+  # Enable automatic shutdown for development environments
+  auto_shutdown_dev: true
+  
+  # Set up cost alerts
+  cost_alerts:
+    daily_threshold_eur: 50
+    weekly_threshold_eur: 300
+    monthly_threshold_eur: 1000

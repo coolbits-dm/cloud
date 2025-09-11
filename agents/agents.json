@@ -1,0 +1,220 @@
+{
+  "total_agents": 20,
+  "agents": {
+    "ceo": {
+      "name": "CEO Agent",
+      "role": "Chief Executive Officer",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt01",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Strategic leadership and business development"
+    },
+    "cto": {
+      "name": "CTO Agent",
+      "role": "Chief Technology Officer",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt02",
+      "rag_access": [
+        "d-rag",
+        "b-rag"
+      ],
+      "description": "Technical architecture and development"
+    },
+    "cmo": {
+      "name": "CMO Agent",
+      "role": "Chief Marketing Officer",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt03",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Marketing strategy and brand management"
+    },
+    "cfo": {
+      "name": "CFO Agent",
+      "role": "Chief Financial Officer",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt04",
+      "rag_access": [
+        "b-rag"
+      ],
+      "description": "Financial planning and analysis"
+    },
+    "coo": {
+      "name": "COO Agent",
+      "role": "Chief Operating Officer",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt05",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Operations and process optimization"
+    },
+    "vp_engineering": {
+      "name": "VP Engineering Agent",
+      "role": "VP of Engineering",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt06",
+      "rag_access": [
+        "d-rag"
+      ],
+      "description": "Engineering team leadership and technical direction"
+    },
+    "vp_sales": {
+      "name": "VP Sales Agent",
+      "role": "VP of Sales",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt07",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Sales strategy and client acquisition"
+    },
+    "vp_product": {
+      "name": "VP Product Agent",
+      "role": "VP of Product",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt08",
+      "rag_access": [
+        "b-rag",
+        "d-rag"
+      ],
+      "description": "Product strategy and roadmap"
+    },
+    "head_ai": {
+      "name": "Head of AI Agent",
+      "role": "Head of AI",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt09",
+      "rag_access": [
+        "d-rag",
+        "b-rag"
+      ],
+      "description": "AI strategy and implementation"
+    },
+    "head_data": {
+      "name": "Head of Data Agent",
+      "role": "Head of Data",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt10",
+      "rag_access": [
+        "d-rag"
+      ],
+      "description": "Data strategy and analytics"
+    },
+    "head_security": {
+      "name": "Head of Security Agent",
+      "role": "Head of Security",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt11",
+      "rag_access": [
+        "d-rag",
+        "b-rag"
+      ],
+      "description": "Cybersecurity and compliance"
+    },
+    "head_hr": {
+      "name": "Head of HR Agent",
+      "role": "Head of Human Resources",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt12",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Human resources and talent management"
+    },
+    "research_director": {
+      "name": "Research Director Agent",
+      "role": "Research Director",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt13",
+      "rag_access": [
+        "d-rag",
+        "b-rag"
+      ],
+      "description": "Research and development leadership"
+    },
+    "security_lead": {
+      "name": "Security Lead Agent",
+      "role": "Security Lead",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt14",
+      "rag_access": [
+        "d-rag"
+      ],
+      "description": "Security implementation and monitoring"
+    },
+    "finance_manager": {
+      "name": "Finance Manager Agent",
+      "role": "Finance Manager",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt15",
+      "rag_access": [
+        "b-rag"
+      ],
+      "description": "Financial operations and reporting"
+    },
+    "operations_manager": {
+      "name": "Operations Manager Agent",
+      "role": "Operations Manager",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt16",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Operational efficiency and process management"
+    },
+    "marketing_specialist": {
+      "name": "Marketing Specialist Agent",
+      "role": "Marketing Specialist",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt17",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Marketing campaigns and content creation"
+    },
+    "sales_specialist": {
+      "name": "Sales Specialist Agent",
+      "role": "Sales Specialist",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt18",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Sales execution and client relations"
+    },
+    "hr_specialist": {
+      "name": "HR Specialist Agent",
+      "role": "HR Specialist",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt19",
+      "rag_access": [
+        "b-rag",
+        "a-rag"
+      ],
+      "description": "Human resources operations and support"
+    },
+    "product_specialist": {
+      "name": "Product Specialist Agent",
+      "role": "Product Specialist",
+      "api_provider": "openai",
+      "api_key_secret": "ogpt20",
+      "rag_access": [
+        "b-rag",
+        "d-rag"
+      ],
+      "description": "Product development and feature management"
+    }
+  }
+}

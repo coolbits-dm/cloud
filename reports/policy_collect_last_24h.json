@@ -1,0 +1,78 @@
+{
+  "generated_at": "2025-09-11T06:00:30Z",
+  "total_records": 2,
+  "violations_total": 2,
+  "denies": 2,
+  "warns_included": 0,
+  "top_agents": [
+    {
+      "key": "nha:unknown",
+      "count": 1
+    },
+    {
+      "key": "nha:rag-ingest-worker",
+      "count": 1
+    }
+  ],
+  "top_actions": [
+    {
+      "key": "rag:ingest",
+      "count": 2
+    }
+  ],
+  "top_scopes": [
+    {
+      "key": "write:rag",
+      "count": 1
+    },
+    {
+      "key": "write:vectors",
+      "count": 1
+    }
+  ],
+  "top_reasons": [
+    {
+      "key": "unknown_agent",
+      "count": 1
+    },
+    {
+      "key": "permission_not_allowed",
+      "count": 1
+    }
+  ],
+  "missing_scopes": [
+    {
+      "key": "write:vectors",
+      "count": 1
+    }
+  ],
+  "missing_secrets": [],
+  "agent_action_matrix": {
+    "nha:unknown": [
+      {
+        "action": "rag:ingest",
+        "count": 1
+      }
+    ],
+    "nha:rag-ingest-worker": [
+      {
+        "action": "rag:ingest",
+        "count": 1
+      }
+    ]
+  },
+  "agent_scope_matrix": {
+    "nha:unknown": [
+      {
+        "scope": "write:rag",
+        "count": 1
+      }
+    ],
+    "nha:rag-ingest-worker": [
+      {
+        "scope": "write:vectors",
+        "count": 1
+      }
+    ]
+  }
+}

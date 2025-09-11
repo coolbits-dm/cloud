@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolBits.ai Agent Portal - All Agents</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .agent-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .agent-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .agent-role {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-bottom: 12px;
+        }
+
+        .agent-description {
+            font-size: 0.9rem;
+            color: #34495e;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .agent-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #95a5a6;
+        }
+
+        .rag-access {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .rag-tag {
+            background: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 CoolBits.ai Agent Portal</h1>
+            <p>Access individual pages for all 20 business roles</p>
+        </div>
+
+        <div class="agents-grid">
+            <div class="agent-card" onclick="openAgentPage('ceo')">
+                <div class="agent-name">CEO Agent</div>
+                <div class="agent-role">Chief Executive Officer</div>
+                <div class="agent-description">Strategic leadership and business development</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('cto')">
+                <div class="agent-name">CTO Agent</div>
+                <div class="agent-role">Chief Technology Officer</div>
+                <div class="agent-description">Technical architecture and development</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">d-rag</span><span class="rag-tag">b-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('cmo')">
+                <div class="agent-name">CMO Agent</div>
+                <div class="agent-role">Chief Marketing Officer</div>
+                <div class="agent-description">Marketing strategy and brand management</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('cfo')">
+                <div class="agent-name">CFO Agent</div>
+                <div class="agent-role">Chief Financial Officer</div>
+                <div class="agent-description">Financial planning and analysis</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('coo')">
+                <div class="agent-name">COO Agent</div>
+                <div class="agent-role">Chief Operating Officer</div>
+                <div class="agent-description">Operations and process optimization</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('vp_engineering')">
+                <div class="agent-name">VP Engineering Agent</div>
+                <div class="agent-role">VP of Engineering</div>
+                <div class="agent-description">Engineering team leadership and technical direction</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">d-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('vp_sales')">
+                <div class="agent-name">VP Sales Agent</div>
+                <div class="agent-role">VP of Sales</div>
+                <div class="agent-description">Sales strategy and client acquisition</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('vp_product')">
+                <div class="agent-name">VP Product Agent</div>
+                <div class="agent-role">VP of Product</div>
+                <div class="agent-description">Product strategy and roadmap</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">d-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('head_ai')">
+                <div class="agent-name">Head of AI Agent</div>
+                <div class="agent-role">Head of AI</div>
+                <div class="agent-description">AI strategy and implementation</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">d-rag</span><span class="rag-tag">b-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('head_data')">
+                <div class="agent-name">Head of Data Agent</div>
+                <div class="agent-role">Head of Data</div>
+                <div class="agent-description">Data strategy and analytics</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">d-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('head_security')">
+                <div class="agent-name">Head of Security Agent</div>
+                <div class="agent-role">Head of Security</div>
+                <div class="agent-description">Cybersecurity and compliance</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">d-rag</span><span class="rag-tag">b-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('head_hr')">
+                <div class="agent-name">Head of HR Agent</div>
+                <div class="agent-role">Head of Human Resources</div>
+                <div class="agent-description">Human resources and talent management</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('research_director')">
+                <div class="agent-name">Research Director Agent</div>
+                <div class="agent-role">Research Director</div>
+                <div class="agent-description">Research and development leadership</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">d-rag</span><span class="rag-tag">b-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('security_lead')">
+                <div class="agent-name">Security Lead Agent</div>
+                <div class="agent-role">Security Lead</div>
+                <div class="agent-description">Security implementation and monitoring</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">d-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('finance_manager')">
+                <div class="agent-name">Finance Manager Agent</div>
+                <div class="agent-role">Finance Manager</div>
+                <div class="agent-description">Financial operations and reporting</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('operations_manager')">
+                <div class="agent-name">Operations Manager Agent</div>
+                <div class="agent-role">Operations Manager</div>
+                <div class="agent-description">Operational efficiency and process management</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('marketing_specialist')">
+                <div class="agent-name">Marketing Specialist Agent</div>
+                <div class="agent-role">Marketing Specialist</div>
+                <div class="agent-description">Marketing campaigns and content creation</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('sales_specialist')">
+                <div class="agent-name">Sales Specialist Agent</div>
+                <div class="agent-role">Sales Specialist</div>
+                <div class="agent-description">Sales execution and client relations</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('hr_specialist')">
+                <div class="agent-name">HR Specialist Agent</div>
+                <div class="agent-role">HR Specialist</div>
+                <div class="agent-description">Human resources operations and support</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">a-rag</span>
+                    </div>
+                </div>
+            </div>
+            <div class="agent-card" onclick="openAgentPage('product_specialist')">
+                <div class="agent-name">Product Specialist Agent</div>
+                <div class="agent-role">Product Specialist</div>
+                <div class="agent-description">Product development and feature management</div>
+                <div class="agent-meta">
+                    <span>Provider: OPENAI</span>
+                    <div class="rag-access">
+                        <span class="rag-tag">b-rag</span><span class="rag-tag">d-rag</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <a href="http://localhost:8090/">🏠 Multi-Agent Chat</a>
+            <a href="http://localhost:8097/">📚 RAG System</a>
+            <a href="http://localhost:8098/">⚙️ Admin Panel</a>
+            <a href="http://localhost:8100/">🔧 Services</a>
+        </div>
+    </div>
+
+    <script>
+        function openAgentPage(agentId) {
+            window.open(`http://localhost:8099/agent/${agentId}`, '_blank');
+        }
+    </script>
+</body>
+</html>

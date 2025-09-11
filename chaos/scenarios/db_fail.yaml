@@ -1,0 +1,19 @@
+# CoolBits.ai Chaos Engineering - Database Failure Scenario
+name: db_fail
+description: "Simulate database failure to test fallback mechanisms"
+targets:
+  - service: postgres-dev
+    fail_duration_s: 240
+    recovery_timeout_s: 480
+slo:
+  p95_ms: 400
+  error_rate: 0.01
+  availability: 0.99
+rollback:
+  action: canary_rollback
+  window_s: 300
+  trigger_threshold: 0.05
+safety:
+  max_downtime_s: 480
+  kill_switch_s: 240
+  blast_radius: staging_only

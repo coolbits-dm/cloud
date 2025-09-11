@@ -1,0 +1,67 @@
+{
+  "bridge_config": {
+    "name": "CoolBits.ai ↔ cblm.ai Agent Bridge",
+    "version": "1.0.0",
+    "created": "2025-09-05T09:30:00Z",
+    "status": "active"
+  },
+  "agents": {
+    "coolbits_agents": {
+      "ocopilot_windows": {
+        "type": "Windows Copilot",
+        "status": "active",
+        "capabilities": ["system_management", "windows_integration", "local_operations"],
+        "endpoint": "local://windows-copilot"
+      },
+      "ocopilot_chatgpt": {
+        "type": "ChatGPT Agent",
+        "status": "active", 
+        "capabilities": ["code_generation", "analysis", "pairing"],
+        "endpoint": "cursor://chatgpt-agent",
+        "api_key_secret": "ocopilot-openai-key"
+      },
+      "ocopilot_grok": {
+        "type": "Grok Agent",
+        "status": "active",
+        "capabilities": ["reasoning", "analysis", "insights"],
+        "endpoint": "xai://grok-agent",
+        "api_key_secret": "xai-api-key"
+      }
+    },
+    "cblm_agents": {
+      "cblm_core": {
+        "type": "Core cblm.ai Agent",
+        "status": "pending_connection",
+        "capabilities": ["business_logic", "market_analysis", "strategy"],
+        "endpoint": "cblm://core-agent"
+      },
+      "cblm_bridge": {
+        "type": "Bridge Agent",
+        "status": "active",
+        "capabilities": ["communication", "synchronization", "data_exchange"],
+        "endpoint": "bridge://cblm-sync"
+      }
+    }
+  },
+  "communication": {
+    "protocol": "offline_bridge",
+    "encryption": "AES-256",
+    "sync_interval": "30s",
+    "message_queue": {
+      "max_size": 1000,
+      "retention": "24h"
+    }
+  },
+  "secrets": {
+    "gcp_project": "coolbits-ai",
+    "secrets_manager": {
+      "ocopilot_openai": "ocopilot-openai-key",
+      "xai_api": "xai-api-key"
+    }
+  },
+  "monitoring": {
+    "health_check": "enabled",
+    "metrics": "enabled",
+    "alerts": "enabled"
+  }
+}

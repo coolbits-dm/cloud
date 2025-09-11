@@ -1,0 +1,16 @@
+{
+  "certificate_id": "cb-api_authentication-1757221067",
+  "certificate_type": "SafeNetCertificateType.API_AUTHENTICATION",
+  "security_level": "SafeNetSecurityLevel.LEVEL_3",
+  "subject_name": "CN=COOL BITS S.R.L., O=COOL BITS S.R.L., C=RO",
+  "issuer_name": "THALES SafeNet CA",
+  "serial_number": "CB1757221067",
+  "valid_from": "2025-09-07 07:57:47.537669",
+  "valid_to": "2026-09-07 07:57:47.537669",
+  "key_size": 2048,
+  "signature_algorithm": "RSA-SHA256",
+  "thumbprint": "be3f90f4f9a4552c",
+  "is_active": true,
+  "company_registration": "J22/676/27.02.2020",
+  "company_cui": "42331573"
+}

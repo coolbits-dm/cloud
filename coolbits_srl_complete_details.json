@@ -1,0 +1,46 @@
+{
+  "company_name": "COOL BITS S.R.L.",
+  "cui": "42331573",
+  "euid": "ROONRC.J22/676/2020",
+  "registration_date": "27.02.2020",
+  "iban": "RO76INGB0000999910114315",
+  "bank": "ING Office Iași Anastasie Panu",
+  "address": {
+    "county": "Iași",
+    "city": "Iași", 
+    "street": "str. Columnei, nr.14, bl.K4, et.4, ap.19",
+    "zip": "700410"
+  },
+  "contact": {
+    "ceo": "Andrei",
+    "cto": "Bogdan",
+    "email_primary": "coolbits.dm@gmail.com",
+    "email_ceo": "andrei@coolbits.ro",
+    "email_cto": "bogdan.boureanu@gmail.com"
+  },
+  "google_cloud": {
+    "project_id": "coolbits-ai",
+    "project_number": "271190369805",
+    "region": "europe-west3",
+    "authentication": "coolbits.dm@gmail.com"
+  },
+  "infrastructure": {
+    "local_os": "Windows 11",
+    "gpu": "NVIDIA RTX 2060",
+    "cuda_version": "12.6",
+    "storage_type": "NVMe SSD",
+    "cpu_architecture": "x64",
+    "workspace": "C:\\Users\\andre\\Desktop\\coolbits"
+  },
+  "certificates": {
+    "ssl_certificate": "coolbits-srl-ssl-cert",
+    "api_certificate": "coolbits-srl-api-cert", 
+    "vertex_ai_certificate": "coolbits-srl-vertex-cert",
+    "company_registration": "J22/676/27.02.2020"
+  },
+  "banking": {
+    "iban": "RO76INGB0000999910114315",
+    "bank_name": "ING Office Iași Anastasie Panu",
+    "account_holder": "COOL BITS S.R.L."
+  }
+}

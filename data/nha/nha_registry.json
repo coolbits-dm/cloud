@@ -1,0 +1,643 @@
+{
+  "timestamp": "2025-09-11T08:19:54.871318",
+  "total_agents": 41,
+  "agents": {
+    "oAndy": {
+      "name": "oAndy",
+      "category": "personal_agent",
+      "description": "Personal assistant agent for general tasks",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oKim": {
+      "name": "oKim",
+      "category": "personal_agent",
+      "description": "Personal communication agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oPersonal": {
+      "name": "oPersonal",
+      "category": "personal_tools",
+      "description": "Responsible bot for personal tools management",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "run.invoker"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oFacebook": {
+      "name": "oFacebook",
+      "category": "personal_tools",
+      "description": "Facebook integration agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oTelegram": {
+      "name": "oTelegram",
+      "category": "personal_tools",
+      "description": "Telegram bot integration",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oTikTok": {
+      "name": "oTikTok",
+      "category": "personal_tools",
+      "description": "TikTok integration agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oLinkedIn": {
+      "name": "oLinkedIn",
+      "category": "personal_tools",
+      "description": "LinkedIn integration agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oX": {
+      "name": "oX",
+      "category": "personal_tools",
+      "description": "X (Twitter) integration agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oReddit": {
+      "name": "oReddit",
+      "category": "personal_tools",
+      "description": "Reddit integration agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oGmail": {
+      "name": "oGmail",
+      "category": "personal_tools",
+      "description": "Gmail integration agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "gmail.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oDocs": {
+      "name": "oDocs",
+      "category": "personal_tools",
+      "description": "Google Docs integration agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "docs.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oSheets": {
+      "name": "oSheets",
+      "category": "personal_tools",
+      "description": "Google Sheets integration agent",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "sheets.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oDiscord": {
+      "name": "oDiscord",
+      "category": "personal_tools",
+      "description": "Discord bot integration",
+      "responsible_bot": "oPersonal",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oBusinessChannels": {
+      "name": "oBusinessChannels",
+      "category": "business_channels",
+      "description": "Responsible bot for business channel management",
+      "responsible_bot": "oBusinessChannels",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "run.invoker"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oGoogleAds": {
+      "name": "oGoogleAds",
+      "category": "business_channels",
+      "description": "Google Ads integration agent",
+      "responsible_bot": "oBusinessChannels",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "ads.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oMetaAds": {
+      "name": "oMetaAds",
+      "category": "business_channels",
+      "description": "Meta (Facebook) Ads integration agent",
+      "responsible_bot": "oBusinessChannels",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oTikTokAds": {
+      "name": "oTikTokAds",
+      "category": "business_channels",
+      "description": "TikTok Ads integration agent",
+      "responsible_bot": "oBusinessChannels",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oLinkedInAds": {
+      "name": "oLinkedInAds",
+      "category": "business_channels",
+      "description": "LinkedIn Ads integration agent",
+      "responsible_bot": "oBusinessChannels",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oBusinessTools": {
+      "name": "oBusinessTools",
+      "category": "business_tools",
+      "description": "Responsible bot for business tools management",
+      "responsible_bot": "oBusinessTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "run.invoker"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oGA4": {
+      "name": "oGA4",
+      "category": "business_tools",
+      "description": "Google Analytics 4 integration agent",
+      "responsible_bot": "oBusinessTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "analytics.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oGTM": {
+      "name": "oGTM",
+      "category": "business_tools",
+      "description": "Google Tag Manager integration agent",
+      "responsible_bot": "oBusinessTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "tagmanager.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oGSC": {
+      "name": "oGSC",
+      "category": "business_tools",
+      "description": "Google Search Console integration agent",
+      "responsible_bot": "oBusinessTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "webmasters.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oGBP": {
+      "name": "oGBP",
+      "category": "business_tools",
+      "description": "Google Business Profile integration agent",
+      "responsible_bot": "oBusinessTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "businessprofile.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oCGS": {
+      "name": "oCGS",
+      "category": "business_tools",
+      "description": "Google Cloud Storage integration agent",
+      "responsible_bot": "oBusinessTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "storage.objectViewer"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oDev": {
+      "name": "oDev",
+      "category": "dev_tools",
+      "description": "Responsible bot for development tools management",
+      "responsible_bot": "oDev",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "run.invoker",
+        "cloudbuild.builds.create"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oCursor": {
+      "name": "oCursor",
+      "category": "dev_tools",
+      "description": "Cursor IDE integration agent",
+      "responsible_bot": "oDev",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oGit": {
+      "name": "oGit",
+      "category": "dev_tools",
+      "description": "Git integration agent",
+      "responsible_bot": "oDev",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "source.repos.read"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oDocker": {
+      "name": "oDocker",
+      "category": "dev_tools",
+      "description": "Docker integration agent",
+      "responsible_bot": "oDev",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "run.invoker"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oTerminal": {
+      "name": "oTerminal",
+      "category": "dev_tools",
+      "description": "Terminal integration agent",
+      "responsible_bot": "oDev",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oCloudBuild": {
+      "name": "oCloudBuild",
+      "category": "dev_tools",
+      "description": "Google Cloud Build integration agent",
+      "responsible_bot": "oDev",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "cloudbuild.builds.create"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oCloudRun": {
+      "name": "oCloudRun",
+      "category": "dev_tools",
+      "description": "Google Cloud Run integration agent",
+      "responsible_bot": "oDev",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "run.invoker"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oVertexAI": {
+      "name": "oVertexAI",
+      "category": "dev_tools",
+      "description": "Google Vertex AI integration agent",
+      "responsible_bot": "oDev",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "aiplatform.endpoints.predict"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oSEOTools": {
+      "name": "oSEOTools",
+      "category": "seo_tools",
+      "description": "Responsible bot for SEO tools management",
+      "responsible_bot": "oSEOTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "run.invoker"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oSEMrush": {
+      "name": "oSEMrush",
+      "category": "seo_tools",
+      "description": "SEMrush integration agent",
+      "responsible_bot": "oSEOTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oAhrefs": {
+      "name": "oAhrefs",
+      "category": "seo_tools",
+      "description": "Ahrefs integration agent",
+      "responsible_bot": "oSEOTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oMoz": {
+      "name": "oMoz",
+      "category": "seo_tools",
+      "description": "Moz integration agent",
+      "responsible_bot": "oSEOTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oScreamingFrog": {
+      "name": "oScreamingFrog",
+      "category": "seo_tools",
+      "description": "Screaming Frog integration agent",
+      "responsible_bot": "oSEOTools",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oAgencyMCC": {
+      "name": "oAgencyMCC",
+      "category": "agency_mcc",
+      "description": "Responsible bot for agency MCC management",
+      "responsible_bot": "oAgencyMCC",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "run.invoker"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oGoogleAdsMCC": {
+      "name": "oGoogleAdsMCC",
+      "category": "agency_mcc",
+      "description": "Google Ads MCC integration agent",
+      "responsible_bot": "oAgencyMCC",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter",
+        "ads.readonly"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oMetaAdsMCC": {
+      "name": "oMetaAdsMCC",
+      "category": "agency_mcc",
+      "description": "Meta Ads Manager integration agent",
+      "responsible_bot": "oAgencyMCC",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    },
+    "oLinkedInMCC": {
+      "name": "oLinkedInMCC",
+      "category": "agency_mcc",
+      "description": "LinkedIn Campaign Manager integration agent",
+      "responsible_bot": "oAgencyMCC",
+      "status": "active",
+      "gcloud_project": "coolbits-ai",
+      "service_account": null,
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "last_updated": "2025-09-11T08:19:54.871318",
+      "version": "1.0"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+# CoolBits.ai NHA Registry - IAM Minimum Permissions Policy
+# Defines minimum required permissions per category
+
+# Personal agents - minimal permissions
+personal:
+  - "storage.objectViewer"
+  - "logging.logWriter"
+  - "run.invoker"
+  - "roles/owner"
+
+# Business channels - read-only access
+biz_channels:
+  - "storage.objectViewer"
+  - "logging.logWriter"
+  - "run.invoker"
+  - "run.admin"
+  - "storage.objectAdmin"
+  - "monitoring.viewer"
+
+# Business tools - data access
+biz_tools:
+  - "storage.objectViewer"
+  - "logging.logWriter"
+  - "run.invoker"
+  - "monitoring.viewer"
+  - "storage.objectCreator"
+
+# SEO tools - read-only
+seo_tools:
+  - "storage.objectViewer"
+  - "logging.logWriter"
+  - "run.invoker"
+
+# Agency - read-only
+agency:
+  - "storage.objectViewer"
+  - "logging.logWriter"
+  - "run.invoker"
+
+# Development tools - build and deploy
+dev_tools:
+  - "storage.objectViewer"
+  - "logging.logWriter"
+  - "run.invoker"
+  - "cloudbuild.builds.create"
+  - "source.repos.read"
+  - "storage.objectCreator"
+
+# Infrastructure - service management
+infra:
+  - "run.invoker"
+  - "logging.logWriter"
+  - "storage.objectViewer"
+  - "storage.objectCreator"
+  - "monitoring.viewer"
+  - "monitoring.writer"
+  - "bigquery.dataViewer"
+  - "bigquery.jobUser"
+  - "kms.cryptoKeyDecrypter"
+  - "aiplatform.user"
+
+# Security - security operations
+security:
+  - "run.invoker"
+  - "logging.logWriter"
+  - "secretmanager.secretAccessor"
+  - "secretmanager.secretVersionManager"
+
+# MLOps - AI platform access
+mlops:
+  - "run.invoker"
+  - "storage.objectViewer"
+  - "aiplatform.user"
+  - "aiplatform.deploymentManager"
+
+# Operations - monitoring and chaos
+ops:
+  - "run.invoker"
+  - "logging.logWriter"
+  - "storage.objectViewer"
+  - "monitoring.viewer"
+  - "monitoring.writer"
+  - "billing.accounts.getSpendingInformation"

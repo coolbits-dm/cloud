@@ -1,0 +1,517 @@
+// Enhanced Prisma Schema for CoolBits.ai
+// Complete architecture with Vertex AI integration
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ========================================
+// CORE USER MANAGEMENT
+// ========================================
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Onboarding data
+  phone         String?
+  industry      String?
+  role          String?
+  
+  // Multi-usage types (replaces accountType)
+  usageTypes    UserUsageType[]
+  
+  // Business relationships
+  businesses    Business[]
+  
+  // Personal AI assistant
+  personalAI    PersonalAI?
+  
+  // AI conversations
+  conversations Conversation[]
+  
+  // User preferences and settings
+  preferences   UserPreferences?
+  
+  // NextAuth accounts and sessions
+  accounts      Account[]
+  sessions      Session[]
+  
+  // User documents for RAG
+  documents     Document[]
+  
+  // User integrations
+  integrations  UserIntegration[]
+}
+
+// User usage types (multiple selection)
+model UserUsageType {
+  id     String @id @default(cuid())
+  userId String
+  type   UsageType
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, type])
+}
+
+// User preferences
+model UserPreferences {
+  id                    String @id @default(cuid())
+  userId                String @unique
+  user                  User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // AI preferences
+  defaultAIModel        String @default("gpt-4")
+  fallbackAIModel       String @default("grok-2-mini")
+  enableContextSharing Boolean @default(true)
+  
+  // UI preferences
+  theme                 String @default("dark")
+  language              String @default("en")
+  
+  // Notification preferences
+  emailNotifications    Boolean @default(true)
+  pushNotifications     Boolean @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Personal AI Assistant
+model PersonalAI {
+  id          String @id @default(cuid())
+  userId      String @unique
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // AI configuration
+  name        String @default("Andrei")
+  personality String?
+  systemPrompt String?
+  
+  // Model preferences
+  primaryModel    String @default("gpt-4")
+  fallbackModel   String @default("grok-2-mini")
+  
+  // Context management
+  enableRAG       Boolean @default(true)
+  contextWindow   Int     @default(4000)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// BUSINESS MANAGEMENT
+// ========================================
+
+model Business {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  industry    String?
+  website     String?
+  logo        String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Business type
+  businessType BusinessType @default(REGULAR)
+  
+  // Relationships
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // AI agents for this business
+  aiAgents    AIAgent[]
+  
+  // Business conversations
+  conversations Conversation[]
+  
+  // Business documents
+  documents   Document[]
+  
+  // Business integrations
+  integrations BusinessIntegration[]
+  
+  // Business settings
+  settings    BusinessSettings?
+}
+
+// Business settings
+model BusinessSettings {
+  id         String @id @default(cuid())
+  businessId String @unique
+  business   Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  
+  // AI Council settings
+  enableAICouncil    Boolean @default(true)
+  aiCouncilSize      Int     @default(5)
+  
+  // Marketing settings
+  enableMarketingTools Boolean @default(true)
+  enableAnalytics      Boolean @default(true)
+  
+  // Agency settings (if business is agency)
+  enableMCCManagement Boolean @default(false)
+  enableClientManagement Boolean @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// AI Agent model (enhanced)
+model AIAgent {
+  id          String   @id @default(cuid())
+  name        String
+  role        String   // CEO, CTO, CMO, etc.
+  provider    AIProvider
+  businessId  String
+  business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  
+  // Agent configuration
+  systemPrompt String?
+  isActive     Boolean  @default(true)
+  
+  // Model configuration
+  primaryModel    String @default("gpt-4")
+  fallbackModel   String @default("grok-2-mini")
+  
+  // Context and knowledge
+  enableRAG       Boolean @default(true)
+  knowledgeBase   String? // Reference to knowledge base
+  
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  // Conversations
+  conversations Conversation[]
+}
+
+// ========================================
+// CONVERSATIONS & MESSAGES
+// ========================================
+
+model Conversation {
+  id        String   @id @default(cuid())
+  title     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Conversation type
+  type      ConversationType @default(PERSONAL)
+  
+  // Relationships
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  businessId String?
+  business   Business? @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  
+  aiAgentId String?
+  aiAgent   AIAgent? @relation(fields: [aiAgentId], references: [id], onDelete: Cascade)
+  
+  // Messages
+  messages  Message[]
+  
+  // Context management
+  contextId String? // Reference to conversation context
+}
+
+model Message {
+  id             String   @id @default(cuid())
+  content        String
+  role           MessageRole
+  model          String?  // gpt-4, grok-2-mini, etc.
+  tokens         Int?
+  cost           Float?
+  createdAt      DateTime @default(now())
+  
+  // Message metadata
+  metadata       Json?    // Additional metadata
+  
+  // Relationships
+  conversationId String
+  conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+}
+
+// ========================================
+// RAG & KNOWLEDGE MANAGEMENT
+// ========================================
+
+model Document {
+  id          String @id @default(cuid())
+  title       String
+  content     String
+  type        DocumentType
+  source      String? // URL, file path, etc.
+  
+  // Embeddings
+  embedding   Float[] // Vector embedding
+  
+  // Relationships
+  userId      String?
+  user        User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  businessId  String?
+  business    Business? @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  
+  // Metadata
+  metadata    Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model KnowledgeBase {
+  id          String @id @default(cuid())
+  name        String
+  description String?
+  type        KnowledgeBaseType
+  
+  // Documents in this knowledge base
+  documents   Document[]
+  
+  // Vector index configuration
+  embeddingModel String @default("text-embedding-ada-002")
+  chunkSize      Int     @default(1000)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// INTEGRATIONS & API KEYS
+// ========================================
+
+model UserIntegration {
+  id          String @id @default(cuid())
+  userId      String
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Integration details
+  type        IntegrationType
+  name        String
+  config      Json    // Configuration data
+  
+  // API keys (encrypted)
+  apiKey      String? // Encrypted API key
+  apiSecret   String? // Encrypted API secret
+  
+  // Status
+  isActive    Boolean @default(true)
+  lastSync    DateTime?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BusinessIntegration {
+  id          String @id @default(cuid())
+  businessId  String
+  business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  
+  // Integration details
+  type        BusinessIntegrationType
+  name        String
+  config      Json    // Configuration data
+  
+  // API keys (encrypted)
+  apiKey      String? // Encrypted API key
+  apiSecret   String? // Encrypted API secret
+  
+  // Status
+  isActive    Boolean @default(true)
+  lastSync    DateTime?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// INDUSTRY LIBRARIES
+// ========================================
+
+model IndustryTemplate {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  industry    String
+  
+  // Template content
+  marketingStrategies String[] // JSON array of strategies
+  caseStudies        String[] // JSON array of case studies
+  bestPractices      String[] // JSON array of best practices
+  
+  // AI prompts for this industry
+  aiPrompts   IndustryAIPrompt[]
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model IndustryAIPrompt {
+  id          String @id @default(cuid())
+  templateId  String
+  template    IndustryTemplate @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  
+  // Prompt details
+  name        String
+  description String?
+  prompt      String
+  category    String // marketing, strategy, analysis, etc.
+  
+  // Usage
+  usageCount  Int @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ========================================
+// ANALYTICS & AUDITING
+// ========================================
+
+model Analytics {
+  id          String @id @default(cuid())
+  userId      String?
+  businessId  String?
+  
+  // Analytics data
+  event       String
+  category    String
+  data        Json
+  
+  createdAt   DateTime @default(now())
+}
+
+model AuditLog {
+  id        String @id @default(cuid())
+  action    String
+  resource  String
+  userId    String?
+  ipAddress String?
+  userAgent String?
+  metadata  Json?
+  createdAt DateTime @default(now())
+}
+
+// ========================================
+// NEXTAUTH MODELS
+// ========================================
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ========================================
+// ENUMS
+// ========================================
+
+enum UsageType {
+  PERSONAL
+  BUSINESS
+  AGENCY
+  DEVELOPER
+}
+
+enum BusinessType {
+  REGULAR
+  AGENCY
+  STARTUP
+  ENTERPRISE
+}
+
+enum AIProvider {
+  OPENAI
+  XAI
+  GEMINI
+  CLAUDE
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+enum ConversationType {
+  PERSONAL
+  BUSINESS
+  AI_COUNCIL
+  DEVELOPMENT
+}
+
+enum DocumentType {
+  PDF
+  DOCX
+  TXT
+  MARKDOWN
+  WEBPAGE
+  IMAGE
+}
+
+enum KnowledgeBaseType {
+  PERSONAL
+  BUSINESS
+  INDUSTRY
+  GENERAL
+}
+
+enum IntegrationType {
+  SOCIAL_MEDIA
+  EMAIL
+  CALENDAR
+  STORAGE
+  PRODUCTIVITY
+  CUSTOM
+}
+
+enum BusinessIntegrationType {
+  MARKETING
+  CRM
+  ANALYTICS
+  ADVERTISING
+  SOCIAL_MEDIA
+  EMAIL_MARKETING
+  CUSTOM
+}

@@ -1,0 +1,62 @@
+{
+  "analysis": {
+    "certificate_status": {
+      "issuer": "DigiSign Qualified CA Class 3 2017",
+      "subject": "BOUREANU ANDREI-CIPRIAN",
+      "thumbprint": "AD61CB7BF502EBF90B75898D51F4327A833670E5",
+      "valid_from": "2023-06-06",
+      "valid_to": "2025-06-05",
+      "status": "EXPIRED",
+      "days_overdue": 94,
+      "certificate_type": "Qualified Certificate",
+      "purpose": "Digital Signature & Authentication"
+    },
+    "urgency_level": "CRITICAL",
+    "action_required": "IMMEDIATE RENEWAL",
+    "plan_recommendations": [
+      "IMMEDIATE: Contact DigiSign for emergency renewal",
+      "BASIC: Standard certificate should be sufficient",
+      "PRO: Only needed for advanced features (bulk signing, API integration)"
+    ],
+    "pro_plan_needed": false,
+    "estimated_costs": {
+      "basic_renewal": "Contact DigiSign for pricing",
+      "pro_features": "49\u20ac/year (if advanced features needed)",
+      "safeNet_driver": "Usually included"
+    }
+  },
+  "renewal_plan": {
+    "immediate_actions": [
+      "Contact DigiSign support for emergency renewal",
+      "Provide company documentation (COOL BITS SRL)",
+      "Submit CEO identification (BOUREANU ANDREI-CIPRIAN)",
+      "Request qualified certificate renewal"
+    ],
+    "plan_selection": {
+      "recommended": "Basic Certificate",
+      "reason": "Sufficient for digital signature and authentication",
+      "pro_plan_needed": false,
+      "pro_plan_considerations": [
+        "Only if bulk document signing required",
+        "Only if API integration needed",
+        "Only if advanced signature formats required"
+      ]
+    },
+    "safeNet_integration": {
+      "driver_included": true,
+      "additional_cost": "Usually none",
+      "installation_required": true
+    },
+    "timeline": {
+      "contact_digisign": "IMMEDIATE (today)",
+      "document_submission": "Within 24 hours",
+      "certificate_issuance": "3-5 business days",
+      "installation": "Same day as receipt"
+    },
+    "cost_estimate": {
+      "basic_certificate": "Contact DigiSign for current pricing",
+      "pro_features": "49\u20ac/year (only if needed)",
+      "total_estimated": "Basic certificate cost + installation time"
+    }
+  }
+}

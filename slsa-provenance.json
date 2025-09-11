@@ -1,0 +1,48 @@
+# CoolBits.ai Supply Chain Security Configuration
+# ===============================================
+
+# SLSA Provenance Generation
+{
+  "version": 1,
+  "attestations": [
+    {
+      "name": "build",
+      "predicateType": "https://slsa.dev/provenance/v1",
+      "predicate": {
+        "buildDefinition": {
+          "buildType": "https://slsa.dev/build/v1",
+          "externalParameters": {
+            "source": {
+              "uri": "https://github.com/coolbits-ai/coolbits-ai",
+              "digest": {
+                "sha256": "PLACEHOLDER_SHA256"
+              }
+            },
+            "parameters": {
+              "dockerfile": "Dockerfile",
+              "image": "coolbits-ai:latest"
+            }
+          },
+          "resolvedDependencies": [
+            {
+              "uri": "https://github.com/coolbits-ai/coolbits-ai",
+              "digest": {
+                "sha256": "PLACEHOLDER_SHA256"
+              }
+            }
+          ]
+        },
+        "runDetails": {
+          "builder": {
+            "id": "https://github.com/coolbits-ai/coolbits-ai/actions/runs/PLACEHOLDER_RUN_ID"
+          },
+          "metadata": {
+            "invocationId": "PLACEHOLDER_INVOCATION_ID",
+            "startedOn": "PLACEHOLDER_START_TIME",
+            "finishedOn": "PLACEHOLDER_FINISH_TIME"
+          }
+        }
+      }
+    }
+  ]
+}

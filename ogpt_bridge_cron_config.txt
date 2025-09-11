@@ -1,0 +1,130 @@
+# oGPT-Bridge Cron Configuration
+# COOL BITS SRL 🏢 - Internal Secret
+# CEO: Andrei
+# AI Assistant: oCursor
+# Classification: Internal Secret - CoolBits.ai 🏢 Members Only
+
+# ============================================================================
+# CRON JOB CONFIGURATION FOR oGPT-BRIDGE SYSTEM
+# ============================================================================
+
+# Linux/Unix Crontab Entry (crontab -e):
+# Run oGPT-Bridge status check every 30 seconds
+* * * * * /c/Users/andre/Desktop/coolbits/ogpt_bridge_cron_wrapper.sh status
+* * * * * sleep 30; /c/Users/andre/Desktop/coolbits/ogpt_bridge_cron_wrapper.sh status
+
+# Alternative: Run every minute
+# */1 * * * * /c/Users/andre/Desktop/coolbits/ogpt_bridge_cron_wrapper.sh status
+
+# Alternative: Run every 5 minutes
+# */5 * * * * /c/Users/andre/Desktop/coolbits/ogpt_bridge_cron_wrapper.sh status
+
+# ============================================================================
+# WINDOWS TASK SCHEDULER CONFIGURATION
+# ============================================================================
+
+# Task Name: oGPT-Bridge Status Monitor
+# Description: Monitor oGPT-Bridge system status every 30 seconds
+# 
+# General Tab:
+# - Name: oGPT-Bridge Status Monitor
+# - Description: Monitor oGPT-Bridge system status and logs
+# - Security Options: Run whether user is logged on or not
+# - Hidden: No
+# - Run with highest privileges: Yes
+#
+# Triggers Tab:
+# - Begin the task: At startup
+# - Repeat task every: 30 seconds
+# - For a duration of: Indefinitely
+# - Enabled: Yes
+#
+# Actions Tab:
+# - Action: Start a program
+# - Program/script: powershell.exe
+# - Add arguments: -ExecutionPolicy Bypass -File "C:\Users\andre\Desktop\coolbits\ogpt_bridge_cron_wrapper.ps1" status
+# - Start in: C:\Users\andre\Desktop\coolbits
+#
+# Conditions Tab:
+# - Start the task only if the following network connection is available: Any connection
+# - Wake the computer to run this task: No
+#
+# Settings Tab:
+# - Allow task to be run on demand: Yes
+# - Run task as soon as possible after a scheduled start is missed: Yes
+# - If the task fails, restart every: 1 minute
+# - Attempt to restart up to: 3 times
+# - Stop the task if it runs longer than: 1 hour
+# - If the running task does not end when requested, force it to stop: Yes
+# - If the task is already running, then the following rule applies: Do not start a new instance
+
+# ============================================================================
+# DEPLOYMENT INSTRUCTIONS
+# ============================================================================
+
+# Linux/Unix Deployment:
+# 1. Make script executable:
+#    chmod +x /c/Users/andre/Desktop/coolbits/ogpt_bridge_cron_wrapper.sh
+#
+# 2. Add to crontab:
+#    crontab -e
+#    # Add the cron entry above
+#
+# 3. Verify cron job:
+#    crontab -l
+#
+# 4. Check cron logs:
+#    tail -f /var/log/cron
+#    # or
+#    journalctl -u cron -f
+
+# Windows Deployment:
+# 1. Open Task Scheduler (taskschd.msc)
+# 2. Create Basic Task
+# 3. Follow the configuration above
+# 4. Test the task manually
+# 5. Monitor in Task Scheduler Library
+
+# ============================================================================
+# MONITORING AND LOGS
+# ============================================================================
+
+# Log Files Location:
+# - Bridge Cron Log: C:\Users\andre\Desktop\coolbits\ogpt_bridge_logs\bridge_cron.log
+# - Bridge Output Log: C:\Users\andre\Desktop\coolbits\ogpt_bridge_logs\bridge_output.log
+# - Bridge Data: C:\Users\andre\Desktop\coolbits\ogpt_bridge_data\
+
+# Log Monitoring Commands:
+# PowerShell: Get-Content "C:\Users\andre\Desktop\coolbits\ogpt_bridge_logs\bridge_cron.log" -Tail 10 -Wait
+# Linux: tail -f /c/Users/andre/Desktop/coolbits/ogpt_bridge_logs/bridge_cron.log
+
+# ============================================================================
+# TROUBLESHOOTING
+# ============================================================================
+
+# Common Issues:
+# 1. Script permissions: chmod +x script.sh
+# 2. Python path: Ensure Python is in PATH
+# 3. Virtual environment: Activate before running
+# 4. Log directory: Ensure write permissions
+# 5. PID file: Check for stale PID files
+
+# Debug Commands:
+# - Check if bridge is running: ./ogpt_bridge_cron_wrapper.sh status
+# - Start bridge manually: ./ogpt_bridge_cron_wrapper.sh start
+# - Stop bridge manually: ./ogpt_bridge_cron_wrapper.sh stop
+# - Restart bridge: ./ogpt_bridge_cron_wrapper.sh restart
+
+# ============================================================================
+# SECURITY NOTES
+# ============================================================================
+
+# Security Classification: Internal Secret - CoolBits.ai 🏢 Members Only
+# - All scripts and configurations are proprietary to COOL BITS SRL 🏢
+# - Access restricted to authorized CoolBits.ai members only
+# - Logs may contain sensitive information
+# - Ensure proper file permissions and access controls
+
+# ============================================================================
+# END OF CONFIGURATION
+# ============================================================================

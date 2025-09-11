@@ -1,0 +1,92 @@
+{
+  "title": "Google Workspace Admin Console Email Routing Setup",
+  "company": "COOL BITS SRL \ud83c\udfe2 \ud83c\udfe2",
+  "primary_email": "andrei@coolbits.ai",
+  "customer_id": "C00tzrczu",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Access Google Workspace Admin Console",
+      "description": "Sign in to Google Workspace Admin Console",
+      "url": "https://admin.google.com",
+      "instructions": [
+        "Go to https://admin.google.com",
+        "Sign in with andrei@coolbits.ai",
+        "Ensure you have Super Admin privileges"
+      ]
+    },
+    {
+      "step": 2,
+      "title": "Navigate to Gmail Routing Settings",
+      "description": "Access Gmail routing configuration",
+      "instructions": [
+        "Click on 'Menu' in the Admin Console",
+        "Go to 'Apps' > 'Google Workspace' > 'Gmail'",
+        "Click on 'Routing' (not 'Default routing')",
+        "Select the top-level organizational unit"
+      ]
+    },
+    {
+      "step": 3,
+      "title": "Configure Email Forwarding",
+      "description": "Set up address maps for email routing",
+      "instructions": [
+        "Scroll down to 'Email forwarding using recipient address map'",
+        "Click 'Configure' or 'Add Another Rule'",
+        "Enter descriptive name: 'CoolBits Email Routing'"
+      ]
+    },
+    {
+      "step": 4,
+      "title": "Add Address Mappings",
+      "description": "Configure individual email address mappings",
+      "mappings": [
+        {
+          "original_address": "andrei@coolbits.ro",
+          "map_to_address": "andrei@coolbits.ai",
+          "action": "redirect",
+          "priority": "highest"
+        },
+        {
+          "original_address": "coolbits.dm@gmail.com",
+          "map_to_address": "andrei@coolbits.ai",
+          "action": "forward",
+          "priority": "highest"
+        },
+        {
+          "original_address": "coolbits.ro@gmail.com",
+          "map_to_address": "andrei@coolbits.ai",
+          "action": "forward",
+          "priority": "high"
+        },
+        {
+          "original_address": "coolbits.ai@gmail.com",
+          "map_to_address": "andrei@coolbits.ai",
+          "action": "forward",
+          "priority": "high"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "title": "Configure Routing Settings",
+      "description": "Set routing preferences and options",
+      "settings": {
+        "messages_to_affect": "All incoming messages",
+        "also_route_to_original": "Checked (for forward actions)",
+        "add_x_gm_original_to_header": "Checked",
+        "apply_to_external_only": "Unchecked"
+      }
+    },
+    {
+      "step": 6,
+      "title": "Save Configuration",
+      "description": "Save and activate email routing",
+      "instructions": [
+        "Review all address mappings",
+        "Click 'Save' at the bottom of the configuration",
+        "Wait for changes to propagate (up to 24 hours)"
+      ]
+    }
+  ]
+}

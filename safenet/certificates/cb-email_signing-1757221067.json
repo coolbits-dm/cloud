@@ -1,0 +1,16 @@
+{
+  "certificate_id": "cb-email_signing-1757221067",
+  "certificate_type": "SafeNetCertificateType.EMAIL_SIGNING",
+  "security_level": "SafeNetSecurityLevel.LEVEL_3",
+  "subject_name": "CN=COOL BITS S.R.L., O=COOL BITS S.R.L., C=RO",
+  "issuer_name": "THALES SafeNet CA",
+  "serial_number": "CB1757221067",
+  "valid_from": "2025-09-07 07:57:47.543859",
+  "valid_to": "2026-09-07 07:57:47.543859",
+  "key_size": 2048,
+  "signature_algorithm": "RSA-SHA256",
+  "thumbprint": "4426b2b6602b5000",
+  "is_active": true,
+  "company_registration": "J22/676/27.02.2020",
+  "company_cui": "42331573"
+}

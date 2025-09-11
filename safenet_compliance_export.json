@@ -1,0 +1,193 @@
+{
+  "company_info": {
+    "name": "COOL BITS S.R.L.",
+    "cui": "42331573",
+    "registration": "ROONRC.J22/676/2020"
+  },
+  "policies": {
+    "CB-CERT-001": {
+      "policy_id": "CB-CERT-001",
+      "policy_name": "Certificate Management Policy",
+      "policy_level": "SecurityPolicyLevel.HIGH",
+      "description": "Policy for managing digital certificates and keys",
+      "rules": [
+        {
+          "rule_id": "CERT-001-001",
+          "description": "All certificates must be stored in secure hardware",
+          "enforcement": "mandatory",
+          "violation_action": "revoke_certificate"
+        },
+        {
+          "rule_id": "CERT-001-002",
+          "description": "Certificate passwords must be at least 12 characters",
+          "enforcement": "mandatory",
+          "violation_action": "reject_certificate"
+        },
+        {
+          "rule_id": "CERT-001-003",
+          "description": "Certificates must be renewed 30 days before expiry",
+          "enforcement": "mandatory",
+          "violation_action": "send_alert"
+        }
+      ],
+      "enforcement_level": "high",
+      "effective_date": "2025-09-07 07:57:10.903705",
+      "expiry_date": null,
+      "company_registration": "J22/676/27.02.2020",
+      "company_cui": "42331573"
+    },
+    "CB-SIGN-001": {
+      "policy_id": "CB-SIGN-001",
+      "policy_name": "Digital Signing Policy",
+      "policy_level": "SecurityPolicyLevel.CRITICAL",
+      "description": "Policy for digital document signing procedures",
+      "rules": [
+        {
+          "rule_id": "SIGN-001-001",
+          "description": "All business documents must be digitally signed",
+          "enforcement": "mandatory",
+          "violation_action": "reject_document"
+        },
+        {
+          "rule_id": "SIGN-001-002",
+          "description": "Signing requires dual authentication",
+          "enforcement": "mandatory",
+          "violation_action": "deny_access"
+        },
+        {
+          "rule_id": "SIGN-001-003",
+          "description": "All signatures must be timestamped",
+          "enforcement": "mandatory",
+          "violation_action": "reject_signature"
+        }
+      ],
+      "enforcement_level": "critical",
+      "effective_date": "2025-09-07 07:57:10.903705",
+      "expiry_date": null,
+      "company_registration": "J22/676/27.02.2020",
+      "company_cui": "42331573"
+    },
+    "CB-AUDIT-001": {
+      "policy_id": "CB-AUDIT-001",
+      "policy_name": "Audit Trail Policy",
+      "policy_level": "SecurityPolicyLevel.HIGH",
+      "description": "Policy for maintaining comprehensive audit trails",
+      "rules": [
+        {
+          "rule_id": "AUDIT-001-001",
+          "description": "All operations must be logged with timestamps",
+          "enforcement": "mandatory",
+          "violation_action": "system_alert"
+        },
+        {
+          "rule_id": "AUDIT-001-002",
+          "description": "Audit logs must be retained for 7 years",
+          "enforcement": "mandatory",
+          "violation_action": "compliance_violation"
+        },
+        {
+          "rule_id": "AUDIT-001-003",
+          "description": "Audit logs must be tamper-proof",
+          "enforcement": "mandatory",
+          "violation_action": "security_incident"
+        }
+      ],
+      "enforcement_level": "high",
+      "effective_date": "2025-09-07 07:57:10.903705",
+      "expiry_date": null,
+      "company_registration": "J22/676/27.02.2020",
+      "company_cui": "42331573"
+    },
+    "CB-ACCESS-001": {
+      "policy_id": "CB-ACCESS-001",
+      "policy_name": "Access Control Policy",
+      "policy_level": "SecurityPolicyLevel.HIGH",
+      "description": "Policy for controlling access to SafeNet resources",
+      "rules": [
+        {
+          "rule_id": "ACCESS-001-001",
+          "description": "Role-based access control must be implemented",
+          "enforcement": "mandatory",
+          "violation_action": "deny_access"
+        },
+        {
+          "rule_id": "ACCESS-001-002",
+          "description": "Multi-factor authentication required for admin access",
+          "enforcement": "mandatory",
+          "violation_action": "lock_account"
+        },
+        {
+          "rule_id": "ACCESS-001-003",
+          "description": "Session timeouts must be configured",
+          "enforcement": "mandatory",
+          "violation_action": "terminate_session"
+        }
+      ],
+      "enforcement_level": "high",
+      "effective_date": "2025-09-07 07:57:10.903705",
+      "expiry_date": null,
+      "company_registration": "J22/676/27.02.2020",
+      "company_cui": "42331573"
+    }
+  },
+  "audit_events": [
+    {
+      "event_id": "audit-1757221030",
+      "event_type": "AuditEventType.COMPLIANCE_CHECK",
+      "timestamp": "2025-09-07 07:57:10.909787",
+      "user_id": "test_user",
+      "resource_id": "cert_001",
+      "action": "validate_create_certificate",
+      "result": "success",
+      "details": {
+        "violations": [],
+        "operation": "create_certificate"
+      },
+      "ip_address": "127.0.0.1",
+      "user_agent": "SafeNet-System",
+      "compliance_status": "ComplianceStatus.COMPLIANT"
+    },
+    {
+      "event_id": "audit-1757221030",
+      "event_type": "AuditEventType.COMPLIANCE_CHECK",
+      "timestamp": "2025-09-07 07:57:10.912045",
+      "user_id": "test_user",
+      "resource_id": "doc_001",
+      "action": "validate_sign_document",
+      "result": "success",
+      "details": {
+        "violations": [],
+        "operation": "sign_document"
+      },
+      "ip_address": "127.0.0.1",
+      "user_agent": "SafeNet-System",
+      "compliance_status": "ComplianceStatus.COMPLIANT"
+    }
+  ],
+  "compliance_report": {
+    "report_id": "compliance-1757221030",
+    "report_date": "2025-09-07 07:57:10.929326",
+    "company_name": "COOL BITS S.R.L.",
+    "company_cui": "42331573",
+    "overall_status": "ComplianceStatus.COMPLIANT",
+    "policy_compliance": {
+      "CB-CERT-001": "ComplianceStatus.COMPLIANT",
+      "CB-SIGN-001": "ComplianceStatus.COMPLIANT",
+      "CB-AUDIT-001": "ComplianceStatus.COMPLIANT",
+      "CB-ACCESS-001": "ComplianceStatus.COMPLIANT"
+    },
+    "audit_summary": {
+      "total_events": 2,
+      "compliant_events": 2,
+      "non_compliant_events": 0,
+      "compliance_rate": 1.0,
+      "last_audit": "2025-09-07T07:57:10.912045"
+    },
+    "recommendations": [
+      "Schedule regular compliance reviews",
+      "Update security policies as needed"
+    ],
+    "next_review_date": "2025-10-07 07:57:10.929326"
+  },
+  "export_timestamp": "2025-09-07T07:57:10.929326"
+}

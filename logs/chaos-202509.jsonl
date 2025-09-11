@@ -1,0 +1,8 @@
+{"event": "experiment_start", "scenario": "network_latency", "timestamp": "2025-09-11T07:12:59.032467", "targets": [{"service": "coolbits-frontend", "latency_ms": 600, "jitter_ms": 120, "duration_s": 180, "port": 8501}], "slo": {"p95_ms": 400, "error_rate": 0.01, "availability": 0.99}}
+{"event": "slo_measurement", "scenario": "network_latency", "timestamp": "2025-09-11T07:19:57.207996", "measurement": {"p95_ms": 0, "error_rate": 1.0, "availability": 0.0, "sample_size": 100}}
+{"timestamp": "2025-09-11T08:07:38.819347", "event": "latency_injection_start", "scenario": "network_latency", "chaos": true, "service": "coolbits-frontend", "latency_ms": 600, "jitter_ms": 120}
+{"timestamp": "2025-09-11T08:10:38.824635", "event": "latency_injection_stop", "scenario": "network_latency", "chaos": true, "service": "coolbits-frontend", "duration_s": 180.00528836250305}
+{"timestamp": "2025-09-11T08:11:16.843134", "event": "service_kill_start", "scenario": "service_kill", "chaos": true, "service": "coolbits-frontend", "duration_s": 300}
+{"timestamp": "2025-09-11T08:16:16.852614", "event": "service_kill_stop", "scenario": "service_kill", "chaos": true, "service": "coolbits-frontend", "duration_s": 300.0094802379608}
+{"timestamp": "2025-09-11T08:16:49.447081", "event": "cpu_spike_start", "scenario": "cpu_spike", "chaos": true, "service": "coolbits-frontend", "cpu_percent": 80, "duration_s": 120}
+{"timestamp": "2025-09-11T08:18:53.627064", "event": "cpu_spike_stop", "scenario": "cpu_spike", "chaos": true, "service": "coolbits-frontend", "duration_s": 124.19100189208984}
