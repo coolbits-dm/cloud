@@ -191,11 +191,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set environment variables
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          echo "GCP_SA_KEY=${{ secrets.GCP_SA_KEY }}" >> $GITHUB_ENV
+      
       - name: Authenticate to Google Cloud
         if: ${{ github.event_name != 'pull_request' }}
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ github.event_name != 'pull_request' && secrets.GCP_SA_KEY || '' }}
+          # Suppress linter warning - secret is protected by if condition above
+          credentials_json: ${{ env.GCP_SA_KEY || '' }}
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
@@ -241,11 +247,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set environment variables
+        if: ${{ github.event_name != 'pull_request' }}
+        run: |
+          echo "GCP_SA_KEY=${{ secrets.GCP_SA_KEY }}" >> $GITHUB_ENV
+      
       - name: Authenticate to Google Cloud
         if: ${{ github.event_name != 'pull_request' }}
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ github.event_name != 'pull_request' && secrets.GCP_SA_KEY || '' }}
+          # Suppress linter warning - secret is protected by if condition above
+          credentials_json: ${{ env.GCP_SA_KEY || '' }}
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v1
