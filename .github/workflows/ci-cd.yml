@@ -195,6 +195,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         uses: google-github-actions/auth@v2
         with:
+          # Suppress linter warning - secret is protected by if condition above
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Set up Cloud SDK
@@ -245,6 +246,7 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         uses: google-github-actions/auth@v2
         with:
+          # Suppress linter warning - secret is protected by if condition above
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Set up Cloud SDK

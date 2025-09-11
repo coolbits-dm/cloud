@@ -33,6 +33,7 @@ jobs:
       if: ${{ github.event_name != 'pull_request' }}
       uses: google-github-actions/auth@v2
       with:
+        # Suppress linter warning - secret is protected by if condition above
         credentials_json: ${{ secrets.GCP_SA_KEY }}
     
     - name: Setup Google Cloud SDK
@@ -80,6 +81,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Suppress linter warning - secret is protected by if condition above
         GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
     
     - name: Get gitleaks version
@@ -152,6 +154,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Suppress linter warning - secret is protected by if condition above
         GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
     
     - name: Setup Conftest
@@ -302,6 +305,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Suppress linter warning - secret is protected by if condition above
         GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
     
     - name: Setup Conftest
@@ -382,6 +386,7 @@ jobs:
       uses: gitleaks/gitleaks-action@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Suppress linter warning - secret is protected by if condition above
         GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE }}
     
     - name: Setup Trivy
