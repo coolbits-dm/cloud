@@ -3113,6 +3113,86 @@ def dual_account_management():
     print("🔒 Classification: Internal Secret - CoolBits.ai Members Only")
     print("=" * 80)
 
+# M-gate Status Management
+# ========================
+
+from pathlib import Path
+import json
+import time
+
+STATE_PATH = Path("panel/state.json")
+GATES_PATH = Path("panel/gates.jsonl")
+
+def set_milestone_status(milestone: str, state: dict) -> None:
+    """
+    Set milestone status and persist to panel/state.json
+    
+    Args:
+        milestone: Milestone identifier (e.g., "M15", "M16")
+        state: Status dictionary with all components
+    """
+    state = dict(state or {})
+    state["milestone"] = milestone
+    state["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+    
+    # Ensure panel directory exists
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    
+    # Write state.json
+    STATE_PATH.write_text(
+        json.dumps(state, ensure_ascii=False, separators=(",", ":")), 
+        encoding="utf-8"
+    )
+    
+    # Create gate record
+    gate = {
+        "ts": state["updated_at"],
+        "milestone": milestone,
+        "commit_sha": state.get("commit_sha"),
+        "overall": state.get("overall")
+    }
+    
+    # Append to gates.jsonl
+    with GATES_PATH.open("a", encoding="utf-8") as fp:
+        fp.write(json.dumps(gate, ensure_ascii=False) + "\n")
+    
+    print(f"✅ Milestone {milestone} status set: {state.get('overall', 'UNKNOWN')}")
+    print(f"📁 State persisted to: {STATE_PATH}")
+    print(f"📝 Gate record added to: {GATES_PATH}")
+
+def get_milestone_status() -> dict:
+    """
+    Get current milestone status from panel/state.json
+    
+    Returns:
+        Status dictionary or empty dict if not found
+    """
+    try:
+        if STATE_PATH.exists():
+            with STATE_PATH.open("r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Warning: Failed to load milestone status: {e}")
+    
+    return {}
+
+def is_milestone_healthy() -> bool:
+    """
+    Check if current milestone is healthy
+    
+    Returns:
+        True if overall status is HEALTHY and Proof Pack is fresh
+    """
+    status = get_milestone_status()
+    
+    if not status:
+        return False
+    
+    overall_healthy = status.get("overall") == "HEALTHY"
+    proofpack_fresh = status.get("proofpack", {}).get("fresh", False)
+    
+    return overall_healthy and proofpack_fresh
+
 
 # Global function for current AI status
 def current_ai_status():
@@ -3174,6 +3254,86 @@ def current_ai_status():
     print("=" * 80)
     print("🔒 Classification: Internal Secret - CoolBits.ai Members Only")
     print("=" * 80)
+
+# M-gate Status Management
+# ========================
+
+from pathlib import Path
+import json
+import time
+
+STATE_PATH = Path("panel/state.json")
+GATES_PATH = Path("panel/gates.jsonl")
+
+def set_milestone_status(milestone: str, state: dict) -> None:
+    """
+    Set milestone status and persist to panel/state.json
+    
+    Args:
+        milestone: Milestone identifier (e.g., "M15", "M16")
+        state: Status dictionary with all components
+    """
+    state = dict(state or {})
+    state["milestone"] = milestone
+    state["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+    
+    # Ensure panel directory exists
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    
+    # Write state.json
+    STATE_PATH.write_text(
+        json.dumps(state, ensure_ascii=False, separators=(",", ":")), 
+        encoding="utf-8"
+    )
+    
+    # Create gate record
+    gate = {
+        "ts": state["updated_at"],
+        "milestone": milestone,
+        "commit_sha": state.get("commit_sha"),
+        "overall": state.get("overall")
+    }
+    
+    # Append to gates.jsonl
+    with GATES_PATH.open("a", encoding="utf-8") as fp:
+        fp.write(json.dumps(gate, ensure_ascii=False) + "\n")
+    
+    print(f"✅ Milestone {milestone} status set: {state.get('overall', 'UNKNOWN')}")
+    print(f"📁 State persisted to: {STATE_PATH}")
+    print(f"📝 Gate record added to: {GATES_PATH}")
+
+def get_milestone_status() -> dict:
+    """
+    Get current milestone status from panel/state.json
+    
+    Returns:
+        Status dictionary or empty dict if not found
+    """
+    try:
+        if STATE_PATH.exists():
+            with STATE_PATH.open("r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Warning: Failed to load milestone status: {e}")
+    
+    return {}
+
+def is_milestone_healthy() -> bool:
+    """
+    Check if current milestone is healthy
+    
+    Returns:
+        True if overall status is HEALTHY and Proof Pack is fresh
+    """
+    status = get_milestone_status()
+    
+    if not status:
+        return False
+    
+    overall_healthy = status.get("overall") == "HEALTHY"
+    proofpack_fresh = status.get("proofpack", {}).get("fresh", False)
+    
+    return overall_healthy and proofpack_fresh
 
 
 # Enterprise Milestone Status (M8-M14)
@@ -3287,3 +3447,83 @@ def enterprise_milestone_status():
     print("=" * 80)
     print("🔒 Classification: Internal Secret - CoolBits.ai Members Only")
     print("=" * 80)
+
+# M-gate Status Management
+# ========================
+
+from pathlib import Path
+import json
+import time
+
+STATE_PATH = Path("panel/state.json")
+GATES_PATH = Path("panel/gates.jsonl")
+
+def set_milestone_status(milestone: str, state: dict) -> None:
+    """
+    Set milestone status and persist to panel/state.json
+    
+    Args:
+        milestone: Milestone identifier (e.g., "M15", "M16")
+        state: Status dictionary with all components
+    """
+    state = dict(state or {})
+    state["milestone"] = milestone
+    state["updated_at"] = time.strftime("%Y-%m-%dT%H:%M:%S%z")
+    
+    # Ensure panel directory exists
+    STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    
+    # Write state.json
+    STATE_PATH.write_text(
+        json.dumps(state, ensure_ascii=False, separators=(",", ":")), 
+        encoding="utf-8"
+    )
+    
+    # Create gate record
+    gate = {
+        "ts": state["updated_at"],
+        "milestone": milestone,
+        "commit_sha": state.get("commit_sha"),
+        "overall": state.get("overall")
+    }
+    
+    # Append to gates.jsonl
+    with GATES_PATH.open("a", encoding="utf-8") as fp:
+        fp.write(json.dumps(gate, ensure_ascii=False) + "\n")
+    
+    print(f"✅ Milestone {milestone} status set: {state.get('overall', 'UNKNOWN')}")
+    print(f"📁 State persisted to: {STATE_PATH}")
+    print(f"📝 Gate record added to: {GATES_PATH}")
+
+def get_milestone_status() -> dict:
+    """
+    Get current milestone status from panel/state.json
+    
+    Returns:
+        Status dictionary or empty dict if not found
+    """
+    try:
+        if STATE_PATH.exists():
+            with STATE_PATH.open("r", encoding="utf-8") as f:
+                return json.load(f)
+    except Exception as e:
+        print(f"Warning: Failed to load milestone status: {e}")
+    
+    return {}
+
+def is_milestone_healthy() -> bool:
+    """
+    Check if current milestone is healthy
+    
+    Returns:
+        True if overall status is HEALTHY and Proof Pack is fresh
+    """
+    status = get_milestone_status()
+    
+    if not status:
+        return False
+    
+    overall_healthy = status.get("overall") == "HEALTHY"
+    proofpack_fresh = status.get("proofpack", {}).get("fresh", False)
+    
+    return overall_healthy and proofpack_fresh
