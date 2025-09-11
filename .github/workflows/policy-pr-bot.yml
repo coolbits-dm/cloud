@@ -5,17 +5,9 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  workflow_dispatch:
-    inputs:
-      policy_recommendations_file:
-        description: 'Path to policy recommendations YAML file'
-        required: true
-        default: 'cblm/opipe/nha/policy_recommendations.yaml'
   pull_request:
     types: [opened, synchronize, labeled]
-    paths:
-      - "policy/**"
-      - "agents.yaml"
+  workflow_dispatch:
 
 env:
   M15_MODE: autonomy
@@ -120,7 +112,7 @@ jobs:
 
   # Job 2: Generate Policy PR
   generate-policy-pr:
-    if: ${{ github.event_name != 'push' && needs.validate-recommendations.outputs.recommendations_count > 0 }}
+    if: ${{ github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
     
     steps:
