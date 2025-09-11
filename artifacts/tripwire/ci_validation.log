@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "C:\Users\andre\Desktop\coolbits\scripts\validate_m15_pr.py", line 341, in <module>
+    main()
+  File "C:\Users\andre\Desktop\coolbits\scripts\validate_m15_pr.py", line 337, in main
+    success = validator.validate_pr()
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\andre\Desktop\coolbits\scripts\validate_m15_pr.py", line 30, in validate_pr
+    print("\U0001f50d M15 Policy PR Bot Validation")
+  File "C:\Users\andre\AppData\Local\Programs\Python\Python311\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f50d' in position 0: character maps to <undefined>
+Exit code: 1

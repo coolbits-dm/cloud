@@ -1,0 +1,8 @@
+{
+  "availability_pct": 99.7,
+  "latency_p95_ms": 126.6,
+  "error_budget_remaining_pct": 85.0,
+  "error_rate": 0.008,
+  "uptime_hours": 24,
+  "slo_status": "HEALTHY"
+}

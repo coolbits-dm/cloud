@@ -1,0 +1,12 @@
+# GitHub Actions Configuration
+# Suppress false positive warnings
+
+name: "GitHub Actions Linter Config"
+
+# Ignore warnings for secret access that is properly protected
+ignore_warnings:
+  - "Context access might be invalid: GCP_SA_KEY"
+  - "Context access might be invalid: GITLEAKS_LICENSE"
+  - "Context access might be invalid: has_critical"
+
+# These are false positives because secrets are protected with conditional access
