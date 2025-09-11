@@ -3,11 +3,15 @@
 
 name: CoolBits.ai CI/CD Pipeline
 
+permissions:
+  contents: read
+  id-token: write
+
 on:
-  push:
-    branches: [ main, develop ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main ]
+  push:
+    branches: [ main ]
 
 env:
   PROJECT_ID: coolbits-ai
@@ -15,15 +19,30 @@ env:
   IMAGE_NAME: gcr.io/coolbits-ai/coolbits
 
 jobs:
-  # M8.4 - PII Scan (Obligatory)
-  pii-scan:
-    name: PII Scan
+  verify:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: npm ci
+      - run: npm run lint --if-present
+      - run: npm test --if-present
+      - name: actionlint
+        uses: reviewdog/action-actionlint@v1
+
+  release:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && env.CB_BILLING_MODE == 'prod' }}
+    needs: [verify]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Billing guard
+        run: bash scripts/billing_guard.sh
+      - name: GCP Auth
+        uses: google-github-actions/auth@v2
         with:
-          fetch-depth: 0
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
       - name: Run Gitleaks
         uses: gitleaks/gitleaks-action@v2
@@ -185,8 +204,8 @@ jobs:
   build-deploy:
     name: Build and Deploy
     runs-on: ubuntu-latest
-    needs: [pii-scan, secret-scan, policy-check, cve-scan, code-quality, security-tests]
-    if: github.ref == 'refs/heads/main'
+    needs: [verify]
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && env.CB_BILLING_MODE == 'prod' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

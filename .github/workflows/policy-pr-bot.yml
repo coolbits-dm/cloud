@@ -227,6 +227,7 @@ jobs:
     
     - name: Push policy update branch
       run: |
+        BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
         git push origin "$BRANCH_NAME"
         echo "✅ Pushed branch: $BRANCH_NAME"
     
