@@ -7,10 +7,11 @@ on:
         description: 'Path to policy recommendations YAML file'
         required: true
         default: 'cblm/opipe/nha/policy_recommendations.yaml'
-  push:
+  pull_request:
+    types: [opened, synchronize, labeled]
     paths:
-      - 'cblm/opipe/nha/policy_recommendations.yaml'
-      - 'reports/policy_gaps.json'
+      - "policy/**"
+      - "agents.yaml"
 
 env:
   M15_MODE: autonomy
@@ -115,10 +116,8 @@ jobs:
 
   # Job 2: Generate Policy PR
   generate-policy-pr:
+    if: ${{ github.event_name != 'push' && needs.validate-recommendations.outputs.recommendations_count > 0 }}
     runs-on: ubuntu-latest
-    name: Generate Policy PR
-    needs: validate-recommendations
-    if: needs.validate-recommendations.outputs.recommendations_count > 0
     
     steps:
     - name: Checkout code

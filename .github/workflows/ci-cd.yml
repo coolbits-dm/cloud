@@ -14,13 +14,12 @@ on:
     branches: [ main ]
 
 env:
-  PROJECT_ID: coolbits-ai
-  REGION: europe-west3
-  IMAGE_NAME: gcr.io/coolbits-ai/coolbits
   CB_BILLING_MODE: dev
 
 jobs:
   verify:
+    # rulează pe PR și pe push când NU e prod
+    if: ${{ github.event_name == 'pull_request' || env.CB_BILLING_MODE != 'prod' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +32,8 @@ jobs:
         uses: reviewdog/action-actionlint@v1
 
   release:
-    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && env.CB_BILLING_MODE == 'prod' }}
+    # DOAR pe push + prod
+    if: ${{ github.event_name == 'push' && env.CB_BILLING_MODE == 'prod' }}
     needs: [verify]
     runs-on: ubuntu-latest
     steps:

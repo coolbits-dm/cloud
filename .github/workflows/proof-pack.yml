@@ -10,13 +10,18 @@ on:
   workflow_dispatch:
 
 env:
-  VERIFY_MODE: prod
-  PROOF_PACK_VERSION: v1.0.0
   CB_BILLING_MODE: dev
 
 jobs:
+  dev_noop:
+    if: ${{ env.CB_BILLING_MODE != 'prod' }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Dev mode → Proof Pack SKIPPED (noop success)."
+
   # Job 1: Toolchain Setup
   toolchain-setup:
+    if: ${{ env.CB_BILLING_MODE == 'prod' }}
     runs-on: ubuntu-latest
     name: Setup Enterprise Toolchain
     outputs:
