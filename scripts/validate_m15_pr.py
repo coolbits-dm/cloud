@@ -87,10 +87,14 @@ class PolicyPRValidator:
             with gaps_file.open() as f:
                 gaps_data = json.load(f)
                 
-            if not gaps_data.get("gaps"):
+            if not gaps_data.get("all_gaps"):
                 self.warnings.append("No policy gaps found - rationale may be empty")
             else:
-                print(f"  ✅ Found {len(gaps_data['gaps'])} policy gaps for rationale")
+                print(f"  ✅ Found {len(gaps_data['all_gaps'])} policy gaps for rationale")
+                # Check if gaps are relevant to current changes
+                high_priority = gaps_data.get("high_priority_gaps", [])
+                if high_priority:
+                    print(f"  ✅ Found {len(high_priority)} high-priority gaps for rationale")
                 
         except Exception as e:
             self.errors.append(f"Failed to read policy_gaps.json: {e}")

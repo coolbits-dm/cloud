@@ -1,7 +1,7 @@
 {
-  "generated_at": "2025-09-11T06:00:30Z",
+  "generated_at": "2025-09-11T07:48:30Z",
   "source_file": "reports/policy_collect_last_24h.json",
-  "analysis_window": "2025-09-11T06:00:30Z",
+  "analysis_window": "2025-09-11T07:48:24Z",
   "total_violations": 2,
   "total_gaps": 2,
   "gaps_by_priority": {
