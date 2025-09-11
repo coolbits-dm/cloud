@@ -1,5 +1,7 @@
 # CoolBits.ai - Enterprise AI Platform
 
+![CI - verify](https://github.com/coolbits-dm/cloud/actions/workflows/ci-cd.yml/badge.svg?branch=main)
+
 ## 🚀 Quick Start (20 minutes)
 
 ### Prerequisites
