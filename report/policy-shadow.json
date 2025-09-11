@@ -1,7 +1,1 @@
-{
-  "drift_pct": 0.0,
-  "deny_rate_pct": 0.0,
-  "shadow_eval_passed": true,
-  "policy_changes": 0,
-  "validation_status": "PASSED"
-}
+{"mode":"shadow","drift":0,"deny_rate":0,"note":"dev placeholder"}

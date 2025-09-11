@@ -1,5 +1,5 @@
 {
-  "milestone": "M16-PRE",
+  "milestone": "M16",
   "commit_sha": "ca27a7bf5",
   "proofpack": {
     "hash": "CA5C7C8DD398D0BCB03F7FE4187FE2320A27C83D7DFE2E384BCA5BD6FC2948AE",
@@ -31,5 +31,5 @@
     "slo_status": "HEALTHY"
   },
   "overall": "HEALTHY",
-  "assembled_at": "2025-09-11T08:23:32.294268+00:00"
+  "updated_at": "2025-01-11T10:30:00+00:00"
 }
