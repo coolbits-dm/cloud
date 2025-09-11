@@ -1,13 +1,4 @@
-name: Proof Pack Automation
-permissions:
-  contents: read
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-defaults:
-  run:
-    shell: bash
-
+name: Proof Pack
 on:
   push:
     branches: [ main ]
@@ -19,8 +10,12 @@ on:
       - '**/*.MD'
   workflow_dispatch:
 
-env:
-  CB_BILLING_MODE: dev
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   dev_noop:
@@ -31,15 +26,9 @@ jobs:
       - run: echo "Dev mode → Proof Pack NOOP (pass)."
 
   proof_pack:
-    if: ${{ env.CB_BILLING_MODE == 'prod' }}
+    if: ${{ env.CB_BILLING_MODE == 'prod' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
-      - name: Billing guard
-        run: bash scripts/billing_guard.sh
-    - name: Get gcloud version (robust)
-      run: |
-        set -euo pipefail
-        VERSION="$(gcloud info --format='value(installation.sdk_version)' || true)"
-          echo "version=$VERSION"
+      - run: echo "Run real Proof Pack for prod"

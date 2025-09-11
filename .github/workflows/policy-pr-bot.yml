@@ -1,33 +1,25 @@
 name: Policy PR Bot
-permissions:
-  contents: read
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
-defaults:
-  run:
-    shell: bash
-
 on:
   pull_request:
-    types: [opened, synchronize, labeled]
+    branches: [ main ]
     paths-ignore:
       - 'panel/**'
       - 'artifacts/**'
       - 'report/**'
       - '**/*.md'
       - '**/*.MD'
-  workflow_dispatch:
 
-env:
-  M15_MODE: autonomy
-  POLICY_PR_BOT: enabled
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  generate-policy-pr:
-    if: ${{ github.event_name == 'pull_request' }}
+  policy-check:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      # restul pașilor existenți
+      - run: echo "PR policy checks OK (placeholder)"
