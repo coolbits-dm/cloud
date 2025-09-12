@@ -1,0 +1,63 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "UI: local (next start, sanity)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoLogo","-NoProfile","-ExecutionPolicy","Bypass",
+        "-File","${workspaceFolder}\\sites\\app\\scripts\\m18_local_test.ps1"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "new" }
+    },
+    {
+      "label": "GW: deploy dev (Cloud Run)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoLogo","-NoProfile","-ExecutionPolicy","Bypass",
+        "-File","${workspaceFolder}\\gateway\\scripts\\m19_deploy.ps1"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "new" }
+    },
+    {
+      "label": "Billing: E2E (M20.2)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoLogo","-NoProfile","-ExecutionPolicy","Bypass",
+        "-File","${workspaceFolder}\\gateway\\scripts\\m20_2_billing.ps1",
+        "-Org","demo","-Reconcile"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "new" }
+    },
+    {
+      "label": "Orchestrator: seed + run (M19.3)",
+      "type": "shell",
+      "command": "pwsh",
+      "args": [
+        "-NoLogo","-NoProfile","-ExecutionPolicy","Bypass",
+        "-File","${workspaceFolder}\\gateway\\scripts\\m19_3_e2e.ps1"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "new" }
+    },
+    {
+      "label": "Ship it (dev)",
+      "dependsOn": [
+        "UI: local (next start, sanity)",
+        "GW: deploy dev (Cloud Run)",
+        "Billing: E2E (M20.2)"
+      ],
+      "dependsOrder": "sequence"
+    }
+  ]
+}
