@@ -4,8 +4,8 @@ from .envelope import new_envelope, sign, verify, Envelope as PipeEnvelope
 VER = "opipe-0.1"
 KEY_ENV = "OPIPE_HMAC_KEY"
 
-def make_event(src: str, dst: list[str], body: dict) -> PipeEnvelope:
-    return new_envelope(VER, "event", src, dst, body)
+def make_event(src: str, dst: list[str], body: dict, agent_type: str = "human") -> PipeEnvelope:
+    return new_envelope(VER, "event", src, dst, body, agent_type=agent_type)
 
 def sign_env(env: PipeEnvelope) -> PipeEnvelope:
     return sign(env, KEY_ENV)

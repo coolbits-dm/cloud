@@ -12,6 +12,7 @@ class Envelope:
     ts: float          # epoch seconds
     src: str           # agent/role, ex: ogpt01/CEO
     dst: list[str]     # destinatari
+    agent_type: str    # human | non-human (pentru @oNHA)
     corr: Optional[str] = None
     ttl_s: int = 300
     nonce: str = ""
@@ -51,10 +52,10 @@ def verify(env: Envelope, key_env: str, replay_db: Optional[set[str]] = None) ->
     if not hmac.compare_digest(env.sig or "", expected or ""):
         raise ValueError("Bad HMAC signature")
 
-def new_envelope(ver: str, typ: str, src: str, dst: list[str], body: Dict[str, Any], ttl_s: int = 300) -> Envelope:
+def new_envelope(ver: str, typ: str, src: str, dst: list[str], body: Dict[str, Any], agent_type: str = "human", ttl_s: int = 300) -> Envelope:
     return Envelope(
         ver=ver, typ=typ, id=_ksuid(), ts=time.time(), src=src, dst=dst,
-        corr=None, ttl_s=ttl_s, nonce=_nonce(), sig=None, body=body
+        agent_type=agent_type, corr=None, ttl_s=ttl_s, nonce=_nonce(), sig=None, body=body
     )
 
 def _nonce() -> str:

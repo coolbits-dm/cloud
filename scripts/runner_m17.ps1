@@ -1,5 +1,6 @@
 # scripts/runner_m17.ps1
 # Non-interactive, cap-coadă. Rulează local pipeline M17.
+# Folosește helper-ii din str.py pentru consistență.
 $ErrorActionPreference='Stop'
 $ProgressPreference='SilentlyContinue'
 $env:CB_BILLING_MODE = $env:CB_BILLING_MODE ?? 'dev'
@@ -21,12 +22,13 @@ if (Test-Path "app\andrei\andrei.py") {
   python app\andrei\andrei.py
 }
 
-# 4) Metrics simple
+# 4) Metrics simple cu launcher tracking
 $metrics = @{
   ts=(Get-Date).ToUniversalTime().ToString("o")
   node=$nodev; python=$pyv
   non_interactive_guard="pass"
   cb_mode=$env:CB_BILLING_MODE
+  launcher="m17_noninteractive_all.ps1"
 }
 $path="artifacts/dev/metrics/runner_metrics.json"
 New-Item -ItemType Directory -Force -Path (Split-Path $path) | Out-Null

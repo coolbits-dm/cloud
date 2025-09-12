@@ -1,8 +1,31 @@
 {
   "actor": "andre",
-  "milestone": "M17",
+  "m18_answers": {
+    "bits_scope": "global graph in artifacts/dev/bits/graph.json with scope field",
+    "board_roles": [
+      "chair",
+      "reviewer",
+      "analyst",
+      "scribe"
+    ],
+    "nha_map": [
+      "sentiment",
+      "summarize",
+      "tagging"
+    ],
+    "tokens_dev_gate": "dev mode allows negative balance with alerts only",
+    "walls_scope": "per panel: u-wall/b-wall/a-wall/d-wall map to user/business/agency/dev"
+  },
+  "m18_status": "completed",
+  "milestone": "M18",
   "mode": "dev",
   "overall": "HEALTHY",
+  "panels": [
+    "user",
+    "business",
+    "agency",
+    "dev"
+  ],
   "sha": "662343baeffcf6dd8e509dc8fe0a9c8663c7b96c",
-  "updated_at": "2025-09-11T15:30:54.987421+00:00"
+  "updated_at": ""
 }

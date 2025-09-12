@@ -1,0 +1,48 @@
+{
+  "bits": [
+    {
+      "config": {
+        "event": "wall_post_created"
+      },
+      "id": "e76d146a95ae886a",
+      "inputs": [],
+      "kind": "trigger",
+      "name": "Trigger: New Post",
+      "outputs": [
+        "post_data"
+      ],
+      "scope": "global"
+    },
+    {
+      "config": {
+        "service": "sentiment_analysis"
+      },
+      "id": "4752b81dace4b250",
+      "inputs": [
+        "post_data"
+      ],
+      "kind": "action",
+      "name": "Action: Analyze Sentiment",
+      "outputs": [
+        "sentiment_result"
+      ],
+      "scope": "global"
+    }
+  ],
+  "flows": [
+    {
+      "id": "051b7ea41a91b3e2",
+      "name": "Demo Sentiment Flow",
+      "steps": [
+        {
+          "bit_id": "e76d146a95ae886a",
+          "order": 1
+        },
+        {
+          "bit_id": "4752b81dace4b250",
+          "order": 2
+        }
+      ]
+    }
+  ]
+}

@@ -7,8 +7,17 @@ $ErrorActionPreference              = 'Stop'
 $ProgressPreference                 = 'SilentlyContinue'
 $InformationPreference              = 'SilentlyContinue'
 $ConfirmPreference                  = 'None'
+
+# 1) permite autoload-ul ca să putem importa cmdlet-urile de bază
+$PSModuleAutoLoadingPreference      = 'All'
+Import-Module Microsoft.PowerShell.Management -ErrorAction Stop
+Import-Module Microsoft.PowerShell.Utility    -ErrorAction Stop
+
+# 2) după ce le-am încărcat, putem opri autoload-ul
 $PSModuleAutoLoadingPreference      = 'None'
-$env:GIT_TERMINAL_PROMPT            = '0'     # Git nu are voie să ceară parolă
+
+# 3) env invariants
+$env:GIT_TERMINAL_PROMPT            = '0'     # Git n-are voie să ceară parolă
 $env:CB_BILLING_MODE                = $env:CB_BILLING_MODE ?? 'dev'
 $env:PYTHONUTF8                     = '1'
 

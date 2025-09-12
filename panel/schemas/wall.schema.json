@@ -1,0 +1,48 @@
+{
+  "$id": "cb.wall.v0",
+  "type": "object",
+  "properties": {
+    "panel": { "type": "string", "enum": ["user","business","agency","dev"] },
+    "posts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "author": { "type": "string" }, 
+          "ts": { "type": "string", "format": "date-time" },
+          "text": { "type": "string" },
+          "attachments": { "type": "array", "items": { "type": "string" } },
+          "mentions": { "type": "array", "items": { "type": "string" } }, 
+          "nha_invocations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "agent_id": { "type": "string" },
+                "role": { "type": "string" },
+                "status": { "type": "string", "enum": ["queued","running","done","error"] },
+                "result_ref": { "type": "string" }
+              },
+              "required": ["agent_id","role","status"]
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "author": { "type": "string" },
+                "ts": { "type": "string", "format": "date-time" },
+                "text": { "type": "string" }
+              },
+              "required": ["author","ts","text"]
+            }
+          }
+        },
+        "required": ["id","author","ts","text"]
+      }
+    }
+  },
+  "required": ["panel","posts"]
+}

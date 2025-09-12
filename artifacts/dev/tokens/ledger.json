@@ -1,0 +1,15 @@
+{
+  "balance": 100.0,
+  "entries": [
+    {
+      "delta": 100.0,
+      "meta": {
+        "source": "m18_seed"
+      },
+      "reason": "Initial demo balance",
+      "ref": "initial_balance",
+      "ts": "2025-09-12T04:53:04.219677Z"
+    }
+  ],
+  "unit": "cbT"
+}
