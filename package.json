@@ -1,0 +1,14 @@
+{
+  "name": "camarad-vreveal-2.0",
+  "private": true,
+  "workspaces": ["ui-veternal", "ui-andy", "ui-primitives"],
+  "scripts": {
+    "dev": "concurrently \"npm:dev:*\" --names \"vEternal,Andy\" --prefix-colors \"cyan,red\"",
+    "dev:veternal": "npm run dev -w ui-veternal",
+    "dev:andy": "npm run dev -w ui-andy",
+    "build": "npm run build -w ui-veternal && npm run build -w ui-andy"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

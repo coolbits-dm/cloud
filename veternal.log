@@ -1,0 +1,25 @@
+
+> dev:veternal
+> npm run dev -w ui-veternal
+
+
+> ui-veternal@0.0.0 dev
+> vite
+
+Port 5173 is in use, trying another one...
+Port 5174 is in use, trying another one...
+Port 5175 is in use, trying another one...
+Port 5176 is in use, trying another one...
+Port 5177 is in use, trying another one...
+
+  VITE v7.2.2  ready in 238 ms
+
+  ➜  Local:   http://localhost:npm error Lifecycle script `dev` failed with error:
+npm error code 143
+npm error path /opt/camarad-backend/_sandbox/ui-veternal
+npm error workspace ui-veternal@0.0.0
+npm error location /opt/camarad-backend/_sandbox/ui-veternal
+npm error command failed
+npm error command sh -c vite
+ommand failed
+npm error command sh -c vite
