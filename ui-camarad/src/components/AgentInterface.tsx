@@ -26,10 +26,10 @@ export default function AgentInterface() {
     <div className="p-8 bg-black text-cyan-400 border border-cyan-600 rounded-lg">
       <h2 className="text-3xl mb-6">Camarad Executor – Super Admin</h2>
       <div className="flex gap-4 mb-6">
-        <Button onClick={() => setMode('mock')} variant={mode === 'mock' ? "default" : "outline"} className="text-xl">
+        <Button onClick={() => setMode('mock')} className={`text-xl ${mode === 'mock' ? 'bg-cyan-300' : 'bg-transparent border-cyan-500'}`}>
           CAMARAD MOCK (0$)
         </Button>
-        <Button onClick={() => setMode('byok')} variant={mode === 'byok' ? "default" : "outline"} className="text-xl">
+        <Button onClick={() => setMode('byok')} className={`text-xl ${mode === 'byok' ? 'bg-cyan-300' : 'bg-transparent border-cyan-500'}`}>
           CAMARAD BYOK (real)
         </Button>
       </div>
