@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-09-07T05:58:46.233637",
+  "meta_config": {
+    "app_id": "825511663344104",
+    "owner": "Andrei Cip",
+    "company": "COOL BITS SRL",
+    "ceo": "Andrei",
+    "verification_date": "2025-09-06",
+    "status": "verified",
+    "google_secrets": "configured",
+    "api_integration": "preparing"
+  },
+  "connection_result": {
+    "app_id": "825511663344104",
+    "owner": "Andrei Cip",
+    "status": "preparing",
+    "message": "Meta Platform connection prepared for API integration",
+    "timestamp": "2025-09-07T05:58:46.232489"
+  },
+  "api_endpoints": {
+    "user_info": "https://graph.facebook.com/v18.0/825511663344104",
+    "messages": "https://graph.facebook.com/v18.0/825511663344104/messages",
+    "analytics": "https://graph.facebook.com/v18.0/825511663344104/insights",
+    "webhooks": "https://graph.facebook.com/v18.0/825511663344104/subscriptions"
+  },
+  "features_status": {
+    "authentication": "preparing",
+    "messaging": "preparing",
+    "analytics": "preparing",
+    "webhooks": "preparing"
+  }
+}

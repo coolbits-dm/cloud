@@ -1,0 +1,20 @@
+{
+  "board_name": "User Board",
+  "charter": "Governing board for user panel operations and decisions.",
+  "meetings": [],
+  "members": [
+    {
+      "agent_type": "human",
+      "display": "Human Chair",
+      "id": "human_chair",
+      "role": "chair"
+    },
+    {
+      "agent_type": "non-human",
+      "display": "AI Scribe",
+      "id": "nha_scribe",
+      "role": "scribe"
+    }
+  ],
+  "panel": "user"
+}

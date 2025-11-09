@@ -1,0 +1,65 @@
+# CoolBits.ai Monthly Chaos Experiments
+# Complete DR drill with backup restoration and failover
+
+schedule:
+  name: "monthly_chaos"
+  description: "Monthly disaster recovery drill"
+  frequency: "monthly"
+  day: 1
+  time: "04:00"
+  timezone: "Europe/Bucharest"
+
+experiments:
+  - scenario: "service_kill"
+    config:
+      kill_duration_s: 300
+      recovery_timeout_s: 600
+    slo:
+      p95_ms: 400
+      error_rate: 0.01
+    safety:
+      max_downtime_s: 600
+      kill_switch_s: 300
+
+  - scenario: "db_fail"
+    config:
+      fail_duration_s: 240
+      recovery_timeout_s: 480
+    slo:
+      p95_ms: 400
+      error_rate: 0.01
+    safety:
+      max_downtime_s: 480
+      kill_switch_s: 240
+
+  - scenario: "mem_leak"
+    config:
+      leak_rate_mb_per_s: 5
+      duration_s: 180
+      max_memory_mb: 2048
+    slo:
+      p95_ms: 400
+      error_rate: 0.01
+    safety:
+      max_memory_percent: 85
+      kill_switch_s: 180
+
+dr_drill:
+  backup_restoration: true
+  failover_testing: true
+  rto_target_s: 300
+  rpo_target_s: 60
+  verification_checks:
+    - "service_health"
+    - "database_connectivity"
+    - "api_endpoints"
+    - "monitoring_alerts"
+
+guardrails:
+  blast_radius: "staging_only"
+  error_budget_threshold: 0.1
+  max_concurrent_experiments: 3
+  auto_heal_enabled: true
+  rollback_timeout_s: 300
+  wait_between_experiments_s: 600
+  emergency_stop_enabled: true

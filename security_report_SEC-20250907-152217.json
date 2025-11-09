@@ -1,0 +1,90 @@
+{
+  "report_id": "SEC-20250907-152217",
+  "generated_at": "2025-09-07T15:22:17.260538",
+  "verifier": "@SafeNet",
+  "company": "COOL BITS SRL",
+  "certificate_status": {
+    "status": "verified",
+    "certificate_valid": false,
+    "days_until_expiry": -94,
+    "issuer_trusted": true,
+    "subject_match": true,
+    "thumbprint": "AD61CB7BF502EBF90B75898D51F4327A833670E5",
+    "verified_at": "2025-09-07T15:22:17.231076",
+    "verifier": "@SafeNet"
+  },
+  "str_security_status": {
+    "status": "secure",
+    "file_exists": true,
+    "size_bytes": 126311,
+    "encrypted": true,
+    "pin_protected": true,
+    "microsoft_account": "andrei@coolbits.ro",
+    "location": "app\\andrei\\secure\\str.py",
+    "checked_at": "2025-09-07T15:22:17.260538",
+    "verifier": "@SafeNet"
+  },
+  "security_policies": {
+    "str_protection": {
+      "location": "app/andrei/secure/str.py",
+      "encryption": "EFS",
+      "pin_protection": true,
+      "microsoft_account": "andrei@coolbits.ro",
+      "access_control": "Restricted to ANDREI\\andre only"
+    },
+    "certificate_policy": {
+      "issuer": "DigiSign Qualified CA Class 3 2017",
+      "subject": "BOUREANU ANDREI-CIPRIAN",
+      "validity": "2023-06-06 to 2025-06-05",
+      "serial_number": "2005062450018890C68F229A81905B24",
+      "thumbprint": "AD61CB7BF502EBF90B75898D51F4327A833670E5"
+    },
+    "bridge_security": {
+      "hmac_auth": true,
+      "ip_allowlist": true,
+      "rate_limiting": true,
+      "audit_logging": true,
+      "zero_trust": true
+    }
+  },
+  "audit_log": [
+    {
+      "action": "certificate_verification",
+      "result": {
+        "status": "verified",
+        "certificate_valid": false,
+        "days_until_expiry": -94,
+        "issuer_trusted": true,
+        "subject_match": true,
+        "thumbprint": "AD61CB7BF502EBF90B75898D51F4327A833670E5",
+        "verified_at": "2025-09-07T15:22:17.231076",
+        "verifier": "@SafeNet"
+      },
+      "timestamp": "2025-09-07T15:22:17.231076"
+    },
+    {
+      "action": "str_security_check",
+      "result": {
+        "status": "secure",
+        "file_exists": true,
+        "size_bytes": 126311,
+        "encrypted": true,
+        "pin_protected": true,
+        "microsoft_account": "andrei@coolbits.ro",
+        "location": "app\\andrei\\secure\\str.py",
+        "checked_at": "2025-09-07T15:22:17.260538",
+        "verifier": "@SafeNet"
+      },
+      "timestamp": "2025-09-07T15:22:17.260538"
+    }
+  ],
+  "recommendations": [
+    "Certificate expires soon - consider renewal",
+    "Certificate has expired - immediate renewal required",
+    "str.py security is properly configured",
+    "Regular security audits recommended",
+    "Monitor certificate expiration dates",
+    "Maintain PIN protection for sensitive files",
+    "Keep audit logs for compliance"
+  ]
+}

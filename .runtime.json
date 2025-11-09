@@ -1,0 +1,8 @@
+{
+  "port": 8080,
+  "bridge_pid": 6432,
+  "autostart": true,
+  "started_at": "2025-09-11 04:52:46",
+  "dashboard_pid": 24828,
+  "bridge_port": 8100
+}

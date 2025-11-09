@@ -1,0 +1,4 @@
+{
+  "error": "gsutil command not found",
+  "gsutil_available": false
+}

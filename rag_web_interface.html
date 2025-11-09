@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 CoolBits.ai RAG System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: #666;
+            font-weight: 500;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .panel h2 {
+            color: #667eea;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .category-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-description {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .document-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .document-item {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #28a745;
+        }
+
+        .document-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-meta {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .document-content {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.4;
+            max-height: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-success {
+            background: #28a745;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+        }
+
+        .upload-area {
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .upload-area.dragover {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #764ba2;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 CoolBits.ai RAG System</h1>
+            <p>Advanced Retrieval-Augmented Generation Management</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="totalDocuments">-</h3>
+                <p>Total Documents</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="totalCategories">-</h3>
+                <p>Categories</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="systemStatus">-</h3>
+                <p>System Status</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="lastUpdate">-</h3>
+                <p>Last Update</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="panel">
+                <h2>📁 Categories</h2>
+                <div id="categoriesList" class="loading">Loading categories...</div>
+            </div>
+
+            <div class="panel">
+                <h2>📄 Recent Documents</h2>
+                <div id="documentsList" class="loading">Loading documents...</div>
+            </div>
+        </div>
+
+        <div class="panel" style="margin-top: 2rem;">
+            <h2>📤 Upload New Document</h2>
+            <div class="upload-area" id="uploadArea">
+                <p>📁 Drag & drop files here or click to select</p>
+                <input type="file" id="fileInput" style="display: none;" multiple>
+                <button class="btn" onclick="document.getElementById('fileInput').click()">Choose Files</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="categorySelect">Category:</label>
+                <select id="categorySelect">
+                    <option value="u-rag">User RAG</option>
+                    <option value="b-rag" selected>Business RAG</option>
+                    <option value="a-rag">Agency RAG</option>
+                    <option value="d-rag">Development RAG</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="documentTitle">Document Title:</label>
+                <input type="text" id="documentTitle" placeholder="Enter document title">
+            </div>
+
+            <div class="form-group">
+                <label for="documentContent">Document Content:</label>
+                <textarea id="documentContent" placeholder="Enter document content"></textarea>
+            </div>
+
+            <button class="btn btn-success" onclick="createDocument()">Create Document</button>
+            <button class="btn btn-secondary" onclick="refreshData()">Refresh Data</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8097/api';
+        
+        // Global state
+        let categories = {};
+        let documents = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSystemStats();
+            loadCategories();
+            loadDocuments();
+            setupFileUpload();
+        });
+
+        // Load system statistics
+        async function loadSystemStats() {
+            try {
+                const response = await fetch(API_BASE.replace('/api', ''));
+                const data = await response.json();
+                
+                document.getElementById('totalDocuments').textContent = data.total_documents || 0;
+                document.getElementById('totalCategories').textContent = data.total_categories || 0;
+                document.getElementById('systemStatus').textContent = data.status || 'Unknown';
+                document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+            } catch (error) {
+                console.error('Error loading system stats:', error);
+            }
+        }
+
+        // Load categories
+        async function loadCategories() {
+            try {
+                const response = await fetch(`${API_BASE}/categories`);
+                const data = await response.json();
+                
+                categories = data.categories.reduce((acc, cat) => {
+                    acc[cat.name] = cat;
+                    return acc;
+                }, {});
+
+                renderCategories();
+            } catch (error) {
+                console.error('Error loading categories:', error);
+                document.getElementById('categoriesList').innerHTML = '<div class="error">Error loading categories</div>';
+            }
+        }
+
+        // Render categories
+        function renderCategories() {
+            const container = document.getElementById('categoriesList');
+            const categoriesList = Object.values(categories);
+            
+            if (categoriesList.length === 0) {
+                container.innerHTML = '<div class="loading">No categories found</div>';
+                return;
+            }
+
+            container.innerHTML = categoriesList.map(cat => `
+                <div class="category-item">
+                    <div class="category-name">${cat.name}</div>
+                    <div class="category-description">${cat.description || 'No description'}</div>
+                    <div class="category-stats">
+                        <span>Documents: ${cat.document_count || 0}</span>
+                        <span>Updated: ${new Date(cat.last_updated).toLocaleDateString()}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Load documents
+        async function loadDocuments() {
+            try {
+                const response = await fetch(`${API_BASE}/documents`);
+                const data = await response.json();
+                
+                documents = data.documents || [];
+                renderDocuments();
+            } catch (error) {
+                console.error('Error loading documents:', error);
+                document.getElementById('documentsList').innerHTML = '<div class="error">Error loading documents</div>';
+            }
+        }
+
+        // Render documents
+        function renderDocuments() {
+            const container = document.getElementById('documentsList');
+            
+            if (documents.length === 0) {
+                container.innerHTML = '<div class="loading">No documents found</div>';
+                return;
+            }
+
+            // Show only recent 5 documents
+            const recentDocs = documents.slice(0, 5);
+            
+            container.innerHTML = recentDocs.map(doc => `
+                <div class="document-item">
+                    <div class="document-title">${doc.title}</div>
+                    <div class="document-meta">
+                        Category: ${doc.category} | 
+                        Source: ${doc.source} | 
+                        Created: ${new Date(doc.created_at).toLocaleDateString()}
+                    </div>
+                    <div class="document-content">${doc.content.substring(0, 200)}${doc.content.length > 200 ? '...' : ''}</div>
+                </div>
+            `).join('');
+        }
+
+        // Setup file upload
+        function setupFileUpload() {
+            const uploadArea = document.getElementById('uploadArea');
+            const fileInput = document.getElementById('fileInput');
+
+            uploadArea.addEventListener('click', () => fileInput.click());
+            
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+            
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+            
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                fileInput.files = e.dataTransfer.files;
+                handleFileUpload();
+            });
+
+            fileInput.addEventListener('change', handleFileUpload);
+        }
+
+        // Handle file upload
+        async function handleFileUpload() {
+            const fileInput = document.getElementById('fileInput');
+            const files = fileInput.files;
+            
+            if (files.length === 0) return;
+
+            for (let file of files) {
+                await uploadFile(file);
+            }
+        }
+
+        // Upload single file
+        async function uploadFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('category', document.getElementById('categorySelect').value);
+
+            try {
+                const response = await fetch(`${API_BASE}/documents/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    showSuccess(`File ${file.name} uploaded successfully!`);
+                    refreshData();
+                } else {
+                    showError(`Error uploading ${file.name}`);
+                }
+            } catch (error) {
+                console.error('Upload error:', error);
+                showError(`Error uploading ${file.name}`);
+            }
+        }
+
+        // Create document
+        async function createDocument() {
+            const title = document.getElementById('documentTitle').value;
+            const content = document.getElementById('documentContent').value;
+            const category = document.getElementById('categorySelect').value;
+
+            if (!title || !content) {
+                showError('Please fill in all fields');
+                return;
+            }
+
+            try {
+                const response = await fetch(`${API_BASE}/documents`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title,
+                        content,
+                        category,
+                        source: 'manual_upload'
+                    })
+                });
+
+                if (response.ok) {
+                    showSuccess('Document created successfully!');
+                    document.getElementById('documentTitle').value = '';
+                    document.getElementById('documentContent').value = '';
+                    refreshData();
+                } else {
+                    showError('Error creating document');
+                }
+            } catch (error) {
+                console.error('Create error:', error);
+                showError('Error creating document');
+            }
+        }
+
+        // Refresh all data
+        function refreshData() {
+            loadSystemStats();
+            loadCategories();
+            loadDocuments();
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            const container = document.querySelector('.container');
+            const alert = document.createElement('div');
+            alert.className = 'success';
+            alert.textContent = message;
+            container.insertBefore(alert, container.firstChild);
+            
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        // Show error message
+        function showError(message) {
+            const container = document.querySelector('.container');
+            const alert = document.createElement('div');
+            alert.className = 'error';
+            alert.textContent = message;
+            container.insertBefore(alert, container.firstChild);
+            
+            setTimeout(() => alert.remove(), 3000);
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(refreshData, 30000);
+    </script>
+</body>
+</html>

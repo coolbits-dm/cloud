@@ -1,0 +1,45 @@
+{
+  "agent_id": "ogpt09",
+  "agent_name": "oGPT09",
+  "agent_role": "Head of AI Agent",
+  "company": "COOL BITS S.R.L.",
+  "company_cui": "42331573",
+  "company_registration": "ROONRC.J22/676/2020",
+  "safenet_access": {
+    "secret_name": "SafeNet",
+    "secret_version": "1",
+    "pin": "37025799",
+    "access_level": "L4",
+    "permissions": [
+      "digital_signing",
+      "certificate_management",
+      "signature_verification",
+      "audit_trail_access",
+      "compliance_reporting"
+    ],
+    "granted_at": "2025-09-07T08:14:26.661291"
+  },
+  "api_integration": {
+    "safenet_api_endpoint": "http://localhost:5001/api/safenet",
+    "certificate_types": [
+      "company_signing",
+      "api_authentication",
+      "document_signing",
+      "code_signing"
+    ],
+    "security_levels": [
+      "L1",
+      "L2",
+      "L3",
+      "L4",
+      "L5"
+    ]
+  },
+  "delegation_info": {
+    "delegated_by": "Andrei (CEO)",
+    "delegation_date": "2025-09-07T08:14:26.661291",
+    "delegation_purpose": "Enable Head of AI Agent to perform SafeNet operations",
+    "compliance_status": "COMPLIANT",
+    "secret_created_by": "Gemini CLI"
+  }
+}

@@ -1,0 +1,6 @@
+# Protejează workflows
+.github/workflows/*  @andrei-coolbits
+
+# Protejează protocoale și panel
+cblm/proto/* @andrei-coolbits
+panel/* @andrei-coolbits

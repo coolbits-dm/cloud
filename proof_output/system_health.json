@@ -1,0 +1,25 @@
+{
+  "services": [
+    {
+      "service": "localhost:3001",
+      "status": "unhealthy",
+      "error": "No connection could be made because the target machine actively refused it. (localhost:3001)"
+    },
+    {
+      "service": "localhost:8080",
+      "status": "unhealthy",
+      "error": "Response status code does not indicate success: 404 (NOT FOUND)."
+    },
+    {
+      "service": "localhost:5000",
+      "status": "unhealthy",
+      "error": "No connection could be made because the target machine actively refused it. (localhost:5000)"
+    }
+  ],
+  "timestamp": "2025-09-11T09:35:54Z",
+  "system_info": {
+    "os": "Windows_NT",
+    "working_directory": "C:\\Users\\andre\\Desktop\\coolbits",
+    "powershell_version": "7.5.2"
+  }
+}

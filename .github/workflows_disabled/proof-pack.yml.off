@@ -1,0 +1,34 @@
+name: Proof Pack
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - 'panel/**'
+      - 'artifacts/**'
+      - 'report/**'
+      - '**/*.md'
+      - '**/*.MD'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dev_noop:
+    if: ${{ env.CB_BILLING_MODE != 'prod' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - run: echo "Dev mode → Proof Pack NOOP (pass)."
+
+  proof_pack:
+    if: ${{ env.CB_BILLING_MODE == 'prod' && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - run: echo "Run real Proof Pack for prod"

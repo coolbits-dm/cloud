@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolBits.ai RAG Administration Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            overflow-y: auto;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .entity-item {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .entity-item:hover {
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .entity-item.active {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .entity-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.25rem;
+        }
+
+        .entity-type {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .entity-stats {
+            display: flex;
+            gap: 1rem;
+            margin-top: 0.5rem;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .document-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border: 1px solid #eee;
+        }
+
+        .document-content {
+            margin-bottom: 0.5rem;
+        }
+
+        .document-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-container {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+        }
+
+        .chat-message {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+        }
+
+        .chat-message.user {
+            background: #e3f2fd;
+            margin-left: 2rem;
+        }
+
+        .chat-message.assistant {
+            background: #f3e5f5;
+            margin-right: 2rem;
+        }
+
+        .chat-input-container {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .success {
+            background: #d4edda;
+            color: #155724;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3 style="margin-bottom: 1rem; color: #333;">RAG Entities</h3>
+            <div id="entity-list">
+                <div class="loading">Loading entities...</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="logo">CB</div>
+                <h1>RAG Administration Panel</h1>
+            </div>
+
+            <div class="content">
+                <div id="entity-details" class="hidden">
+                    <div id="entity-header">
+                        <h2 id="entity-name">Select an entity</h2>
+                        <p id="entity-description"></p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="entity-docs">0</div>
+                            <div class="stat-label">Documents</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="entity-embeddings">0</div>
+                            <div class="stat-label">Embeddings</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="entity-queries">0</div>
+                            <div class="stat-label">Queries</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="entity-last-update">-</div>
+                            <div class="stat-label">Last Update</div>
+                        </div>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin: 1rem 0;">
+                        <button class="btn btn-primary" onclick="showAddDocumentModal()">Add Document</button>
+                        <button class="btn btn-secondary" onclick="refreshDocuments()">Refresh</button>
+                    </div>
+
+                    <div id="documents-list">
+                        <div class="loading">No entity selected</div>
+                    </div>
+
+                    <div class="chat-container">
+                        <h3>Live Chat</h3>
+                        <div id="chat-messages" class="chat-messages">
+                            <div class="loading">Select an entity to start chatting</div>
+                        </div>
+                        <div class="chat-input-container">
+                            <input type="text" id="chat-input" class="chat-input" placeholder="Ask a question..." disabled>
+                            <button class="btn btn-primary" id="send-btn" onclick="sendMessage()" disabled>Send</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="welcome-message">
+                    <h2>Welcome to RAG Administration Panel</h2>
+                    <p>Select an entity from the sidebar to manage its documents and chat with its knowledge base.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Document Modal -->
+    <div class="modal hidden" id="add-document-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Add New Document</div>
+                <button class="close-btn" onclick="hideAddDocumentModal()">&times;</button>
+            </div>
+            <form id="add-document-form">
+                <div class="form-group">
+                    <label class="form-label">Document Title</label>
+                    <input type="text" class="form-input" id="doc-title" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Document Content</label>
+                    <textarea class="form-textarea" id="doc-content" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Document Type</label>
+                    <select class="form-input" id="doc-type">
+                        <option value="general">General</option>
+                        <option value="technical">Technical</option>
+                        <option value="policy">Policy</option>
+                        <option value="procedure">Procedure</option>
+                    </select>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn btn-secondary" onclick="hideAddDocumentModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Document</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentEntity = null;
+        let entities = [];
+
+        // Initialize the admin panel
+        document.addEventListener('DOMContentLoaded', function() {
+            loadEntities();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Chat input enter key
+            document.getElementById('chat-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Form submission
+            document.getElementById('add-document-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                addDocument();
+            });
+        }
+
+        async function loadEntities() {
+            try {
+                const response = await fetch('http://localhost:8093/domains');
+                const data = await response.json();
+                entities = data.domains;
+                
+                updateEntityList();
+                
+            } catch (error) {
+                console.error('Error loading entities:', error);
+                document.getElementById('entity-list').innerHTML = '<div class="error">Error loading entities</div>';
+            }
+        }
+
+        function updateEntityList() {
+            const entityList = document.getElementById('entity-list');
+            
+            if (entities.length === 0) {
+                entityList.innerHTML = '<div class="loading">No entities found</div>';
+                return;
+            }
+
+            const entitiesHtml = entities.map(entity => `
+                <div class="entity-item" onclick="selectEntity('${entity.domain_id}')">
+                    <div class="entity-name">${entity.domain_name}</div>
+                    <div class="entity-type">${entity.domain_type}</div>
+                    <div class="entity-stats">
+                        <span>📄 ${entity.documents_count || 0} docs</span>
+                        <span>📅 ${new Date(entity.created_at).toLocaleDateString()}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            entityList.innerHTML = entitiesHtml;
+        }
+
+        async function selectEntity(entityId) {
+            // Update UI
+            document.querySelectorAll('.entity-item').forEach(item => item.classList.remove('active'));
+            event.target.closest('.entity-item').classList.add('active');
+
+            // Load entity details
+            try {
+                const response = await fetch(`http://localhost:8093/domains/${entityId}`);
+                const entity = await response.json();
+                currentEntity = entity;
+
+                updateEntityHeader(entity);
+                loadEntityDocuments(entityId);
+                updateEntityStats(entity);
+                enableChat();
+
+                // Show entity details
+                document.getElementById('entity-details').classList.remove('hidden');
+                document.getElementById('welcome-message').classList.add('hidden');
+
+            } catch (error) {
+                console.error('Error loading entity:', error);
+                showError('Error loading entity');
+            }
+        }
+
+        function updateEntityHeader(entity) {
+            document.getElementById('entity-name').textContent = entity.domain_name;
+            document.getElementById('entity-description').textContent = entity.description || `${entity.domain_type} knowledge base`;
+        }
+
+        function updateEntityStats(entity) {
+            document.getElementById('entity-docs').textContent = entity.documents_count || 0;
+            document.getElementById('entity-embeddings').textContent = '0';
+            document.getElementById('entity-queries').textContent = '0';
+            document.getElementById('entity-last-update').textContent = new Date(entity.created_at).toLocaleDateString();
+        }
+
+        function enableChat() {
+            document.getElementById('chat-input').disabled = false;
+            document.getElementById('send-btn').disabled = false;
+            document.getElementById('chat-messages').innerHTML = '<div class="loading">Start chatting with this entity...</div>';
+        }
+
+        async function loadEntityDocuments(entityId) {
+            try {
+                const response = await fetch(`http://localhost:8093/domains/${entityId}/documents`);
+                const data = await response.json();
+                
+                const documentsList = document.getElementById('documents-list');
+                
+                if (data.documents.length === 0) {
+                    documentsList.innerHTML = '<div class="loading">No documents found</div>';
+                    return;
+                }
+
+                const documentsHtml = data.documents.map((doc, index) => `
+                    <div class="document-item">
+                        <div class="document-content">
+                            <strong>${doc.title}</strong><br>
+                            <small>Type: ${doc.doc_type} | Created: ${new Date(doc.created_at).toLocaleDateString()}</small><br>
+                            ${doc.content.substring(0, 200)}${doc.content.length > 200 ? '...' : ''}
+                        </div>
+                        <div class="document-actions">
+                            <button class="btn btn-secondary" onclick="editDocument('${doc.id}')">Edit</button>
+                            <button class="btn btn-danger" onclick="deleteDocument('${doc.id}')">Delete</button>
+                        </div>
+                    </div>
+                `).join('');
+
+                documentsList.innerHTML = documentsHtml;
+
+            } catch (error) {
+                console.error('Error loading documents:', error);
+                document.getElementById('documents-list').innerHTML = '<div class="error">Error loading documents</div>';
+            }
+        }
+
+        function showAddDocumentModal() {
+            if (!currentEntity) {
+                showError('Please select an entity first');
+                return;
+            }
+            document.getElementById('add-document-modal').classList.remove('hidden');
+        }
+
+        function hideAddDocumentModal() {
+            document.getElementById('add-document-modal').classList.add('hidden');
+            document.getElementById('add-document-form').reset();
+        }
+
+        async function addDocument() {
+            if (!currentEntity) return;
+
+            const title = document.getElementById('doc-title').value;
+            const content = document.getElementById('doc-content').value;
+            const type = document.getElementById('doc-type').value;
+
+            try {
+                const response = await fetch(`http://localhost:8093/domains/${currentEntity.domain_id}/add-document`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        domain_id: currentEntity.domain_id,
+                        title: title,
+                        content: content,
+                        doc_type: type
+                    })
+                });
+
+                if (response.ok) {
+                    hideAddDocumentModal();
+                    loadEntityDocuments(currentEntity.domain_id);
+                    updateEntityStats(currentEntity);
+                    showSuccess('Document added successfully!');
+                } else {
+                    showError('Failed to add document');
+                }
+
+            } catch (error) {
+                console.error('Error adding document:', error);
+                showError('Error adding document');
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            
+            if (!message || !currentEntity) return;
+
+            // Add user message to chat
+            addChatMessage(message, 'user');
+            input.value = '';
+
+            // Search documents first
+            try {
+                const searchResponse = await fetch(`http://localhost:8093/domains/${currentEntity.domain_id}/search`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        domain_id: currentEntity.domain_id,
+                        query: message,
+                        max_results: 3
+                    })
+                });
+
+                const searchResult = await searchResponse.json();
+                
+                // Generate response based on search results
+                let response = `Based on ${currentEntity.domain_name} knowledge base:\n\n`;
+                
+                if (searchResult.results.length > 0) {
+                    response += `Found ${searchResult.results.length} relevant documents:\n\n`;
+                    searchResult.results.forEach((doc, index) => {
+                        response += `${index + 1}. ${doc.title}\n${doc.content}\n\n`;
+                    });
+                } else {
+                    response += `No specific documents found for "${message}". This is a general response based on ${currentEntity.domain_type} knowledge.`;
+                }
+                
+                // Add assistant response
+                addChatMessage(response, 'assistant');
+
+            } catch (error) {
+                console.error('Error sending message:', error);
+                addChatMessage('Error: Could not get response', 'assistant');
+            }
+        }
+
+        function addChatMessage(message, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            
+            // Clear loading message if it exists
+            if (chatMessages.innerHTML.includes('Start chatting')) {
+                chatMessages.innerHTML = '';
+            }
+            
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}`;
+            messageDiv.innerHTML = `<strong>${sender === 'user' ? 'You' : 'Assistant'}:</strong><br>${message.replace(/\n/g, '<br>')}`;
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function refreshDocuments() {
+            if (currentEntity) {
+                loadEntityDocuments(currentEntity.domain_id);
+            }
+        }
+
+        async function editDocument(docId) {
+            // Get document details
+            try {
+                const response = await fetch(`http://localhost:8093/domains/${currentEntity.domain_id}/documents`);
+                const data = await response.json();
+                const doc = data.documents.find(d => d.id === docId);
+                
+                if (doc) {
+                    // Fill form with document data
+                    document.getElementById('doc-title').value = doc.title;
+                    document.getElementById('doc-content').value = doc.content;
+                    document.getElementById('doc-type').value = doc.doc_type;
+                    
+                    // Show modal
+                    showAddDocumentModal();
+                    
+                    // Change submit button to update
+                    const submitBtn = document.querySelector('#add-document-form button[type="submit"]');
+                    submitBtn.textContent = 'Update Document';
+                    submitBtn.onclick = () => updateDocument(docId);
+                }
+            } catch (error) {
+                console.error('Error loading document:', error);
+                showError('Error loading document');
+            }
+        }
+
+        async function updateDocument(docId) {
+            const title = document.getElementById('doc-title').value;
+            const content = document.getElementById('doc-content').value;
+            const type = document.getElementById('doc-type').value;
+
+            try {
+                const response = await fetch(`http://localhost:8093/documents/${docId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        domain_id: currentEntity.domain_id,
+                        title: title,
+                        content: content,
+                        doc_type: type
+                    })
+                });
+
+                if (response.ok) {
+                    hideAddDocumentModal();
+                    loadEntityDocuments(currentEntity.domain_id);
+                    showSuccess('Document updated successfully!');
+                } else {
+                    showError('Failed to update document');
+                }
+
+            } catch (error) {
+                console.error('Error updating document:', error);
+                showError('Error updating document');
+            }
+        }
+
+        async function deleteDocument(docId) {
+            if (!confirm('Are you sure you want to delete this document?')) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:8093/documents/${docId}`, {
+                    method: 'DELETE'
+                });
+
+                if (response.ok) {
+                    loadEntityDocuments(currentEntity.domain_id);
+                    showSuccess('Document deleted successfully!');
+                } else {
+                    showError('Failed to delete document');
+                }
+
+            } catch (error) {
+                console.error('Error deleting document:', error);
+                showError('Error deleting document');
+            }
+        }
+
+        function showSuccess(message) {
+            // Create temporary success message
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success';
+            successDiv.textContent = message;
+            
+            document.querySelector('.content').insertBefore(successDiv, document.querySelector('.content').firstChild);
+            
+            setTimeout(() => {
+                successDiv.remove();
+            }, 3000);
+        }
+
+        function showError(message) {
+            // Create temporary error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            
+            document.querySelector('.content').insertBefore(errorDiv, document.querySelector('.content').firstChild);
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

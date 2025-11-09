@@ -1,0 +1,23 @@
+{
+  "$id": "cb.tokens.v0",
+  "type": "object",
+  "properties": {
+    "unit": { "type": "string", "enum": ["cbT"] },
+    "balance": { "type": "number" },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ts": { "type": "string", "format": "date-time" },
+          "ref": { "type": "string" },
+          "delta": { "type": "number" },
+          "reason": { "type": "string" },
+          "meta": { "type": "object" }
+        },
+        "required": ["ts","delta","reason"]
+      }
+    }
+  },
+  "required": ["unit","balance","entries"]
+}

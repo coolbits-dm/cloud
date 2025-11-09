@@ -1,0 +1,138 @@
+# CoolBits.ai Google Cloud Run Configuration
+# ==========================================
+
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: coolbits-staging
+  namespace: default
+  labels:
+    app: coolbits
+    environment: staging
+    version: canary
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "10"
+        autoscaling.knative.dev/minScale: "1"
+        run.googleapis.com/cpu-throttling: "false"
+        run.googleapis.com/execution-environment: gen2
+    spec:
+      containerConcurrency: 100
+      timeoutSeconds: 300
+      containers:
+      - image: gcr.io/coolbits-ai/coolbits:staging
+        name: coolbits-staging
+        ports:
+        - containerPort: 8501
+          name: http1
+        env:
+        - name: OPIPE_ENV
+          value: "staging"
+        - name: DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: coolbits-secrets
+              key: db-url
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: coolbits-secrets
+              key: openai-api-key
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "coolbits-ai"
+        resources:
+          limits:
+            cpu: "2"
+            memory: "4Gi"
+          requests:
+            cpu: "1"
+            memory: "2Gi"
+        livenessProbe:
+          httpGet:
+            path: /_stcore/health
+            port: 8501
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /_stcore/health
+            port: 8501
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+  traffic:
+  - percent: 100
+    latestRevision: true
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: coolbits-production
+  namespace: default
+  labels:
+    app: coolbits
+    environment: production
+    version: stable
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/maxScale: "50"
+        autoscaling.knative.dev/minScale: "2"
+        run.googleapis.com/cpu-throttling: "false"
+        run.googleapis.com/execution-environment: gen2
+    spec:
+      containerConcurrency: 200
+      timeoutSeconds: 300
+      containers:
+      - image: gcr.io/coolbits-ai/coolbits:production
+        name: coolbits-production
+        ports:
+        - containerPort: 8501
+          name: http1
+        env:
+        - name: OPIPE_ENV
+          value: "production"
+        - name: DB_URL
+          valueFrom:
+            secretKeyRef:
+              name: coolbits-secrets
+              key: db-url
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: coolbits-secrets
+              key: openai-api-key
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "coolbits-ai"
+        resources:
+          limits:
+            cpu: "4"
+            memory: "8Gi"
+          requests:
+            cpu: "2"
+            memory: "4Gi"
+        livenessProbe:
+          httpGet:
+            path: /_stcore/health
+            port: 8501
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /_stcore/health
+            port: 8501
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+  traffic:
+  - percent: 100
+    latestRevision: true

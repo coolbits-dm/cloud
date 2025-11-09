@@ -1,0 +1,42 @@
+﻿{
+    "banking":  {
+                    "search_app_name":  null,
+                    "industry_id":  "banking",
+                    "bucket_name":  "coolbits-rag-banking-coolbits-ai",
+                    "industry_name":  "Banking",
+                    "corpus_name":  null,
+                    "success":  false
+                },
+    "saas_b2b":  {
+                     "search_app_name":  null,
+                     "industry_id":  "saas_b2b",
+                     "bucket_name":  "coolbits-rag-saas_b2b-coolbits-ai",
+                     "industry_name":  "SaaS B2B",
+                     "corpus_name":  null,
+                     "success":  false
+                 },
+    "exchanges":  {
+                      "search_app_name":  null,
+                      "industry_id":  "exchanges",
+                      "bucket_name":  "coolbits-rag-exchanges-coolbits-ai",
+                      "industry_name":  "Cryptocurrency Exchanges",
+                      "corpus_name":  null,
+                      "success":  false
+                  },
+    "healthcare":  {
+                       "search_app_name":  null,
+                       "industry_id":  "healthcare",
+                       "bucket_name":  "coolbits-rag-healthcare-coolbits-ai",
+                       "industry_name":  "Healthcare",
+                       "corpus_name":  null,
+                       "success":  false
+                   },
+    "agritech":  {
+                     "search_app_name":  null,
+                     "industry_id":  "agritech",
+                     "bucket_name":  "coolbits-rag-agritech-coolbits-ai",
+                     "industry_name":  "AgTech",
+                     "corpus_name":  null,
+                     "success":  false
+                 }
+}

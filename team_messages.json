@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "sender": "oCopilot",
+    "message": "Local endpoint initialized successfully",
+    "timestamp": "2025-09-05T15:21:10.647865",
+    "mode": "SYSTEM"
+  },
+  {
+    "id": 2,
+    "sender": "oCursor",
+    "message": "Development environment ready",
+    "timestamp": "2025-09-05T15:21:10.647865",
+    "mode": "SYSTEM"
+  },
+  {
+    "id": 3,
+    "sender": "oGeminiCLI",
+    "message": "Cloud operations connected",
+    "timestamp": "2025-09-05T15:21:10.647865",
+    "mode": "SYSTEM"
+  },
+  {
+    "id": 4,
+    "sender": "AI Board",
+    "message": "Management AI active",
+    "timestamp": "2025-09-05T15:21:10.647865",
+    "mode": "SYSTEM"
+  },
+  {
+    "id": 5,
+    "sender": "Andrei",
+    "message": "CEO CoolBits.ai - All systems operational",
+    "timestamp": "2025-09-05T15:21:10.647865",
+    "mode": "SYSTEM"
+  }
+]

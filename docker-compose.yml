@@ -1,0 +1,47 @@
+# CoolBits.ai Docker Compose
+# ===========================
+
+version: '3.8'
+
+services:
+  coolbits-ai:
+    build: .
+    container_name: coolbits-ai
+    ports:
+      - "8080:8080"
+      - "8100:8100"
+    environment:
+      - CI=1
+      - NO_COLOR=1
+      - GCLOUD_SUPPRESS_PROMPTS=1
+      - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    labels:
+      - "com.coolbits.service=coolbits-ai"
+      - "com.coolbits.version=1.0.0"
+
+  # Optional: Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: coolbits-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis-data:/data
+    labels:
+      - "com.coolbits.service=redis"
+
+volumes:
+  redis-data:
+    driver: local

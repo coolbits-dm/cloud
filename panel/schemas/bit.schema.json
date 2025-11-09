@@ -1,0 +1,14 @@
+{
+  "$id": "cb.bit.v0",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "kind": { "type": "string" },
+    "config": { "type": "object" },
+    "inputs": { "type": "array", "items": { "type": "string" } },
+    "outputs": { "type": "array", "items": { "type": "string" } },
+    "scope": { "type": "string", "enum": ["panel", "global"] }
+  },
+  "required": ["id","name","kind"]
+}

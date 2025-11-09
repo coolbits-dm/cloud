@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>oCopilot Lounge - Agent Discussion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #fff;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .lounge-container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: rgba(0, 0, 0, 0.8);
+            border-right: 2px solid #00ff88;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-bottom: 2px solid #00ff88;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #00ff88;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #00ff88;
+        }
+
+        .header p {
+            color: #ccc;
+            font-size: 1.2em;
+        }
+
+        .discussion-area {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .current-topic {
+            background: rgba(255, 107, 53, 0.2);
+            border: 2px solid #ff6b35;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .current-topic h3 {
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .current-topic p {
+            color: #fff;
+            font-size: 1.1em;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid;
+            background: rgba(0, 0, 0, 0.5);
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .message.topic-start {
+            border-left-color: #ff6b35;
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .message.agent-response {
+            border-left-color: var(--agent-color);
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .agent-avatar {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .agent-name {
+            font-weight: bold;
+            color: var(--agent-color);
+            margin-right: 10px;
+        }
+
+        .timestamp {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .message-content {
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .agent-list {
+            margin-bottom: 30px;
+        }
+
+        .agent-list h3 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .agent-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        .agent-item.active {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+        }
+
+        .agent-item .avatar {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .agent-item .name {
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .agent-item .role {
+            font-size: 0.8em;
+            color: #ccc;
+            margin-top: 2px;
+        }
+
+        .status-panel {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .status-panel h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            padding: 5px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        .status-item:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            color: #ccc;
+        }
+
+        .status-value {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .gpu-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .gpu-indicator h4 {
+            color: #00ff88;
+            margin-bottom: 5px;
+        }
+
+        .gpu-usage {
+            font-size: 1.5em;
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff88;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            color: #00ff88;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="lounge-container">
+        <div class="sidebar">
+            <div class="agent-list">
+                <h3>🤖 Active Agents</h3>
+                <div id="agentList"></div>
+            </div>
+            
+            <div class="status-panel">
+                <h3>📊 Lounge Status</h3>
+                <div class="status-item">
+                    <span class="status-label">Active Agents:</span>
+                    <span class="status-value" id="activeAgents">6</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Total Messages:</span>
+                    <span class="status-value" id="totalMessages">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Uptime:</span>
+                    <span class="status-value" id="uptime">0s</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Current Topic:</span>
+                    <span class="status-value" id="currentTopicStatus">Starting...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1>🏠 oCopilot Lounge</h1>
+                <p>Agent Business Discussion Platform - Automated Conversations</p>
+            </div>
+
+            <div class="discussion-area" id="discussionArea">
+                <div class="current-topic" id="currentTopic">
+                    <h3>🎯 Current Discussion Topic</h3>
+                    <p id="topicText">Starting discussion...</p>
+                </div>
+                <div id="messages"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="gpu-indicator">
+        <h4>🖥️ GPU</h4>
+        <div class="gpu-usage" id="gpuUsage">67%</div>
+    </div>
+
+    <div class="scroll-indicator" id="scrollIndicator" onclick="scrollToBottom()"></div>
+
+    <script>
+        class LoungeClient {
+            constructor() {
+                this.ws = null;
+                this.agents = {};
+                this.messages = [];
+                this.currentTopic = null;
+                this.isConnected = false;
+                
+                this.init();
+            }
+            
+            init() {
+                this.connectWebSocket();
+                this.startGPUAnimation();
+                this.startStatusUpdates();
+            }
+            
+            connectWebSocket() {
+                this.ws = new WebSocket('ws://localhost:3003');
+                
+                this.ws.onopen = () => {
+                    console.log('🔌 Connected to Lounge');
+                    this.isConnected = true;
+                };
+                
+                this.ws.onmessage = (event) => {
+                    const data = JSON.parse(event.data);
+                    this.handleMessage(data);
+                };
+                
+                this.ws.onclose = () => {
+                    console.log('🔌 Disconnected from Lounge');
+                    this.isConnected = false;
+                    // Reconnect after 5 seconds
+                    setTimeout(() => this.connectWebSocket(), 5000);
+                };
+                
+                this.ws.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                };
+            }
+            
+            handleMessage(data) {
+                switch (data.type) {
+                    case 'welcome':
+                        this.agents = data.agents;
+                        this.currentTopic = data.currentTopic;
+                        this.messages = data.history || [];
+                        this.updateUI();
+                        break;
+                        
+                    case 'topic_start':
+                        this.currentTopic = {
+                            category: data.category,
+                            topic: data.topic,
+                            startTime: data.timestamp
+                        };
+                        this.addMessage(data);
+                        break;
+                        
+                    case 'agent_response':
+                        this.addMessage(data);
+                        break;
+                        
+                    default:
+                        console.log('Unknown message type:', data.type);
+                }
+            }
+            
+            addMessage(data) {
+                this.messages.push(data);
+                this.updateMessages();
+                this.updateStatus();
+            }
+            
+            updateUI() {
+                this.updateAgentList();
+                this.updateMessages();
+                this.updateStatus();
+            }
+            
+            updateAgentList() {
+                const agentList = document.getElementById('agentList');
+                agentList.innerHTML = '';
+                
+                Object.values(this.agents).forEach(agent => {
+                    const agentDiv = document.createElement('div');
+                    agentDiv.className = 'agent-item active';
+                    agentDiv.innerHTML = `
+                        <span class="avatar">${agent.avatar}</span>
+                        <div>
+                            <div class="name">${agent.name}</div>
+                            <div class="role">${agent.role}</div>
+                        </div>
+                    `;
+                    agentList.appendChild(agentDiv);
+                });
+            }
+            
+            updateMessages() {
+                const messagesContainer = document.getElementById('messages');
+                messagesContainer.innerHTML = '';
+                
+                this.messages.forEach(message => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `message ${message.type === 'topic_start' ? 'topic-start' : 'agent-response'}`;
+                    
+                    if (message.type === 'topic_start') {
+                        messageDiv.innerHTML = `
+                            <div class="message-header">
+                                <span class="agent-avatar">🎯</span>
+                                <span class="agent-name" style="color: #ff6b35;">${message.agent}</span>
+                                <span class="timestamp">${new Date(message.timestamp).toLocaleTimeString()}</span>
+                            </div>
+                            <div class="message-content">${message.message}</div>
+                            <div style="margin-top: 10px; padding: 10px; background: rgba(255, 107, 53, 0.1); border-radius: 5px;">
+                                <strong>Topic:</strong> ${message.topic}
+                            </div>
+                        `;
+                    } else {
+                        messageDiv.style.setProperty('--agent-color', message.color);
+                        messageDiv.innerHTML = `
+                            <div class="message-header">
+                                <span class="agent-avatar">${this.agents[message.agent]?.avatar || '🤖'}</span>
+                                <span class="agent-name">${message.agent}</span>
+                                <span class="timestamp">${new Date(message.timestamp).toLocaleTimeString()}</span>
+                            </div>
+                            <div class="message-content">${message.message}</div>
+                        `;
+                    }
+                    
+                    messagesContainer.appendChild(messageDiv);
+                });
+                
+                this.scrollToBottom();
+            }
+            
+            updateStatus() {
+                document.getElementById('activeAgents').textContent = Object.keys(this.agents).length;
+                document.getElementById('totalMessages').textContent = this.messages.length;
+                
+                if (this.currentTopic) {
+                    document.getElementById('topicText').textContent = this.currentTopic.topic;
+                    document.getElementById('currentTopicStatus').textContent = this.currentTopic.category;
+                }
+            }
+            
+            startGPUAnimation() {
+                setInterval(() => {
+                    const gpuUsage = document.getElementById('gpuUsage');
+                    const usage = Math.random() * 30 + 50; // 50-80%
+                    gpuUsage.textContent = `${usage.toFixed(0)}%`;
+                }, 2000);
+            }
+            
+            startStatusUpdates() {
+                setInterval(() => {
+                    if (this.isConnected) {
+                        fetch('/api/lounge/status')
+                            .then(response => response.json())
+                            .then(data => {
+                                document.getElementById('uptime').textContent = `${Math.floor(data.uptime)}s`;
+                            })
+                            .catch(error => console.error('Status update error:', error));
+                    }
+                }, 1000);
+            }
+            
+            scrollToBottom() {
+                const discussionArea = document.getElementById('discussionArea');
+                discussionArea.scrollTop = discussionArea.scrollHeight;
+            }
+        }
+        
+        function scrollToBottom() {
+            const discussionArea = document.getElementById('discussionArea');
+            discussionArea.scrollTop = discussionArea.scrollHeight;
+        }
+        
+        // Initialize lounge client
+        document.addEventListener('DOMContentLoaded', () => {
+            new LoungeClient();
+        });
+    </script>
+</body>
+</html>

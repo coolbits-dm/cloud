@@ -1,0 +1,14 @@
+[Unit]
+Description=CoolBits.ai Automated Maintenance
+After=network.target
+
+[Service]
+Type=simple
+User=coolbits
+WorkingDirectory=/opt/coolbits
+ExecStart=/usr/bin/python3 /opt/coolbits/automated_maintenance.py --setup
+Restart=always
+RestartSec=60
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,37 @@
+# CoolBits.ai Backup Monitoring Configuration
+# ===========================================
+
+# Cloud Monitoring metrics for backup operations
+backup_metrics:
+  - name: "backup_success_count"
+    type: "counter"
+    description: "Number of successful backups"
+    
+  - name: "backup_failure_count" 
+    type: "counter"
+    description: "Number of failed backups"
+    
+  - name: "backup_duration_seconds"
+    type: "histogram"
+    description: "Duration of backup operations"
+    
+  - name: "backup_size_bytes"
+    type: "gauge"
+    description: "Size of backup files"
+
+# Alerting policies
+alerting_policies:
+  - name: "Backup Failure Alert"
+    condition: "backup_failure_count > 0"
+    duration: "5m"
+    severity: "critical"
+    
+  - name: "Backup Size Alert"
+    condition: "backup_size_bytes > 100MB"
+    duration: "1m"
+    severity: "warning"
+    
+  - name: "Backup Duration Alert"
+    condition: "backup_duration_seconds > 3600"
+    duration: "1m"
+    severity: "warning"

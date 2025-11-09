@@ -1,0 +1,28 @@
+# CoolBits.ai Terraform Variables and Outputs
+# ============================================
+
+# terraform.tfvars.example
+# Copy this file to terraform.tfvars and fill in your values
+
+project_id = "coolbits-ai"
+region = "europe-west3"
+zone = "europe-west3-a"
+environment = "production"
+
+# Alerting Configuration
+alert_email = "alerts@coolbits.ai"
+slack_webhook_url = "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK"
+slack_channel = "#coolbits-alerts"
+
+# Database Configuration
+db_password = "your-secure-db-password"
+db_readonly_password = "your-secure-readonly-password"
+
+# Network Configuration
+trusted_ips = [
+  "0.0.0.0/0"  # Replace with your actual trusted IPs
+]
+
+# Regional Configuration
+replica_region = "europe-west1"
+dr_region = "europe-west1"

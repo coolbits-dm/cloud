@@ -1,0 +1,2122 @@
+{
+  "version": "1.0.0",
+  "count": 50,
+  "nhas": [
+    {
+      "id": "nha:andrei",
+      "name": "@Andrei",
+      "category": "personal",
+      "owner": "andrei",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "terminal",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "project_management",
+          "description": "Overall project coordination and decision making",
+          "scopes": [
+            "read:all",
+            "write:all"
+          ]
+        }
+      ],
+      "permissions": [
+        "roles/owner"
+      ],
+      "secrets": [
+        "nha/andrei/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:owner",
+        "role:admin"
+      ],
+      "slo": {
+        "latency_p95_ms": 100,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Project owner and primary coordinator"
+    },
+    {
+      "id": "nha:opypgpt03",
+      "name": "@oPyGPT03",
+      "category": "personal",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://api.openai.com/v1",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "technical_coordination",
+          "description": "Technical architecture and implementation coordination",
+          "scopes": [
+            "read:code",
+            "write:architecture",
+            "review:pr"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/opypgpt03/hmac",
+        "nha/opypgpt03/openai_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:coordinator",
+        "provider:openai"
+      ],
+      "slo": {
+        "latency_p95_ms": 2000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "Technical coordination and architecture decisions"
+    },
+    {
+      "id": "nha:orunner",
+      "name": "@oRunner",
+      "category": "personal",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "python scripts/",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "local_execution",
+          "description": "Local script execution and CI/CD automation",
+          "scopes": [
+            "read:scripts",
+            "write:logs",
+            "execute:commands"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/orunner/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:runner",
+        "role:executor"
+      ],
+      "slo": {
+        "latency_p95_ms": 500,
+        "error_rate_max": 0.02,
+        "availability_pct": 99.5
+      },
+      "notes": "Local execution and automation runner"
+    },
+    {
+      "id": "nha:ocursor",
+      "name": "@oCursor",
+      "category": "dev_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "ui",
+          "endpoint": "cursor://",
+          "auth": "jwt"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "ide_automation",
+          "description": "Cursor IDE integration and automation",
+          "scopes": [
+            "read:files",
+            "write:files",
+            "execute:commands"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer"
+      ],
+      "secrets": [
+        "nha/ocursor/jwt"
+      ],
+      "tags": [
+        "env:prod",
+        "service:ide",
+        "provider:cursor"
+      ],
+      "slo": {
+        "latency_p95_ms": 100,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Cursor IDE automation agent"
+    },
+    {
+      "id": "nha:ocim-bridge",
+      "name": "@oCIM-Bridge",
+      "category": "dev_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:8765",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "ocim_protocol",
+          "description": "OCIM protocol bridge for agent communication",
+          "scopes": [
+            "read:messages",
+            "write:messages",
+            "route:agents"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/ocim-bridge/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:bridge",
+        "protocol:ocim"
+      ],
+      "slo": {
+        "latency_p95_ms": 50,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "OCIM protocol bridge for agent communication"
+    },
+    {
+      "id": "nha:panel-admin",
+      "name": "@Panel-Admin",
+      "category": "biz_channels",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "ui",
+          "endpoint": "https://admin.coolbits.ai",
+          "auth": "jwt"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "admin_console",
+          "description": "Web-based administration console",
+          "scopes": [
+            "read:admin",
+            "write:admin",
+            "manage:users"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.admin",
+        "storage.objectAdmin"
+      ],
+      "secrets": [
+        "nha/panel-admin/jwt"
+      ],
+      "tags": [
+        "env:prod",
+        "service:admin",
+        "ui:web"
+      ],
+      "slo": {
+        "latency_p95_ms": 200,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.5
+      },
+      "notes": "Web administration console"
+    },
+    {
+      "id": "nha:panel-status",
+      "name": "@Panel-Status",
+      "category": "biz_channels",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "ui",
+          "endpoint": "https://status.coolbits.ai",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "status_dashboard",
+          "description": "Public status dashboard and monitoring",
+          "scopes": [
+            "read:status",
+            "read:metrics"
+          ]
+        }
+      ],
+      "permissions": [
+        "monitoring.viewer"
+      ],
+      "secrets": [],
+      "tags": [
+        "env:prod",
+        "service:status",
+        "ui:public"
+      ],
+      "slo": {
+        "latency_p95_ms": 100,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Public status dashboard"
+    },
+    {
+      "id": "nha:panel-update",
+      "name": "@Panel-Update",
+      "category": "biz_channels",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "ui",
+          "endpoint": "tauri://updater",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "app_updater",
+          "description": "Tauri application updater",
+          "scopes": [
+            "read:updates",
+            "write:downloads"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer"
+      ],
+      "secrets": [
+        "nha/panel-update/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:updater",
+        "ui:tauri"
+      ],
+      "slo": {
+        "latency_p95_ms": 1000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "Application updater for Tauri apps"
+    },
+    {
+      "id": "nha:export-pack",
+      "name": "@Export-Pack",
+      "category": "biz_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:3001/api/export",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "data_export",
+          "description": "Export data in JSONL/CSV/ZIP formats",
+          "scopes": [
+            "read:data",
+            "write:exports"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer",
+        "storage.objectCreator"
+      ],
+      "secrets": [
+        "nha/export-pack/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:export",
+        "format:multi"
+      ],
+      "slo": {
+        "latency_p95_ms": 5000,
+        "error_rate_max": 0.02,
+        "availability_pct": 99.0
+      },
+      "notes": "Data export service"
+    },
+    {
+      "id": "nha:rag-mini",
+      "name": "@RAG-Mini",
+      "category": "biz_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:3002/api/rag",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "rag_search",
+          "description": "FAISS/SQLite RAG endpoints",
+          "scopes": [
+            "read:embeddings",
+            "search:vectors"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer"
+      ],
+      "secrets": [
+        "nha/rag-mini/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:rag",
+        "db:faiss"
+      ],
+      "slo": {
+        "latency_p95_ms": 200,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.5
+      },
+      "notes": "Lightweight RAG service"
+    },
+    {
+      "id": "nha:agents-registry",
+      "name": "@Agents-Registry",
+      "category": "biz_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:3001/api/agents",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "agent_registry",
+          "description": "Agent registry and management API",
+          "scopes": [
+            "read:agents",
+            "write:agents",
+            "manage:registry"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/agents-registry/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:registry",
+        "api:agents"
+      ],
+      "slo": {
+        "latency_p95_ms": 100,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Agent registry API"
+    },
+    {
+      "id": "nha:bridge-fastapi",
+      "name": "@Bridge-FastAPI",
+      "category": "biz_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:8765",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "api_bridge",
+          "description": "FastAPI bridge for agent communication",
+          "scopes": [
+            "read:api",
+            "write:api",
+            "route:requests"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/bridge-fastapi/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:bridge",
+        "framework:fastapi"
+      ],
+      "slo": {
+        "latency_p95_ms": 50,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "FastAPI bridge service"
+    },
+    {
+      "id": "nha:ws-gateway",
+      "name": "@WS-Gateway",
+      "category": "biz_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "ws",
+          "endpoint": "ws://127.0.0.1:8766",
+          "auth": "jwt"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "websocket_chat",
+          "description": "WebSocket gateway for real-time chat",
+          "scopes": [
+            "read:messages",
+            "write:messages",
+            "stream:chat"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/ws-gateway/jwt"
+      ],
+      "tags": [
+        "env:prod",
+        "service:gateway",
+        "protocol:websocket"
+      ],
+      "slo": {
+        "latency_p95_ms": 10,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "WebSocket chat gateway"
+    },
+    {
+      "id": "nha:ci-runner",
+      "name": "@CI-Runner",
+      "category": "dev_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "github-actions",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "ci_automation",
+          "description": "GitHub Actions CI/CD automation",
+          "scopes": [
+            "read:repo",
+            "write:repo",
+            "execute:workflows"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/ci-runner/github_token"
+      ],
+      "tags": [
+        "env:prod",
+        "service:ci",
+        "provider:github"
+      ],
+      "slo": {
+        "latency_p95_ms": 30000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "GitHub Actions CI/CD runner"
+    },
+    {
+      "id": "nha:playwright-e2e",
+      "name": "@Playwright-E2E",
+      "category": "dev_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "playwright test",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "e2e_testing",
+          "description": "End-to-end testing with Playwright",
+          "scopes": [
+            "read:tests",
+            "execute:tests",
+            "write:reports"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "storage.objectViewer"
+      ],
+      "secrets": [],
+      "tags": [
+        "env:prod",
+        "service:testing",
+        "framework:playwright"
+      ],
+      "slo": {
+        "latency_p95_ms": 60000,
+        "error_rate_max": 0.1,
+        "availability_pct": 95.0
+      },
+      "notes": "Playwright E2E testing"
+    },
+    {
+      "id": "nha:unit-tests",
+      "name": "@Unit-Tests",
+      "category": "dev_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "pytest",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "unit_testing",
+          "description": "Unit test execution and validation",
+          "scopes": [
+            "read:tests",
+            "execute:tests",
+            "write:coverage"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker"
+      ],
+      "secrets": [],
+      "tags": [
+        "env:prod",
+        "service:testing",
+        "framework:pytest"
+      ],
+      "slo": {
+        "latency_p95_ms": 10000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "Unit test runner"
+    },
+    {
+      "id": "nha:release-bot",
+      "name": "@Release-Bot",
+      "category": "dev_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "github-release",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "release_automation",
+          "description": "Automated release management",
+          "scopes": [
+            "read:releases",
+            "write:releases",
+            "manage:tags"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "storage.objectViewer"
+      ],
+      "secrets": [
+        "nha/release-bot/github_token"
+      ],
+      "tags": [
+        "env:prod",
+        "service:release",
+        "provider:github"
+      ],
+      "slo": {
+        "latency_p95_ms": 30000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "Automated release bot"
+    },
+    {
+      "id": "nha:doctor",
+      "name": "@Doctor",
+      "category": "dev_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "scripts/doctor.ps1",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "health_diagnostics",
+          "description": "System health diagnostics and troubleshooting",
+          "scopes": [
+            "read:system",
+            "diagnose:issues",
+            "write:reports"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [],
+      "tags": [
+        "env:prod",
+        "service:diagnostics",
+        "platform:windows"
+      ],
+      "slo": {
+        "latency_p95_ms": 5000,
+        "error_rate_max": 0.02,
+        "availability_pct": 99.5
+      },
+      "notes": "System health diagnostics"
+    },
+    {
+      "id": "nha:roadmap-bot",
+      "name": "@Roadmap-Bot",
+      "category": "dev_tools",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "roadmap.py",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "roadmap_management",
+          "description": "Project roadmap generation and management",
+          "scopes": [
+            "read:roadmap",
+            "write:roadmap",
+            "manage:milestones"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer",
+        "storage.objectCreator"
+      ],
+      "secrets": [],
+      "tags": [
+        "env:prod",
+        "service:roadmap",
+        "tool:planning"
+      ],
+      "slo": {
+        "latency_p95_ms": 2000,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.5
+      },
+      "notes": "Project roadmap management"
+    },
+    {
+      "id": "nha:coolbits-frontend",
+      "name": "@CoolBits-Frontend",
+      "category": "infra",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://frontend.coolbits.ai",
+          "auth": "jwt"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "web_frontend",
+          "description": "Main web frontend application",
+          "scopes": [
+            "read:ui",
+            "write:ui",
+            "serve:static"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/coolbits-frontend/jwt"
+      ],
+      "tags": [
+        "env:prod",
+        "service:frontend",
+        "platform:cloudrun"
+      ],
+      "slo": {
+        "latency_p95_ms": 200,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Main web frontend on Cloud Run"
+    },
+    {
+      "id": "nha:coolbits-bridge",
+      "name": "@CoolBits-Bridge",
+      "category": "infra",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://bridge.coolbits.ai",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "api_bridge",
+          "description": "API bridge and proxy service",
+          "scopes": [
+            "read:api",
+            "write:api",
+            "proxy:requests"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/coolbits-bridge/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:bridge",
+        "platform:cloudrun"
+      ],
+      "slo": {
+        "latency_p95_ms": 100,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "API bridge service on Cloud Run"
+    },
+    {
+      "id": "nha:coolbits-rag",
+      "name": "@CoolBits-RAG",
+      "category": "infra",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://rag.coolbits.ai",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "rag_service",
+          "description": "RAG service for document processing and search",
+          "scopes": [
+            "read:documents",
+            "write:embeddings",
+            "search:vectors"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "storage.objectViewer",
+        "aiplatform.user"
+      ],
+      "secrets": [
+        "nha/coolbits-rag/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:rag",
+        "platform:cloudrun"
+      ],
+      "slo": {
+        "latency_p95_ms": 500,
+        "error_rate_max": 0.02,
+        "availability_pct": 99.5
+      },
+      "notes": "RAG service on Cloud Run"
+    },
+    {
+      "id": "nha:coolbits-monitor",
+      "name": "@CoolBits-Monitor",
+      "category": "infra",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://monitor.coolbits.ai",
+          "auth": "jwt"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "monitoring",
+          "description": "System monitoring and alerting",
+          "scopes": [
+            "read:metrics",
+            "write:alerts",
+            "manage:dashboards"
+          ]
+        }
+      ],
+      "permissions": [
+        "monitoring.viewer",
+        "monitoring.writer"
+      ],
+      "secrets": [
+        "nha/coolbits-monitor/jwt"
+      ],
+      "tags": [
+        "env:prod",
+        "service:monitoring",
+        "platform:cloudrun"
+      ],
+      "slo": {
+        "latency_p95_ms": 100,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Monitoring service on Cloud Run"
+    },
+    {
+      "id": "nha:coolbits-bq",
+      "name": "@CoolBits-BQ",
+      "category": "infra",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "sdk",
+          "endpoint": "bigquery-python",
+          "auth": "sa_key"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "bigquery_export",
+          "description": "BigQuery data export and analytics",
+          "scopes": [
+            "read:data",
+            "write:exports",
+            "query:sql"
+          ]
+        }
+      ],
+      "permissions": [
+        "bigquery.dataViewer",
+        "bigquery.jobUser"
+      ],
+      "secrets": [
+        "nha/coolbits-bq/sa_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:bigquery",
+        "platform:gcp"
+      ],
+      "slo": {
+        "latency_p95_ms": 10000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "BigQuery export service"
+    },
+    {
+      "id": "nha:cosign-enforcer",
+      "name": "@Cosign-Enforcer",
+      "category": "infra",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "cosign verify",
+          "auth": "kms"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "image_signing",
+          "description": "Container image signing and verification",
+          "scopes": [
+            "read:images",
+            "write:signatures",
+            "verify:cosign"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer",
+        "kms.cryptoKeyDecrypter"
+      ],
+      "secrets": [
+        "nha/cosign-enforcer/kms_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:security",
+        "tool:cosign"
+      ],
+      "slo": {
+        "latency_p95_ms": 2000,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.5
+      },
+      "notes": "Container image signing enforcement"
+    },
+    {
+      "id": "nha:backup-worker",
+      "name": "@Backup-Worker",
+      "category": "infra",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "backup_function.py",
+          "auth": "sa_key"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "backup_automation",
+          "description": "Automated backup creation and management",
+          "scopes": [
+            "read:data",
+            "write:backups",
+            "manage:retention"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer",
+        "storage.objectCreator"
+      ],
+      "secrets": [
+        "nha/backup-worker/sa_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:backup",
+        "platform:gcp"
+      ],
+      "slo": {
+        "latency_p95_ms": 30000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "Automated backup worker"
+    },
+    {
+      "id": "nha:restore-worker",
+      "name": "@Restore-Worker",
+      "category": "infra",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "restore_function.py",
+          "auth": "sa_key"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "restore_automation",
+          "description": "Automated restore operations",
+          "scopes": [
+            "read:backups",
+            "write:data",
+            "restore:systems"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer",
+        "storage.objectCreator"
+      ],
+      "secrets": [
+        "nha/restore-worker/sa_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:restore",
+        "platform:gcp"
+      ],
+      "slo": {
+        "latency_p95_ms": 60000,
+        "error_rate_max": 0.1,
+        "availability_pct": 95.0
+      },
+      "notes": "Automated restore worker"
+    },
+    {
+      "id": "nha:rbac-hmac-gateway",
+      "name": "@RBAC-HMAC-Gateway",
+      "category": "security",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://auth.coolbits.ai",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "rbac_enforcement",
+          "description": "Role-based access control with HMAC",
+          "scopes": [
+            "read:permissions",
+            "write:auth",
+            "enforce:rbac"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/rbac-hmac-gateway/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:auth",
+        "security:rbac"
+      ],
+      "slo": {
+        "latency_p95_ms": 50,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "RBAC enforcement gateway"
+    },
+    {
+      "id": "nha:secret-manager-sync",
+      "name": "@Secret-Manager-Sync",
+      "category": "security",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "sdk",
+          "endpoint": "secretmanager-python",
+          "auth": "sa_key"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "secret_sync",
+          "description": "Secret Manager synchronization",
+          "scopes": [
+            "read:secrets",
+            "write:secrets",
+            "sync:keys"
+          ]
+        }
+      ],
+      "permissions": [
+        "secretmanager.secretAccessor",
+        "secretmanager.secretVersionManager"
+      ],
+      "secrets": [
+        "nha/secret-manager-sync/sa_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:secrets",
+        "platform:gcp"
+      ],
+      "slo": {
+        "latency_p95_ms": 1000,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Secret Manager synchronization"
+    },
+    {
+      "id": "nha:gitleaks-scan",
+      "name": "@Gitleaks-Scan",
+      "category": "security",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "gitleaks detect",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "secret_scanning",
+          "description": "Git secret scanning with Gitleaks",
+          "scopes": [
+            "read:code",
+            "scan:secrets",
+            "write:reports"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker"
+      ],
+      "secrets": [],
+      "tags": [
+        "env:prod",
+        "service:security",
+        "tool:gitleaks"
+      ],
+      "slo": {
+        "latency_p95_ms": 30000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "Git secret scanning"
+    },
+    {
+      "id": "nha:cve-scan",
+      "name": "@CVE-Scan",
+      "category": "security",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "trivy image",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "vulnerability_scanning",
+          "description": "CVE scanning with Trivy",
+          "scopes": [
+            "read:images",
+            "scan:vulnerabilities",
+            "write:reports"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker"
+      ],
+      "secrets": [],
+      "tags": [
+        "env:prod",
+        "service:security",
+        "tool:trivy"
+      ],
+      "slo": {
+        "latency_p95_ms": 60000,
+        "error_rate_max": 0.1,
+        "availability_pct": 95.0
+      },
+      "notes": "CVE vulnerability scanning"
+    },
+    {
+      "id": "nha:opa-conftest",
+      "name": "@OPA-Conftest",
+      "category": "security",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "conftest test",
+          "auth": "none"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "policy_enforcement",
+          "description": "Open Policy Agent policy enforcement",
+          "scopes": [
+            "read:policies",
+            "enforce:rules",
+            "write:violations"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker"
+      ],
+      "secrets": [],
+      "tags": [
+        "env:prod",
+        "service:security",
+        "tool:opa"
+      ],
+      "slo": {
+        "latency_p95_ms": 5000,
+        "error_rate_max": 0.02,
+        "availability_pct": 99.5
+      },
+      "notes": "OPA policy enforcement"
+    },
+    {
+      "id": "nha:breach-runbook-bot",
+      "name": "@Breach-Runbook-Bot",
+      "category": "security",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "breach_runbook.py",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "breach_response",
+          "description": "Automated breach response and runbook execution",
+          "scopes": [
+            "read:incidents",
+            "write:response",
+            "manage:containment"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/breach-runbook-bot/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:security",
+        "tool:runbook"
+      ],
+      "slo": {
+        "latency_p95_ms": 1000,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Automated breach response bot"
+    },
+    {
+      "id": "nha:ogpt",
+      "name": "@OGPT",
+      "category": "mlops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://api.openai.com/v1",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "openai_integration",
+          "description": "OpenAI API integration",
+          "scopes": [
+            "read:models",
+            "write:completions",
+            "manage:tokens"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker"
+      ],
+      "secrets": [
+        "nha/ogpt/openai_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:mlops",
+        "provider:openai"
+      ],
+      "slo": {
+        "latency_p95_ms": 2000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "OpenAI provider integration"
+    },
+    {
+      "id": "nha:ogrok",
+      "name": "@OGrok",
+      "category": "mlops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://api.x.ai/v1",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "xai_integration",
+          "description": "xAI Grok API integration",
+          "scopes": [
+            "read:models",
+            "write:completions",
+            "manage:tokens"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker"
+      ],
+      "secrets": [
+        "nha/ogrok/xai_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:mlops",
+        "provider:xai"
+      ],
+      "slo": {
+        "latency_p95_ms": 2000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "xAI Grok provider integration"
+    },
+    {
+      "id": "nha:ogemini",
+      "name": "@OGemini",
+      "category": "mlops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://generativelanguage.googleapis.com/v1",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "gemini_integration",
+          "description": "Google Gemini API integration",
+          "scopes": [
+            "read:models",
+            "write:completions",
+            "manage:tokens"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker"
+      ],
+      "secrets": [
+        "nha/ogemini/gemini_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:mlops",
+        "provider:google"
+      ],
+      "slo": {
+        "latency_p95_ms": 2000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "Google Gemini provider integration"
+    },
+    {
+      "id": "nha:ocopilot",
+      "name": "@OCopilot",
+      "category": "mlops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://api.copilot.microsoft.com/v1",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "copilot_integration",
+          "description": "Microsoft Copilot API integration",
+          "scopes": [
+            "read:models",
+            "write:completions",
+            "manage:tokens"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker"
+      ],
+      "secrets": [
+        "nha/ocopilot/copilot_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:mlops",
+        "provider:microsoft"
+      ],
+      "slo": {
+        "latency_p95_ms": 2000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "Microsoft Copilot provider integration"
+    },
+    {
+      "id": "nha:vertex",
+      "name": "@Vertex",
+      "category": "mlops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "sdk",
+          "endpoint": "vertexai-python",
+          "auth": "sa_key"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "vertex_ai_gateway",
+          "description": "Vertex AI gateway and management",
+          "scopes": [
+            "read:models",
+            "write:deployments",
+            "manage:endpoints"
+          ]
+        }
+      ],
+      "permissions": [
+        "aiplatform.user",
+        "aiplatform.deploymentManager"
+      ],
+      "secrets": [
+        "nha/vertex/sa_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:mlops",
+        "platform:gcp"
+      ],
+      "slo": {
+        "latency_p95_ms": 1000,
+        "error_rate_max": 0.02,
+        "availability_pct": 99.5
+      },
+      "notes": "Vertex AI gateway service"
+    },
+    {
+      "id": "nha:embedding-worker",
+      "name": "@Embedding-Worker",
+      "category": "mlops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:3003/api/embed",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "embedding_generation",
+          "description": "Text embedding generation worker",
+          "scopes": [
+            "read:text",
+            "write:embeddings",
+            "process:vectors"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "aiplatform.user"
+      ],
+      "secrets": [
+        "nha/embedding-worker/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:mlops",
+        "worker:embedding"
+      ],
+      "slo": {
+        "latency_p95_ms": 1000,
+        "error_rate_max": 0.02,
+        "availability_pct": 99.5
+      },
+      "notes": "Embedding generation worker"
+    },
+    {
+      "id": "nha:rag-ingest-worker",
+      "name": "@RAG-Ingest-Worker",
+      "category": "mlops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:3004/api/ingest",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "rag_ingestion",
+          "description": "RAG document ingestion worker",
+          "scopes": [
+            "read:documents",
+            "write:vectors",
+            "process:content"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "storage.objectViewer",
+        "aiplatform.user"
+      ],
+      "secrets": [
+        "nha/rag-ingest-worker/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:mlops",
+        "worker:ingest"
+      ],
+      "slo": {
+        "latency_p95_ms": 5000,
+        "error_rate_max": 0.05,
+        "availability_pct": 99.0
+      },
+      "notes": "RAG document ingestion worker"
+    },
+    {
+      "id": "nha:rag-search-worker",
+      "name": "@RAG-Search-Worker",
+      "category": "mlops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:3005/api/search",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "rag_search",
+          "description": "RAG vector search worker",
+          "scopes": [
+            "read:vectors",
+            "search:similarity",
+            "write:results"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "storage.objectViewer",
+        "aiplatform.user"
+      ],
+      "secrets": [
+        "nha/rag-search-worker/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:mlops",
+        "worker:search"
+      ],
+      "slo": {
+        "latency_p95_ms": 200,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.5
+      },
+      "notes": "RAG vector search worker"
+    },
+    {
+      "id": "nha:chaos-runner",
+      "name": "@Chaos-Runner",
+      "category": "ops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "chaos/runners/runner.py",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "chaos_engineering",
+          "description": "Chaos engineering experiment runner",
+          "scopes": [
+            "read:scenarios",
+            "execute:chaos",
+            "write:reports"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/chaos-runner/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:chaos",
+        "tool:engineering"
+      ],
+      "slo": {
+        "latency_p95_ms": 300000,
+        "error_rate_max": 0.1,
+        "availability_pct": 95.0
+      },
+      "notes": "Chaos engineering runner"
+    },
+    {
+      "id": "nha:chaos-orchestrator",
+      "name": "@Chaos-Orchestrator",
+      "category": "ops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:3006/api/chaos",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "chaos_orchestration",
+          "description": "Chaos experiment orchestration",
+          "scopes": [
+            "read:experiments",
+            "write:orchestration",
+            "manage:schedules"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/chaos-orchestrator/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:chaos",
+        "tool:orchestration"
+      ],
+      "slo": {
+        "latency_p95_ms": 1000,
+        "error_rate_max": 0.02,
+        "availability_pct": 99.5
+      },
+      "notes": "Chaos experiment orchestrator"
+    },
+    {
+      "id": "nha:drill-runner",
+      "name": "@Drill-Runner",
+      "category": "ops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "cli",
+          "endpoint": "drill_runner.py",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "dr_disaster_recovery",
+          "description": "Disaster recovery drill automation",
+          "scopes": [
+            "read:drills",
+            "execute:recovery",
+            "write:reports"
+          ]
+        }
+      ],
+      "permissions": [
+        "run.invoker",
+        "storage.objectViewer",
+        "logging.logWriter"
+      ],
+      "secrets": [
+        "nha/drill-runner/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:dr",
+        "tool:drills"
+      ],
+      "slo": {
+        "latency_p95_ms": 600000,
+        "error_rate_max": 0.2,
+        "availability_pct": 90.0
+      },
+      "notes": "Disaster recovery drill runner"
+    },
+    {
+      "id": "nha:uptime-monitor",
+      "name": "@Uptime-Monitor",
+      "category": "ops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://monitor.coolbits.ai/uptime",
+          "auth": "jwt"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "uptime_monitoring",
+          "description": "Service uptime monitoring",
+          "scopes": [
+            "read:health",
+            "write:alerts",
+            "monitor:services"
+          ]
+        }
+      ],
+      "permissions": [
+        "monitoring.viewer",
+        "monitoring.writer"
+      ],
+      "secrets": [
+        "nha/uptime-monitor/jwt"
+      ],
+      "tags": [
+        "env:prod",
+        "service:monitoring",
+        "tool:uptime"
+      ],
+      "slo": {
+        "latency_p95_ms": 100,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Service uptime monitoring"
+    },
+    {
+      "id": "nha:slo-gate",
+      "name": "@SLO-Gate",
+      "category": "ops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "http://127.0.0.1:3007/api/slo",
+          "auth": "hmac"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "slo_enforcement",
+          "description": "SLO enforcement and gating",
+          "scopes": [
+            "read:metrics",
+            "write:gates",
+            "enforce:slo"
+          ]
+        }
+      ],
+      "permissions": [
+        "monitoring.viewer",
+        "run.invoker"
+      ],
+      "secrets": [
+        "nha/slo-gate/hmac"
+      ],
+      "tags": [
+        "env:prod",
+        "service:slo",
+        "tool:gating"
+      ],
+      "slo": {
+        "latency_p95_ms": 50,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "SLO enforcement gateway"
+    },
+    {
+      "id": "nha:budget-guard",
+      "name": "@Budget-Guard",
+      "category": "ops",
+      "owner": "platform",
+      "status": "active",
+      "channels": [
+        {
+          "kind": "sdk",
+          "endpoint": "billing-python",
+          "auth": "sa_key"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "cost_monitoring",
+          "description": "Cost monitoring and budget alerts",
+          "scopes": [
+            "read:billing",
+            "write:alerts",
+            "manage:budgets"
+          ]
+        }
+      ],
+      "permissions": [
+        "billing.accounts.getSpendingInformation"
+      ],
+      "secrets": [
+        "nha/budget-guard/sa_key"
+      ],
+      "tags": [
+        "env:prod",
+        "service:billing",
+        "tool:cost"
+      ],
+      "slo": {
+        "latency_p95_ms": 1000,
+        "error_rate_max": 0.01,
+        "availability_pct": 99.9
+      },
+      "notes": "Cost monitoring and budget guard"
+    },
+    {
+      "id": "nha:seo-audit",
+      "name": "@SEO-Audit",
+      "category": "seo_tools",
+      "owner": "platform",
+      "status": "deprecated",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://legacy-seo.coolbits.ai",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "seo_auditing",
+          "description": "SEO audit and analysis (deprecated)",
+          "scopes": [
+            "read:seo",
+            "write:reports"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer"
+      ],
+      "secrets": [
+        "nha/seo-audit/oauth"
+      ],
+      "tags": [
+        "env:deprecated",
+        "service:seo",
+        "status:legacy"
+      ],
+      "slo": {
+        "latency_p95_ms": 5000,
+        "error_rate_max": 0.1,
+        "availability_pct": 90.0
+      },
+      "notes": "Legacy SEO audit service - deprecated"
+    },
+    {
+      "id": "nha:seo-keywords",
+      "name": "@SEO-Keywords",
+      "category": "seo_tools",
+      "owner": "platform",
+      "status": "deprecated",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://legacy-keywords.coolbits.ai",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "keyword_research",
+          "description": "Keyword research and analysis (deprecated)",
+          "scopes": [
+            "read:keywords",
+            "write:research"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer"
+      ],
+      "secrets": [
+        "nha/seo-keywords/oauth"
+      ],
+      "tags": [
+        "env:deprecated",
+        "service:seo",
+        "status:legacy"
+      ],
+      "slo": {
+        "latency_p95_ms": 5000,
+        "error_rate_max": 0.1,
+        "availability_pct": 90.0
+      },
+      "notes": "Legacy keyword research service - deprecated"
+    },
+    {
+      "id": "nha:agency-mcc-sync",
+      "name": "@Agency-MCC-Sync",
+      "category": "agency",
+      "owner": "platform",
+      "status": "deprecated",
+      "channels": [
+        {
+          "kind": "http",
+          "endpoint": "https://legacy-mcc.coolbits.ai",
+          "auth": "oauth"
+        }
+      ],
+      "capabilities": [
+        {
+          "name": "mcc_synchronization",
+          "description": "Agency MCC synchronization (deprecated)",
+          "scopes": [
+            "read:mcc",
+            "write:sync"
+          ]
+        }
+      ],
+      "permissions": [
+        "storage.objectViewer"
+      ],
+      "secrets": [
+        "nha/agency-mcc-sync/oauth"
+      ],
+      "tags": [
+        "env:deprecated",
+        "service:agency",
+        "status:legacy"
+      ],
+      "slo": {
+        "latency_p95_ms": 10000,
+        "error_rate_max": 0.2,
+        "availability_pct": 80.0
+      },
+      "notes": "Legacy agency MCC sync service - deprecated"
+    }
+  ]
+}

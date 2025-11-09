@@ -1,0 +1,5 @@
+Original Address,Map To Address,Action,Priority
+andrei@coolbits.ro,andrei@coolbits.ai,redirect,highest
+coolbits.dm@gmail.com,andrei@coolbits.ai,forward,highest
+coolbits.ro@gmail.com,andrei@coolbits.ai,forward,high
+coolbits.ai@gmail.com,andrei@coolbits.ai,forward,high

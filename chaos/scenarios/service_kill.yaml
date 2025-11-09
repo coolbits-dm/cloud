@@ -1,0 +1,19 @@
+# CoolBits.ai Chaos Engineering - Service Kill Scenario
+name: service_kill
+description: "Simulate service failure and test auto-healing"
+targets:
+  - service: coolbits-frontend
+    duration_s: 300
+    recovery_timeout_s: 600
+slo:
+  p95_ms: 400
+  error_rate: 0.01
+  availability: 0.99
+rollback:
+  action: canary_rollback
+  window_s: 300
+  trigger_threshold: 0.05
+safety:
+  max_downtime_s: 600
+  kill_switch_s: 300
+  blast_radius: staging_only

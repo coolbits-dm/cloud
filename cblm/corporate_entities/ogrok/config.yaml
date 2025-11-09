@@ -1,0 +1,30 @@
+api_config:
+  authentication: configured_via_secrets
+  endpoints: &id001
+  - internal
+entity:
+  api_endpoints: *id001
+  capabilities:
+  - strategic_decisions
+  - policy_framework
+  - ai_board
+  classification: Internal Secret - CoolBits.ai Members Only
+  integration_status: proprietary
+  name: oGrok
+  owner: COOL BITS SRL
+  provider: COOL BITS SRL
+  role: COOL BITS SRL AI Board Division
+integration:
+  cbLM_integration: true
+  last_updated: '2025-09-07T07:15:25.566003'
+  status: proprietary
+policy:
+  classification: Internal Secret - CoolBits.ai Members Only
+  policy_division:
+    caio: oGrok09
+    ciso: oGrok08
+    policy_systems:
+    - coolbits.ai/policy
+    - coolbits.ai/policy-manager
+    - cblm.ai/policy
+    - cblm.ai/policy-manager

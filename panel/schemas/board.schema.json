@@ -1,0 +1,24 @@
+{
+  "$id": "cb.board.v0",
+  "type": "object",
+  "properties": {
+    "panel": { "type": "string", "enum": ["user","business","agency","dev"] },
+    "board_name": { "type": "string" },
+    "members": {
+      "type": "array",
+      "items": { 
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "display": { "type": "string" },
+          "role": { "type": "string" },
+          "agent_type": { "type": "string", "enum": ["human","non-human"] }
+        },
+        "required": ["id","display","role","agent_type"]
+      }
+    },
+    "charter": { "type": "string" },
+    "meetings": { "type": "array", "items": { "type": "object" } }
+  },
+  "required": ["panel","board_name","members"]
+}

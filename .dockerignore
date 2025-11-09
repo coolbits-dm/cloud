@@ -1,0 +1,16 @@
+.venv
+__pycache__/
+*.pyc
+.git
+data/
+logs/
+.env
+*.log
+.pytest_cache/
+.coverage
+htmlcov/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~

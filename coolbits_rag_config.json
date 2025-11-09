@@ -1,0 +1,393 @@
+{
+  "coolbits_ai": {
+    "version": "1.0.0",
+    "ceo": "Andrei - andrei@coolbits.ro",
+    "managed_by": "oCursor (Local Development)",
+    "last_updated": "2025-01-07T16:32:43Z",
+    "rag_system": {
+      "enabled": true,
+      "vertex_ai": {
+        "project_id": "271190369805",
+        "location": "europe-west4",
+        "index_id": "357314890748133376",
+        "index_endpoint_id": "YOUR_INDEX_ENDPOINT_ID",
+        "status": "configured"
+      },
+      "features": {
+        "organizational_search": true,
+        "role_specific_knowledge": true,
+        "panel_specific_knowledge": true,
+        "vector_search": true,
+        "recommendations": true,
+        "god_mode_access": true
+      },
+      "endpoints": {
+        "rag_search": {
+          "method": "POST",
+          "path": "/rag/search",
+          "description": "Search organizational knowledge using RAG"
+        },
+        "rag_role_knowledge": {
+          "method": "POST",
+          "path": "/rag/role/{role_id}",
+          "description": "Get role-specific knowledge"
+        },
+        "rag_panel_knowledge": {
+          "method": "POST",
+          "path": "/rag/panel/{panel_name}",
+          "description": "Get panel-specific knowledge"
+        },
+        "rag_recommendations": {
+          "method": "POST",
+          "path": "/rag/recommendations",
+          "description": "Get AI-powered recommendations"
+        },
+        "rag_status": {
+          "method": "GET",
+          "path": "/rag/status",
+          "description": "Get RAG system status"
+        }
+      },
+      "test_scenarios": [
+        {
+          "name": "CEO God Mode",
+          "context": {
+            "role": "ceo",
+            "panel": "andrei",
+            "access_level": "GOD_MODE"
+          },
+          "query": "Show me the complete system overview"
+        },
+        {
+          "name": "CTO Technology",
+          "context": {
+            "role": "cto",
+            "panel": "dev",
+            "access_level": "TECHNOLOGY_LEAD"
+          },
+          "query": "What are the key technology initiatives?"
+        },
+        {
+          "name": "CPO Product",
+          "context": {
+            "role": "cpo",
+            "panel": "business",
+            "access_level": "PRODUCT_LEAD"
+          },
+          "query": "What is the product roadmap?"
+        },
+        {
+          "name": "CMO Marketing",
+          "context": {
+            "role": "cmo",
+            "panel": "business",
+            "access_level": "MARKETING_LEAD"
+          },
+          "query": "What marketing strategies should we implement?"
+        },
+        {
+          "name": "Developer",
+          "context": {
+            "role": "backend",
+            "panel": "dev",
+            "access_level": "ENGINEERING"
+          },
+          "query": "How do I integrate with the API?"
+        }
+      ],
+      "recommendations": {
+        "ceo": [
+          "Access full organizational overview",
+          "Review strategic initiatives",
+          "Monitor key performance indicators"
+        ],
+        "technology_roles": [
+          "Review technical documentation",
+          "Check system architecture",
+          "Monitor development metrics"
+        ],
+        "product_roles": [
+          "Review product roadmap",
+          "Check user feedback",
+          "Monitor product metrics"
+        ],
+        "god_mode": [
+          "Access God Mode features",
+          "Review system status",
+          "Execute administrative commands"
+        ],
+        "business_panel": [
+          "Review business analytics",
+          "Check multi-business status",
+          "Access business AI council"
+        ],
+        "dev_panel": [
+          "Access development tools",
+          "Check GitHub integration",
+          "Review API documentation"
+        ]
+      }
+    },
+    "organizational_structure": {
+      "executive": {
+        "category": "Executive",
+        "roles": [
+          {
+            "id": "ceo",
+            "name": "CEO",
+            "email": "ceo@coolbits.ai",
+            "agent": "oCopilot (Microsoft Integration)",
+            "access_level": "GOD_MODE",
+            "status": "ACTIVE",
+            "permissions": ["system_control", "god_mode_access", "all_permissions"],
+            "cbt_allocation": 100000,
+            "rag_access": true
+          },
+          {
+            "id": "cso",
+            "name": "CSO",
+            "email": "cso@coolbits.ai",
+            "agent": "Strategy AI",
+            "access_level": "EXECUTIVE",
+            "status": "ACTIVE",
+            "permissions": ["strategy_planning", "executive_decisions", "board_access"],
+            "cbt_allocation": 50000,
+            "rag_access": true
+          },
+          {
+            "id": "board",
+            "name": "Board",
+            "email": "board@coolbits.ai",
+            "agent": "Board AI",
+            "access_level": "BOARD_LEVEL",
+            "status": "ACTIVE",
+            "permissions": ["board_decisions", "governance", "oversight"],
+            "cbt_allocation": 50000,
+            "rag_access": true
+          }
+        ]
+      },
+      "technology": {
+        "category": "Technology",
+        "roles": [
+          {
+            "id": "cto",
+            "name": "CTO",
+            "email": "cto@coolbits.ai",
+            "agent": "Technology AI",
+            "access_level": "TECHNOLOGY_LEAD",
+            "status": "ACTIVE",
+            "permissions": ["tech_strategy", "architecture_decisions", "team_leadership"],
+            "cbt_allocation": 75000,
+            "rag_access": true
+          },
+          {
+            "id": "backend_engineering",
+            "name": "Backend Engineering",
+            "email": "backend@coolbits.ai",
+            "agent": "Backend AI",
+            "access_level": "ENGINEERING",
+            "status": "ACTIVE",
+            "permissions": ["backend_development", "api_design", "database_management"],
+            "cbt_allocation": 40000,
+            "rag_access": true
+          },
+          {
+            "id": "frontend_engineering",
+            "name": "Frontend Engineering",
+            "email": "frontend@coolbits.ai",
+            "agent": "Frontend AI",
+            "access_level": "ENGINEERING",
+            "status": "ACTIVE",
+            "permissions": ["frontend_development", "ui_ux_implementation", "user_interface"],
+            "cbt_allocation": 40000,
+            "rag_access": true
+          },
+          {
+            "id": "mobile_engineering",
+            "name": "Mobile Engineering",
+            "email": "mobile@coolbits.ai",
+            "agent": "Mobile AI",
+            "access_level": "ENGINEERING",
+            "status": "ACTIVE",
+            "permissions": ["mobile_development", "app_architecture", "mobile_optimization"],
+            "cbt_allocation": 40000,
+            "rag_access": true
+          },
+          {
+            "id": "platform_engineering",
+            "name": "Platform Engineering",
+            "email": "platform@coolbits.ai",
+            "agent": "Platform AI",
+            "access_level": "ENGINEERING",
+            "status": "ACTIVE",
+            "permissions": ["platform_development", "infrastructure", "scalability"],
+            "cbt_allocation": 40000,
+            "rag_access": true
+          },
+          {
+            "id": "architecture",
+            "name": "Architecture",
+            "email": "architecture@coolbits.ai",
+            "agent": "Architecture AI",
+            "access_level": "ARCHITECTURE",
+            "status": "ACTIVE",
+            "permissions": ["system_architecture", "design_patterns", "technical_decisions"],
+            "cbt_allocation": 50000,
+            "rag_access": true
+          },
+          {
+            "id": "devops_sre",
+            "name": "DevOps/SRE",
+            "email": "devops@coolbits.ai",
+            "agent": "DevOps AI",
+            "access_level": "OPERATIONS",
+            "status": "ACTIVE",
+            "permissions": ["deployment", "monitoring", "reliability", "automation"],
+            "cbt_allocation": 45000,
+            "rag_access": true
+          },
+          {
+            "id": "qa_quality",
+            "name": "QA/Quality",
+            "email": "qa@coolbits.ai",
+            "agent": "QA AI",
+            "access_level": "QUALITY",
+            "status": "ACTIVE",
+            "permissions": ["testing", "quality_assurance", "bug_tracking"],
+            "cbt_allocation": 35000,
+            "rag_access": true
+          },
+          {
+            "id": "research_rnd",
+            "name": "R&D",
+            "email": "rnd@coolbits.ai",
+            "agent": "R&D AI",
+            "access_level": "RESEARCH",
+            "status": "ACTIVE",
+            "permissions": ["research", "innovation", "prototyping", "experimentation"],
+            "cbt_allocation": 60000,
+            "rag_access": true
+          }
+        ]
+      }
+    },
+    "panel_system": {
+      "user": {
+        "name": "User Panel",
+        "description": "General user dashboard",
+        "access_level": "USER",
+        "features": ["basic_ai_chat", "personal_dashboard", "user_settings"],
+        "status": "ACTIVE",
+        "cbt_allocation": 200000,
+        "rag_access": true
+      },
+      "business": {
+        "name": "Business Panel",
+        "description": "Business management dashboard",
+        "access_level": "BUSINESS",
+        "features": ["business_ai_council", "multi_business_select", "business_analytics"],
+        "status": "ACTIVE",
+        "cbt_allocation": 200000,
+        "rag_access": true
+      },
+      "agency": {
+        "name": "Agency Panel",
+        "description": "Digital marketing agency panel with MCC connects",
+        "access_level": "AGENCY",
+        "features": ["mcc_connects", "agency_tools", "client_management"],
+        "status": "ACTIVE",
+        "cbt_allocation": 150000,
+        "rag_access": true
+      },
+      "dev": {
+        "name": "Developer Panel",
+        "description": "Developer panel with all developer tools",
+        "access_level": "DEVELOPER",
+        "features": ["cursor_integration", "google_cloud", "github", "api_tools"],
+        "status": "ACTIVE",
+        "cbt_allocation": 100000,
+        "rag_access": true
+      },
+      "admin": {
+        "name": "Admin Panel",
+        "description": "User admin panel",
+        "access_level": "ADMIN",
+        "features": ["user_management", "system_settings", "admin_tools"],
+        "status": "ACTIVE",
+        "cbt_allocation": 50000,
+        "rag_access": true
+      },
+      "andrei": {
+        "name": "Andrei God Mode",
+        "description": "CEO God mode panel with dedicated API keys",
+        "access_level": "GOD_MODE",
+        "features": ["full_access", "dedicated_openai", "dedicated_grok", "system_control"],
+        "status": "ACTIVE",
+        "cbt_allocation": 100000,
+        "rag_access": true
+      }
+    },
+    "bits_framework": {
+      "c-bit": {
+        "name": "Cool Bits (Admin Bits)",
+        "description": "Secret internal CEO level bits",
+        "access_level": "CEO_ONLY",
+        "features": ["system_control", "god_mode_access", "all_permissions"],
+        "status": "ACTIVE",
+        "cbt_allocation": 100000,
+        "rag_access": true
+      },
+      "u-bit": {
+        "name": "User Bits",
+        "description": "User level bits and permissions",
+        "access_level": "USER",
+        "features": ["personal_ai", "user_dashboard", "basic_features"],
+        "status": "ACTIVE",
+        "cbt_allocation": 200000,
+        "rag_access": true
+      },
+      "b-bit": {
+        "name": "Business Bits",
+        "description": "Business level bits and permissions",
+        "access_level": "BUSINESS",
+        "features": ["business_ai_council", "multi_business", "business_analytics"],
+        "status": "ACTIVE",
+        "cbt_allocation": 200000,
+        "rag_access": true
+      },
+      "a-bit": {
+        "name": "Agency Bits",
+        "description": "Agency level bits and permissions",
+        "access_level": "AGENCY",
+        "features": ["mcc_connects", "agency_tools", "client_management"],
+        "status": "ACTIVE",
+        "cbt_allocation": 150000,
+        "rag_access": true
+      },
+      "d-bit": {
+        "name": "Developer Bits",
+        "description": "Developer level bits and permissions",
+        "access_level": "DEVELOPER",
+        "features": ["dev_tools", "api_access", "integration_tools"],
+        "status": "ACTIVE",
+        "cbt_allocation": 100000,
+        "rag_access": true
+      }
+    },
+    "cbt_economy": {
+      "total_supply": 1000000,
+      "circulating": 750000,
+      "reserved": 250000,
+      "allocation": {
+        "c-bit": 100000,
+        "u-bit": 200000,
+        "b-bit": 200000,
+        "a-bit": 150000,
+        "d-bit": 100000
+      },
+      "transactions": [],
+      "status": "ACTIVE"
+    }
+  }
+}

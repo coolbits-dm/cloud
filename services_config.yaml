@@ -1,0 +1,78 @@
+# CoolBits.ai Services Configuration - UPDATED WITH AGENT PORTAL & RAG
+# Local Admin Panel - Service Management
+
+services:
+  # Core Multi-Agent Chat Service
+  enhanced_multi_agent_chat:
+    name: "Enhanced Multi-Agent Chat"
+    file: "enhanced_multi_agent_chat_server.py"
+    port: 8091
+    description: "Advanced multi-agent chat with 20 agents, teams, and debug logging"
+    category: "chat"
+    dependencies: []
+    auto_start: true
+    
+  # Individual Agent Pages Portal
+  individual_agent_pages:
+    name: "Individual Agent Pages Portal"
+    file: "individual_agent_pages_server.py"
+    port: 8099
+    description: "Individual pages for all 20 business roles with chat, training, and self-learning"
+    category: "agents"
+    dependencies: ["advanced_rag_admin"]
+    auto_start: true
+    
+  # Advanced RAG Admin Panel (Unified RAG System)
+  advanced_rag_admin:
+    name: "Advanced RAG Admin Panel"
+    file: "advanced_rag_admin_server.py"
+    port: 8098
+    description: "Unified RAG management with hierarchical categories, document upload, and training"
+    category: "rag"
+    dependencies: []
+    auto_start: true
+    
+  # API Cost Dashboard
+  api_cost_dashboard:
+    name: "API Cost Dashboard"
+    file: "api_cost_dashboard_server.py"
+    port: 8095
+    description: "Real-time API cost monitoring and optimization"
+    category: "dashboard"
+    dependencies: []
+    auto_start: true
+
+# Service Categories
+categories:
+  chat:
+    name: "Chat Services"
+    description: "Multi-agent chat and communication systems"
+    color: "#4CAF50"
+    
+  agents:
+    name: "Agent Services"
+    description: "Individual agent pages and management"
+    color: "#9C27B0"
+    
+  dashboard:
+    name: "Dashboard Services"
+    description: "Web dashboards and monitoring interfaces"
+    color: "#2196F3"
+    
+  rag:
+    name: "RAG Services"
+    description: "Retrieval-Augmented Generation systems"
+    color: "#FF9800"
+
+# System Configuration
+system:
+  python_path: ".venv/Scripts/python.exe"
+  default_timeout: 30
+  health_check_interval: 10
+  log_level: "info"
+  max_retries: 3
+  
+# Port Management
+ports:
+  reserved: [8091, 8095, 8098, 8099]
+  available: [8100, 8101, 8102, 8103, 8104, 8105, 8106, 8107, 8108, 8109]

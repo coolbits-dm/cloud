@@ -1,0 +1,30 @@
+{
+  "panel": "dev",
+  "posts": [
+    {
+      "attachments": [],
+      "author": "demo_user",
+      "comments": [
+        {
+          "author": "nha_sentiment",
+          "text": "Sentiment analysis complete: Positive (0.8 confidence)",
+          "ts": "2025-09-12T04:53:04.191157Z"
+        }
+      ],
+      "id": "6182fafef7d4e88b",
+      "mentions": [
+        "@nha:sentiment"
+      ],
+      "nha_invocations": [
+        {
+          "agent_id": "sentiment_analyzer",
+          "result_ref": "sentiment_result_dev",
+          "role": "sentiment",
+          "status": "done"
+        }
+      ],
+      "text": "Welcome to dev panel! This is a demo post with @nha:sentiment analysis.",
+      "ts": "2025-09-12T04:53:04.191157Z"
+    }
+  ]
+}

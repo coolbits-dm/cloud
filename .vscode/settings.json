@@ -1,0 +1,22 @@
+{
+  // Nu vrem terminal integrat
+  "terminal.integrated.shellIntegration.enabled": false,
+  "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.inheritEnv": false,
+  "terminal.integrated.defaultProfile.windows": null,
+  "terminal.integrated.profiles.windows": {},
+
+  // Orice "Open in Terminal" => extern
+  "terminal.explorerKind": "external",
+  "terminal.external.windowsExec": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+
+  // Debug fără consola integrată
+  "debug.internalConsoleOptions": "neverOpen",
+  "debug.console.closeOnEnd": true,
+
+  // Code Runner (dacă îl ai în Cursor)
+  "code-runner.runInTerminal": false,
+  "code-runner.executorMap": {
+    "powershell": "C:\\Program Files\\PowerShell\\7\\pwsh.exe -NoLogo -NoProfile -ExecutionPolicy Bypass"
+  }
+}

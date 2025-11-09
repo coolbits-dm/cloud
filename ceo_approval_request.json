@@ -1,0 +1,20 @@
+{
+  "request_id": "DUAL_ACCOUNT_1757245083",
+  "timestamp": "2025-09-07 14:38:03",
+  "ceo": "Andrei",
+  "company": "COOL BITS SRL",
+  "request_type": "Dual Google Account Management",
+  "accounts": [
+    "coolbits.ai@gmail.com",
+    "coolbits.dm@gmail.com"
+  ],
+  "collaboration_features": [
+    "sync_enabled",
+    "alias_mode",
+    "shared_resources",
+    "cross_account_access",
+    "unified_dashboard"
+  ],
+  "approval_required": true,
+  "status": "PENDING_APPROVAL"
+}

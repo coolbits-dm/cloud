@@ -1,0 +1,80 @@
+# CoolBits.ai M7 Kill-Switch Anti-Regresie
+# =========================================
+
+# Add to CI/CD pipeline
+- name: Verify cost labels on deployment
+  run: |
+    echo "🏷️  Verifying cost labels..."
+    
+    # Check if service has required labels
+    LABELS=$(gcloud run services describe coolbits-frontend --region=europe-west1 --format="value(metadata.labels)")
+    
+    if [[ $LABELS != *"env="* ]] || [[ $LABELS != *"service="* ]] || [[ $LABELS != *"owner="* ]] || [[ $LABELS != *"cost-center="* ]]; then
+      echo "❌ Missing required cost labels"
+      echo "Required labels: env, service, owner, cost-center"
+      exit 1
+    fi
+    
+    echo "✅ Cost labels verified"
+
+- name: Verify uptime check exists
+  run: |
+    echo "🔍 Verifying uptime check..."
+    
+    # Check if uptime check exists for service
+    UPTIME_CHECKS=$(gcloud monitoring uptime-checks list --filter="displayName~coolbits-frontend" --format="value(name)")
+    
+    if [ -z "$UPTIME_CHECKS" ]; then
+      echo "❌ No uptime check found for service"
+      exit 1
+    fi
+    
+    echo "✅ Uptime check verified"
+
+- name: Verify SLO compliance before promotion
+  run: |
+    echo "🎯 Verifying SLO compliance..."
+    
+    # Run SLO check
+    python scripts/check_slo.py \
+      --service coolbits-frontend \
+      --window 30 \
+      --p95 400 \
+      --error-rate 1.0
+    
+    if [ $? -ne 0 ]; then
+      echo "❌ SLO check failed - blocking promotion"
+      exit 1
+    fi
+    
+    echo "✅ SLO compliance verified"
+
+# Add to deployment validation
+- name: Validate cost hygiene
+  run: |
+    echo "🧹 Validating cost hygiene..."
+    
+    # Check resource limits
+    RESOURCE_LIMITS=$(gcloud run services describe coolbits-frontend --region=europe-west1 --format="value(spec.template.spec.containers[0].resources.limits)")
+    
+    if [[ $RESOURCE_LIMITS != *"cpu="* ]] || [[ $RESOURCE_LIMITS != *"memory="* ]]; then
+      echo "❌ Missing resource limits"
+      exit 1
+    fi
+    
+    echo "✅ Cost hygiene validated"
+
+# Add to monitoring validation
+- name: Validate monitoring setup
+  run: |
+    echo "📊 Validating monitoring setup..."
+    
+    # Check if monitoring policies exist
+    POLICIES=$(gcloud alpha monitoring policies list --format="value(displayName)")
+    
+    if [[ $POLICIES != *"CoolBits"* ]]; then
+      echo "❌ No CoolBits monitoring policies found"
+      exit 1
+    fi
+    
+    echo "✅ Monitoring setup validated"

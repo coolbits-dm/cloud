@@ -1,0 +1,208 @@
+2025-09-11 07:12:53,424 - __main__ - INFO - Loaded scenario: network_latency
+2025-09-11 07:12:53,424 - __main__ - INFO - Starting chaos experiment: network_latency
+2025-09-11 07:12:53,425 - __main__ - ERROR - Failed to check staging environment: name 'os' is not defined
+2025-09-11 07:12:53,425 - __main__ - ERROR - Safety guard: Not in staging environment
+2025-09-11 07:12:53,426 - __main__ - INFO - Report saved: chaos/reports/network_latency_20250911_071253.md
+2025-09-11 07:12:59,031 - __main__ - INFO - Loaded scenario: network_latency
+2025-09-11 07:12:59,032 - __main__ - INFO - Starting chaos experiment: network_latency
+2025-09-11 07:12:59,032 - __main__ - INFO - Safety guards passed
+2025-09-11 07:12:59,033 - validators - INFO - Chaos experiment started: network_latency
+2025-09-11 07:12:59,034 - __main__ - INFO - Measuring baseline SLO
+2025-09-11 07:12:59,034 - validators - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 07:19:57,207 - validators - INFO - SLO measurement: p95=0.0ms, error_rate=1.000, availability=0.000
+2025-09-11 07:19:57,207 - validators - INFO - SLO measurement: p95=0.0ms, error_rate=1.000
+2025-09-11 07:19:57,209 - injectors - INFO - Injecting 600ms latency to coolbits-frontend
+2025-09-11 07:19:57,218 - injectors - ERROR - Network latency injection failed: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
+2025-09-11 07:19:57,220 - __main__ - INFO - Report saved: chaos/reports/network_latency_20250911_071957.md
+2025-09-11 08:07:38,817 - __main__ - INFO - Loaded scenario: network_latency
+2025-09-11 08:07:38,817 - __main__ - INFO - Starting chaos experiment: network_latency
+2025-09-11 08:07:38,817 - __main__ - INFO - Safety guards passed
+2025-09-11 08:07:38,817 - validators_windows - INFO - Chaos experiment started: network_latency
+2025-09-11 08:07:38,818 - __main__ - INFO - Measuring baseline SLO
+2025-09-11 08:07:38,818 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 08:07:38,818 - validators_windows - INFO - SLO measurement: p95=54.5ms, error_rate=0.008, availability=0.998
+2025-09-11 08:07:38,819 - injectors_windows - INFO - Simulating 600ms latency injection to coolbits-frontend
+2025-09-11 08:07:38,819 - __main__ - INFO - Running experiment for 180 seconds
+2025-09-11 08:07:38,819 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:07:38,820 - validators_windows - INFO - SLO measurement: p95=146.5ms, error_rate=0.010, availability=0.998
+2025-09-11 08:08:08,821 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:08:08,821 - validators_windows - INFO - SLO measurement: p95=112.0ms, error_rate=0.006, availability=0.997
+2025-09-11 08:08:38,822 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:08:38,822 - validators_windows - INFO - SLO measurement: p95=131.5ms, error_rate=0.003, availability=0.999
+2025-09-11 08:09:08,822 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:09:08,822 - validators_windows - INFO - SLO measurement: p95=77.9ms, error_rate=0.003, availability=0.995
+2025-09-11 08:09:38,823 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:09:38,823 - validators_windows - INFO - SLO measurement: p95=122.6ms, error_rate=0.007, availability=0.998
+2025-09-11 08:10:08,824 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:10:08,824 - validators_windows - INFO - SLO measurement: p95=62.5ms, error_rate=0.006, availability=0.998
+2025-09-11 08:10:38,824 - injectors_windows - INFO - Stopping latency injection for coolbits-frontend
+2025-09-11 08:11:08,826 - __main__ - INFO - Measuring final SLO
+2025-09-11 08:11:08,826 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 08:11:08,826 - validators_windows - INFO - SLO measurement: p95=147.5ms, error_rate=0.006, availability=0.996
+2025-09-11 08:11:08,827 - validators_windows - INFO - SLO check: p95=147.5ms <= 400ms (True), error=0.006 <= 0.01 (True), availability=0.996 >= 0.99 (True)
+2025-09-11 08:11:08,827 - validators_windows - INFO - Chaos experiment ended: network_latency -> PASS (210.0s)
+2025-09-11 08:11:08,827 - __main__ - INFO - Chaos experiment completed: PASS
+2025-09-11 08:11:08,828 - __main__ - INFO - Report saved: chaos/reports/network_latency_20250911_081108.md
+2025-09-11 08:11:11,158 - __main__ - INFO - Loaded scenario: service_kill
+2025-09-11 08:11:11,159 - __main__ - INFO - Starting chaos experiment: service_kill
+2025-09-11 08:11:11,159 - __main__ - INFO - Safety guards passed
+2025-09-11 08:11:11,159 - validators_windows - INFO - Chaos experiment started: service_kill
+2025-09-11 08:11:11,159 - __main__ - INFO - Measuring baseline SLO
+2025-09-11 08:11:11,159 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 08:11:11,159 - validators_windows - INFO - SLO measurement: p95=127.3ms, error_rate=0.006, availability=0.998
+2025-09-11 08:11:11,159 - __main__ - ERROR - Chaos experiment failed: 'duration_s'
+2025-09-11 08:11:11,160 - __main__ - ERROR - Failed to generate report: 'slo_before'
+2025-09-11 08:11:11,161 - __main__ - INFO - Report saved: chaos/reports/service_kill_20250911_081111.md
+2025-09-11 08:11:16,842 - __main__ - INFO - Loaded scenario: service_kill
+2025-09-11 08:11:16,842 - __main__ - INFO - Starting chaos experiment: service_kill
+2025-09-11 08:11:16,843 - __main__ - INFO - Safety guards passed
+2025-09-11 08:11:16,843 - validators_windows - INFO - Chaos experiment started: service_kill
+2025-09-11 08:11:16,843 - __main__ - INFO - Measuring baseline SLO
+2025-09-11 08:11:16,843 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 08:11:16,843 - validators_windows - INFO - SLO measurement: p95=68.1ms, error_rate=0.002, availability=0.997
+2025-09-11 08:11:16,843 - injectors_windows - INFO - Simulating service kill for coolbits-frontend
+2025-09-11 08:11:16,844 - __main__ - INFO - Running experiment for 300 seconds
+2025-09-11 08:11:16,844 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:11:16,844 - validators_windows - INFO - SLO measurement: p95=80.5ms, error_rate=0.002, availability=0.996
+2025-09-11 08:11:46,846 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:11:46,846 - validators_windows - INFO - SLO measurement: p95=144.7ms, error_rate=0.010, availability=0.998
+2025-09-11 08:12:16,846 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:12:16,846 - validators_windows - INFO - SLO measurement: p95=149.5ms, error_rate=0.002, availability=0.999
+2025-09-11 08:12:46,847 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:12:46,847 - validators_windows - INFO - SLO measurement: p95=112.9ms, error_rate=0.003, availability=0.999
+2025-09-11 08:13:16,848 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:13:16,848 - validators_windows - INFO - SLO measurement: p95=77.5ms, error_rate=0.003, availability=0.996
+2025-09-11 08:13:46,849 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:13:46,849 - validators_windows - INFO - SLO measurement: p95=86.0ms, error_rate=0.005, availability=0.999
+2025-09-11 08:14:16,849 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:14:16,849 - validators_windows - INFO - SLO measurement: p95=125.4ms, error_rate=0.007, availability=0.998
+2025-09-11 08:14:46,850 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:14:46,850 - validators_windows - INFO - SLO measurement: p95=118.5ms, error_rate=0.004, availability=0.995
+2025-09-11 08:15:16,851 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:15:16,851 - validators_windows - INFO - SLO measurement: p95=134.7ms, error_rate=0.002, availability=0.998
+2025-09-11 08:15:46,851 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:15:46,851 - validators_windows - INFO - SLO measurement: p95=89.1ms, error_rate=0.008, availability=0.996
+2025-09-11 08:16:16,852 - injectors_windows - INFO - Stopping service kill simulation for coolbits-frontend
+2025-09-11 08:16:46,854 - __main__ - INFO - Measuring final SLO
+2025-09-11 08:16:46,854 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 08:16:46,854 - validators_windows - INFO - SLO measurement: p95=67.7ms, error_rate=0.007, availability=0.995
+2025-09-11 08:16:46,854 - validators_windows - INFO - SLO check: p95=67.7ms <= 400ms (True), error=0.007 <= 0.01 (True), availability=0.995 >= 0.99 (True)
+2025-09-11 08:16:46,854 - validators_windows - INFO - Chaos experiment ended: service_kill -> PASS (330.0s)
+2025-09-11 08:16:46,854 - __main__ - INFO - Chaos experiment completed: PASS
+2025-09-11 08:16:46,855 - __main__ - INFO - Report saved: chaos/reports/service_kill_20250911_081646.md
+2025-09-11 08:16:49,435 - __main__ - INFO - Loaded scenario: cpu_spike
+2025-09-11 08:16:49,435 - __main__ - INFO - Starting chaos experiment: cpu_spike
+2025-09-11 08:16:49,435 - __main__ - INFO - Safety guards passed
+2025-09-11 08:16:49,436 - validators_windows - INFO - Chaos experiment started: cpu_spike
+2025-09-11 08:16:49,436 - __main__ - INFO - Measuring baseline SLO
+2025-09-11 08:16:49,436 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 08:16:49,436 - validators_windows - INFO - SLO measurement: p95=134.9ms, error_rate=0.002, availability=0.996
+2025-09-11 08:16:49,436 - injectors_windows - INFO - Simulating CPU spike (80%) for coolbits-frontend
+2025-09-11 08:16:49,537 - __main__ - INFO - Running experiment for 120 seconds
+2025-09-11 08:16:50,541 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:16:50,541 - validators_windows - INFO - SLO measurement: p95=147.4ms, error_rate=0.009, availability=0.996
+2025-09-11 08:17:21,544 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:17:21,544 - validators_windows - INFO - SLO measurement: p95=63.8ms, error_rate=0.004, availability=0.998
+2025-09-11 08:17:52,570 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:17:52,584 - validators_windows - INFO - SLO measurement: p95=109.1ms, error_rate=0.007, availability=0.997
+2025-09-11 08:18:23,585 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 08:18:23,585 - validators_windows - INFO - SLO measurement: p95=103.0ms, error_rate=0.009, availability=0.995
+2025-09-11 08:18:53,599 - injectors_windows - INFO - Stopping CPU spike for coolbits-frontend
+2025-09-11 08:19:23,628 - __main__ - INFO - Measuring final SLO
+2025-09-11 08:19:23,628 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 08:19:23,628 - validators_windows - INFO - SLO measurement: p95=73.3ms, error_rate=0.001, availability=0.997
+2025-09-11 08:19:23,628 - validators_windows - INFO - SLO check: p95=73.3ms <= 400ms (True), error=0.001 <= 0.01 (True), availability=0.997 >= 0.99 (True)
+2025-09-11 08:19:23,629 - validators_windows - INFO - Chaos experiment ended: cpu_spike -> PASS (154.2s)
+2025-09-11 08:19:23,629 - __main__ - INFO - Chaos experiment completed: PASS
+2025-09-11 08:19:23,630 - __main__ - INFO - Report saved: chaos/reports/cpu_spike_20250911_081923.md
+2025-09-11 09:17:15,213 - __main__ - INFO - Loaded scenario: network_latency
+2025-09-11 09:17:15,213 - __main__ - INFO - Starting chaos experiment: network_latency
+2025-09-11 09:17:15,213 - __main__ - INFO - Safety guards passed
+2025-09-11 09:17:15,213 - validators_windows - INFO - Chaos experiment started: network_latency
+2025-09-11 09:17:15,214 - __main__ - INFO - Measuring baseline SLO
+2025-09-11 09:17:15,214 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 09:17:15,214 - validators_windows - INFO - SLO measurement: p95=97.9ms, error_rate=0.009, availability=0.997
+2025-09-11 09:17:15,214 - injectors_windows - INFO - Simulating 600ms latency injection to coolbits-frontend
+2025-09-11 09:17:15,215 - __main__ - INFO - Running experiment for 180 seconds
+2025-09-11 09:17:15,215 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:17:15,215 - validators_windows - INFO - SLO measurement: p95=84.5ms, error_rate=0.007, availability=0.999
+2025-09-11 09:17:45,216 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:17:45,216 - validators_windows - INFO - SLO measurement: p95=116.8ms, error_rate=0.003, availability=0.998
+2025-09-11 09:18:15,216 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:18:15,216 - validators_windows - INFO - SLO measurement: p95=131.5ms, error_rate=0.005, availability=0.996
+2025-09-11 09:18:45,217 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:18:45,217 - validators_windows - INFO - SLO measurement: p95=103.0ms, error_rate=0.006, availability=0.997
+2025-09-11 09:19:15,217 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:19:15,217 - validators_windows - INFO - SLO measurement: p95=76.0ms, error_rate=0.009, availability=0.997
+2025-09-11 09:19:45,218 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:19:45,218 - validators_windows - INFO - SLO measurement: p95=89.1ms, error_rate=0.006, availability=0.999
+2025-09-11 09:20:15,219 - injectors_windows - INFO - Stopping latency injection for coolbits-frontend
+2025-09-11 09:20:45,220 - __main__ - INFO - Measuring final SLO
+2025-09-11 09:20:45,220 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 09:20:45,220 - validators_windows - INFO - SLO measurement: p95=126.6ms, error_rate=0.008, availability=0.997
+2025-09-11 09:20:45,220 - validators_windows - INFO - SLO check: p95=126.6ms <= 400ms (True), error=0.008 <= 0.01 (True), availability=0.997 >= 0.99 (True)
+2025-09-11 09:20:45,220 - validators_windows - INFO - Chaos experiment ended: network_latency -> PASS (210.0s)
+2025-09-11 09:20:45,220 - __main__ - INFO - Chaos experiment completed: PASS
+2025-09-11 09:20:45,221 - __main__ - INFO - Report saved: chaos/reports/network_latency_20250911_092045.md
+2025-09-11 09:20:45,587 - __main__ - INFO - Loaded scenario: service_kill
+2025-09-11 09:20:45,588 - __main__ - INFO - Starting chaos experiment: service_kill
+2025-09-11 09:20:45,588 - __main__ - INFO - Safety guards passed
+2025-09-11 09:20:45,588 - validators_windows - INFO - Chaos experiment started: service_kill
+2025-09-11 09:20:45,588 - __main__ - INFO - Measuring baseline SLO
+2025-09-11 09:20:45,588 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 09:20:45,588 - validators_windows - INFO - SLO measurement: p95=142.2ms, error_rate=0.007, availability=0.996
+2025-09-11 09:20:45,588 - injectors_windows - INFO - Simulating service kill for coolbits-frontend
+2025-09-11 09:20:45,589 - __main__ - INFO - Running experiment for 300 seconds
+2025-09-11 09:20:45,589 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:20:45,589 - validators_windows - INFO - SLO measurement: p95=82.1ms, error_rate=0.008, availability=0.996
+2025-09-11 09:21:15,590 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:21:15,590 - validators_windows - INFO - SLO measurement: p95=121.2ms, error_rate=0.003, availability=0.997
+2025-09-11 09:21:45,591 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:21:45,591 - validators_windows - INFO - SLO measurement: p95=52.6ms, error_rate=0.003, availability=0.997
+2025-09-11 09:22:15,591 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:22:15,591 - validators_windows - INFO - SLO measurement: p95=101.9ms, error_rate=0.010, availability=0.997
+2025-09-11 09:22:45,592 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:22:45,592 - validators_windows - INFO - SLO measurement: p95=131.4ms, error_rate=0.009, availability=0.996
+2025-09-11 09:23:15,593 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:23:15,593 - validators_windows - INFO - SLO measurement: p95=87.5ms, error_rate=0.003, availability=0.998
+2025-09-11 09:23:45,593 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:23:45,593 - validators_windows - INFO - SLO measurement: p95=112.0ms, error_rate=0.001, availability=0.995
+2025-09-11 09:24:15,594 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:24:15,594 - validators_windows - INFO - SLO measurement: p95=84.0ms, error_rate=0.004, availability=0.998
+2025-09-11 09:24:45,595 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:24:45,595 - validators_windows - INFO - SLO measurement: p95=103.3ms, error_rate=0.002, availability=0.997
+2025-09-11 09:25:15,595 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:25:15,595 - validators_windows - INFO - SLO measurement: p95=91.9ms, error_rate=0.005, availability=0.995
+2025-09-11 09:25:45,596 - injectors_windows - INFO - Stopping service kill simulation for coolbits-frontend
+2025-09-11 09:26:15,598 - __main__ - INFO - Measuring final SLO
+2025-09-11 09:26:15,598 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 09:26:15,598 - validators_windows - INFO - SLO measurement: p95=134.3ms, error_rate=0.009, availability=0.997
+2025-09-11 09:26:15,598 - validators_windows - INFO - SLO check: p95=134.3ms <= 400ms (True), error=0.009 <= 0.01 (True), availability=0.997 >= 0.99 (True)
+2025-09-11 09:26:15,598 - validators_windows - INFO - Chaos experiment ended: service_kill -> PASS (330.0s)
+2025-09-11 09:26:15,598 - __main__ - INFO - Chaos experiment completed: PASS
+2025-09-11 09:26:15,599 - __main__ - INFO - Report saved: chaos/reports/service_kill_20250911_092615.md
+2025-09-11 09:26:15,975 - __main__ - INFO - Loaded scenario: cpu_spike
+2025-09-11 09:26:15,976 - __main__ - INFO - Starting chaos experiment: cpu_spike
+2025-09-11 09:26:15,976 - __main__ - INFO - Safety guards passed
+2025-09-11 09:26:15,976 - validators_windows - INFO - Chaos experiment started: cpu_spike
+2025-09-11 09:26:15,976 - __main__ - INFO - Measuring baseline SLO
+2025-09-11 09:26:15,976 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 09:26:15,976 - validators_windows - INFO - SLO measurement: p95=118.1ms, error_rate=0.003, availability=0.997
+2025-09-11 09:26:15,976 - injectors_windows - INFO - Simulating CPU spike (80%) for coolbits-frontend
+2025-09-11 09:26:16,078 - __main__ - INFO - Running experiment for 120 seconds
+2025-09-11 09:26:17,081 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:26:17,081 - validators_windows - INFO - SLO measurement: p95=148.4ms, error_rate=0.009, availability=0.998
+2025-09-11 09:26:48,082 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:26:48,082 - validators_windows - INFO - SLO measurement: p95=71.2ms, error_rate=0.004, availability=0.998
+2025-09-11 09:27:19,095 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:27:19,126 - validators_windows - INFO - SLO measurement: p95=149.3ms, error_rate=0.003, availability=0.997
+2025-09-11 09:27:50,135 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 2 minutes
+2025-09-11 09:27:50,135 - validators_windows - INFO - SLO measurement: p95=121.5ms, error_rate=0.003, availability=0.995
+2025-09-11 09:28:20,141 - injectors_windows - INFO - Stopping CPU spike for coolbits-frontend
+2025-09-11 09:28:50,166 - __main__ - INFO - Measuring final SLO
+2025-09-11 09:28:50,166 - validators_windows - INFO - Fetching SLO metrics for coolbits-frontend over 5 minutes
+2025-09-11 09:28:50,166 - validators_windows - INFO - SLO measurement: p95=139.5ms, error_rate=0.002, availability=0.996
+2025-09-11 09:28:50,166 - validators_windows - INFO - SLO check: p95=139.5ms <= 400ms (True), error=0.002 <= 0.01 (True), availability=0.996 >= 0.99 (True)
+2025-09-11 09:28:50,166 - validators_windows - INFO - Chaos experiment ended: cpu_spike -> PASS (154.2s)
+2025-09-11 09:28:50,166 - __main__ - INFO - Chaos experiment completed: PASS
+2025-09-11 09:28:50,167 - __main__ - INFO - Report saved: chaos/reports/cpu_spike_20250911_092850.md

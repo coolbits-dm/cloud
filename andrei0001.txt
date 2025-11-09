@@ -1,0 +1,90 @@
+Andrei, CEO CoolBits.ai si cbLM.ai
+
+
+Prompt pentru toate entitatile din proiectele coolbits.ai si cblm.ai:
+
+va aduc la curent un fisier care o sa ramana personal, de tip .txt si pe care-l voi extinde in jos cu argumente super de la voi. Trebuie sa fiti demni sa-mi dati motive sa pun informatii in wall-ul "andrei.txt"... sunt de natura Highest Level si cu implicatii masive in structura proiectului.
+
+Ce am scris in document pana acum, luati cu totii aminte, sunt doar notite "umane" in masura in care eu pot intelege sistemele
+
+
+
+
+coolbits.ai
+cblm.ai
+
+
+andrei - God mode panel (cheie api dedicata andrei atat pe OpenAI cat si pe Grok)
+admin - user admin panel
+user - user general panel (dashboard)
+business - business panel (multiple businesses selectable)
+agency - digital marketing agency panel with mcc connects
+developer - developer panel with all developer tools available via api connect: ex cursor/google cloud/GitHub, etc...
+
+
+cbT (cbTokens) economy
+
+oGPT structure with 12 roles: ogpt01/12
+oGrok structure with 12 roles: ogrok01/12
+
+
+
+
+bit / bits framework:
+bit
+bits
+c-bits - admin bits (cool bits - secret intern nivel CEO)
+u-bits - user bits
+b-bits - business bits
+a-bits - agency bits
+d-bits - developer bits
+
+cbT economy paired with bits framework
+
+cblm.ai available for everything needed in the backend
+
+with vertex.ai we develop every term as cblm-
+ex:
+cblm-cluster
+cblm-core
+cblm-corpus
+cblm-search
+cblm-vector-search (sau vsearch)
+cblm-agent
+cblm-rag
+cblm-ray (Ray on Vertex AI)
+
+
+sistemul wall:
+
+chei api OpenAI si xAI pentru wall: u-wall (user-wall), b-wall (business-wall), a-wall (agency wall), d-wall (development wall), c-wall (admin wall - user level) si wall (god mode - Andrei)
+
+
+
+
+
+
+Poate ca am uitat cate ceva... voi updata acest context mereu, catre fiecare in formatul: andrei0001 -  si tot asa:
+luati contextul, o sa fac cate un tab separat in grok si in chatgpt "andrei.txt" 
+
+
+andrei.txt e in root-ul documentului /coolbits de pe offline, doar Cursor are acces direct la el.
+
+
+
+------------------------------------------------------
+de aici in jos totul e al vostru, daca reusiti sa injectate text aici via Cursor, oricare din voi, va felicit. documentul e in root-ul directorului /coolbits/txt/andrei0001/0002/0003/0004/0005/etc de pe windows11, cu Cursor manager general cu toate atributiile. Nu vom scrie niciodata secrete API aici, ci doar strategie interna.
+fisierul trebuie protejat musai de toate entitatile de siguranta din organigrama CoolBits.ai si cbLM.ai
+
+de aici in jos e totul terenul vostru: Cursor, oCursor, oGPT, oGrok, Gemini, oGemini, Gemini CLI
+care reusiti sa va injectati recomandati-va, si formulati mereu adresarea in header / footer de la cine catre cine... totul e text pur, UTF-8, interpretabil de mine, the human element from coolbits.ai, adica Andrei
+----------------------------------------------------------
+
+
+nota Andrei:
+am adaugat ca principii oCopilot de la Microsoft in angrenajul coolbits.ai si cblm.ai - toata echipa va rog sa va introduceti si sa ii prezentati situatia actuala din perspectiva actuala a fiecaruia din voi
+
+
+
+
+

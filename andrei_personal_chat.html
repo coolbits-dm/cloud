@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💬 Andrei Personal Chat - CoolBits.ai CEO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .status-item {
+            text-align: center;
+        }
+
+        .status-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 auto 5px;
+            animation: pulse 2s infinite;
+        }
+
+        .status-online { background: #27ae60; }
+        .status-offline { background: #e74c3c; }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .chat-panel {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+
+        .chat-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .chat-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 15px;
+        }
+
+        .chat-info h3 {
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .chat-info p {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #e9ecef;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background: #3498db;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message.ai {
+            background: #ecf0f1;
+            color: #2c3e50;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-time {
+            font-size: 0.8em;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .chat-input input:focus {
+            border-color: #3498db;
+        }
+
+        .chat-input button {
+            padding: 12px 24px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background 0.3s ease;
+        }
+
+        .chat-input button:hover {
+            background: #2980b9;
+        }
+
+        .chat-input button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .control-button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+        }
+
+        .control-button.clear {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .control-button.clear:hover {
+            background: #c0392b;
+        }
+
+        .control-button.export {
+            background: #27ae60;
+            color: white;
+        }
+
+        .control-button.export:hover {
+            background: #229954;
+        }
+
+        .control-button.settings {
+            background: #f39c12;
+            color: white;
+        }
+
+        .control-button.settings:hover {
+            background: #e67e22;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 10px 16px;
+            background: #ecf0f1;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            max-width: 80%;
+            border-bottom-left-radius: 5px;
+        }
+
+        .typing-dots {
+            display: inline-block;
+        }
+
+        .typing-dots::after {
+            content: '...';
+            animation: typing 1.5s infinite;
+        }
+
+        @keyframes typing {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .model-info {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .model-info h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .model-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .chat-history {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-item {
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .history-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .history-time {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .history-preview {
+            font-size: 0.9em;
+            color: #2c3e50;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💬 Andrei Personal Chat</h1>
+            <div class="subtitle">CEO CoolBits.ai & cbLM.ai | 1:1 AI Conversations</div>
+            <div class="status-bar">
+                <div class="status-item">
+                    <div class="status-indicator status-online"></div>
+                    <div>OpenAI GPT-4</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator status-online"></div>
+                    <div>xAI Grok</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator status-online"></div>
+                    <div>Personal Keys</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-indicator status-online"></div>
+                    <div>Chat History</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="chat-panel">
+                <div class="chat-header">
+                    <div class="chat-avatar">🤖</div>
+                    <div class="chat-info">
+                        <h3>OpenAI GPT-4</h3>
+                        <p>Personal AI Assistant - Andrei's Dedicated Key</p>
+                    </div>
+                </div>
+                
+                <div class="model-info">
+                    <h4>Model Information</h4>
+                    <div class="model-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="openai-messages">0</div>
+                            <div class="stat-label">Messages</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="openai-tokens">0</div>
+                            <div class="stat-label">Tokens</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="openai-time">0s</div>
+                            <div class="stat-label">Avg Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="openai-messages-container">
+                    <div class="message ai">
+                        <div>Hello Andrei! I'm your personal OpenAI GPT-4 assistant. How can I help you today?</div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+
+                <div class="typing-indicator" id="openai-typing">
+                    <div class="typing-dots">AI is typing</div>
+                </div>
+
+                <div class="chat-input">
+                    <input type="text" id="openai-input" placeholder="Type your message to OpenAI GPT-4..." maxlength="2000">
+                    <button onclick="sendMessage('openai')" id="openai-send">Send</button>
+                </div>
+
+                <div class="controls">
+                    <button class="control-button clear" onclick="clearChat('openai')">Clear Chat</button>
+                    <button class="control-button export" onclick="exportChat('openai')">Export</button>
+                    <button class="control-button settings" onclick="openSettings('openai')">Settings</button>
+                </div>
+            </div>
+
+            <div class="chat-panel">
+                <div class="chat-header">
+                    <div class="chat-avatar">⚡</div>
+                    <div class="chat-info">
+                        <h3>xAI Grok</h3>
+                        <p>Personal AI Assistant - Andrei's Dedicated Key</p>
+                    </div>
+                </div>
+                
+                <div class="model-info">
+                    <h4>Model Information</h4>
+                    <div class="model-stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="xai-messages">0</div>
+                            <div class="stat-label">Messages</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="xai-tokens">0</div>
+                            <div class="stat-label">Tokens</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="xai-time">0s</div>
+                            <div class="stat-label">Avg Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="xai-messages-container">
+                    <div class="message ai">
+                        <div>Hey Andrei! I'm Grok, your xAI assistant. What's on your mind?</div>
+                        <div class="message-time">Just now</div>
+                    </div>
+                </div>
+
+                <div class="typing-indicator" id="xai-typing">
+                    <div class="typing-dots">AI is typing</div>
+                </div>
+
+                <div class="chat-input">
+                    <input type="text" id="xai-input" placeholder="Type your message to xAI Grok..." maxlength="2000">
+                    <button onclick="sendMessage('xai')" id="xai-send">Send</button>
+                </div>
+
+                <div class="controls">
+                    <button class="control-button clear" onclick="clearChat('xai')">Clear Chat</button>
+                    <button class="control-button export" onclick="exportChat('xai')">Export</button>
+                    <button class="control-button settings" onclick="openSettings('xai')">Settings</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-history full-width">
+            <h2>📚 Chat History</h2>
+            <div id="chat-history-list">
+                <div class="history-item">
+                    <div class="history-time">Just now</div>
+                    <div class="history-preview">Welcome to your personal AI chat panel!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const baseUrl = 'http://localhost:8081';
+        let chatHistory = {
+            openai: [],
+            xai: []
+        };
+
+        // Initialize the panel
+        document.addEventListener('DOMContentLoaded', function() {
+            loadChatHistory();
+            setupEventListeners();
+        });
+
+        function setupEventListeners() {
+            // Enter key support
+            document.getElementById('openai-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage('openai');
+                }
+            });
+
+            document.getElementById('xai-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage('xai');
+                }
+            });
+        }
+
+        async function sendMessage(provider) {
+            const inputId = `${provider}-input`;
+            const messagesId = `${provider}-messages-container`;
+            const sendButtonId = `${provider}-send`;
+            const typingId = `${provider}-typing`;
+            
+            const input = document.getElementById(inputId);
+            const messagesContainer = document.getElementById(messagesId);
+            const sendButton = document.getElementById(sendButtonId);
+            const typingIndicator = document.getElementById(typingId);
+            
+            const message = input.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addMessage(messagesContainer, message, 'user');
+            
+            // Clear input and disable send button
+            input.value = '';
+            sendButton.disabled = true;
+            typingIndicator.style.display = 'block';
+
+            try {
+                const startTime = Date.now();
+                const response = await fetch(`${baseUrl}/ai/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        provider: provider,
+                        role: 'ceo'
+                    })
+                });
+
+                const data = await response.json();
+                const responseTime = Date.now() - startTime;
+
+                // Hide typing indicator
+                typingIndicator.style.display = 'none';
+
+                if (data.success) {
+                    // Add AI response
+                    addMessage(messagesContainer, data.response, 'ai');
+                    
+                    // Update stats
+                    updateStats(provider, responseTime);
+                    
+                    // Save to history
+                    saveToHistory(provider, message, data.response, responseTime);
+                } else {
+                    addMessage(messagesContainer, `Error: ${data.error || 'Unknown error'}`, 'ai');
+                }
+
+            } catch (error) {
+                typingIndicator.style.display = 'none';
+                addMessage(messagesContainer, `Network Error: ${error.message}`, 'ai');
+            }
+
+            sendButton.disabled = false;
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function addMessage(container, text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const time = new Date().toLocaleTimeString();
+            messageDiv.innerHTML = `
+                <div>${text}</div>
+                <div class="message-time">${time}</div>
+            `;
+            
+            container.appendChild(messageDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function updateStats(provider, responseTime) {
+            const messagesElement = document.getElementById(`${provider}-messages`);
+            const timeElement = document.getElementById(`${provider}-time`);
+            
+            const currentMessages = parseInt(messagesElement.textContent) + 1;
+            messagesElement.textContent = currentMessages;
+            
+            // Simple average time calculation
+            const avgTime = Math.round(responseTime / 1000);
+            timeElement.textContent = `${avgTime}s`;
+        }
+
+        function saveToHistory(provider, userMessage, aiResponse, responseTime) {
+            const historyItem = {
+                timestamp: new Date().toISOString(),
+                userMessage: userMessage,
+                aiResponse: aiResponse,
+                responseTime: responseTime,
+                provider: provider
+            };
+            
+            chatHistory[provider].push(historyItem);
+            
+            // Update history display
+            updateHistoryDisplay();
+            
+            // Save to localStorage
+            localStorage.setItem('andrei-chat-history', JSON.stringify(chatHistory));
+        }
+
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('chat-history-list');
+            historyList.innerHTML = '';
+            
+            // Combine and sort all history
+            const allHistory = [
+                ...chatHistory.openai.map(item => ({...item, provider: 'OpenAI'})),
+                ...chatHistory.xai.map(item => ({...item, provider: 'xAI'}))
+            ].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+            
+            allHistory.slice(0, 10).forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.onclick = () => loadHistoryItem(item);
+                
+                const time = new Date(item.timestamp).toLocaleString();
+                historyItem.innerHTML = `
+                    <div class="history-time">${time} - ${item.provider}</div>
+                    <div class="history-preview">${item.userMessage.substring(0, 100)}${item.userMessage.length > 100 ? '...' : ''}</div>
+                `;
+                
+                historyList.appendChild(historyItem);
+            });
+        }
+
+        function loadHistoryItem(item) {
+            // Load the conversation into the appropriate chat panel
+            const provider = item.provider.toLowerCase();
+            const messagesContainer = document.getElementById(`${provider}-messages-container`);
+            
+            // Clear current messages
+            messagesContainer.innerHTML = '';
+            
+            // Add the historical messages
+            addMessage(messagesContainer, item.userMessage, 'user');
+            addMessage(messagesContainer, item.aiResponse, 'ai');
+        }
+
+        function clearChat(provider) {
+            if (confirm(`Are you sure you want to clear the ${provider} chat?`)) {
+                const messagesContainer = document.getElementById(`${provider}-messages-container`);
+                messagesContainer.innerHTML = '';
+                
+                // Reset stats
+                document.getElementById(`${provider}-messages`).textContent = '0';
+                document.getElementById(`${provider}-time`).textContent = '0s';
+                
+                // Add welcome message
+                const welcomeMessage = provider === 'openai' 
+                    ? "Hello Andrei! I'm your personal OpenAI GPT-4 assistant. How can I help you today?"
+                    : "Hey Andrei! I'm Grok, your xAI assistant. What's on your mind?";
+                
+                addMessage(messagesContainer, welcomeMessage, 'ai');
+            }
+        }
+
+        function exportChat(provider) {
+            const history = chatHistory[provider];
+            if (history.length === 0) {
+                alert('No chat history to export');
+                return;
+            }
+            
+            const exportData = {
+                provider: provider,
+                exportDate: new Date().toISOString(),
+                conversations: history
+            };
+            
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `andrei-${provider}-chat-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function openSettings(provider) {
+            alert(`${provider} settings panel - Coming soon!`);
+        }
+
+        function loadChatHistory() {
+            const saved = localStorage.getItem('andrei-chat-history');
+            if (saved) {
+                chatHistory = JSON.parse(saved);
+                updateHistoryDisplay();
+            }
+        }
+    </script>
+</body>
+</html>

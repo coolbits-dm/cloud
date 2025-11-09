@@ -1,0 +1,314 @@
+{
+  "monitoring_config": {
+    "timestamp": "2025-09-07T07:21:06.963327",
+    "company": "COOL BITS SRL",
+    "ceo": "Andrei",
+    "ai_assistant": "oCursor",
+    "cron_jobs_path": "C:\\Users\\andre\\Desktop\\coolbits\\cblm\\cron_jobs"
+  },
+  "corporate_entities_cron": {
+    "vertex": {
+      "name": "Vertex AI",
+      "zone": "google_cloud",
+      "schedule": "every 5 minutes",
+      "function": "monitor_vertex_ai",
+      "priority": "high",
+      "always_on": true,
+      "health_check_interval": 300,
+      "api_endpoints": [
+        "vertex-ai.googleapis.com"
+      ],
+      "monitoring": [
+        "model_garden",
+        "rag_system",
+        "ml_pipelines"
+      ]
+    },
+    "cursor": {
+      "name": "Cursor AI Assistant",
+      "zone": "development",
+      "schedule": "every 2 minutes",
+      "function": "monitor_cursor_ai",
+      "priority": "high",
+      "always_on": true,
+      "health_check_interval": 120,
+      "api_endpoints": [
+        "cursor.sh"
+      ],
+      "monitoring": [
+        "code_generation",
+        "development_tools",
+        "microsoft_ecosystem"
+      ]
+    },
+    "nvidia": {
+      "name": "NVIDIA GPU Pipeline",
+      "zone": "gpu_processing",
+      "schedule": "every 1 minute",
+      "function": "monitor_nvidia_gpu",
+      "priority": "critical",
+      "always_on": true,
+      "health_check_interval": 60,
+      "api_endpoints": [
+        "nvidia.com"
+      ],
+      "monitoring": [
+        "gpu_processing",
+        "ai_acceleration",
+        "cuda_support"
+      ]
+    },
+    "microsoft": {
+      "name": "Microsoft Ecosystem",
+      "zone": "windows_ecosystem",
+      "schedule": "every 3 minutes",
+      "function": "monitor_microsoft",
+      "priority": "high",
+      "always_on": true,
+      "health_check_interval": 180,
+      "api_endpoints": [
+        "microsoft.com",
+        "azure.microsoft.com"
+      ],
+      "monitoring": [
+        "windows_11",
+        "copilot",
+        "azure_integration"
+      ]
+    },
+    "xai": {
+      "name": "xAI Platform",
+      "zone": "ai_platform",
+      "schedule": "every 4 minutes",
+      "function": "monitor_xai",
+      "priority": "medium",
+      "always_on": true,
+      "health_check_interval": 240,
+      "api_endpoints": [
+        "x.ai"
+      ],
+      "monitoring": [
+        "grok_api",
+        "ai_models",
+        "reasoning"
+      ]
+    },
+    "grok": {
+      "name": "Grok AI",
+      "zone": "ai_platform",
+      "schedule": "every 4 minutes",
+      "function": "monitor_grok",
+      "priority": "medium",
+      "always_on": true,
+      "health_check_interval": 240,
+      "api_endpoints": [
+        "grok.x.ai"
+      ],
+      "monitoring": [
+        "grok_api",
+        "real_time",
+        "reasoning"
+      ]
+    },
+    "ogrok": {
+      "name": "oGrok",
+      "zone": "coolbits_proprietary",
+      "schedule": "every 2 minutes",
+      "function": "monitor_ogrok",
+      "priority": "critical",
+      "always_on": true,
+      "health_check_interval": 120,
+      "api_endpoints": [
+        "internal"
+      ],
+      "monitoring": [
+        "strategic_decisions",
+        "policy_framework",
+        "ai_board"
+      ],
+      "owner": "COOL BITS SRL"
+    },
+    "openai": {
+      "name": "OpenAI Platform",
+      "zone": "ai_platform",
+      "schedule": "every 3 minutes",
+      "function": "monitor_openai",
+      "priority": "high",
+      "always_on": true,
+      "health_check_interval": 180,
+      "api_endpoints": [
+        "api.openai.com"
+      ],
+      "monitoring": [
+        "gpt_models",
+        "api_access",
+        "codex"
+      ]
+    },
+    "chatgpt": {
+      "name": "ChatGPT",
+      "zone": "ai_platform",
+      "schedule": "every 3 minutes",
+      "function": "monitor_chatgpt",
+      "priority": "high",
+      "always_on": true,
+      "health_check_interval": 180,
+      "api_endpoints": [
+        "chat.openai.com"
+      ],
+      "monitoring": [
+        "chatgpt_api",
+        "conversation",
+        "code_assistance"
+      ]
+    },
+    "ogpt": {
+      "name": "oGPT",
+      "zone": "coolbits_proprietary",
+      "schedule": "every 2 minutes",
+      "function": "monitor_ogpt",
+      "priority": "critical",
+      "always_on": true,
+      "health_check_interval": 120,
+      "api_endpoints": [
+        "internal"
+      ],
+      "monitoring": [
+        "operational_execution",
+        "implementation",
+        "ai_board"
+      ],
+      "owner": "COOL BITS SRL"
+    }
+  },
+  "zones": {
+    "google_cloud": {
+      "name": "Google Cloud Zone",
+      "monitoring_interval": 300,
+      "health_check_endpoint": "https://status.cloud.google.com/",
+      "priority": "high"
+    },
+    "development": {
+      "name": "Development Zone",
+      "monitoring_interval": 120,
+      "health_check_endpoint": "local",
+      "priority": "high"
+    },
+    "gpu_processing": {
+      "name": "GPU Processing Zone",
+      "monitoring_interval": 60,
+      "health_check_endpoint": "local",
+      "priority": "critical"
+    },
+    "windows_ecosystem": {
+      "name": "Windows Ecosystem Zone",
+      "monitoring_interval": 180,
+      "health_check_endpoint": "local",
+      "priority": "high"
+    },
+    "ai_platform": {
+      "name": "AI Platform Zone",
+      "monitoring_interval": 180,
+      "health_check_endpoint": "external",
+      "priority": "medium"
+    },
+    "coolbits_proprietary": {
+      "name": "COOL BITS SRL Proprietary Zone",
+      "monitoring_interval": 120,
+      "health_check_endpoint": "internal",
+      "priority": "critical"
+    }
+  },
+  "status": {
+    "timestamp": "2025-09-07T07:21:06.963327",
+    "company": "COOL BITS SRL",
+    "ceo": "Andrei",
+    "ai_assistant": "oCursor",
+    "total_entities": 10,
+    "always_on_entities": 10,
+    "running_jobs": 10,
+    "zones": 6,
+    "monitoring_status": {
+      "vertex": {
+        "name": "Vertex AI",
+        "zone": "google_cloud",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 5 minutes",
+        "priority": "high"
+      },
+      "cursor": {
+        "name": "Cursor AI Assistant",
+        "zone": "development",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 2 minutes",
+        "priority": "high"
+      },
+      "nvidia": {
+        "name": "NVIDIA GPU Pipeline",
+        "zone": "gpu_processing",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 1 minute",
+        "priority": "critical"
+      },
+      "microsoft": {
+        "name": "Microsoft Ecosystem",
+        "zone": "windows_ecosystem",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 3 minutes",
+        "priority": "high"
+      },
+      "xai": {
+        "name": "xAI Platform",
+        "zone": "ai_platform",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 4 minutes",
+        "priority": "medium"
+      },
+      "grok": {
+        "name": "Grok AI",
+        "zone": "ai_platform",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 4 minutes",
+        "priority": "medium"
+      },
+      "ogrok": {
+        "name": "oGrok",
+        "zone": "coolbits_proprietary",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 2 minutes",
+        "priority": "critical"
+      },
+      "openai": {
+        "name": "OpenAI Platform",
+        "zone": "ai_platform",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 3 minutes",
+        "priority": "high"
+      },
+      "chatgpt": {
+        "name": "ChatGPT",
+        "zone": "ai_platform",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 3 minutes",
+        "priority": "high"
+      },
+      "ogpt": {
+        "name": "oGPT",
+        "zone": "coolbits_proprietary",
+        "always_on": true,
+        "running": true,
+        "schedule": "every 2 minutes",
+        "priority": "critical"
+      }
+    }
+  }
+}

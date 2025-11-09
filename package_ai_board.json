@@ -1,0 +1,25 @@
+{
+  "name": "coolbits-ai-board",
+  "version": "1.0.0",
+  "description": "CoolBits.ai Offline AI Board - Complete Organizational Structure",
+  "main": "coolbits_ai_board_node.js",
+  "scripts": {
+    "start": "node coolbits_ai_board_node.js",
+    "test": "node test_ai_board_node.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "cors": "^2.8.5"
+  },
+  "keywords": [
+    "coolbits",
+    "ai",
+    "board",
+    "offline",
+    "organizational",
+    "structure"
+  ],
+  "author": "Andrei - andrei@coolbits.ro",
+  "license": "MIT"
+}

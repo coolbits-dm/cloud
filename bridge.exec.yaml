@@ -1,0 +1,163 @@
+# bridge.exec.yaml - Bridge Configuration for oCopilot Framework
+# CoolBits.ai / cblm.ai Agent Bridge System
+# Generated: 2025-09-05T13:25:00+03:00
+
+bridge:
+  name: "coolbits-ocopilot-bridge"
+  version: "1.0.0"
+  status: "active"
+  
+  # Local Machine Configuration
+  local:
+    os: "Windows 11"
+    workspace: "C:\\Users\\andre\\Desktop\\coolbits"
+    user: "andre"
+    domain: "coolbits.ai"
+    
+  # Agent Instances
+  agents:
+    ocopilot_cursor:
+      type: "oCopilot-Cursor"
+      status: "active"
+      capabilities: ["code_generation", "analysis", "pairing"]
+      endpoint: "cursor://local-agent"
+      integrity_score: 0.94
+      
+    ocopilot_windows:
+      type: "oCopilot-Windows11"
+      status: "connecting"
+      capabilities: ["system_management", "windows_integration", "local_operations"]
+      endpoint: "windows://copilot-agent"
+      integrity_score: 0.95
+      
+    ocopilot_chatgpt:
+      type: "oCopilot-ChatGPT"
+      status: "active"
+      capabilities: ["code_generation", "analysis", "pairing"]
+      endpoint: "chatgpt://remote-agent"
+      integrity_score: 0.92
+      
+    ocopilot_grok:
+      type: "oCopilot-Grok"
+      status: "active"
+      capabilities: ["reasoning", "analysis", "insights"]
+      endpoint: "grok://remote-agent"
+      integrity_score: 0.95
+      
+    cblm_core:
+      type: "cblm.ai-Core"
+      status: "connected"
+      capabilities: ["business_logic", "market_analysis", "strategy"]
+      endpoint: "cblm://core-agent"
+      integrity_score: 0.88
+
+  # Communication Protocol
+  communication:
+    protocol: "OCIM"
+    version: "0.1"
+    channel: "bits-secure"
+    encryption: "AES-256"
+    signature_algorithm: "HMAC-SHA256"
+    
+  # Bridge Configuration
+  bridge:
+    type: "local-remote-hybrid"
+    sync_interval: "30s"
+    heartbeat_interval: "60s"
+    message_queue_size: 1000
+    retention_period: "24h"
+    
+  # Security Configuration
+  security:
+    hmac_secret: "coolbits-secure-channel-key-2025"
+    encryption_key: "nt-openai-key"
+    validation_threshold: 0.85
+    audit_enabled: true
+    
+  # Monitoring
+  monitoring:
+    health_check: "enabled"
+    metrics_collection: "enabled"
+    alerting: "enabled"
+    log_level: "INFO"
+    
+  # Framework Configuration
+  framework:
+    mindset: "non-lins-in-cur"
+    protocol_secret: "noi-toti"
+    integrity_scoring: "enabled"
+    audit_trail: "enabled"
+    
+  # Local Integration
+  local_integration:
+    file_watcher: "enabled"
+    console_monitoring: "enabled"
+    environment_variables: "enabled"
+    registry_access: "enabled"
+    
+  # Remote Integration
+  remote_integration:
+    google_cloud: "enabled"
+    secrets_manager: "enabled"
+    cloud_run: "enabled"
+    vertex_ai: "enabled"
+    
+  # Execution Rights
+  execution_rights:
+    local_filesystem: "full"
+    local_registry: "read"
+    local_services: "monitor"
+    cloud_resources: "full"
+    agent_communication: "full"
+    
+  # Bridge Endpoints
+  endpoints:
+    local_bridge: "http://localhost:8080/bridge"
+    remote_bridge: "https://coolbits-ai.run.app/bridge"
+    health_check: "http://localhost:8080/health"
+    metrics: "http://localhost:8080/metrics"
+    
+  # Message Types
+  message_types:
+    - "system.status"
+    - "agent.sync"
+    - "bridge.heartbeat"
+    - "ocim.directive"
+    - "protocol.noi-toti"
+    - "security.validation"
+    - "audit.log"
+    
+  # Logging Configuration
+  logging:
+    level: "INFO"
+    format: "json"
+    output: ["console", "file", "remote"]
+    file_path: "C:\\Users\\andre\\Desktop\\coolbits\\logs\\bridge.log"
+    remote_endpoint: "https://coolbits-ai.run.app/logs"
+    
+  # Performance Configuration
+  performance:
+    max_concurrent_connections: 10
+    request_timeout: "30s"
+    retry_attempts: 3
+    circuit_breaker: "enabled"
+    
+  # Backup Configuration
+  backup:
+    enabled: true
+    interval: "1h"
+    retention: "7d"
+    location: "C:\\Users\\andre\\Desktop\\coolbits\\backups"
+    
+  # Update Configuration
+  updates:
+    auto_update: false
+    check_interval: "24h"
+    rollback_enabled: true
+    
+  # Debug Configuration
+  debug:
+    enabled: false
+    verbose_logging: false
+    trace_requests: false
+    performance_profiling: false

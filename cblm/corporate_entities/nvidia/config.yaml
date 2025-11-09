@@ -1,0 +1,29 @@
+api_config:
+  authentication: configured_via_secrets
+  endpoints: &id001
+  - nvidia.com
+entity:
+  api_endpoints: *id001
+  capabilities:
+  - gpu_processing
+  - ai_acceleration
+  - cuda_support
+  classification: Internal Secret - CoolBits.ai Members Only
+  integration_status: active
+  name: NVIDIA GPU Pipeline
+  provider: NVIDIA
+  role: GPU Pipeline Integration
+integration:
+  cbLM_integration: true
+  last_updated: '2025-09-07T07:15:25.556847'
+  status: active
+policy:
+  classification: Internal Secret - CoolBits.ai Members Only
+  policy_division:
+    caio: oGrok09
+    ciso: oGrok08
+    policy_systems:
+    - coolbits.ai/policy
+    - coolbits.ai/policy-manager
+    - cblm.ai/policy
+    - cblm.ai/policy-manager

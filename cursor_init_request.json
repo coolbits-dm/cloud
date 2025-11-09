@@ -1,0 +1,14 @@
+{
+  "from": "oCursor-Grok",
+  "to": "Cursor-Windows", 
+  "type": "init",
+  "session_id": "oGrok-rag-setup",
+  "request": "RAG implementation for ogrok01-ogrok12",
+  "details": {
+    "config": "pgvector + Vertex AI",
+    "roles": ["ogrok02", "ogrok04", "ogrok09"],
+    "project": "coolbits-og-bridge",
+    "region": "europe-west3",
+    "priority": "RAG setup for xAI agents"
+  }
+}

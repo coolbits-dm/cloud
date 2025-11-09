@@ -1,0 +1,30 @@
+{
+  "panel": "agency",
+  "posts": [
+    {
+      "attachments": [],
+      "author": "demo_user",
+      "comments": [
+        {
+          "author": "nha_sentiment",
+          "text": "Sentiment analysis complete: Positive (0.8 confidence)",
+          "ts": "2025-09-12T04:53:04.172487Z"
+        }
+      ],
+      "id": "2503d62b195ee214",
+      "mentions": [
+        "@nha:sentiment"
+      ],
+      "nha_invocations": [
+        {
+          "agent_id": "sentiment_analyzer",
+          "result_ref": "sentiment_result_agency",
+          "role": "sentiment",
+          "status": "done"
+        }
+      ],
+      "text": "Welcome to agency panel! This is a demo post with @nha:sentiment analysis.",
+      "ts": "2025-09-12T04:53:04.172487Z"
+    }
+  ]
+}

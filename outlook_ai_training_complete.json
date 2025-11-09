@@ -1,0 +1,76 @@
+{
+  "company": "COOL BITS SRL \ud83c\udfe2 \ud83c\udfe2",
+  "ceo": "Andrei",
+  "ai_assistant": "@oOutlook",
+  "training_date": "2025-09-07T09:34:53.379943",
+  "email_protocols": {
+    "priority_handling": {
+      "highest": [
+        "ceo",
+        "urgent",
+        "legal",
+        "contract"
+      ],
+      "high": [
+        "project",
+        "meeting",
+        "deadline"
+      ],
+      "medium": [
+        "update",
+        "report",
+        "schedule"
+      ],
+      "low": [
+        "newsletter",
+        "social",
+        "marketing"
+      ]
+    },
+    "security_protocols": {
+      "encryption": "TLS 1.3",
+      "scan_attachments": true,
+      "quarantine_suspicious": true,
+      "audit_trail": true
+    },
+    "compliance_rules": {
+      "gdpr": true,
+      "retention": "7 years",
+      "backup": "daily",
+      "access_logging": true
+    }
+  },
+  "pending_emails": {
+    "andrei@coolbits.ai": {
+      "role": "CEO Vertex Email",
+      "priority": "high",
+      "vertex_project": "coolbits-ai",
+      "vertex_region": "europe-west3"
+    },
+    "office@coolbits.ai": {
+      "role": "Office Email",
+      "priority": "medium",
+      "vertex_project": "coolbits-ai",
+      "vertex_region": "europe-west3"
+    },
+    "andy@coolbits.ai": {
+      "role": "Andy Email",
+      "priority": "medium",
+      "vertex_project": "coolbits-ai",
+      "vertex_region": "europe-west3"
+    },
+    "kim@coolbits.ai": {
+      "role": "Kim Email",
+      "priority": "medium",
+      "vertex_project": "coolbits-ai",
+      "vertex_region": "europe-west3"
+    },
+    "andrei@cblm.ai": {
+      "role": "cblm.ai Email",
+      "priority": "high",
+      "vertex_project": "coolbits-ai",
+      "vertex_region": "europe-west3"
+    }
+  },
+  "classification": "Internal Secret - CoolBits.ai Members Only"
+}

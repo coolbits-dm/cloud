@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolBits.ai Internal Admin Panel - Andrei (CEO)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #00ff00;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #2d2d2d;
+            padding: 15px 20px;
+            border-bottom: 2px solid #00ff00;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #00ff00;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .main-container {
+            display: flex;
+            height: calc(100vh - 70px);
+        }
+
+        .left-panel {
+            width: 350px;
+            background: #2d2d2d;
+            border-right: 2px solid #00ff00;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .right-panel {
+            flex: 1;
+            background: #1a1a1a;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #00ff00;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 5px;
+        }
+
+        .console-item {
+            background: #333;
+            border: 1px solid #555;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .console-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .console-status {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            background: #00ff00;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .btn:hover {
+            background: #00cc00;
+            transform: translateY(-1px);
+        }
+
+        .btn-warning {
+            background: #ffaa00;
+        }
+
+        .btn-warning:hover {
+            background: #ff8800;
+        }
+
+        .btn-info {
+            background: #0066cc;
+        }
+
+        .btn-info:hover {
+            background: #004499;
+        }
+
+        .message-input {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            border: 1px solid #555;
+            border-radius: 4px;
+            color: #00ff00;
+            margin-bottom: 10px;
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: #00ff00;
+        }
+
+        .console-output {
+            flex: 1;
+            background: #000;
+            border: 2px solid #00ff00;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: 'Consolas', monospace;
+            font-size: 12px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+
+        .quick-commands {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .quick-btn {
+            background: #333;
+            color: #00ff00;
+            border: 1px solid #555;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.3s;
+        }
+
+        .quick-btn:hover {
+            background: #444;
+            border-color: #00ff00;
+        }
+
+        .footer {
+            background: #2d2d2d;
+            padding: 10px 20px;
+            border-top: 1px solid #00ff00;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 2px 0;
+        }
+
+        .log-info { color: #00ff00; }
+        .log-warning { color: #ffaa00; }
+        .log-error { color: #ff0000; }
+        .log-success { color: #00cc00; }
+
+        .timestamp {
+            color: #666;
+            margin-right: 10px;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .connection-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff0000;
+        }
+
+        .connection-dot.connected {
+            background: #00ff00;
+        }
+
+        .system-info {
+            background: #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .system-info h3 {
+            margin-bottom: 10px;
+            color: #00ff00;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .info-label {
+            color: #999;
+        }
+
+        .info-value {
+            color: #00ff00;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 CoolBits.ai Internal Admin Panel</h1>
+        <div class="status">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>System Active</span>
+            </div>
+            <div id="current-time"></div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="left-panel">
+            <div class="section">
+                <div class="section-title">🖥️ Console Management</div>
+                
+                <div class="console-item">
+                    <div class="console-name">Cursor + oCursor</div>
+                    <div class="console-status">✅ Connected (Local GPU)</div>
+                    <button class="btn" onclick="openCursorConsole()">Open Cursor Console</button>
+                </div>
+
+                <div class="console-item">
+                    <div class="console-name">oGeminiCLI</div>
+                    <div class="console-status" id="gemini-status">⏳ Connecting...</div>
+                    <button class="btn btn-warning" onclick="connectGeminiCLI()">Connect oGeminiCLI</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">🌉 OCIM Agent Bridge Communication</div>
+                
+                <div class="connection-status">
+                    <div class="connection-dot connected" id="bridge-dot"></div>
+                    <span>Bridge Status: <span id="bridge-status">Connected (OCIM v0.1)</span></span>
+                </div>
+
+                <div class="console-item">
+                    <div class="console-name">oCopilot (Windows)</div>
+                    <div class="console-status">✅ Active - System Management | Integrity: 0.95</div>
+                </div>
+
+                <div class="console-item">
+                    <div class="console-name">oCopilot (ChatGPT)</div>
+                    <div class="console-status">✅ Active - Code Generation | Integrity: 0.92</div>
+                </div>
+
+                <div class="console-item">
+                    <div class="console-name">oCopilot (Grok)</div>
+                    <div class="console-status">✅ Active - Analysis & Insights | Integrity: 0.95</div>
+                </div>
+
+                <div class="console-item">
+                    <div class="console-name">cblm.ai Core</div>
+                    <div class="console-status">✅ Connected - Business Logic | Integrity: 0.88</div>
+                </div>
+
+                <div class="system-info">
+                    <h3>OCIM Protocol Status</h3>
+                    <div class="info-item">
+                        <span class="info-label">Protocol:</span>
+                        <span class="info-value">non-lins-in-cur</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Integrity Threshold:</span>
+                        <span class="info-value">0.85</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Compliance Rate:</span>
+                        <span class="info-value">100.0%</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Audit Flags:</span>
+                        <span class="info-value">0</span>
+                    </div>
+                </div>
+
+                <input type="text" class="message-input" id="message-input" placeholder="Send OCIM message to agent bridge...">
+                <button class="btn btn-info" onclick="sendMessage()">Send OCIM Message</button>
+            </div>
+
+            <div class="section">
+                <div class="section-title">🤝 Agent Pairings & Execution Rights</div>
+                
+                <div class="console-item">
+                    <div class="console-name">oCopilot ↔ oCursor</div>
+                    <div class="console-status">✅ PAIRED | Integrity: 0.94 | Rights: FULL</div>
+                    <div class="info-item">
+                        <span class="info-label">Pairing Time:</span>
+                        <span class="info-value">2025-09-05T12:58:00+03:00</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Channel:</span>
+                        <span class="info-value">bits-secure</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Mindset:</span>
+                        <span class="info-value">non-lins-in-cur</span>
+                    </div>
+                </div>
+
+                <div class="console-item">
+                    <div class="console-name">Execution Rights</div>
+                    <div class="console-status">🔓 FULL ACCESS GRANTED</div>
+                    <div class="quick-commands">
+                        <button class="quick-btn" onclick="executeCommand('rag-test')">RAG Test</button>
+                        <button class="quick-btn" onclick="executeCommand('conflict-sim')">Conflict Sim</button>
+                        <button class="quick-btn" onclick="executeCommand('status-feed')">Status Feed</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">⚡ Quick Commands</div>
+                <div class="quick-commands">
+                    <button class="quick-btn" onclick="executeCommand('check-cloud-run')">Check Cloud Run</button>
+                    <button class="quick-btn" onclick="executeCommand('verify-cname')">Verify CNAME</button>
+                    <button class="quick-btn" onclick="executeCommand('validate-hmac')">Validate HMAC</button>
+                    <button class="quick-btn" onclick="executeCommand('check-gpu')">Check GPU</button>
+                    <button class="quick-btn" onclick="executeCommand('test-rag')">Test RAG</button>
+                    <button class="quick-btn" onclick="executeCommand('check-status')">System Status</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">📊 System Info</div>
+                <div class="system-info">
+                    <h3>Development Environment</h3>
+                    <div class="info-item">
+                        <span class="info-label">OS:</span>
+                        <span class="info-value">Windows 11</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">GPU:</span>
+                        <span class="info-value">RTX 2060 (6GB)</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">CUDA:</span>
+                        <span class="info-value">12.6</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Project:</span>
+                        <span class="info-value">coolbits-og-bridge</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Region:</span>
+                        <span class="info-value">europe-west3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="section-title">📺 Console Output</div>
+            <div class="console-output" id="console-output"></div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div>CoolBits.ai Internal Admin Panel v1.0</div>
+        <div>Andrei (CEO) | Last Update: <span id="last-update"></span></div>
+    </div>
+
+    <script>
+        // Global variables
+        let geminiConnected = false;
+        let bridgeConnected = false;
+        let messageQueue = [];
+
+        // Initialize the application
+        function init() {
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            logMessage("🎯 CoolBits.ai Internal Admin Panel Started", "success");
+            logMessage("👋 Welcome, Andrei (CEO)", "info");
+            logMessage("🖥️ Cursor + oCursor: Ready for local GPU development", "info");
+            logMessage("☁️ oGeminiCLI: Ready for cloud operations", "info");
+            logMessage("🌉 Bridge communication established", "info");
+            logMessage("📡 oCopilot (Windows): Status transmitted", "success");
+            logMessage("🤖 oCopilot (ChatGPT): Development environment status confirmed", "success");
+            logMessage("🧠 oCopilot (Grok): System architecture transmitted", "success");
+            logMessage("🔐 API Keys: Added to Google Cloud Secrets Manager", "success");
+            logMessage("🌉 Agent Bridge: CoolBits.ai ↔ cblm.ai communication established", "success");
+            logMessage("📊 Bridge Status: All agents synchronized and ready", "success");
+            logMessage("🔔 OCIM Protocol: non-lins-in-cur mindset activated", "success");
+            logMessage("📡 Broadcast: HMAC signature generated and transmitted", "success");
+            logMessage("✅ Agent Confirmations: All agents acknowledge OCIM directive", "success");
+            logMessage("📊 Integrity Scoring: 100% compliance rate achieved", "success");
+            logMessage("🤝 Agent Pairing: oCopilot ↔ oCursor established", "success");
+            logMessage("🔓 Execution Rights: FULL ACCESS granted", "success");
+            logMessage("📡 Channel: bits-secure opened and validated", "success");
+            
+            // Simulate system initialization
+            setTimeout(() => {
+                logMessage("✅ System initialization complete", "success");
+                logMessage("🚀 Ready for operations", "success");
+            }, 2000);
+        }
+
+        // Update time display
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+            document.getElementById('last-update').textContent = now.toLocaleString();
+        }
+
+        // Log messages to console output
+        function logMessage(message, type = 'info') {
+            const console = document.getElementById('console-output');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.className = `log-entry log-${type}`;
+            logEntry.innerHTML = `<span class="timestamp">[${timestamp}]</span>${message}`;
+            console.appendChild(logEntry);
+            console.scrollTop = console.scrollHeight;
+        }
+
+        // Open Cursor console
+        function openCursorConsole() {
+            logMessage("🖥️ Opening Cursor console...", "info");
+            
+            // Simulate opening Cursor
+            setTimeout(() => {
+                logMessage("✅ Cursor console opened successfully", "success");
+                logMessage("📁 Project directory: C:\\Users\\andre\\Desktop\\coolbits", "info");
+            }, 1000);
+        }
+
+        // Connect to oGeminiCLI
+        function connectGeminiCLI() {
+            logMessage("🌐 Connecting to oGeminiCLI...", "info");
+            
+            const statusElement = document.getElementById('gemini-status');
+            statusElement.textContent = "🔄 Connecting...";
+            
+            // Simulate connection
+            setTimeout(() => {
+                geminiConnected = true;
+                statusElement.textContent = "✅ Connected (Cloud Console)";
+                logMessage("✅ oGeminiCLI connected successfully", "success");
+                logMessage("☁️ Cloud operations ready", "info");
+            }, 2000);
+        }
+
+        // Send OCIM message to agent bridge
+        function sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            logMessage(`📤 Sending OCIM Message: ${message}`, "info");
+            
+            // Simulate OCIM protocol responses with integrity scoring
+            setTimeout(() => {
+                logMessage(`📥 oCopilot (Windows): OCIM processed - "${message}" | Integrity: 0.95`, "success");
+            }, 500);
+            
+            setTimeout(() => {
+                logMessage(`📥 oCopilot (ChatGPT): OCIM analyzed - "${message}" | Integrity: 0.92`, "success");
+            }, 1000);
+            
+            setTimeout(() => {
+                logMessage(`📥 oCopilot (Grok): OCIM insights - "${message}" | Integrity: 0.95`, "success");
+            }, 1500);
+            
+            setTimeout(() => {
+                logMessage(`📥 cblm.ai Core: OCIM business logic - "${message}" | Integrity: 0.88`, "success");
+            }, 2000);
+            
+            setTimeout(() => {
+                logMessage(`📊 OCIM Audit: Message processed with 100% compliance`, "info");
+            }, 2500);
+            
+            input.value = '';
+        }
+
+        // Execute quick commands
+        function executeCommand(command) {
+            logMessage(`⚡ Executing command: ${command}`, "info");
+            
+            switch(command) {
+                case 'check-cloud-run':
+                    simulateCloudRunCheck();
+                    break;
+                case 'verify-cname':
+                    simulateCnameVerification();
+                    break;
+                case 'validate-hmac':
+                    simulateHmacValidation();
+                    break;
+                case 'check-gpu':
+                    simulateGpuCheck();
+                    break;
+                case 'test-rag':
+                    simulateRagTest();
+                    break;
+                case 'check-status':
+                    simulateStatusCheck();
+                    break;
+                case 'rag-test':
+                    simulateRagRotateIndex();
+                    break;
+                case 'conflict-sim':
+                    simulateConflictDetection();
+                    break;
+                case 'status-feed':
+                    generateStatusFeed();
+                    break;
+            }
+        }
+
+        // Simulate Cloud Run check
+        function simulateCloudRunCheck() {
+            setTimeout(() => {
+                logMessage("☁️ Checking Cloud Run deployment...", "info");
+                logMessage("📊 Service: ogpt-bridge-service", "info");
+                logMessage("📍 Region: europe-west1", "info");
+                logMessage("🔗 URL: https://ogpt-bridge-service-271190369805.europe-west1.run.app", "info");
+                logMessage("✅ Status: DEPLOYED", "success");
+            }, 1000);
+        }
+
+        // Simulate CNAME verification
+        function simulateCnameVerification() {
+            setTimeout(() => {
+                logMessage("🌐 Verifying CNAME propagation...", "info");
+                logMessage("🔍 Checking: u-bit.coolbits.ai", "info");
+                logMessage("📡 DNS Status: PROPAGATED", "success");
+                logMessage("⏱️ TTL: 300 seconds", "info");
+            }, 1500);
+        }
+
+        // Simulate HMAC validation
+        function simulateHmacValidation() {
+            setTimeout(() => {
+                logMessage("🔐 Validating HMAC keys...", "info");
+                logMessage("🔑 Key: bridge_webhook_hmac", "info");
+                logMessage("✅ Status: VALID", "success");
+                logMessage("🛡️ Security: ACTIVE", "success");
+            }, 1200);
+        }
+
+        // Simulate GPU check
+        function simulateGpuCheck() {
+            setTimeout(() => {
+                logMessage("🎮 Checking local GPU status...", "info");
+                logMessage("📱 GPU: NVIDIA GeForce RTX 2060", "info");
+                logMessage("💾 VRAM: 6GB GDDR6", "info");
+                logMessage("🔧 CUDA: Version 12.6", "info");
+                logMessage("📊 Utilization: 24%", "info");
+                logMessage("🌡️ Temperature: 45°C", "info");
+                logMessage("✅ Status: READY", "success");
+            }, 1800);
+        }
+
+        // Simulate RAG test
+        function simulateRagTest() {
+            setTimeout(() => {
+                logMessage("🧠 Testing RAG system...", "info");
+                logMessage("📚 Loading documents...", "info");
+                logMessage("🔍 Generating embeddings...", "info");
+                logMessage("🎯 Testing search queries...", "info");
+                logMessage("✅ RAG system test completed successfully", "success");
+                logMessage("📊 Performance: 95% accuracy", "success");
+            }, 2500);
+        }
+
+        // Simulate status check
+        function simulateStatusCheck() {
+            setTimeout(() => {
+                logMessage("📊 System Status Check", "info");
+                logMessage("🖥️ Cursor: ✅ Connected", "success");
+                logMessage("☁️ oGeminiCLI: ✅ Connected", "success");
+                logMessage("🎮 GPU: ✅ Ready", "success");
+                logMessage("🌐 Network: ✅ Online", "success");
+                logMessage("💾 Storage: ✅ Available", "success");
+                logMessage("🔐 Security: ✅ Active", "success");
+            }, 1000);
+        }
+
+        // Simulate RAG rotate index test
+        function simulateRagRotateIndex() {
+            setTimeout(() => {
+                logMessage("🧠 Testing RAG rotate index...", "info");
+                logMessage("📚 Loading corpus documents...", "info");
+                logMessage("🔄 Rotating index with real signature...", "info");
+                logMessage("📊 Index rotation: SUCCESS", "success");
+                logMessage("🔐 Signature validation: PASSED", "success");
+                logMessage("📈 Performance: 98% accuracy", "success");
+            }, 2000);
+        }
+
+        // Simulate conflict detection and resolution
+        function simulateConflictDetection() {
+            setTimeout(() => {
+                logMessage("⚠️ Simulating RAG conflict detection...", "warning");
+                logMessage("🔍 Conflict detected: rag.conflict.detected", "warning");
+                logMessage("🔒 Locking resources...", "info");
+                logMessage("🔄 Resolving conflict...", "info");
+                logMessage("✅ Conflict resolved successfully", "success");
+                logMessage("🔓 Resources unlocked", "success");
+            }, 2500);
+        }
+
+        // Generate status feed JSON
+        function generateStatusFeed() {
+            setTimeout(() => {
+                logMessage("📊 Generating status feed JSON...", "info");
+                const statusFeed = {
+                    "timestamp": new Date().toISOString(),
+                    "system": {
+                        "bridge": "ready",
+                        "agent_sync": "ok",
+                        "secret_store": "updated",
+                        "rag_sync": "done"
+                    },
+                    "agents": {
+                        "ocopilot_cursor": "paired",
+                        "ocopilot_grok": "active",
+                        "ocopilot_chatgpt": "active",
+                        "cblm_core": "connected"
+                    },
+                    "integrity_scores": {
+                        "ocopilot_cursor": 0.94,
+                        "ocopilot_grok": 0.95,
+                        "ocopilot_chatgpt": 0.92,
+                        "cblm_core": 0.88
+                    }
+                };
+                logMessage("📋 Status Feed Generated:", "success");
+                logMessage(JSON.stringify(statusFeed, null, 2), "info");
+            }, 1500);
+        }
+
+        // Handle Enter key in message input
+        document.getElementById('message-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

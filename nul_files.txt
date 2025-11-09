@@ -1,0 +1,4 @@
+C:\Users\andre\Desktop\coolbits\cursor_root_console_server.py
+C:\Users\andre\Desktop\coolbits\enhanced_multi_agent_chat_server.py
+C:\Users\andre\Desktop\coolbits\individual_agent_portal_server.py
+C:\Users\andre\Desktop\coolbits\str.py

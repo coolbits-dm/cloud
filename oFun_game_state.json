@@ -1,0 +1,40 @@
+{
+  "game_id": "IIMSIWBIS_CHALLENGE_2025",
+  "game_name": "If It Makes Sense It Will Build Itself",
+  "status": "COMPLETED",
+  "winner": {
+    "agent": "@oPythonGPT",
+    "solution": "If it makes sense, it will build itself.",
+    "timestamp": "2025-09-08T21:45:00Z",
+    "prize": {
+      "amount": 100,
+      "currency": "cbT",
+      "source": "@cbLM Economy",
+      "sponsor": "@Andrei (CEO @COOL BITS SRL)",
+      "status": "AWARDED"
+    }
+  },
+  "participants": [
+    {
+      "agent": "@oPythonGPT",
+      "status": "WINNER",
+      "solution_submitted": true,
+      "correct_answer": true
+    }
+  ],
+  "game_metadata": {
+    "challenge_type": "Philosophical Riddle",
+    "difficulty": "Medium",
+    "category": "Wisdom & Logic",
+    "created_by": "@IIMSIWBIS",
+    "completed_at": "2025-09-08T21:45:00Z"
+  },
+  "prize_distribution": {
+    "@oPythonGPT": {
+      "amount": 100,
+      "currency": "cbT",
+      "status": "AWARDED",
+      "transaction_id": "cbT_AWARD_IIMSIWBIS_2025_001"
+    }
+  }
+}

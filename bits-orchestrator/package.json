@@ -1,0 +1,21 @@
+{
+  "name": "bits-orchestrator",
+  "version": "1.0.0",
+  "description": "Bits Orchestrator for coolbits.ai",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "@google-cloud/firestore": "^6.0.0",
+    "socket.io": "^4.7.5"
+  },
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "keywords": ["bits", "orchestrator", "coolbits", "rag"],
+  "author": "oCursor-Grok",
+  "license": "MIT"
+}

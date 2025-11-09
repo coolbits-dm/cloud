@@ -1,0 +1,93 @@
+# cbLM.ai Configuration
+# SC COOL BITS SRL - Language Model Platform
+
+company: "SC COOL BITS SRL"
+ceo: "Andrei"
+ai_assistant: "Cursor AI Assistant"
+contract_date: "2025-09-06"
+
+# Model Configuration
+models:
+  default_model: "gpt-3.5-turbo"
+  max_tokens: 4000
+  temperature: 0.7
+  
+# Training Configuration
+training:
+  batch_size: 32
+  learning_rate: 0.001
+  epochs: 100
+  
+# Inference Configuration
+inference:
+  port: 8083
+  host: "0.0.0.0"
+  max_concurrent: 10
+  
+# Integration with CoolBits.ai
+integration:
+  coolbits_api_url: "http://localhost:8080"
+  rag_system_url: "http://localhost:8090"
+  bridge_url: "http://localhost:8082"
+
+# oPipe Protocol Integration
+opipe_integration:
+  protocol_name: "oPipe"
+  protocol_version: "1.0.0"
+  status: "Under Development"
+  development_phase: "Planning & Architecture"
+  classification: "Internal Secret - CoolBits.ai Members Only"
+  
+  # Protocol Configuration
+  protocol_config:
+    communication_standards: "JSON-based messaging"
+    data_format_specifications: "Structured data exchange"
+    security_protocols: "End-to-end encryption"
+    error_handling_mechanisms: "Graceful degradation"
+  
+  # cbLM.ai Specific Integration
+  cblm_specific:
+    model_integration:
+      - "oPipe protocol for model communication"
+      - "Secure model data exchange"
+      - "Real-time model status updates"
+    
+    training_integration:
+      - "oPipe protocol for training coordination"
+      - "Distributed training communication"
+      - "Training progress monitoring"
+    
+    inference_integration:
+      - "oPipe protocol for inference requests"
+      - "Load balancing across models"
+      - "Inference result routing"
+    
+    evaluation_integration:
+      - "oPipe protocol for evaluation metrics"
+      - "Performance monitoring"
+      - "Quality assurance reporting"
+  
+  # API Endpoints
+  api_endpoints:
+    protocol_status: "/api/opipe/status"
+    protocol_config: "/api/opipe/config"
+    protocol_metrics: "/api/opipe/metrics"
+    protocol_logs: "/api/opipe/logs"
+    protocol_health: "/api/opipe/health"
+  
+  # Security Framework
+  security_framework:
+    authentication: "Multi-factor authentication"
+    authorization: "Role-based access control"
+    encryption: "End-to-end encryption"
+    audit: "Complete audit trail"
+    compliance: ["GDPR", "ISO 27001"]
+  
+  # Technology Stack
+  technology_stack:
+    backend: ["Python", "FastAPI", "Django"]
+    database: ["PostgreSQL", "Redis"]
+    message_queue: ["RabbitMQ", "Apache Kafka"]
+    cloud: "Google Cloud Platform (coolbits-ai)"
+    monitoring: ["Prometheus", "Grafana"]
+    security: ["OAuth 2.0", "JWT", "TLS"]

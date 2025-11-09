@@ -1,0 +1,408 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Google Cloud Organization Setup for COOL BITS SRL
+CoolBits.ai V1.2 - Google Cloud Platform Integration
+
+This script configures Google Cloud Organization for COOL BITS SRL
+with proper service accounts, API keys, and CUDA-enabled Vertex AI integration.
+
+Author: @oGit Agent (oCursor)
+Company: COOL BITS SRL
+Certificates: Managed by @oSafeNet & @oSmartBill
+"""
+
+import json
+from typing import Dict, List, Any
+
+
+class GoogleCloudOrganizationSetup:
+    """Google Cloud Organization Setup for COOL BITS SRL"""
+
+    def __init__(self):
+        self.organization_name = "COOL BITS SRL"
+        self.domain = "coolbits.ai"
+        self.ceo_email = "andrei@coolbits.ro"
+        self.organization_id = "coolbits-dm"
+        self.project_id = "coolbits-ai"
+        self.region = "europe-west1"
+        self.zone = "europe-west1-b"
+
+        # Certificate management
+        self.certificate_manager = "@oSafeNet"
+        self.smartbill_manager = "@oSmartBill"
+        self.python_agent = "@oPython"
+        self.openai_integration = "@OpenAI"
+
+        # CUDA Configuration
+        self.cuda_enabled = True
+        self.gpu_type = "NVIDIA RTX 2060"
+        self.cuda_version = "12.2"
+
+        # Service Accounts Configuration
+        self.service_accounts = {
+            "coolbits-ai-admin": {
+                "display_name": "CoolBits AI Admin Service Account",
+                "description": "Administrative access for CoolBits.ai platform",
+                "roles": [
+                    "roles/owner",
+                    "roles/iam.serviceAccountAdmin",
+                    "roles/resourcemanager.projectIamAdmin",
+                ],
+            },
+            "coolbits-ai-vertex": {
+                "display_name": "CoolBits AI Vertex Service Account",
+                "description": "Vertex AI access for AI model training and inference",
+                "roles": [
+                    "roles/aiplatform.user",
+                    "roles/ml.developer",
+                    "roles/storage.admin",
+                    "roles/bigquery.dataEditor",
+                ],
+            },
+            "coolbits-ai-cuda": {
+                "display_name": "CoolBits AI CUDA Service Account",
+                "description": "CUDA-enabled GPU access for AI processing",
+                "roles": [
+                    "roles/compute.instanceAdmin",
+                    "roles/compute.instanceAdmin.v1",
+                    "roles/aiplatform.user",
+                ],
+            },
+            "coolbits-ai-openai": {
+                "display_name": "CoolBits AI OpenAI Service Account",
+                "description": "OpenAI API integration service account",
+                "roles": [
+                    "roles/secretmanager.secretAccessor",
+                    "roles/aiplatform.user",
+                ],
+            },
+            "coolbits-ai-rag": {
+                "display_name": "CoolBits AI RAG Service Account",
+                "description": "RAG system and vector database access",
+                "roles": [
+                    "roles/aiplatform.user",
+                    "roles/storage.admin",
+                    "roles/datastore.user",
+                    "roles/bigquery.dataEditor",
+                ],
+            },
+        }
+
+        # API Configuration
+        self.apis_to_enable = [
+            "aiplatform.googleapis.com",
+            "compute.googleapis.com",
+            "storage.googleapis.com",
+            "secretmanager.googleapis.com",
+            "bigquery.googleapis.com",
+            "datastore.googleapis.com",
+            "ml.googleapis.com",
+            "cloudbuild.googleapis.com",
+            "container.googleapis.com",
+            "run.googleapis.com",
+        ]
+
+        # Security Configuration
+        self.security_config = {
+            "certificate_management": {
+                "provider": "DigiSign Qualified CA Class 3 2017",
+                "subject": "BOUREANU ANDREI-CIPRIAN",
+                "thumbprint": "AD61CB7BF502EBF90B75898D51F4327A833670E5",
+                "status": "EXPIRED - RENEWAL REQUIRED",
+                "expiry_days": -94,
+                "manager": "@oSafeNet",
+            },
+            "efs_encryption": {
+                "certificate": "A187 7E74 E971 3C0B 6079 D6E0 07E1 604A A6F2 1119",
+                "access": "ANDREI\\andre",
+                "status": "ACTIVE",
+            },
+            "authentication": {
+                "hmac_enabled": True,
+                "rate_limiting": "60 RPS, 120 burst",
+                "audit_logging": True,
+                "zero_trust": True,
+            },
+        }
+
+    def generate_organization_setup_commands(self) -> List[str]:
+        """Generate Google Cloud Organization setup commands"""
+        commands = []
+
+        # Organization setup
+        commands.extend(
+            [
+                "# Google Cloud Organization Setup for COOL BITS SRL",
+                "# Generated by @oGit Agent for coolbits.ai V1.2",
+                "",
+                "# 1. Set project and organization",
+                f"gcloud config set project {self.project_id}",
+                f"gcloud config set compute/region {self.region}",
+                f"gcloud config set compute/zone {self.zone}",
+                "",
+                "# 2. Enable required APIs",
+                "gcloud services enable " + " ".join(self.apis_to_enable),
+                "",
+                "# 3. Create service accounts",
+            ]
+        )
+
+        # Service account creation
+        for sa_name, sa_config in self.service_accounts.items():
+            commands.extend(
+                [
+                    f"# Create {sa_config['display_name']}",
+                    f"gcloud iam service-accounts create {sa_name} \\",
+                    f'    --display-name="{sa_config["display_name"]}" \\',
+                    f'    --description="{sa_config["description"]}"',
+                    "",
+                    f"# Assign roles to {sa_name}",
+                ]
+            )
+
+            for role in sa_config["roles"]:
+                commands.append(
+                    f"gcloud projects add-iam-policy-binding {self.project_id} \\"
+                )
+                commands.append(
+                    f'    --member="serviceAccount:{sa_name}@{self.project_id}.iam.gserviceaccount.com" \\'
+                )
+                commands.append(f'    --role="{role}"')
+                commands.append("")
+
+        # CUDA and GPU configuration
+        commands.extend(
+            [
+                "# 4. CUDA and GPU Configuration",
+                "# Enable GPU quota for CUDA processing",
+                "gcloud compute project-info add-metadata \\",
+                "    --metadata=gpu-quota=true",
+                "",
+                "# Create GPU-enabled instance template",
+                "gcloud compute instance-templates create coolbits-gpu-template \\",
+                "    --machine-type=n1-standard-4 \\",
+                "    --accelerator=type=nvidia-tesla-t4,count=1 \\",
+                "    --image-family=tf-latest-gpu \\",
+                "    --image-project=deeplearning-platform-release \\",
+                "    --boot-disk-size=100GB \\",
+                "    --boot-disk-type=pd-ssd",
+                "",
+                "# 5. Vertex AI Configuration",
+                "# Create Vertex AI dataset",
+                "gcloud ai datasets create \\",
+                '    --display-name="CoolBits AI Training Data" \\',
+                '    --metadata-schema-uri="gs://google-cloud-aiplatform/schema/dataset/metadata/text_1.0.0.yaml"',
+                "",
+                "# Create Vertex AI model endpoint",
+                "gcloud ai endpoints create \\",
+                '    --display-name="CoolBits AI Model Endpoint" \\',
+                f"    --region={self.region}",
+                "",
+                "# 6. Security Configuration",
+                "# Create secrets for API keys",
+                "gcloud secrets create openai-api-key \\",
+                '    --data-file=- <<< "YOUR_OPENAI_API_KEY"',
+                "",
+                "gcloud secrets create xai-api-key \\",
+                '    --data-file=- <<< "YOUR_XAI_API_KEY"',
+                "",
+                "# Grant access to secrets",
+                "gcloud secrets add-iam-policy-binding openai-api-key \\",
+                f'    --member="serviceAccount:coolbits-ai-openai@{self.project_id}.iam.gserviceaccount.com" \\',
+                '    --role="roles/secretmanager.secretAccessor"',
+                "",
+                "# 7. Storage Configuration",
+                "# Create storage buckets",
+                f"gsutil mb gs://{self.project_id}-ai-models",
+                f"gsutil mb gs://{self.project_id}-training-data",
+                f"gsutil mb gs://{self.project_id}-rag-vectors",
+                "",
+                "# 8. Monitoring and Logging",
+                "# Enable monitoring",
+                "gcloud services enable monitoring.googleapis.com",
+                "gcloud services enable logging.googleapis.com",
+                "",
+                "# Create monitoring dashboard",
+                "gcloud monitoring dashboards create \\",
+                "    --config-from-file=coolbits-monitoring-dashboard.json",
+                "",
+                "# 9. Network Configuration",
+                "# Create VPC for AI workloads",
+                "gcloud compute networks create coolbits-ai-vpc \\",
+                "    --subnet-mode=regional \\",
+                "    --bgp-routing-mode=global",
+                "",
+                "gcloud compute networks subnets create coolbits-ai-subnet \\",
+                "    --network=coolbits-ai-vpc \\",
+                "    --range=10.0.0.0/24 \\",
+                f"    --region={self.region}",
+                "",
+                "# 10. Final Configuration",
+                "# Set default network tags",
+                "gcloud config set compute/network coolbits-ai-vpc",
+                "gcloud config set compute/subnet coolbits-ai-subnet",
+                "",
+                "# Display configuration summary",
+                'echo "Google Cloud Organization Setup Complete for COOL BITS SRL"',
+                'echo "Project ID: ' + self.project_id + '"',
+                'echo "Organization: ' + self.organization_name + '"',
+                'echo "CEO: ' + self.ceo_email + '"',
+                'echo "CUDA Support: Enabled"',
+                'echo "GPU: ' + self.gpu_type + '"',
+                'echo "Certificate Manager: ' + self.certificate_manager + '"',
+                'echo "SmartBill Manager: ' + self.smartbill_manager + '"',
+            ]
+        )
+
+        return commands
+
+    def generate_monitoring_dashboard_config(self) -> Dict[str, Any]:
+        """Generate monitoring dashboard configuration"""
+        return {
+            "displayName": "CoolBits AI Monitoring Dashboard",
+            "mosaicLayout": {
+                "tiles": [
+                    {
+                        "width": 6,
+                        "height": 4,
+                        "widget": {
+                            "title": "AI Model Performance",
+                            "xyChart": {
+                                "dataSets": [
+                                    {
+                                        "timeSeriesQuery": {
+                                            "timeSeriesFilter": {
+                                                "filter": 'metric.type="aiplatform.googleapis.com/model/inference/latency"',
+                                                "aggregation": {
+                                                    "alignmentPeriod": "60s",
+                                                    "perSeriesAligner": "ALIGN_MEAN",
+                                                },
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                        },
+                    },
+                    {
+                        "width": 6,
+                        "height": 4,
+                        "widget": {
+                            "title": "CUDA GPU Utilization",
+                            "xyChart": {
+                                "dataSets": [
+                                    {
+                                        "timeSeriesQuery": {
+                                            "timeSeriesFilter": {
+                                                "filter": 'metric.type="compute.googleapis.com/instance/gpu/utilization"',
+                                                "aggregation": {
+                                                    "alignmentPeriod": "60s",
+                                                    "perSeriesAligner": "ALIGN_MEAN",
+                                                },
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                        },
+                    },
+                ]
+            },
+        }
+
+    def save_configuration_files(self):
+        """Save configuration files for Google Cloud setup"""
+
+        # Save setup commands
+        commands = self.generate_organization_setup_commands()
+        with open("google_cloud_setup.sh", "w") as f:
+            f.write("\n".join(commands))
+
+        # Save monitoring dashboard config
+        dashboard_config = self.generate_monitoring_dashboard_config()
+        with open("coolbits-monitoring-dashboard.json", "w") as f:
+            json.dump(dashboard_config, f, indent=2)
+
+        # Save service account configuration
+        with open("service_accounts_config.json", "w") as f:
+            json.dump(self.service_accounts, f, indent=2)
+
+        # Save security configuration
+        with open("security_config.json", "w") as f:
+            json.dump(self.security_config, f, indent=2)
+
+        print("✅ Google Cloud configuration files generated:")
+        print("   - google_cloud_setup.sh")
+        print("   - coolbits-monitoring-dashboard.json")
+        print("   - service_accounts_config.json")
+        print("   - security_config.json")
+
+    def display_setup_summary(self):
+        """Display setup summary"""
+        print("=" * 80)
+        print("🏢 GOOGLE CLOUD ORGANIZATION SETUP - COOL BITS SRL")
+        print("=" * 80)
+        print(f"Organization: {self.organization_name}")
+        print(f"Domain: {self.domain}")
+        print(f"CEO: {self.ceo_email}")
+        print(f"Project ID: {self.project_id}")
+        print(f"Region: {self.region}")
+        print(f"Zone: {self.zone}")
+        print()
+        print("🔐 CERTIFICATE MANAGEMENT:")
+        print(f"   Manager: {self.certificate_manager}")
+        print(f"   SmartBill: {self.smartbill_manager}")
+        print(f"   Status: {self.security_config['certificate_management']['status']}")
+        print()
+        print("🤖 AI AGENTS INTEGRATION:")
+        print(f"   Python Agent: {self.python_agent}")
+        print(f"   OpenAI Integration: {self.openai_integration}")
+        print(
+            f"   CUDA Support: {'✅ Enabled' if self.cuda_enabled else '❌ Disabled'}"
+        )
+        print(f"   GPU: {self.gpu_type} (CUDA {self.cuda_version})")
+        print()
+        print("🔧 SERVICE ACCOUNTS:")
+        for sa_name, sa_config in self.service_accounts.items():
+            print(f"   - {sa_config['display_name']}")
+        print()
+        print("📊 MONITORING:")
+        print("   - AI Model Performance Dashboard")
+        print("   - CUDA GPU Utilization Monitoring")
+        print("   - Real-time Security Status")
+        print("   - Audit Logging (JSON format)")
+        print()
+        print("🚨 CRITICAL ACTIONS REQUIRED:")
+        print("   1. Certificate renewal with DigiSign")
+        print("   2. API key configuration")
+        print("   3. Service account key generation")
+        print("   4. GPU quota approval")
+        print()
+        print("=" * 80)
+        print("🔒 Classification: Internal Secret - CoolBits.ai Members Only")
+        print("=" * 80)
+
+
+def main():
+    """Main function to setup Google Cloud Organization"""
+    setup = GoogleCloudOrganizationSetup()
+
+    print("🚀 Initializing Google Cloud Organization Setup for COOL BITS SRL...")
+
+    # Generate and save configuration files
+    setup.save_configuration_files()
+
+    # Display setup summary
+    setup.display_setup_summary()
+
+    print("\n📋 NEXT STEPS:")
+    print("1. Run: chmod +x google_cloud_setup.sh")
+    print("2. Run: ./google_cloud_setup.sh")
+    print("3. Configure API keys in Google Cloud Secret Manager")
+    print("4. Test CUDA integration with Vertex AI")
+    print("5. Verify certificate renewal with @oSafeNet")
+
+
+if __name__ == "__main__":
+    main()

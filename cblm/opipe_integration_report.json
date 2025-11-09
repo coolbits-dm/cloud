@@ -1,0 +1,50 @@
+{
+  "company": "SC COOL BITS SRL",
+  "ceo": "Andrei",
+  "ai_assistant": "Cursor AI Assistant",
+  "contract_date": "2025-09-06",
+  "integration_date": "2025-09-07T10:20:35.868133",
+  "opipe_protocol": {
+    "name": "oPipe",
+    "full_name": "oPipe Communication Protocol",
+    "alternative_names": [
+      "opipe",
+      "o-pipe"
+    ],
+    "version": "1.0.0",
+    "status": "Under Development",
+    "development_phase": "Planning & Architecture",
+    "classification": "Internal Secret - CoolBits.ai Members Only"
+  },
+  "cblm_integration": {
+    "model_integration": [
+      "oPipe protocol for model communication",
+      "Secure model data exchange",
+      "Real-time model status updates"
+    ],
+    "training_integration": [
+      "oPipe protocol for training coordination",
+      "Distributed training communication",
+      "Training progress monitoring"
+    ],
+    "inference_integration": [
+      "oPipe protocol for inference requests",
+      "Load balancing across models",
+      "Inference result routing"
+    ],
+    "evaluation_integration": [
+      "oPipe protocol for evaluation metrics",
+      "Performance monitoring",
+      "Quality assurance reporting"
+    ]
+  },
+  "api_endpoints": {
+    "protocol_status": "/api/opipe/status",
+    "protocol_config": "/api/opipe/config",
+    "protocol_metrics": "/api/opipe/metrics",
+    "protocol_logs": "/api/opipe/logs",
+    "protocol_health": "/api/opipe/health"
+  },
+  "validation_status": true,
+  "integration_status": "completed"
+}

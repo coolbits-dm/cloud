@@ -1,0 +1,26 @@
+{
+  "andrei@coolbits.ro": {
+    "email": "andrei@coolbits.ro",
+    "expected_route": "andrei@coolbits.ai",
+    "test_status": "Configuration validated",
+    "test_time": "2025-09-07T12:57:21.883338"
+  },
+  "coolbits.dm@gmail.com": {
+    "email": "coolbits.dm@gmail.com",
+    "expected_route": "andrei@coolbits.ai",
+    "test_status": "Configuration validated",
+    "test_time": "2025-09-07T12:57:21.884339"
+  },
+  "coolbits.ro@gmail.com": {
+    "email": "coolbits.ro@gmail.com",
+    "expected_route": "andrei@coolbits.ai",
+    "test_status": "Configuration validated",
+    "test_time": "2025-09-07T12:57:21.884339"
+  },
+  "coolbits.ai@gmail.com": {
+    "email": "coolbits.ai@gmail.com",
+    "expected_route": "andrei@coolbits.ai",
+    "test_status": "Configuration validated",
+    "test_time": "2025-09-07T12:57:21.884339"
+  }
+}

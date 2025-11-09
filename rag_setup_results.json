@@ -1,0 +1,42 @@
+﻿{
+    "banking":  {
+                    "search_app_name":  "projects/coolbits-ai/locations/us-central1/searchApps/banking-search-app",
+                    "industry_id":  "banking",
+                    "data_store_name":  "projects/coolbits-ai/locations/us-central1/dataStores/banking-rag-store",
+                    "bucket_name":  "coolbits-rag-banking-coolbits-ai",
+                    "industry_name":  "Banking",
+                    "success":  true
+                },
+    "saas_b2b":  {
+                     "search_app_name":  "projects/coolbits-ai/locations/us-central1/searchApps/saas_b2b-search-app",
+                     "industry_id":  "saas_b2b",
+                     "data_store_name":  "projects/coolbits-ai/locations/us-central1/dataStores/saas_b2b-rag-store",
+                     "bucket_name":  "coolbits-rag-saas_b2b-coolbits-ai",
+                     "industry_name":  "SaaS B2B",
+                     "success":  true
+                 },
+    "exchanges":  {
+                      "search_app_name":  "projects/coolbits-ai/locations/us-central1/searchApps/exchanges-search-app",
+                      "industry_id":  "exchanges",
+                      "data_store_name":  "projects/coolbits-ai/locations/us-central1/dataStores/exchanges-rag-store",
+                      "bucket_name":  "coolbits-rag-exchanges-coolbits-ai",
+                      "industry_name":  "Cryptocurrency Exchanges",
+                      "success":  true
+                  },
+    "healthcare":  {
+                       "search_app_name":  "projects/coolbits-ai/locations/us-central1/searchApps/healthcare-search-app",
+                       "industry_id":  "healthcare",
+                       "data_store_name":  "projects/coolbits-ai/locations/us-central1/dataStores/healthcare-rag-store",
+                       "bucket_name":  "coolbits-rag-healthcare-coolbits-ai",
+                       "industry_name":  "Healthcare",
+                       "success":  true
+                   },
+    "agritech":  {
+                     "search_app_name":  "projects/coolbits-ai/locations/us-central1/searchApps/agritech-search-app",
+                     "industry_id":  "agritech",
+                     "data_store_name":  "projects/coolbits-ai/locations/us-central1/dataStores/agritech-rag-store",
+                     "bucket_name":  "coolbits-rag-agritech-coolbits-ai",
+                     "industry_name":  "AgTech",
+                     "success":  true
+                 }
+}

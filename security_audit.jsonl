@@ -1,0 +1,3 @@
+{"timestamp": "2025-09-10T20:10:52.083204", "event_type": "KEY_ROTATION_FAILED", "details": {"error": "HMACKeyManager.generate_key() got an unexpected keyword argument 'algorithm'", "compromised_key": "cb401cb643e9f67a"}, "severity": "HIGH"}
+{"timestamp": "2025-09-10T20:11:14.935035", "event_type": "KEY_ROTATION_FAILED", "details": {"error": "HMACKeyManager.revoke_key() got an unexpected keyword argument 'reason'", "compromised_key": "cb401cb643e9f67a"}, "severity": "HIGH"}
+{"timestamp": "2025-09-10T20:11:19.223588", "event_type": "KEY_COMPROMISED_ROTATION", "details": {"compromised_key": "cb401cb643e9f67a", "new_key": "f8f5c852f8d21d2a", "reason": "Key exposed in chat", "action": "rotated_and_revoked"}, "severity": "CRITICAL"}

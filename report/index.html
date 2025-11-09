@@ -1,0 +1,76 @@
+<!doctype html><meta charset="utf-8">
+<title>M18 Report - Walls, Boards, Bits & cbT Economy</title>
+<style>
+body { font-family: system-ui; margin: 2rem; }
+.panel { background: #f5f5f5; padding: 1rem; margin: 0.5rem 0; border-radius: 4px; }
+.protocol { background: #e8f4fd; padding: 1rem; margin: 0.5rem 0; border-radius: 4px; }
+.m18-section { background: #f0f8ff; padding: 1rem; margin: 0.5rem 0; border-radius: 4px; }
+pre { background: #f8f8f8; padding: 1rem; overflow-x: auto; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+</style>
+<h1>M18 Status Report</h1>
+
+<h2>Panel State</h2>
+<div class="panel">
+<strong>Milestone:</strong> M18<br>
+<strong>Mode:</strong> dev<br>
+<strong>Overall:</strong> HEALTHY<br>
+<strong>SHA:</strong> 662343ba...
+</div>
+
+<h2>M18 Walls Status</h2>
+<div class="grid">
+<div class="m18-section"><strong>User Wall:</strong><br>Posts: 1<br>NHA Invocations: 1<br>Error Rate: 0.0%</div><div class="m18-section"><strong>Business Wall:</strong><br>Posts: 1<br>NHA Invocations: 1<br>Error Rate: 0.0%</div><div class="m18-section"><strong>Agency Wall:</strong><br>Posts: 1<br>NHA Invocations: 1<br>Error Rate: 0.0%</div><div class="m18-section"><strong>Dev Wall:</strong><br>Posts: 1<br>NHA Invocations: 1<br>Error Rate: 0.0%</div>
+</div>
+
+<h2>M18 Boards Status</h2>
+<div class="grid">
+<div class="m18-section"><strong>User Board:</strong><br>Members: 2<br>Meetings: 0</div><div class="m18-section"><strong>Business Board:</strong><br>Members: 2<br>Meetings: 0</div><div class="m18-section"><strong>Agency Board:</strong><br>Members: 2<br>Meetings: 0</div><div class="m18-section"><strong>Dev Board:</strong><br>Members: 2<br>Meetings: 0</div>
+</div>
+
+<h2>M18 Bits Orchestrator</h2>
+<div class="m18-section">
+<strong>Total Bits:</strong> 2<br>
+<strong>Total Flows:</strong> 1<br>
+<strong>Flows OK:</strong> 1<br>
+<strong>Flows FAIL:</strong> 0
+</div>
+
+<h2>M18 cbT Economy</h2>
+<div class="m18-section">
+<strong>Balance:</strong> 100.0 cbT<br>
+<strong>Total Entries:</strong> 1<br>
+<strong>Session Delta:</strong> 0 cbT
+</div>
+
+<h2>M18 RAG Local Status</h2>
+<div class="grid">
+<div class="m18-section"><strong>User RAG:</strong><br>Chunks: 3<br>Sources: 3<br>Built: 2025-01-01T00:00:00Z</div><div class="m18-section"><strong>Business RAG:</strong><br>Chunks: 3<br>Sources: 3<br>Built: 2025-01-01T00:00:00Z</div><div class="m18-section"><strong>Agency RAG:</strong><br>Chunks: 3<br>Sources: 3<br>Built: 2025-01-01T00:00:00Z</div><div class="m18-section"><strong>Dev RAG:</strong><br>Chunks: 3<br>Sources: 3<br>Built: 2025-01-01T00:00:00Z</div>
+</div>
+
+<h2>Panels Architecture</h2>
+<div class="panel"><strong>user:</strong> User interface și experiență</div><div class="panel"><strong>business:</strong> Business logic și procese</div><div class="panel"><strong>agency:</strong> Agency management și workflow</div><div class="panel"><strong>dev:</strong> Development tools și monitoring</div>
+
+<h2>Protocol Schema (@oPipe/@IIMSIBIS)</h2>
+<div class="protocol">
+<strong>Envelope Schema:</strong>
+<pre>{
+  "ver": "opipe-0.1 | oilluminate-0.1 | iimsibis-0.1",
+  "typ": "heartbeat | event | command | ack",
+  "id": "uuid/ksuid",
+  "ts": "epoch seconds",
+  "src": "agent/role, ex: ogpt01/CEO",
+  "dst": "list[str] destinatari",
+  "agent_type": "human | non-human (pentru @oNHA)",
+  "corr": "Optional[str]",
+  "ttl_s": "int = 300",
+  "nonce": "str",
+  "sig": "Optional[str] HMAC",
+  "body": "Dict[str, Any] payload"
+}</pre>
+</div>
+
+<h2>Metrics</h2>
+<pre>{}</pre>
+
+<small>Generated at 2025-09-12T04:53:16.857669Z</small>

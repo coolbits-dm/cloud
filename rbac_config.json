@@ -1,0 +1,288 @@
+{
+  "users": [
+    {
+      "id": "admin-001",
+      "username": "admin",
+      "email": "admin@coolbits.ai",
+      "roles": [
+        "admin"
+      ],
+      "permissions": [
+        "admin_access",
+        "data_read",
+        "reports_view",
+        "basic_access",
+        "system_config",
+        "data_write",
+        "profile_update",
+        "data_view",
+        "user_management",
+        "code_deploy",
+        "debug_mode",
+        "api_access"
+      ],
+      "created_at": "2025-09-10T19:48:42.519735",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-002",
+      "username": "admin_test",
+      "email": "admin@test.com",
+      "roles": [
+        "admin"
+      ],
+      "permissions": [
+        "admin_access",
+        "data_read",
+        "reports_view",
+        "basic_access",
+        "system_config",
+        "data_write",
+        "profile_update",
+        "data_view",
+        "user_management",
+        "code_deploy",
+        "debug_mode",
+        "api_access"
+      ],
+      "created_at": "2025-09-10T19:48:43.469763",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-003",
+      "username": "viewer_test",
+      "email": "viewer@test.com",
+      "roles": [
+        "viewer"
+      ],
+      "permissions": [
+        "data_view",
+        "reports_view",
+        "basic_access"
+      ],
+      "created_at": "2025-09-10T19:48:43.471368",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-004",
+      "username": "admin_test",
+      "email": "admin@test.com",
+      "roles": [
+        "admin"
+      ],
+      "permissions": [
+        "admin_access",
+        "system_config",
+        "code_deploy",
+        "api_access",
+        "user_management",
+        "basic_access",
+        "profile_update",
+        "data_write",
+        "reports_view",
+        "data_view",
+        "data_read",
+        "debug_mode"
+      ],
+      "created_at": "2025-09-10T19:48:47.402587",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-005",
+      "username": "viewer_test",
+      "email": "viewer@test.com",
+      "roles": [
+        "viewer"
+      ],
+      "permissions": [
+        "data_view",
+        "basic_access",
+        "reports_view"
+      ],
+      "created_at": "2025-09-10T19:48:47.404588",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-006",
+      "username": "admin_test",
+      "email": "admin@test.com",
+      "roles": [
+        "admin"
+      ],
+      "permissions": [
+        "system_config",
+        "data_view",
+        "reports_view",
+        "api_access",
+        "admin_access",
+        "code_deploy",
+        "data_read",
+        "data_write",
+        "basic_access",
+        "debug_mode",
+        "user_management",
+        "profile_update"
+      ],
+      "created_at": "2025-09-10T19:48:53.570144",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-007",
+      "username": "viewer_test",
+      "email": "viewer@test.com",
+      "roles": [
+        "viewer"
+      ],
+      "permissions": [
+        "reports_view",
+        "data_view",
+        "basic_access"
+      ],
+      "created_at": "2025-09-10T19:48:53.571660",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-008",
+      "username": "jwt_test",
+      "email": "jwt@test.com",
+      "roles": [
+        "developer"
+      ],
+      "permissions": [
+        "data_view",
+        "reports_view",
+        "api_access",
+        "code_deploy",
+        "data_read",
+        "data_write",
+        "basic_access",
+        "debug_mode",
+        "profile_update"
+      ],
+      "created_at": "2025-09-10T19:48:53.574681",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-009",
+      "username": "weekly_test_1757523471",
+      "email": "weekly@test.com",
+      "roles": [
+        "viewer"
+      ],
+      "permissions": [
+        "data_view",
+        "reports_view",
+        "basic_access"
+      ],
+      "created_at": "2025-09-10T19:57:51.771460",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-010",
+      "username": "weekly_test_1757523600",
+      "email": "weekly@test.com",
+      "roles": [
+        "viewer"
+      ],
+      "permissions": [
+        "basic_access",
+        "reports_view",
+        "data_view"
+      ],
+      "created_at": "2025-09-10T20:00:00.052907",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-011",
+      "username": "admin_test",
+      "email": "admin@test.com",
+      "roles": [
+        "admin"
+      ],
+      "permissions": [
+        "data_write",
+        "user_management",
+        "api_access",
+        "debug_mode",
+        "basic_access",
+        "admin_access",
+        "code_deploy",
+        "profile_update",
+        "data_read",
+        "reports_view",
+        "system_config",
+        "data_view"
+      ],
+      "created_at": "2025-09-10T20:00:28.055910",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-012",
+      "username": "viewer_test",
+      "email": "viewer@test.com",
+      "roles": [
+        "viewer"
+      ],
+      "permissions": [
+        "reports_view",
+        "basic_access",
+        "data_view"
+      ],
+      "created_at": "2025-09-10T20:00:28.058269",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    },
+    {
+      "id": "user-013",
+      "username": "jwt_test",
+      "email": "jwt@test.com",
+      "roles": [
+        "developer"
+      ],
+      "permissions": [
+        "data_write",
+        "api_access",
+        "debug_mode",
+        "basic_access",
+        "code_deploy",
+        "profile_update",
+        "data_read",
+        "reports_view",
+        "data_view"
+      ],
+      "created_at": "2025-09-10T20:00:28.063059",
+      "last_login": null,
+      "is_active": true,
+      "metadata": {}
+    }
+  ],
+  "hmac_config": {
+    "secret_key": "06RT2ax9M/B1u2S7a02zxzxLGW0jpE//y17xBgh0pyM=",
+    "algorithm": "sha256",
+    "timestamp_tolerance": 300,
+    "nonce_length": 16
+  }
+}

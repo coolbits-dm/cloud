@@ -1,0 +1,7 @@
+{"timestamp":"2025-09-10T15:01:55.502Z","action":"command_exec","exitCode":0,"durationMs":3729,"pid":7820,"command":"start \"\" \"C:\\Users\\andre\\AppData\\Local\\Programs\\cursor\\Cursor.exe\" \"C:\\Users\\andre\\Desktop\\coolbits\""}
+{"timestamp":"2025-09-10T15:02:33.049Z","action":"command_exec","exitCode":0,"durationMs":3602,"pid":7820,"command":"start \"\" \"C:\\Users\\andre\\AppData\\Local\\Programs\\cursor\\Cursor.exe\" \"C:\\Users\\andre\\Desktop\\coolbits\""}
+{"timestamp":"2025-09-10T15:02:41.675Z","action":"command_exec","exitCode":0,"durationMs":3569,"pid":7820,"command":"gcloud config set project coolbits-ai"}
+{"timestamp":"2025-09-10T15:02:43.742Z","action":"command_exec","exitCode":0,"durationMs":2066,"pid":7820,"command":"gcloud auth list --filter=status:ACTIVE --format=\"value(account)\""}
+{"timestamp":"2025-09-10T15:02:46.409Z","action":"command_exec","exitCode":0,"durationMs":2666,"pid":7820,"command":"gcloud run services list --region=europe-west3 --format=\"value(metadata.name)\" --limit=1"}
+{"timestamp":"2025-09-10T15:02:49.022Z","action":"command_exec","exitCode":0,"durationMs":2612,"pid":7820,"command":"gcloud run services describe andrei-panel --region=europe-west3 --format=\"value(status.url)\""}
+{"timestamp":"2025-09-10T16:06:40.941Z","action":"command_exec","exitCode":0,"durationMs":3642,"pid":32800,"command":"start \"\" \"C:\\Users\\andre\\AppData\\Local\\Programs\\cursor\\Cursor.exe\" \"C:\\Users\\andre\\Desktop\\coolbits\""}

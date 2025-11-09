@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolBits.ai - Complete Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .top-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-item {
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .status-indicators {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4CAF50;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .main-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .panel-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .panel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .panel-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .panel-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .panel-content {
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .stat-item {
+            background: rgba(102, 126, 234, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            border: 1px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .wall-post {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-author {
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .post-time {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .post-content {
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .success {
+            background: #e8f5e8;
+            color: #2e7d32;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .main-container {
+                padding: 1rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo-section">
+            <img src="public/cb.png" alt="CoolBits.ai Logo" class="logo" onerror="this.style.display='none'">
+            <div class="logo-text">CoolBits.ai</div>
+        </div>
+        
+        <nav class="nav-menu">
+            <a href="#" class="nav-item active" data-panel="overview">Overview</a>
+            <a href="#" class="nav-item" data-panel="rag">RAG System</a>
+            <a href="#" class="nav-item" data-panel="team">Team</a>
+            <a href="#" class="nav-item" data-panel="industries">Industries</a>
+            <a href="#" class="nav-item" data-panel="bits">Bits</a>
+            <a href="#" class="nav-item" data-panel="wall">Wall</a>
+            <a href="#" class="nav-item" data-panel="panels">Panels</a>
+        </nav>
+
+        <div class="status-indicators">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>RAG Online</span>
+            </div>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>GPU Active</span>
+            </div>
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>Team System</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <!-- Overview Panel -->
+        <div id="overview-panel" class="panel-content">
+            <div class="dashboard-grid">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white;">🚀</div>
+                            RAG System Status
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" id="gpu-status">Loading...</div>
+                            <div class="stat-label">GPU Status</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="gpu-memory">Loading...</div>
+                            <div class="stat-label">GPU Memory</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="http://localhost:8087/docs" target="_blank" class="btn btn-primary">RAG API Docs</a>
+                        <button class="btn btn-secondary" onclick="checkRAGStatus()">Refresh Status</button>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #4CAF50, #45a049); color: white;">👥</div>
+                            Team System
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" id="total-roles">Loading...</div>
+                            <div class="stat-label">Total Roles</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="total-industries">Loading...</div>
+                            <div class="stat-label">Industries</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <a href="http://localhost:8088/docs" target="_blank" class="btn btn-primary">Team API Docs</a>
+                        <button class="btn btn-secondary" onclick="checkTeamStatus()">Refresh Status</button>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #FF9800, #F57C00); color: white;">🔐</div>
+                            Bits Framework
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" id="total-bits">Loading...</div>
+                            <div class="stat-label">Bit Types</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="cbt-supply">Loading...</div>
+                            <div class="stat-label">cbT Supply</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="showPanel('bits')">View Bits</button>
+                        <button class="btn btn-secondary" onclick="checkBitsStatus()">Refresh</button>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #9C27B0, #7B1FA2); color: white;">💬</div>
+                            Wall System
+                        </div>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" id="wall-posts">Loading...</div>
+                            <div class="stat-label">Total Posts</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" id="recent-posts">Loading...</div>
+                            <div class="stat-label">Recent Posts</div>
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="showPanel('wall')">View Wall</button>
+                        <button class="btn btn-secondary" onclick="refreshWall()">Refresh</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RAG System Panel -->
+        <div id="rag-panel" class="panel-content hidden">
+            <div class="dashboard-grid">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white;">🎮</div>
+                            GPU Performance
+                        </div>
+                    </div>
+                    <div id="gpu-details">
+                        <div class="loading">Loading GPU details...</div>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #4CAF50, #45a049); color: white;">🔍</div>
+                            Vector Search
+                        </div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="testVectorSearch()">Test Search</button>
+                        <button class="btn btn-secondary" onclick="clearGPUCache()">Clear GPU Cache</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Panel -->
+        <div id="team-panel" class="panel-content hidden">
+            <div class="dashboard-grid">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #4CAF50, #45a049); color: white;">👥</div>
+                            Organizational Roles
+                        </div>
+                    </div>
+                    <div id="roles-list">
+                        <div class="loading">Loading roles...</div>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #FF9800, #F57C00); color: white;">🏭</div>
+                            Industry RAGs
+                        </div>
+                    </div>
+                    <div id="industries-list">
+                        <div class="loading">Loading industries...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bits Panel -->
+        <div id="bits-panel" class="panel-content hidden">
+            <div class="dashboard-grid">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #FF9800, #F57C00); color: white;">🔐</div>
+                            Bits Framework
+                        </div>
+                    </div>
+                    <div id="bits-details">
+                        <div class="loading">Loading bits details...</div>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #9C27B0, #7B1FA2); color: white;">💰</div>
+                            cbT Economy
+                        </div>
+                    </div>
+                    <div id="cbt-details">
+                        <div class="loading">Loading cbT details...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wall Panel -->
+        <div id="wall-panel" class="panel-content hidden">
+            <div class="dashboard-grid">
+                <div class="panel-card" style="grid-column: 1 / -1;">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #9C27B0, #7B1FA2); color: white;">💬</div>
+                            Team Wall
+                        </div>
+                    </div>
+                    <div id="wall-posts-list">
+                        <div class="loading">Loading wall posts...</div>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="showNewPostForm()">New Post</button>
+                        <button class="btn btn-secondary" onclick="refreshWall()">Refresh</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panels Panel -->
+        <div id="panels-panel" class="panel-content hidden">
+            <div class="dashboard-grid">
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <div class="panel-icon" style="background: linear-gradient(45deg, #2196F3, #1976D2); color: white;">📱</div>
+                            Panel System
+                        </div>
+                    </div>
+                    <div id="panels-list">
+                        <div class="loading">Loading panels...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let currentPanel = 'overview';
+        let ragStatus = null;
+        let teamStatus = null;
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDashboard();
+            setupNavigation();
+        });
+
+        function initializeDashboard() {
+            checkRAGStatus();
+            checkTeamStatus();
+            checkBitsStatus();
+            refreshWall();
+            loadPanels();
+        }
+
+        function setupNavigation() {
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const panel = this.dataset.panel;
+                    showPanel(panel);
+                });
+            });
+        }
+
+        function showPanel(panelName) {
+            // Hide all panels
+            const panels = document.querySelectorAll('.panel-content');
+            panels.forEach(panel => panel.classList.add('hidden'));
+
+            // Show selected panel
+            const targetPanel = document.getElementById(panelName + '-panel');
+            if (targetPanel) {
+                targetPanel.classList.remove('hidden');
+            }
+
+            // Update navigation
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.panel === panelName) {
+                    item.classList.add('active');
+                }
+            });
+
+            currentPanel = panelName;
+
+            // Load panel-specific data
+            switch(panelName) {
+                case 'rag':
+                    loadRAGDetails();
+                    break;
+                case 'team':
+                    loadTeamDetails();
+                    break;
+                case 'bits':
+                    loadBitsDetails();
+                    break;
+                case 'wall':
+                    refreshWall();
+                    break;
+                case 'panels':
+                    loadPanels();
+                    break;
+            }
+        }
+
+        async function checkRAGStatus() {
+            try {
+                const response = await fetch('http://localhost:8087/health');
+                const data = await response.json();
+                ragStatus = data;
+                
+                document.getElementById('gpu-status').textContent = data.gpu.available ? 'RTX 2060' : 'CPU Only';
+                document.getElementById('gpu-memory').textContent = data.gpu.available ? 
+                    `${data.gpu.total_memory_gb.toFixed(1)} GB` : 'N/A';
+                
+                updateStatusIndicators();
+            } catch (error) {
+                console.error('Error checking RAG status:', error);
+                document.getElementById('gpu-status').textContent = 'Offline';
+                document.getElementById('gpu-memory').textContent = 'N/A';
+            }
+        }
+
+        async function checkTeamStatus() {
+            try {
+                const response = await fetch('http://localhost:8088/team/status');
+                const data = await response.json();
+                teamStatus = data;
+                
+                document.getElementById('total-roles').textContent = data.roles.total;
+                document.getElementById('total-industries').textContent = data.industries.total;
+                document.getElementById('total-bits').textContent = data.bits_system.total_types;
+                document.getElementById('cbt-supply').textContent = `${(data.cbt_economy.circulating / 1000).toFixed(0)}K`;
+                document.getElementById('wall-posts').textContent = data.wall_posts.total;
+                document.getElementById('recent-posts').textContent = data.wall_posts.recent;
+                
+            } catch (error) {
+                console.error('Error checking team status:', error);
+                document.getElementById('total-roles').textContent = 'Error';
+                document.getElementById('total-industries').textContent = 'Error';
+            }
+        }
+
+        async function checkBitsStatus() {
+            try {
+                const response = await fetch('http://localhost:8088/team/bits');
+                const data = await response.json();
+                
+                document.getElementById('total-bits').textContent = data.total_types;
+                
+            } catch (error) {
+                console.error('Error checking bits status:', error);
+            }
+        }
+
+        async function loadRAGDetails() {
+            const container = document.getElementById('gpu-details');
+            if (!ragStatus) {
+                container.innerHTML = '<div class="loading">Loading GPU details...</div>';
+                await checkRAGStatus();
+            }
+            
+            if (ragStatus && ragStatus.gpu.available) {
+                container.innerHTML = `
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">${ragStatus.gpu.device_name}</div>
+                            <div class="stat-label">GPU Name</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${ragStatus.gpu.total_memory_gb.toFixed(1)} GB</div>
+                            <div class="stat-label">Total Memory</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${ragStatus.gpu.memory_usage_percent.toFixed(1)}%</div>
+                            <div class="stat-label">Memory Usage</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${ragStatus.gpu.cuda_version}</div>
+                            <div class="stat-label">CUDA Version</div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = '<div class="error">GPU not available</div>';
+            }
+        }
+
+        async function loadTeamDetails() {
+            try {
+                const [rolesResponse, industriesResponse] = await Promise.all([
+                    fetch('http://localhost:8088/team/roles'),
+                    fetch('http://localhost:8088/team/industries')
+                ]);
+                
+                const rolesData = await rolesResponse.json();
+                const industriesData = await industriesResponse.json();
+                
+                // Display roles
+                const rolesContainer = document.getElementById('roles-list');
+                const rolesList = Object.values(rolesData.roles).slice(0, 10).map(role => `
+                    <div style="padding: 0.5rem; border-bottom: 1px solid #eee;">
+                        <strong>${role.name}</strong> (${role.category})<br>
+                        <small>Level: ${role.level}</small>
+                    </div>
+                `).join('');
+                
+                rolesContainer.innerHTML = `
+                    <div style="max-height: 300px; overflow-y: auto;">
+                        ${rolesList}
+                        <div style="text-align: center; padding: 1rem;">
+                            <small>Showing 10 of ${rolesData.total} roles</small>
+                        </div>
+                    </div>
+                `;
+                
+                // Display industries
+                const industriesContainer = document.getElementById('industries-list');
+                const industriesList = Object.values(industriesData.industries).slice(0, 10).map(industry => `
+                    <div style="padding: 0.5rem; border-bottom: 1px solid #eee;">
+                        <strong>${industry.name}</strong><br>
+                        <small>${industry.description}</small>
+                    </div>
+                `).join('');
+                
+                industriesContainer.innerHTML = `
+                    <div style="max-height: 300px; overflow-y: auto;">
+                        ${industriesList}
+                        <div style="text-align: center; padding: 1rem;">
+                            <small>Showing 10 of ${industriesData.total} industries</small>
+                        </div>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Error loading team details:', error);
+            }
+        }
+
+        async function loadBitsDetails() {
+            try {
+                const [bitsResponse, cbtResponse] = await Promise.all([
+                    fetch('http://localhost:8088/team/bits'),
+                    fetch('http://localhost:8088/team/cbt')
+                ]);
+                
+                const bitsData = await bitsResponse.json();
+                const cbtData = await cbtResponse.json();
+                
+                // Display bits
+                const bitsContainer = document.getElementById('bits-details');
+                const bitsList = Object.values(bitsData.bits).map(bit => `
+                    <div style="padding: 1rem; margin: 0.5rem 0; background: rgba(102, 126, 234, 0.1); border-radius: 8px;">
+                        <strong>${bit.name}</strong> (${bit.bit_type})<br>
+                        <small>${bit.description}</small><br>
+                        <small>cbT Allocation: ${bit.cbt_allocation.toLocaleString()}</small>
+                    </div>
+                `).join('');
+                
+                bitsContainer.innerHTML = bitsList;
+                
+                // Display cbT economy
+                const cbtContainer = document.getElementById('cbt-details');
+                cbtContainer.innerHTML = `
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">${(cbtData.total_supply / 1000).toFixed(0)}K</div>
+                            <div class="stat-label">Total Supply</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${(cbtData.circulating / 1000).toFixed(0)}K</div>
+                            <div class="stat-label">Circulating</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${(cbtData.reserved / 1000).toFixed(0)}K</div>
+                            <div class="stat-label">Reserved</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">${Object.keys(cbtData.allocations).length}</div>
+                            <div class="stat-label">Allocations</div>
+                        </div>
+                    </div>
+                `;
+                
+            } catch (error) {
+                console.error('Error loading bits details:', error);
+            }
+        }
+
+        async function refreshWall() {
+            try {
+                const response = await fetch('http://localhost:8088/team/wall');
+                const data = await response.json();
+                
+                const wallContainer = document.getElementById('wall-posts-list');
+                
+                if (data.posts.length === 0) {
+                    wallContainer.innerHTML = '<div class="loading">No posts yet</div>';
+                    return;
+                }
+                
+                const postsList = data.posts.map(post => `
+                    <div class="wall-post">
+                        <div class="post-header">
+                            <span class="post-author">${post.author} (${post.role})</span>
+                            <span class="post-time">${new Date(post.timestamp).toLocaleString()}</span>
+                        </div>
+                        <div class="post-content">${post.content}</div>
+                    </div>
+                `).join('');
+                
+                wallContainer.innerHTML = postsList;
+                
+            } catch (error) {
+                console.error('Error loading wall posts:', error);
+            }
+        }
+
+        async function loadPanels() {
+            try {
+                const response = await fetch('http://localhost:8088/team/panels');
+                const data = await response.json();
+                
+                const panelsContainer = document.getElementById('panels-list');
+                const panelsList = data.panels.map(panel => `
+                    <div style="padding: 1rem; margin: 0.5rem 0; background: rgba(33, 150, 243, 0.1); border-radius: 8px;">
+                        <strong>${panel.name}</strong><br>
+                        <small>${panel.description}</small><br>
+                        <small>Bit Type: ${panel.bit_type}</small>
+                    </div>
+                `).join('');
+                
+                panelsContainer.innerHTML = panelsList;
+                
+            } catch (error) {
+                console.error('Error loading panels:', error);
+            }
+        }
+
+        function updateStatusIndicators() {
+            const indicators = document.querySelectorAll('.status-dot');
+            indicators.forEach(dot => {
+                if (ragStatus && ragStatus.gpu.available) {
+                    dot.style.background = '#4CAF50';
+                } else {
+                    dot.style.background = '#f44336';
+                }
+            });
+        }
+
+        async function testVectorSearch() {
+            alert('Vector search test functionality coming soon!');
+        }
+
+        async function clearGPUCache() {
+            try {
+                const response = await fetch('http://localhost:8087/gpu/clear-cache', {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    alert('GPU cache cleared successfully!');
+                } else {
+                    alert('Failed to clear GPU cache');
+                }
+            } catch (error) {
+                console.error('Error clearing GPU cache:', error);
+                alert('Error clearing GPU cache');
+            }
+        }
+
+        function showNewPostForm() {
+            const author = prompt('Your name:');
+            const role = prompt('Your role:');
+            const content = prompt('Post content:');
+            const bitType = prompt('Bit type (c-bit, u-bit, b-bit, a-bit, d-bit):');
+            
+            if (author && role && content && bitType) {
+                createWallPost(author, role, content, bitType);
+            }
+        }
+
+        async function createWallPost(author, role, content, bitType) {
+            try {
+                const response = await fetch('http://localhost:8088/team/wall/post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        author: author,
+                        role: role,
+                        content: content,
+                        bit_type: bitType
+                    })
+                });
+                
+                if (response.ok) {
+                    alert('Post created successfully!');
+                    refreshWall();
+                } else {
+                    alert('Failed to create post');
+                }
+            } catch (error) {
+                console.error('Error creating post:', error);
+                alert('Error creating post');
+            }
+        }
+
+        // Auto-refresh every 30 seconds
+        setInterval(() => {
+            if (currentPanel === 'overview') {
+                checkRAGStatus();
+                checkTeamStatus();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

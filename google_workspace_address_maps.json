@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "company": "COOL BITS SRL \ud83c\udfe2 \ud83c\udfe2",
+    "ceo": "Andrei",
+    "primary_email": "andrei@coolbits.ai",
+    "customer_id": "C00tzrczu",
+    "generated_date": "2025-09-07T12:56:55.775117"
+  },
+  "address_maps": [
+    {
+      "name": "CoolBits Primary CEO Email Routing",
+      "description": "Route andrei@coolbits.ro to andrei@coolbits.ai",
+      "original_address": "andrei@coolbits.ro",
+      "map_to_address": "andrei@coolbits.ai",
+      "routing_action": "redirect",
+      "priority": "highest",
+      "settings": {
+        "messages_to_affect": "All incoming messages",
+        "also_route_to_original": false,
+        "add_x_gm_original_to_header": true,
+        "apply_to_external_only": false
+      }
+    },
+    {
+      "name": "CoolBits Official Administration Email Routing",
+      "description": "Route coolbits.dm@gmail.com to andrei@coolbits.ai",
+      "original_address": "coolbits.dm@gmail.com",
+      "map_to_address": "andrei@coolbits.ai",
+      "routing_action": "forward",
+      "priority": "highest",
+      "settings": {
+        "messages_to_affect": "All incoming messages",
+        "also_route_to_original": true,
+        "add_x_gm_original_to_header": true,
+        "apply_to_external_only": false
+      }
+    },
+    {
+      "name": "CoolBits RO Headquarters Email Routing",
+      "description": "Route coolbits.ro@gmail.com to andrei@coolbits.ai",
+      "original_address": "coolbits.ro@gmail.com",
+      "map_to_address": "andrei@coolbits.ai",
+      "routing_action": "forward",
+      "priority": "high",
+      "settings": {
+        "messages_to_affect": "All incoming messages",
+        "also_route_to_original": true,
+        "add_x_gm_original_to_header": true,
+        "apply_to_external_only": false
+      }
+    },
+    {
+      "name": "CoolBits Brand Email Routing",
+      "description": "Route coolbits.ai@gmail.com to andrei@coolbits.ai",
+      "original_address": "coolbits.ai@gmail.com",
+      "map_to_address": "andrei@coolbits.ai",
+      "routing_action": "forward",
+      "priority": "high",
+      "settings": {
+        "messages_to_affect": "All incoming messages",
+        "also_route_to_original": true,
+        "add_x_gm_original_to_header": true,
+        "apply_to_external_only": false
+      }
+    }
+  ]
+}

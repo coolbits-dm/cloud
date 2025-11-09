@@ -1,0 +1,42 @@
+{
+  "spam_patterns": [
+    "urgent action required",
+    "limited time offer",
+    "congratulations you won",
+    "free money",
+    "click here now"
+  ],
+  "priority_keywords": {
+    "urgent": [
+      "meeting",
+      "deadline",
+      "contract",
+      "legal",
+      "ceo"
+    ],
+    "important": [
+      "project",
+      "update",
+      "report",
+      "client"
+    ],
+    "normal": [
+      "information",
+      "update",
+      "newsletter",
+      "social"
+    ]
+  },
+  "security_patterns": [
+    "suspicious attachment",
+    "phishing attempt",
+    "malware detected",
+    "unusual sender"
+  ],
+  "compliance_rules": [
+    "gdpr_compliant",
+    "data_protection",
+    "privacy_policy",
+    "retention_policy"
+  ]
+}

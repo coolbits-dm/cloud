@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .cb-blue { fill: #4285f4; }
+      .cb-black { fill: #000000; }
+    </style>
+  </defs>
+  
+  <!-- Outer C shape -->
+  <path class="cb-blue" d="M 16 2 A 14 14 0 0 1 30 16 A 14 14 0 0 1 16 30 A 14 14 0 0 1 2 16 A 14 14 0 0 1 16 2 Z M 16 6 A 10 10 0 0 0 6 16 A 10 10 0 0 0 16 26 A 10 10 0 0 0 26 16 A 10 10 0 0 0 16 6 Z" stroke="#4285f4" stroke-width="3" fill="none"/>
+  
+  <!-- Inner b shape -->
+  <!-- Vertical stem -->
+  <rect class="cb-blue" x="8" y="8" width="4" height="16"/>
+  
+  <!-- Circular bowl -->
+  <path class="cb-blue" d="M 8 20 A 8 8 0 0 0 20 20" stroke="#4285f4" stroke-width="6" fill="none"/>
+  
+  <!-- Inner black circle -->
+  <circle class="cb-black" cx="16" cy="18" r="2"/>
+</svg>

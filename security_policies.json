@@ -1,0 +1,26 @@
+{
+  "key_management": {
+    "policy": "NO_KEYS_IN_ENV_FILES",
+    "description": "No keys allowed in .env files on disk unencrypted",
+    "enforcement": "Secret Manager or DPAPI only",
+    "violation_action": "Server startup blocked"
+  },
+  "build_security": {
+    "policy": "SIGNED_BUILDS_ONLY",
+    "description": "Builds must be from commit SHA signed",
+    "enforcement": "Health endpoint displays SHA, release blocked if missing",
+    "violation_action": "Deployment blocked"
+  },
+  "mock_policy": {
+    "policy": "NO_MOCKS_IN_MAIN",
+    "description": "No mock code allowed in main branch",
+    "enforcement": "Mocks only in 'sim' branch, CI fails on main",
+    "violation_action": "CI pipeline fails"
+  },
+  "desktop_parity": {
+    "policy": "WEB_AS_SOURCE_OF_TRUTH",
+    "description": "Desktop/Tauri remains consumer, web parity is source of truth",
+    "enforcement": "Desktop syncs with web, not vice versa",
+    "violation_action": "Sync blocked"
+  }
+}

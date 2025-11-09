@@ -1,0 +1,115 @@
+# API Cost Optimization Configuration
+# CoolBits.ai - Optimized API Structure
+
+# Development Tier (Ieftine - pentru testing și development)
+development:
+  openai:
+    model: "gpt-4o-mini"
+    input_cost_per_1m: 0.15
+    output_cost_per_1m: 0.60
+    max_tokens: 128000
+    use_cases: ["testing", "debugging", "development", "prototyping"]
+  
+  xai:
+    model: "grok-3-mini"
+    input_cost_per_1m: 0.30
+    output_cost_per_1m: 0.50
+    max_tokens: 131072
+    use_cases: ["testing", "debugging", "development", "prototyping"]
+
+# Production Tier (Medii - pentru production și client work)
+production:
+  openai:
+    model: "gpt-4o"
+    input_cost_per_1m: 2.50
+    output_cost_per_1m: 10.00
+    max_tokens: 128000
+    use_cases: ["production", "client_work", "business_tasks"]
+  
+  xai:
+    model: "grok-2-1212"
+    input_cost_per_1m: 2.00
+    output_cost_per_1m: 10.00
+    max_tokens: 131072
+    use_cases: ["production", "client_work", "business_tasks"]
+
+# Premium Tier (Scumpe - doar când e necesar)
+premium:
+  openai:
+    model: "gpt-4"
+    input_cost_per_1m: 30.00
+    output_cost_per_1m: 60.00
+    max_tokens: 128000
+    use_cases: ["complex_analysis", "critical_tasks", "research"]
+  
+  xai:
+    model: "grok-4-0709"
+    input_cost_per_1m: 3.00
+    output_cost_per_1m: 15.00
+    max_tokens: 256000
+    use_cases: ["complex_analysis", "critical_tasks", "research"]
+
+# Agent Configuration by Role
+agents:
+  # Development Agents (folosesc modele ieftine)
+  development_agents:
+    roles:
+      - "Developer"
+      - "Tester"
+      - "Debugger"
+      - "Prototyper"
+    tier: "development"
+  
+  # Business Agents (folosesc modele medii)
+  business_agents:
+    roles:
+      - "CEO"
+      - "CTO"
+      - "Marketing Lead"
+      - "Sales Lead"
+      - "HR Lead"
+    tier: "production"
+  
+  # Premium Agents (folosesc modele scumpe doar când e necesar)
+  premium_agents:
+    roles:
+      - "Research Lead"
+      - "Strategy Lead"
+      - "Analyst"
+    tier: "premium"
+
+# Cost Optimization Rules
+optimization_rules:
+  # Context Management
+  context_management:
+    max_context_tokens: 8000  # Limitează context-ul pentru a reduce costurile
+    context_compression: true  # Comprimă context-ul vechi
+    context_summarization: true  # Sumarizează conversațiile lungi
+  
+  # Response Management
+  response_management:
+    max_response_tokens: 1000  # Limitează răspunsurile
+    response_compression: true  # Comprimă răspunsurile
+    response_summarization: true  # Sumarizează răspunsurile lungi
+  
+  # Cost Monitoring
+  cost_monitoring:
+    daily_budget_limit: 10.00  # Limita zilnică
+    weekly_budget_limit: 50.00  # Limita săptămânală
+    monthly_budget_limit: 200.00  # Limita lunară
+    alert_threshold: 0.8  # Alertă la 80% din limită
+
+# Multi-Agent Chat Configuration
+multi_agent_chat:
+  default_tier: "development"  # Folosește modele ieftine pentru chat-uri
+  max_agents_per_chat: 4  # Limitează numărul de agenți
+  max_cycles_per_session: 3  # Limitează numărul de cicluri
+  response_interval: 30  # Interval între răspunsuri (secunde)
+  max_characters_per_response: 500  # Limitează caracterele per răspuns
+
+# RAG System Configuration
+rag_system:
+  default_tier: "development"  # Folosește modele ieftine pentru RAG
+  max_documents_per_query: 5  # Limitează documentele per query
+  max_tokens_per_query: 2000  # Limitează tokenii per query
+  compression_enabled: true  # Activează comprimarea
