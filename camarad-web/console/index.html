@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super Admin Console Δ-∞</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body class="console-shell">
+    <div id="console-root" class="console-wrapper">
+      <header class="console-header">
+        <span class="console-pill secure-pill">Δ-∞ · SUPER ADMIN PROTOCOL</span>
+        <h1 class="console-title">Camarad Console</h1>
+        <p class="console-subtitle">
+          Biometric · Passkey · Hardware token verified. Empire obeys only you.
+        </p>
+        <div class="secure-badges">
+          <span>🔒 Biometric confirmed</span>
+          <span>🪪 Passkey signed</span>
+          <span>🔑 YubiKey 5 NFC present</span>
+        </div>
+      </header>
+
+      <main class="console-main">
+        <section class="panel-grid" data-panels>
+          <button class="panel active" data-panel>
+            <span class="panel-title">PERSONAL</span>
+            <span class="panel-detail">1 user · vault: open</span>
+          </button>
+          <button class="panel" data-panel>
+            <span class="panel-title">BUSINESS</span>
+            <span class="panel-detail">12 seats · €1.247/mo</span>
+          </button>
+          <button class="panel" data-panel>
+            <span class="panel-title">AGENCY</span>
+            <span class="panel-detail">23 clients · €8.400/mo</span>
+          </button>
+          <button class="panel" data-panel>
+            <span class="panel-title">DEVOPS</span>
+            <span class="panel-detail">4 clusters · k8s: live</span>
+          </button>
+        </section>
+
+        <section class="mode-switch" data-modes>
+          <button class="mode-button" data-mode="mock">CAMARAD MOCK (0$)</button>
+          <button class="mode-button active" data-mode="byok">
+            CAMARAD BYOK (real)
+          </button>
+        </section>
+
+        <section class="executor">
+          <input
+            id="console-input"
+            type="text"
+            placeholder="Command the Empire..."
+            autocomplete="off"
+          />
+          <button id="console-execute" class="execute">EXECUTE AS EMPEROR</button>
+        </section>
+
+        <section
+          class="console-output"
+          id="console-output"
+          aria-live="polite"
+          data-log
+        >
+          <span class="log-line response">> biometric verified</span>
+          <span class="log-line response">> passkey confirmed</span>
+          <span class="log-line response">> yubikey inserted</span>
+          <span class="log-line response">> emperor access granted</span>
+          <span class="log-line response">> € tick. € tick. € tick.</span>
+        </section>
+      </main>
+    </div>
+    <script src="../script.js" type="module"></script>
+  </body>
+</html>

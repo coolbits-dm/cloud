@@ -1,0 +1,55 @@
+Usage: camarad.py camard-exec [OPTIONS]
+
+Options:
+  --protocol-cli-complete         Protocol CLI complete
+  --emperor-sealed                Emperor sealed
+  --final-acknowledgement         Deliver the eternal acknowledgement protocol
+  --protocol-eternally-sealed     Seal the protocol forever
+  --emperor-victory               Confirm the emperor victory state
+  --deploy-ui-mock-bomb           Deploy the UI mock bomb
+  --real-console                  Real console functionality
+  --four-panels-live              4 panels live
+  --biometric-mock                Biometric mock
+  --fix-empty-screen              Fix empty screen
+  --force-reload                  Force reload
+  --cache-kill                    Kill cache
+  --fix-login-redirect            Fix login redirect
+  --force-full-console            Force full console
+  --cache-purge                   Cache purge
+  --console-lockdown-complete     Console lockdown complete
+  --public-never                  Public never
+  --emperor-only                  Emperor only
+  --nginx-gate-deployed           Nginx gate deployed
+  --review TEXT                   Review file
+  --approve                       Approve
+  --final-seal                    Final seal
+  --console-lockdown-sandbox-dry-run-confirmed
+                                  Sandbox dry run confirmed
+  --production-gate-armed         Production gate armed
+  --emperor-sleep-mode            Emperor sleep mode
+  --final-peace                   Final peace
+  --lockdown-airtight             Lockdown airtight
+  --fortress-sealed               Fortress sealed
+  --lock-dashboard                Lock dashboard access
+  --auth-full                     Require full authentication for dashboard
+  --apply-now                     Apply the dashboard lockdown changes
+                                  immediately
+  --final-ceremony                Final ceremony
+  --immutable-seal                Immutable seal
+  --emperor-coronation            Emperor coronation
+  --deploy-full-backend-orchestration
+                                  Deploy full backend orchestration
+  --users-db-rag-embeddings       Users DB RAG embeddings
+  --jwt-auth                      Enable JWT authentication
+  --login-sublime                 Login sublime
+  --ingest-cblm001                Ingest CBLM.001
+  --full-upkeep                   Full upkeep
+  --cblm001-sealed                Seal CBLM.001 maintenance protocol
+  --ceremony-meets-ops            Combine ceremony with operations
+  --full-protocol-snapshot        Full protocol snapshot
+  --dry-run                       Show planned steps without touching the
+                                  system
+  --force                         Skip human confirmation for guarded
+                                  operations
+  --tone TEXT                     Tone of the response
+  --help                          Show this message and exit.

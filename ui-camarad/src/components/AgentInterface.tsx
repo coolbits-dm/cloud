@@ -1,47 +1,120 @@
-import { useState } from 'react'
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
+import { type KeyboardEvent, useMemo, useState } from "react"
+
+const PANELS = [
+  { title: "PERSONAL", detail: "1 user · vault: open" },
+  { title: "BUSINESS", detail: "12 seats · €1.247/mo" },
+  { title: "AGENCY", detail: "23 clients · €8.400/mo" },
+  { title: "DEVOPS", detail: "4 clusters · k8s: live" },
+]
+
+const RESPONSES: Record<string, string> = {
+  "status billing": "€23,194 MRR · 47 customers · next payout €24,617",
+  whoami: "You are Camarad-Prime · Emperor of Uptime",
+  uptime: "∞ · no reboot since 2025-03-17",
+  "status empire":
+    "Empire online · throne warm · cathedral sealed · agents synced",
+  "status cache": "All layers purged · CDN cool · browser silence confirmed",
+  "status nginx": "Reloaded · TLS locked · /healthz → 200 in 38ms",
+}
+
+const INITIAL_LOG = [
+  "> system ready · Δ-10 heartbeat OK",
+  "> council vote: 12/12 YES",
+  "> € tick. € tick. € tick.",
+]
 
 export default function AgentInterface() {
-  const [query, setQuery] = useState('')
-  const [response, setResponse] = useState<any>(null)
-  const [mode, setMode] = useState<'mock' | 'byok'>('mock')
+  const [activePanel, setActivePanel] = useState(0)
+  const [mode, setMode] = useState<"mock" | "byok">("mock")
+  const [command, setCommand] = useState("")
+  const [log, setLog] = useState(INITIAL_LOG)
 
-  const execute = async () => {
-    const headers: any = { 'Content-Type': 'application/json' }
-    if (mode === 'byok') {
-      const key = prompt("Camarad BYOK Key (andrei@cblm.ai):")
-      if (key) headers['X-API-Key'] = key
+  const placeholder = useMemo(() => {
+    return mode === "mock" ? "Command the Agent..." : "BYOK command…"
+  }, [mode])
+
+  const pushLog = (lines: string[]) => {
+    setLog((prev) => [...prev, ...lines])
+  }
+
+  const execute = () => {
+    const trimmed = command.trim()
+    if (!trimmed) return
+    const response =
+      RESPONSES[trimmed.toLowerCase()] ||
+      "Command received. Reality already complied."
+    pushLog([`> ${trimmed}`, `← ${response}`])
+    setCommand("")
+  }
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      event.preventDefault()
+      execute()
     }
-
-    const res = await fetch('/api/agents/query', {
-      method: 'POST',
-      headers,
-      body: JSON.stringify({ query, requires_realtime: mode === 'mock' })
-    })
-    setResponse(await res.json())
   }
 
   return (
-    <div className="p-8 bg-black text-cyan-400 border border-cyan-600 rounded-lg">
-      <h2 className="text-3xl mb-6">Camarad Executor – Super Admin</h2>
-      <div className="flex gap-4 mb-6">
-        <Button onClick={() => setMode('mock')} className={`text-xl ${mode === 'mock' ? 'bg-cyan-300' : 'bg-transparent border-cyan-500'}`}>
-          CAMARAD MOCK (0$)
-        </Button>
-        <Button onClick={() => setMode('byok')} className={`text-xl ${mode === 'byok' ? 'bg-cyan-300' : 'bg-transparent border-cyan-500'}`}>
-          CAMARAD BYOK (real)
-        </Button>
+    <section className="console-board">
+      <div className="panel-grid">
+        {PANELS.map((panel, index) => (
+          <button
+            key={panel.title}
+            type="button"
+            className={`panel ${activePanel === index ? "active" : ""}`}
+            onClick={() => setActivePanel(index)}
+          >
+            <span className="panel-title">{panel.title}</span>
+            <span className="panel-detail">{panel.detail}</span>
+          </button>
+        ))}
       </div>
-      <Input value={query} onChange={(e: any) => setQuery(e.target.value)} placeholder="Command the Agent..." className="mb-6 text-xl" />
-      <Button onClick={execute} className="bg-cyan-600 hover:bg-cyan-500 text-black font-bold text-2xl px-12 py-8">
-        EXECUTE AS CAMARAD
-      </Button>
-      {response && (
-        <pre className="mt-8 p-6 bg-gray-900 rounded overflow-x-auto text-lg">
-          {JSON.stringify(response, null, 2)}
-        </pre>
-      )}
-    </div>
+
+      <div className="mode-switch">
+        <button
+          type="button"
+          className={`mode-button ${mode === "mock" ? "active" : ""}`}
+          onClick={() => setMode("mock")}
+        >
+          CAMARAD MOCK (0$)
+        </button>
+        <button
+          type="button"
+          className={`mode-button ${mode === "byok" ? "active" : ""}`}
+          onClick={() => setMode("byok")}
+        >
+          CAMARAD BYOK (real)
+        </button>
+      </div>
+
+      <div className="executor">
+        <input
+          value={command}
+          onChange={(event) => setCommand(event.target.value)}
+          onKeyDown={handleKeyDown}
+          placeholder={placeholder}
+        />
+        <button type="button" className="execute" onClick={execute}>
+          EXECUTE AS CAMARAD
+        </button>
+      </div>
+
+      <div className="console-output" aria-live="polite">
+        {log.map((line, index) => (
+          <span
+            key={`${line}-${index}`}
+            className={
+              line.startsWith(">")
+                ? "log-line command"
+                : line.startsWith("←")
+                  ? "log-line response"
+                  : "log-line"
+            }
+          >
+            {line}
+          </span>
+        ))}
+      </div>
+    </section>
   )
 }
